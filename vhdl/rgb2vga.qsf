@@ -1,0 +1,144 @@
+# -------------------------------------------------------------------------- #
+#
+# Copyright (C) 1991-2013 Altera Corporation
+# Your use of Altera Corporation's design tools, logic functions 
+# and other software and tools, and its AMPP partner logic 
+# functions, and any output files from any of the foregoing 
+# (including device programming or simulation files), and any 
+# associated documentation or information are expressly subject 
+# to the terms and conditions of the Altera Program License 
+# Subscription Agreement, Altera MegaCore Function License 
+# Agreement, or other applicable license agreement, including, 
+# without limitation, that your use is for the sole purpose of 
+# programming logic devices manufactured by Altera and sold by 
+# Altera or its authorized distributors.  Please refer to the 
+# applicable agreement for further details.
+#
+# -------------------------------------------------------------------------- #
+#
+# Quartus II 64-Bit
+# Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
+# Date created = 22:47:32  September 22, 2014
+#
+# -------------------------------------------------------------------------- #
+#
+# Notes:
+#
+# 1) The default values for assignments are stored in the file:
+#		rgb2vga_assignment_defaults.qdf
+#    If this file doesn't exist, see file:
+#		assignment_defaults.qdf
+#
+# 2) Altera recommends that you do not modify this file. This
+#    file is updated automatically by the Quartus II software
+#    and any changes you make may be lost or overwritten.
+#
+# -------------------------------------------------------------------------- #
+
+
+set_global_assignment -name FAMILY "Cyclone IV E"
+set_global_assignment -name DEVICE EP4CE22F17C6
+set_global_assignment -name TOP_LEVEL_ENTITY top
+set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.0
+set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:47:32  SEPTEMBER 22, 2014"
+set_global_assignment -name LAST_QUARTUS_VERSION 13.0
+set_global_assignment -name PROJECT_OUTPUT_DIRECTORY output_files
+set_global_assignment -name MIN_CORE_JUNCTION_TEMP 0
+set_global_assignment -name MAX_CORE_JUNCTION_TEMP 85
+set_global_assignment -name DEVICE_FILTER_PACKAGE FBGA
+set_global_assignment -name DEVICE_FILTER_SPEED_GRADE 6
+set_global_assignment -name ERROR_CHECK_FREQUENCY_DIVISOR 1
+set_global_assignment -name NOMINAL_CORE_SUPPLY_VOLTAGE 1.2V
+set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
+set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
+set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name POWER_PRESET_COOLING_SOLUTION "23 MM HEAT SINK WITH 200 LFPM AIRFLOW"
+set_global_assignment -name POWER_BOARD_THERMAL_MODEL "NONE (CONSERVATIVE)"
+set_global_assignment -name STRATIX_DEVICE_IO_STANDARD "2.5 V"
+set_location_assignment PIN_R8 -to CLOCK_50
+set_location_assignment PIN_L4 -to DRAM_ADDR[12]
+set_location_assignment PIN_N1 -to DRAM_ADDR[11]
+set_location_assignment PIN_N2 -to DRAM_ADDR[10]
+set_location_assignment PIN_P1 -to DRAM_ADDR[9]
+set_location_assignment PIN_R1 -to DRAM_ADDR[8]
+set_location_assignment PIN_T6 -to DRAM_ADDR[7]
+set_location_assignment PIN_N8 -to DRAM_ADDR[6]
+set_location_assignment PIN_T7 -to DRAM_ADDR[5]
+set_location_assignment PIN_P8 -to DRAM_ADDR[4]
+set_location_assignment PIN_M8 -to DRAM_ADDR[3]
+set_location_assignment PIN_N6 -to DRAM_ADDR[2]
+set_location_assignment PIN_N5 -to DRAM_ADDR[1]
+set_location_assignment PIN_P2 -to DRAM_ADDR[0]
+set_location_assignment PIN_M6 -to DRAM_BA[1]
+set_location_assignment PIN_M7 -to DRAM_BA[0]
+set_location_assignment PIN_L1 -to DRAM_CAS_N
+set_location_assignment PIN_L7 -to DRAM_CKE
+set_location_assignment PIN_R4 -to DRAM_CLK
+set_location_assignment PIN_P6 -to DRAM_CS_N
+set_location_assignment PIN_K1 -to DRAM_DQ[15]
+set_location_assignment PIN_N3 -to DRAM_DQ[14]
+set_location_assignment PIN_P3 -to DRAM_DQ[13]
+set_location_assignment PIN_R5 -to DRAM_DQ[12]
+set_location_assignment PIN_R3 -to DRAM_DQ[11]
+set_location_assignment PIN_T3 -to DRAM_DQ[10]
+set_location_assignment PIN_T2 -to DRAM_DQ[9]
+set_location_assignment PIN_T4 -to DRAM_DQ[8]
+set_location_assignment PIN_R7 -to DRAM_DQ[7]
+set_location_assignment PIN_J1 -to DRAM_DQ[6]
+set_location_assignment PIN_J2 -to DRAM_DQ[5]
+set_location_assignment PIN_K2 -to DRAM_DQ[4]
+set_location_assignment PIN_K5 -to DRAM_DQ[3]
+set_location_assignment PIN_L8 -to DRAM_DQ[2]
+set_location_assignment PIN_G1 -to DRAM_DQ[1]
+set_location_assignment PIN_G2 -to DRAM_DQ[0]
+set_location_assignment PIN_T5 -to DRAM_DQM[1]
+set_location_assignment PIN_R6 -to DRAM_DQM[0]
+set_location_assignment PIN_L2 -to DRAM_RAS_N
+set_location_assignment PIN_C2 -to DRAM_WE_N
+set_location_assignment PIN_B8 -to VSYNC
+set_location_assignment PIN_A8 -to HSYNC
+set_location_assignment PIN_B4 -to VGAVS
+set_location_assignment PIN_D8 -to VGAG2
+set_location_assignment PIN_D5 -to VGAR0
+set_location_assignment PIN_A6 -to VGAR1
+set_location_assignment PIN_D6 -to VGAR2
+set_location_assignment PIN_C6 -to VGAG0
+set_location_assignment PIN_E6 -to VGAG1
+set_location_assignment PIN_F8 -to VGAB0
+set_location_assignment PIN_E9 -to VGAB1
+set_location_assignment PIN_B5 -to VGAHS
+set_location_assignment PIN_D3 -to D0
+set_location_assignment PIN_C3 -to D1
+set_location_assignment PIN_A3 -to D2
+set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFB
+set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFG
+set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFR
+set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFBn
+set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFGn
+set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFRn
+set_location_assignment PIN_B12 -to DIFFB
+set_location_assignment PIN_A12 -to DIFFBn
+set_location_assignment PIN_D12 -to DIFFG
+set_location_assignment PIN_D11 -to DIFFGn
+set_location_assignment PIN_D9 -to DIFFR
+set_location_assignment PIN_C9 -to DIFFRn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFB
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFBn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFG
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFR
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFRn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFGn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D2
+set_global_assignment -name VHDL_FILE pll.vhd
+set_global_assignment -name VHDL_FILE vgaout.vhd
+set_global_assignment -name VHDL_FILE genlock.vhd
+set_global_assignment -name VHDL_FILE ram.vhd
+set_global_assignment -name VHDL_FILE sdram.vhd
+set_global_assignment -name BDF_FILE top.bdf
+set_global_assignment -name QIP_FILE altiobuf.qip
+set_global_assignment -name QIP_FILE pll.qip
+set_global_assignment -name SDC_FILE rgb2vga.sdc
+set_location_assignment PIN_M1 -to SWITCH0
+set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

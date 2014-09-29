@@ -315,7 +315,7 @@ DRAM_DQ[8]                   : T4        : bidir  : 2.5 V             :         
 DRAM_DQM[1]                  : T5        : output : 2.5 V             :         : 3         : Y              
 DRAM_ADDR[7]                 : T6        : output : 2.5 V             :         : 3         : Y              
 DRAM_ADDR[5]                 : T7        : output : 2.5 V             :         : 3         : Y              
-GND+                         : T8        :        :                   :         : 3         :                
+SWITCH1                      : T8        : input  : 2.5 V             :         : 3         : Y              
 GND+                         : T9        :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : T10       :        :                   :         : 4         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : T11       :        :                   :         : 4         :                

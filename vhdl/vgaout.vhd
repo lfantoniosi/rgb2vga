@@ -11,7 +11,8 @@ entity vgaout is
 			colLoadNr	: out unsigned(8 downto 0); -- [0:639]
 			rowLoadReq	: out std_logic := '0';
 			rowLoadAck  : in std_logic;
-			SCANLINE_IN	: in std_logic
+			SCANLINE_IN	: in std_logic;
+			IS_SYNC		: in std_logic
 			
          );
 end vgaout;
@@ -89,14 +90,19 @@ begin
 	end if;
 end process;
 
---pixel: process(pixelIn, hcount)
---begin
---	if (hcount(0) = '0') then
---		vgaPixel(2 downto 0) <= pixelIn(2 downto 0);
---	else
---		vgaPixel(2 downto 0) <= pixelIn(6 downto 4);
---	end if;
---end process;
+pixel: process(pixelIn, hcount)
+begin
+	if (hcount(0) = '0') then
+		vgaPixel <= pixelIn(7 downto 0);
+	else
+		vgaPixel <= pixelIn(15 downto 8);
+	end if;
+	
+	if (IS_SYNC = '1') then
+		vgaPixel <= "00000011"; -- out of sync shows blue
+	end if;
+	
+end process;
 
 
 load_row: process(hsync, rowLoadAck)
@@ -133,9 +139,11 @@ end process;
 		scanline <= videoon when '0',
 						(SCANLINE_IN and videoon) when others;
 	
-	with (hcount(0)) select
-		VGA_OUT(9 downto 2) <= (pixelIn(7 downto 0) and videoon&scanline&videoon&videoon&scanline&videoon&scanline&videoon) when '0',
-								     (pixelIn(15 downto 8) and videoon&scanline&videoon&videoon&scanline&videoon&scanline&videoon) when others;
+	VGA_OUT(9 downto 2) <= vgaPixel and videoon&scanline&videoon&videoon&scanline&videoon&scanline&videoon;
+	
+	--with (hcount(0)) select
+	--	VGA_OUT(9 downto 2) <= (pixelIn(7 downto 0) and videoon&scanline&videoon&videoon&scanline&videoon&scanline&videoon) when '0',
+	--							     (pixelIn(15 downto 8) and videoon&scanline&videoon&videoon&scanline&videoon&scanline&videoon) when others;
 	
 	VGA_OUT(1 downto 0)	<= hsync & vsync;
 

@@ -19,7 +19,9 @@ entity genlock is
 			colStoreNr	: out unsigned(8 downto 0); 
 			rowStoreReq	: out std_logic := '0';
 			rowStoreAck : in std_logic;
-			DAC_STEP		: buffer unsigned(2 downto 0)
+			DAC_STEP		: buffer unsigned(2 downto 0);
+			IS_SYNC		: out std_logic;
+			SYNC_LEVEL	: in std_logic
 									
          );
 end genlock;
@@ -37,10 +39,11 @@ signal PIXEL : unsigned(7 downto 0);
 
 begin
 
-red: process(CLOCK_H, DAC_STEP)
+red: process(CLOCK_H, DAC_STEP, ARGB(2))
 begin
 	if (rising_edge(CLOCK_H)) then 
 		captureR <= '1';
+		if (DAC_STEP = "000" or ARGB(2) /= 'X') then
 		case DAC_STEP is		
 			when "001" => 
 				RADC(0) <= ARGB(2);
@@ -66,18 +69,31 @@ begin
 						when "0011111" => PIXEL(7 downto 5) <= "101";
 						when "0111111" => PIXEL(7 downto 5) <= "110";
 						when "1111111" => PIXEL(7 downto 5) <= "111";
+
+						when "-------" => PIXEL(7 downto 5) <= "111";
+						when "------1" => PIXEL(7 downto 5) <= "001";
+						when "-----1-" => PIXEL(7 downto 5) <= "010";
+						when "----1--" => PIXEL(7 downto 5) <= "011";
+						when "---1---" => PIXEL(7 downto 5) <= "100";
+						when "--1----" => PIXEL(7 downto 5) <= "101";
+						when "-1-----" => PIXEL(7 downto 5) <= "110";
+						when "1------" => PIXEL(7 downto 5) <= "111";
+
+
 						when others 	=> PIXEL(7 downto 5) <= "111";
 				end case;
+				RADC <= (others => '0');
 				captureR <= '0';
-		end case;		
+		end case;
+		end if;
 	end if;
 end process;
 
-green: process(CLOCK_H, DAC_STEP)
+green: process(CLOCK_H, DAC_STEP, ARGB(1))
 begin
 	if (rising_edge(CLOCK_H)) then 
 		captureG <= '1';
-	
+		if (DAC_STEP = "000" or ARGB(1) /= 'X') then		
 		case DAC_STEP is		
 			when "001" => 
 				GADC(0) <= ARGB(1);
@@ -103,17 +119,31 @@ begin
 						when "0011111" => PIXEL(4 downto 2) <= "101";
 						when "0111111" => PIXEL(4 downto 2) <= "110";
 						when "1111111" => PIXEL(4 downto 2) <= "111";
+						 
+						when "-------" => PIXEL(4 downto 2) <= "111";
+						when "------1" => PIXEL(4 downto 2) <= "001";
+						when "-----1-" => PIXEL(4 downto 2) <= "010";
+						when "----1--" => PIXEL(4 downto 2) <= "011";
+						when "---1---" => PIXEL(4 downto 2) <= "100";
+						when "--1----" => PIXEL(4 downto 2) <= "101";
+						when "-1-----" => PIXEL(4 downto 2) <= "110";
+						when "1------" => PIXEL(4 downto 2) <= "111";						
+						
 						when others 	=> PIXEL(4 downto 2) <= "111";
+						
 				end case;
+				GADC <= (others => '0');				
 				captureG <= '0';				
-		end case;		
+		end case;
+		end if;		
 	end if;
 end process;
 
-blue: process(CLOCK_H, DAC_STEP)
+blue: process(CLOCK_H, DAC_STEP, ARGB(0))
 begin
 	if (rising_edge(CLOCK_H)) then 
 		captureB <= '1'; 	
+		if (DAC_STEP = "000" or ARGB(0) /= 'X') then		
 		case DAC_STEP is		
 			when "001" => 
 				BADC(0) <= ARGB(0);
@@ -139,10 +169,22 @@ begin
 						when "0011111" => PIXEL(1 downto 0) <= "10";
 						when "0111111" => PIXEL(1 downto 0) <= "11";
 						when "1111111" => PIXEL(1 downto 0) <= "11";
-						when others 	=> PIXEL(1 downto 0) <= "11";						
+						
+						when "-------" => PIXEL(1 downto 0) <= "11";
+						when "------1" => PIXEL(1 downto 0) <= "00";
+						when "-----1-" => PIXEL(1 downto 0) <= "01";
+						when "----1--" => PIXEL(1 downto 0) <= "01";
+						when "---1---" => PIXEL(1 downto 0) <= "10";
+						when "--1----" => PIXEL(1 downto 0) <= "10";
+						when "-1-----" => PIXEL(1 downto 0) <= "11";
+						when "1------" => PIXEL(1 downto 0) <= "11";						
+						
+						when others 	=> PIXEL(1 downto 0) <= "11";
 				end case;
+				BADC <= (others => '0');
 				captureB <= '0';
-		end case;		
+		end case;
+		end if;
 	end if;
 end process;
 
@@ -152,18 +194,23 @@ hsync_lock: process(CLOCK_H)
 begin	
 	if (rising_edge(CLOCK_H)) then
 		hblank <= '1'; 
-		if (HSYNC_IN = '1' and hcount_in(31 downto 3) >= 799) then
+		if (HSYNC_IN = SYNC_LEVEL and hcount_in(31 downto 3) >= 799) then
 			hblank <= '0'; 
 		end if;
+				
+		IS_SYNC <= '0';
+		--if (VSYNC_IN /= SYNC_LEVEL and hcount_in(31 downto 3) > 1024) then
+		--	IS_SYNC <= '1';
+		--end if;
+		
 	end if;
 end process;
 
 hraster: process (CLOCK_H, hblank, vblank)
-
 begin
 	if (hblank = '0' or vblank = '0') then
 		hcount_in <= (others => '0');
-		DAC_STEP <= "000";
+		DAC_STEP <= "111"; -- next clock will digitize
 	elsif (rising_edge(CLOCK_H)) then
 		hcount_in <= hcount_in + 1;
 		DAC_STEP <= DAC_STEP + 1;
@@ -171,14 +218,17 @@ begin
 	end if;
 end process;
 
-vsync_lock: process(CLOCK_V)
+vsync_lock: process(CLOCK_H)
 begin	
-	if (rising_edge(CLOCK_V)) then		
+	if (rising_edge(CLOCK_H)) then		
 		vblank <= '1'; 	
-		if (VSYNC_IN = '1' and vcount_in > 262) then
-			vblank <= '0';
+		
+		if (VSYNC_IN = SYNC_LEVEL and vcount_in > 245) then
+			vblank <= '0';	
 		end if;
-	end if;
+		
+	end if;	
+
 end process;
 
 vraster: process (CLOCK_H, vblank)
@@ -193,7 +243,7 @@ begin
 end process;
 
 
-pixel_in: process(CLOCK_H, captureR, captureG, captureB)
+pixel_in: process(CLOCK_H, hcount_in, captureR, captureG, captureB)
 variable row, col: integer range 0 to 153600;
 begin
 	if (rising_edge(CLOCK_H)) then
@@ -229,5 +279,5 @@ begin
 		rowStoreReq <= '1';
 	end if;
 end process;
-	
+
 end behavioral;

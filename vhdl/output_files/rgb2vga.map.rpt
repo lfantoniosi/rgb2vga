@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Tue Sep 30 00:13:58 2014
+Tue Sep 30 08:20:36 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -56,15 +56,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Tue Sep 30 00:13:58 2014      ;
+; Analysis & Synthesis Status        ; Successful - Tue Sep 30 08:20:36 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 554                                        ;
-;     Total combinational functions  ; 461                                        ;
-;     Dedicated logic registers      ; 324                                        ;
-; Total registers                    ; 324                                        ;
+; Total logic elements               ; 533                                        ;
+;     Total combinational functions  ; 443                                        ;
+;     Dedicated logic registers      ; 321                                        ;
+; Total registers                    ; 321                                        ;
 ; Total pins                         ; 63                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 16,384                                     ;
@@ -206,20 +206,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                        ;
 +---------------------------------------------+------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 554                                                                          ;
+; Estimated Total logic elements              ; 533                                                                          ;
 ;                                             ;                                                                              ;
-; Total combinational functions               ; 461                                                                          ;
+; Total combinational functions               ; 443                                                                          ;
 ; Logic element usage by number of LUT inputs ;                                                                              ;
-;     -- 4 input functions                    ; 182                                                                          ;
-;     -- 3 input functions                    ; 71                                                                           ;
+;     -- 4 input functions                    ; 167                                                                          ;
+;     -- 3 input functions                    ; 68                                                                           ;
 ;     -- <=2 input functions                  ; 208                                                                          ;
 ;                                             ;                                                                              ;
 ; Logic elements by mode                      ;                                                                              ;
-;     -- normal mode                          ; 289                                                                          ;
+;     -- normal mode                          ; 271                                                                          ;
 ;     -- arithmetic mode                      ; 172                                                                          ;
 ;                                             ;                                                                              ;
-; Total registers                             ; 324                                                                          ;
-;     -- Dedicated logic registers            ; 324                                                                          ;
+; Total registers                             ; 321                                                                          ;
+;     -- Dedicated logic registers            ; 321                                                                          ;
 ;     -- I/O registers                        ; 0                                                                            ;
 ;                                             ;                                                                              ;
 ; I/O pins                                    ; 63                                                                           ;
@@ -229,9 +229,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- PLLs                                 ; 1                                                                            ;
 ;                                             ;                                                                              ;
 ; Maximum fan-out node                        ; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 358                                                                          ;
-; Total fan-out                               ; 3158                                                                         ;
-; Average fan-out                             ; 3.30                                                                         ;
+; Maximum fan-out                             ; 355                                                                          ;
+; Total fan-out                               ; 3080                                                                         ;
+; Average fan-out                             ; 3.29                                                                         ;
 +---------------------------------------------+------------------------------------------------------------------------------+
 
 
@@ -240,14 +240,14 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                           ; Library Name ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
-; |top                                                          ; 461 (1)           ; 324 (0)      ; 16384       ; 0            ; 0       ; 0         ; 63   ; 0            ; |top                                                                          ;              ;
+; |top                                                          ; 443 (1)           ; 321 (0)      ; 16384       ; 0            ; 0       ; 0         ; 63   ; 0            ; |top                                                                          ;              ;
 ;    |altiobuf:inst12|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
 ;    |altiobuf:inst13|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
 ;    |altiobuf:inst16|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
-;    |genlock:inst6|                                            ; 216 (216)         ; 132 (132)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst6                                                            ;              ;
+;    |genlock:inst6|                                            ; 198 (198)         ; 129 (129)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst6                                                            ;              ;
 ;    |pll:inst1|                                                ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1                                                                ;              ;
 ;       |altpll:altpll_component|                               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1|altpll:altpll_component                                        ;              ;
 ;          |pll_altpll:auto_generated|                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1|altpll:altpll_component|pll_altpll:auto_generated              ;              ;
@@ -335,12 +335,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 324   ;
+; Total registers                              ; 321   ;
 ; Number of registers using Synchronous Clear  ; 21    ;
 ; Number of registers using Synchronous Load   ; 42    ;
 ; Number of registers using Asynchronous Clear ; 66    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 219   ;
+; Number of registers using Clock Enable       ; 216   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -362,14 +362,14 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[0]      ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[8]      ;
 ; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|sdram:inst|colStoreNr[8]    ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|sdram:inst|SdrBa1           ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[9]        ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|sdram:inst|SdrBa0           ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[10]       ;
 ; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[0]        ;
-; 12:1               ; 15 bits   ; 120 LEs       ; 15 LEs               ; 105 LEs                ; Yes        ; |top|sdram:inst|SdrAddress[21]   ;
-; 12:1               ; 9 bits    ; 72 LEs        ; 18 LEs               ; 54 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[13]   ;
-; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[4] ;
+; 12:1               ; 15 bits   ; 120 LEs       ; 15 LEs               ; 105 LEs                ; Yes        ; |top|sdram:inst|SdrAddress[19]   ;
+; 12:1               ; 9 bits    ; 72 LEs        ; 18 LEs               ; 54 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[16]   ;
+; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[8] ;
 ; 25:1               ; 6 bits    ; 96 LEs        ; 18 LEs               ; 78 LEs                 ; No         ; |top|sdram:inst|Selector8        ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 
@@ -952,7 +952,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -962,7 +962,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Tue Sep 30 00:13:54 2014
+    Info: Processing started: Tue Sep 30 08:20:31 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
@@ -1059,8 +1059,8 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/pll_
     Info (12023): Found entity 1: pll_altpll
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "pll:inst1|altpll:altpll_component|pll_altpll:auto_generated"
 Info (12128): Elaborating entity "genlock" for hierarchy "genlock:inst6"
-Warning (10631): VHDL Process Statement warning at genlock.vhd(394): inferring latch(es) for signal or variable "rowStoreReq", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "rowStoreReq" at genlock.vhd(394)
+Warning (10631): VHDL Process Statement warning at genlock.vhd(408): inferring latch(es) for signal or variable "rowStoreReq", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "rowStoreReq" at genlock.vhd(408)
 Info (12128): Elaborating entity "altiobuf" for hierarchy "altiobuf:inst16"
 Info (12128): Elaborating entity "altiobuf_iobuf_in_k0j" for hierarchy "altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component"
 Info (12128): Elaborating entity "vgaout" for hierarchy "vgaout:inst7"
@@ -1103,17 +1103,17 @@ Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (15897): PLL "pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|pll1" has parameter compensate_clock set to clock0 but port CLK[0] is not connected
 Warning (15899): PLL "pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|pll1" has parameters clk0_multiply_by and clk0_divide_by specified but port CLK[0] is not connected
-Info (21057): Implemented 675 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 654 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 11 input pins
     Info (21059): Implemented 36 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 579 logic cells
+    Info (21061): Implemented 558 logic cells
     Info (21064): Implemented 32 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 10 warnings
     Info: Peak virtual memory: 508 megabytes
-    Info: Processing ended: Tue Sep 30 00:13:58 2014
-    Info: Elapsed time: 00:00:04
+    Info: Processing ended: Tue Sep 30 08:20:36 2014
+    Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:04
 
 

@@ -291,20 +291,34 @@ begin
 				BADC(6) <= ARGB(0);
 			when "000" =>
 			
-				PIXEL(1 downto 0) <= F_ADC(BADC)(2 downto 1);
+				--PIXEL(1 downto 0) <= F_ADC(BADC)(2 downto 1);
 				
---				case BADC is
---					when "0000000" => PIXEL(1 downto 0) <= "00";
---					when "0000001" => PIXEL(1 downto 0) <= "00";
---					when "0000011" => PIXEL(1 downto 0) <= "01";
---					when "0000111" => PIXEL(1 downto 0) <= "01";
---					when "0001111" => PIXEL(1 downto 0) <= "10";
---					when "0011111" => PIXEL(1 downto 0) <= "10";
---					when "0111111" => PIXEL(1 downto 0) <= "11";
---					when "1111111" => PIXEL(1 downto 0) <= "11";				
---			
---					when others    => PIXEL(1 downto 0) <= PIXEL(1 downto 0); --"00";	-- more sensible to blue due to 2-bits only			
---				end case;	
+				case BADC(6 downto 3) is
+					--when "0000" => PIXEL(1 downto 0) <= "00";
+					--when "0001" => PIXEL(1 downto 0) <= "01";
+					--when "0011" => PIXEL(1 downto 0) <= "10";
+					--when "0111" => PIXEL(1 downto 0) <= "11";
+					--when "1111" => PIXEL(1 downto 0) <= "11";
+
+					when "0000" => PIXEL(1 downto 0) <= "00";
+					when "0001" => PIXEL(1 downto 0) <= "01";
+					when "0010" => PIXEL(1 downto 0) <= "01";
+					when "0011" => PIXEL(1 downto 0) <= "01";
+					when "0100" => PIXEL(1 downto 0) <= "10";
+					when "0101" => PIXEL(1 downto 0) <= "10";
+					when "0110" => PIXEL(1 downto 0) <= "10";
+					when "0111" => PIXEL(1 downto 0) <= "11";
+					when "1000" => PIXEL(1 downto 0) <= "00";
+					when "1001" => PIXEL(1 downto 0) <= "10";
+					when "1010" => PIXEL(1 downto 0) <= "10";
+					when "1011" => PIXEL(1 downto 0) <= "11";
+					when "1100" => PIXEL(1 downto 0) <= "01";
+					when "1101" => PIXEL(1 downto 0) <= "11";
+					when "1110" => PIXEL(1 downto 0) <= "10";
+					when "1111" => PIXEL(1 downto 0) <= "11";
+
+					--when others    => PIXEL(1 downto 0) <= "11";	-- more sensible to blue due to 2-bits only			
+				end case;	
 				
 				captureB <= '0';
 		end case;

@@ -44,16 +44,6 @@ variable VALUE : unsigned (2 downto 0);
 begin
 		case ADC(6 downto 0) is
 		
-			--when "0000000" => VALUE := "000";
-			--when "0000001" => VALUE := "001";
-			--when "0000011" => VALUE := "010";
-			--when "0000111" => VALUE := "011";
-			--when "0001111" => VALUE := "100";
-			--when "0011111" => VALUE := "101";
-			--when "0111111" => VALUE := "110";
-			--when "1111111" => VALUE := "111";						
-			--when others    => VALUE := "111";
-						
 			when "0000000" => VALUE := "000";
 			
 			when "0000001" => VALUE := "001";
@@ -198,7 +188,7 @@ end F_ADC;
 
 begin
 
-red: process(CLOCK_H, DAC_STEP, ARGB(2))
+red: process(CLOCK_H)--, DAC_STEP, ARGB(2))
 begin
 	if (rising_edge(CLOCK_H)) then 
 		captureR <= '1';
@@ -219,12 +209,26 @@ begin
 				RADC(6) <= ARGB(2);
 			when "000" =>
 				PIXEL(7 downto 5) <= F_ADC(RADC);
+				
+--				case RADC is
+--					when "0000000" => PIXEL(7 downto 5) <= "000";
+--					when "0000001" => PIXEL(7 downto 5) <= "001";
+--					when "0000011" => PIXEL(7 downto 5) <= "010";
+--					when "0000111" => PIXEL(7 downto 5) <= "011";
+--					when "0001111" => PIXEL(7 downto 5) <= "100";
+--					when "0011111" => PIXEL(7 downto 5) <= "101";
+--					when "0111111" => PIXEL(7 downto 5) <= "110";
+--					when "1111111" => PIXEL(7 downto 5) <= "111";
+--		
+--					when others    => PIXEL(7 downto 5) <= "111";				
+--				end case;
+				
 				captureR <= '0';
 		end case;
 	end if;
 end process;
 
-green: process(CLOCK_H, DAC_STEP, ARGB(1))
+green: process(CLOCK_H)--, DAC_STEP, ARGB(1))
 begin
 	if (rising_edge(CLOCK_H)) then 
 		captureG <= '1';
@@ -244,13 +248,29 @@ begin
 			when "111" => 
 				GADC(6) <= ARGB(1);
 			when "000" =>
+			
 				PIXEL(4 downto 2) <= F_ADC(GADC);
+
+--				case GADC is
+--					when "0000000" => PIXEL(4 downto 2) <= "000";
+--					when "0000001" => PIXEL(4 downto 2) <= "001";
+--					when "0000011" => PIXEL(4 downto 2) <= "010";
+--					when "0000111" => PIXEL(4 downto 2) <= "011";
+--					when "0001111" => PIXEL(4 downto 2) <= "100";
+--					when "0011111" => PIXEL(4 downto 2) <= "101";
+--					when "0111111" => PIXEL(4 downto 2) <= "110";
+--					when "1111111" => PIXEL(4 downto 2) <= "111";						
+--
+--					when others    => PIXEL(4 downto 2) <= "111";		
+--
+--				end case;	
+				
 				captureG <= '0';				
 		end case;
 	end if;
 end process;
 
-blue: process(CLOCK_H, DAC_STEP, ARGB(0))
+blue: process(CLOCK_H)--, DAC_STEP, ARGB(0))
 begin
 	if (rising_edge(CLOCK_H)) then 
 		captureB <= '1'; 	
@@ -270,7 +290,22 @@ begin
 			when "111" => 
 				BADC(6) <= ARGB(0);
 			when "000" =>
+			
 				PIXEL(1 downto 0) <= F_ADC(BADC)(2 downto 1);
+				
+--				case BADC is
+--					when "0000000" => PIXEL(1 downto 0) <= "00";
+--					when "0000001" => PIXEL(1 downto 0) <= "00";
+--					when "0000011" => PIXEL(1 downto 0) <= "01";
+--					when "0000111" => PIXEL(1 downto 0) <= "01";
+--					when "0001111" => PIXEL(1 downto 0) <= "10";
+--					when "0011111" => PIXEL(1 downto 0) <= "10";
+--					when "0111111" => PIXEL(1 downto 0) <= "11";
+--					when "1111111" => PIXEL(1 downto 0) <= "11";				
+--			
+--					when others    => PIXEL(1 downto 0) <= PIXEL(1 downto 0); --"00";	-- more sensible to blue due to 2-bits only			
+--				end case;	
+				
 				captureB <= '0';
 		end case;
 	end if;
@@ -311,7 +346,7 @@ begin
 	if (rising_edge(CLOCK_H)) then		
 		vblank <= '1'; 	
 		
-		if (VSYNC_IN = SYNC_LEVEL and vcount_in > 245) then
+		if (VSYNC_IN = SYNC_LEVEL and vcount_in > 260) then
 			vblank <= '0';	
 		end if;
 		

@@ -92,7 +92,7 @@ VGAHS                        : B5        : output : 2.5 V             :         
 RESERVED_INPUT_WITH_WEAK_PULLUP : B6        :        :                   :         : 8         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : B7        :        :                   :         : 8         :                
 VSYNC                        : B8        : input  : 2.5 V             :         : 8         : Y              
-GND+                         : B9        :        :                   :         : 7         :                
+SWITCH2                      : B9        : input  : 2.5 V             :         : 7         : Y              
 RESERVED_INPUT_WITH_WEAK_PULLUP : B10       :        :                   :         : 7         :                
 RESERVED_INPUT_WITH_WEAK_PULLUP : B11       :        :                   :         : 7         :                
 DIFFB                        : B12       : input  : Bus LVDS          :         : 7         : Y              

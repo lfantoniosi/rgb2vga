@@ -20,7 +20,8 @@ entity genlock is
 			rowStoreAck : in std_logic;
 			DAC_STEP		: buffer unsigned(2 downto 0);
 			IS_SYNC		: out std_logic;
-			SYNC_LEVEL	: in std_logic
+			SYNC_LEVEL	: in std_logic;
+			ARTIFACT		: in std_logic
 									
          );
 end genlock;
@@ -35,6 +36,7 @@ signal RADC : unsigned(6 downto 0);
 signal GADC : unsigned(6 downto 0);
 signal BADC : unsigned(6 downto 0);
 signal PIXEL : unsigned(7 downto 0);
+
 
 function F_ADC(ADC: unsigned) return unsigned;
 
@@ -210,19 +212,6 @@ begin
 			when "000" =>
 				PIXEL(7 downto 5) <= F_ADC(RADC);
 				
---				case RADC is
---					when "0000000" => PIXEL(7 downto 5) <= "000";
---					when "0000001" => PIXEL(7 downto 5) <= "001";
---					when "0000011" => PIXEL(7 downto 5) <= "010";
---					when "0000111" => PIXEL(7 downto 5) <= "011";
---					when "0001111" => PIXEL(7 downto 5) <= "100";
---					when "0011111" => PIXEL(7 downto 5) <= "101";
---					when "0111111" => PIXEL(7 downto 5) <= "110";
---					when "1111111" => PIXEL(7 downto 5) <= "111";
---		
---					when others    => PIXEL(7 downto 5) <= "111";				
---				end case;
-				
 				captureR <= '0';
 		end case;
 	end if;
@@ -250,20 +239,6 @@ begin
 			when "000" =>
 			
 				PIXEL(4 downto 2) <= F_ADC(GADC);
-
---				case GADC is
---					when "0000000" => PIXEL(4 downto 2) <= "000";
---					when "0000001" => PIXEL(4 downto 2) <= "001";
---					when "0000011" => PIXEL(4 downto 2) <= "010";
---					when "0000111" => PIXEL(4 downto 2) <= "011";
---					when "0001111" => PIXEL(4 downto 2) <= "100";
---					when "0011111" => PIXEL(4 downto 2) <= "101";
---					when "0111111" => PIXEL(4 downto 2) <= "110";
---					when "1111111" => PIXEL(4 downto 2) <= "111";						
---
---					when others    => PIXEL(4 downto 2) <= "111";		
---
---				end case;	
 				
 				captureG <= '0';				
 		end case;
@@ -291,14 +266,7 @@ begin
 				BADC(6) <= ARGB(0);
 			when "000" =>
 			
-				--PIXEL(1 downto 0) <= F_ADC(BADC)(2 downto 1);
-				
 				case BADC(6 downto 3) is
-					--when "0000" => PIXEL(1 downto 0) <= "00";
-					--when "0001" => PIXEL(1 downto 0) <= "01";
-					--when "0011" => PIXEL(1 downto 0) <= "10";
-					--when "0111" => PIXEL(1 downto 0) <= "11";
-					--when "1111" => PIXEL(1 downto 0) <= "11";
 
 					when "0000" => PIXEL(1 downto 0) <= "00";
 					when "0001" => PIXEL(1 downto 0) <= "01";
@@ -317,10 +285,10 @@ begin
 					when "1110" => PIXEL(1 downto 0) <= "10";
 					when "1111" => PIXEL(1 downto 0) <= "11";
 
-					--when others    => PIXEL(1 downto 0) <= "11";	-- more sensible to blue due to 2-bits only			
 				end case;	
 				
 				captureB <= '0';
+				
 		end case;
 	end if;
 end process;
@@ -336,9 +304,9 @@ begin
 		end if;
 				
 		IS_SYNC <= '0';
-		--if (VSYNC_IN /= SYNC_LEVEL and hcount_in(31 downto 3) > 8192) then
-		--	IS_SYNC <= '1';
-		--end if;
+		if (VSYNC_IN /= SYNC_LEVEL and hcount_in(31 downto 3) > 8192) then
+			IS_SYNC <= '1';
+		end if;
 		
 	end if;
 end process;
@@ -382,8 +350,18 @@ end process;
 
 pixel_in: process(CLOCK_H, hcount_in, captureR, captureG, captureB)
 variable row, col: integer range 0 to 153600;
+variable PREV_PIXEL: unsigned(15 downto 0);
+variable CUR_PIXEL: unsigned(15 downto 0);
+variable fake_color: std_logic;
 begin
 	if (rising_edge(CLOCK_H)) then
+		
+		if (vcount_in >= top_border and hcount_in(31 downto 3) < front_porch) then
+			fake_color := ARTIFACT;
+			if (PIXEL /= "11111111") then
+				fake_color := '0';
+			end if;
+		end if;
 		
 		if (captureR = '0' and captureG = '0' and captureB = '0' and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
 		--if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
@@ -392,11 +370,38 @@ begin
 			row := to_integer(vcount_in) - top_border;
 
 			if (to_unsigned(col, 10)(0) = '0') then			
-				pixelOut(7 downto 0) <= PIXEL; 
-			else
-				pixelOut(15 downto 8) <= PIXEL;
-			end if;		
+				CUR_PIXEL(7 downto 0) := PIXEL; 
+
+				pixelOut <= CUR_PIXEL;
 	
+			else
+			
+				CUR_PIXEL(15 downto 8) := PIXEL;
+				
+				if (fake_color = '1' and CUR_PIXEL(7 downto 2) /= PREV_PIXEL(7 downto 2))  then
+
+					if (to_unsigned(col, 10)(1) = '0') then
+						if (to_integer(CUR_PIXEL(7 downto 2)) > 32) then -- = "111111") then
+							pixelOut <= "1110100011101000";
+						else
+							pixelOut <= "0010011100100111";
+						end if;
+					else
+						if (to_integer(CUR_PIXEL(7 downto 2)) > 32) then -- = "111111") then
+							pixelOut <= "0010011100100111";
+						else
+							pixelOut <= "1110100011101000";
+						end if;					
+					end if;
+
+				else
+					pixelOut <= CUR_PIXEL;
+				end if;
+					
+				PREV_PIXEL := CUR_PIXEL;
+				
+			end if;
+			
 			rowStoreNr <= to_unsigned(row, rowStoreNr'length);
 			colStoreNr <= to_unsigned(col, 10)(9 downto 1);
 			

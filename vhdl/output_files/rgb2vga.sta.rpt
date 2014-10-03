@@ -1,6 +1,6 @@
 TimeQuest Timing Analyzer report for rgb2vga
-Tue Sep 30 23:34:10 2014
-Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
+Thu Oct 02 00:34:12 2014
+Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
 ---------------------
@@ -102,7 +102,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; rgb2vga.sdc   ; OK     ; Tue Sep 30 23:34:08 2014 ;
+; rgb2vga.sdc   ; OK     ; Thu Oct 02 00:34:11 2014 ;
 +---------------+--------+--------------------------+
 
 
@@ -163,9 +163,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.692 ;    ;    ; 2.812 ;
-; SWITCH0    ; VGAB1       ; 5.982 ;    ;    ; 6.251 ;
-; SWITCH0    ; VGAG1       ; 6.632 ;    ;    ; 6.859 ;
-; SWITCH0    ; VGAR1       ; 6.212 ;    ;    ; 6.424 ;
+; SWITCH0    ; VGAB1       ; 5.829 ;    ;    ; 6.063 ;
+; SWITCH0    ; VGAG1       ; 6.566 ;    ;    ; 6.936 ;
+; SWITCH0    ; VGAR1       ; 5.854 ;    ;    ; 6.222 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -175,9 +175,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.243 ;    ;    ; 2.365 ;
-; SWITCH0    ; VGAB1       ; 5.788 ;    ;    ; 6.056 ;
-; SWITCH0    ; VGAG1       ; 6.362 ;    ;    ; 6.554 ;
-; SWITCH0    ; VGAR1       ; 6.009 ;    ;    ; 6.221 ;
+; SWITCH0    ; VGAB1       ; 5.642 ;    ;    ; 5.874 ;
+; SWITCH0    ; VGAG1       ; 6.299 ;    ;    ; 6.632 ;
+; SWITCH0    ; VGAR1       ; 5.616 ;    ;    ; 5.945 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -229,9 +229,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.434 ;    ;    ; 2.576 ;
-; SWITCH0    ; VGAB1       ; 5.443 ;    ;    ; 5.639 ;
-; SWITCH0    ; VGAG1       ; 6.037 ;    ;    ; 6.240 ;
-; SWITCH0    ; VGAR1       ; 5.651 ;    ;    ; 5.776 ;
+; SWITCH0    ; VGAB1       ; 5.302 ;    ;    ; 5.472 ;
+; SWITCH0    ; VGAG1       ; 5.964 ;    ;    ; 6.250 ;
+; SWITCH0    ; VGAR1       ; 5.293 ;    ;    ; 5.577 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -241,9 +241,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.024 ;    ;    ; 2.170 ;
-; SWITCH0    ; VGAB1       ; 5.256 ;    ;    ; 5.450 ;
-; SWITCH0    ; VGAG1       ; 5.781 ;    ;    ; 5.954 ;
-; SWITCH0    ; VGAR1       ; 5.454 ;    ;    ; 5.584 ;
+; SWITCH0    ; VGAB1       ; 5.121 ;    ;    ; 5.290 ;
+; SWITCH0    ; VGAG1       ; 5.717 ;    ;    ; 5.963 ;
+; SWITCH0    ; VGAR1       ; 5.071 ;    ;    ; 5.317 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -289,9 +289,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.578 ;    ;    ; 2.019 ;
-; SWITCH0    ; VGAB1       ; 3.520 ;    ;    ; 4.001 ;
-; SWITCH0    ; VGAG1       ; 3.905 ;    ;    ; 4.393 ;
-; SWITCH0    ; VGAR1       ; 3.661 ;    ;    ; 4.106 ;
+; SWITCH0    ; VGAB1       ; 3.403 ;    ;    ; 3.889 ;
+; SWITCH0    ; VGAG1       ; 3.831 ;    ;    ; 4.391 ;
+; SWITCH0    ; VGAR1       ; 3.415 ;    ;    ; 3.934 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -301,9 +301,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.305 ;    ;    ; 1.747 ;
-; SWITCH0    ; VGAB1       ; 3.405 ;    ;    ; 3.884 ;
-; SWITCH0    ; VGAG1       ; 3.746 ;    ;    ; 4.211 ;
-; SWITCH0    ; VGAR1       ; 3.541 ;    ;    ; 3.984 ;
+; SWITCH0    ; VGAB1       ; 3.293 ;    ;    ; 3.777 ;
+; SWITCH0    ; VGAG1       ; 3.674 ;    ;    ; 4.213 ;
+; SWITCH0    ; VGAR1       ; 3.276 ;    ;    ; 3.773 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -329,9 +329,9 @@ No synchronizer chains to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.692 ;    ;    ; 2.812 ;
-; SWITCH0    ; VGAB1       ; 5.982 ;    ;    ; 6.251 ;
-; SWITCH0    ; VGAG1       ; 6.632 ;    ;    ; 6.859 ;
-; SWITCH0    ; VGAR1       ; 6.212 ;    ;    ; 6.424 ;
+; SWITCH0    ; VGAB1       ; 5.829 ;    ;    ; 6.063 ;
+; SWITCH0    ; VGAG1       ; 6.566 ;    ;    ; 6.936 ;
+; SWITCH0    ; VGAR1       ; 5.854 ;    ;    ; 6.222 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -341,9 +341,9 @@ No synchronizer chains to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.305 ;    ;    ; 1.747 ;
-; SWITCH0    ; VGAB1       ; 3.405 ;    ;    ; 3.884 ;
-; SWITCH0    ; VGAG1       ; 3.746 ;    ;    ; 4.211 ;
-; SWITCH0    ; VGAR1       ; 3.541 ;    ;    ; 3.984 ;
+; SWITCH0    ; VGAB1       ; 3.293 ;    ;    ; 3.777 ;
+; SWITCH0    ; VGAG1       ; 3.674 ;    ;    ; 4.213 ;
+; SWITCH0    ; VGAR1       ; 3.276 ;    ;    ; 3.773 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -658,9 +658,9 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 ; Property                        ; Setup ; Hold ;
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 2     ; 2    ;
-; Unconstrained Clocks            ; 1     ; 1    ;
+; Unconstrained Clocks            ; 2     ; 2    ;
 ; Unconstrained Input Ports       ; 25    ; 25   ;
-; Unconstrained Input Port Paths  ; 61    ; 61   ;
+; Unconstrained Input Port Paths  ; 45    ; 45   ;
 ; Unconstrained Output Ports      ; 50    ; 50   ;
 ; Unconstrained Output Port Paths ; 232   ; 232  ;
 +---------------------------------+-------+------+
@@ -670,16 +670,16 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 ; TimeQuest Timing Analyzer Messages ;
 +------------------------------------+
 Info: *******************************************************************
-Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
+Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Tue Sep 30 23:34:07 2014
+    Info: Processing started: Thu Oct 02 00:34:10 2014
 Info: Command: quartus_sta rgb2vga -c rgb2vga
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (21077): Core supply voltage is 1.2V
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
-Warning (335093): TimeQuest Timing Analyzer is analyzing 2 combinational loops as latches.
+Warning (335093): TimeQuest Timing Analyzer is analyzing 3 combinational loops as latches.
 Info (332104): Reading SDC File: 'rgb2vga.sdc'
 Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {inst1|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 55 -multiply_by 126 -duty_cycle 50.00 -name {inst1|altpll_component|auto_generated|pll1|clk[1]} {inst1|altpll_component|auto_generated|pll1|clk[1]}
@@ -690,6 +690,7 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
+Warning (332060): Node: genlock:inst6|hcount_in[10] was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -711,6 +712,7 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
+Warning (332060): Node: genlock:inst6|hcount_in[10] was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -728,6 +730,7 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
+Warning (332060): Node: genlock:inst6|hcount_in[10] was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -740,10 +743,10 @@ Info (332140): No Removal paths to report
 Info (332140): No Minimum Pulse Width paths to report
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 29 warnings
-    Info: Peak virtual memory: 484 megabytes
-    Info: Processing ended: Tue Sep 30 23:34:10 2014
-    Info: Elapsed time: 00:00:03
+Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 32 warnings
+    Info: Peak virtual memory: 398 megabytes
+    Info: Processing ended: Thu Oct 02 00:34:12 2014
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:03
 
 

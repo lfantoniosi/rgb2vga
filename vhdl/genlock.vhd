@@ -36,7 +36,10 @@ signal RADC : unsigned(6 downto 0);
 signal GADC : unsigned(6 downto 0);
 signal BADC : unsigned(6 downto 0);
 signal PIXEL : unsigned(7 downto 0);
+signal FAKE_COLOR: std_logic;
 
+signal PixelIn : unsigned (15 downto 0);
+signal FakePixel : unsigned (15 downto 0);
 
 function F_ADC(ADC: unsigned) return unsigned;
 
@@ -347,68 +350,91 @@ begin
 	end if;
 end process;
 
+artifact_detect: process(CLOCK_H, hcount_in)
+begin
+	if (vcount_in >= top_border and hcount_in(31 downto 3) < front_porch) then
+		FAKE_COLOR <= ARTIFACT;
+		if (PIXEL /= "11111111") then
+			FAKE_COLOR <= '0';
+		end if;
+	end if;
+end process;
+
 
 pixel_in: process(CLOCK_H, hcount_in, captureR, captureG, captureB)
 variable row, col: integer range 0 to 153600;
-variable PREV_PIXEL: unsigned(15 downto 0);
-variable CUR_PIXEL: unsigned(15 downto 0);
-variable fake_color: std_logic;
 begin
 	if (rising_edge(CLOCK_H)) then
 		
-		if (vcount_in >= top_border and hcount_in(31 downto 3) < front_porch) then
-			fake_color := ARTIFACT;
-			if (PIXEL /= "11111111") then
-				fake_color := '0';
-			end if;
-		end if;
-		
 		if (captureR = '0' and captureG = '0' and captureB = '0' and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
-		--if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
+--		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
 		
 			col := to_integer(hcount_in(31 downto 3)) - front_porch;		
 			row := to_integer(vcount_in) - top_border;
-
-			if (to_unsigned(col, 10)(0) = '0') then			
-				CUR_PIXEL(7 downto 0) := PIXEL; 
-
-				pixelOut <= CUR_PIXEL;
-	
-			else
-			
-				CUR_PIXEL(15 downto 8) := PIXEL;
-				
-				if (fake_color = '1' and CUR_PIXEL(7 downto 2) /= PREV_PIXEL(7 downto 2))  then
-
-					if (to_unsigned(col, 10)(1) = '0') then
-						if (to_integer(CUR_PIXEL(7 downto 2)) > 32) then -- = "111111") then
-							pixelOut <= "1110100011101000";
-						else
-							pixelOut <= "0010011100100111";
-						end if;
-					else
-						if (to_integer(CUR_PIXEL(7 downto 2)) > 32) then -- = "111111") then
-							pixelOut <= "0010011100100111";
-						else
-							pixelOut <= "1110100011101000";
-						end if;					
-					end if;
-
-				else
-					pixelOut <= CUR_PIXEL;
-				end if;
-					
-				PREV_PIXEL := CUR_PIXEL;
-				
-			end if;
-			
 			rowStoreNr <= to_unsigned(row, rowStoreNr'length);
 			colStoreNr <= to_unsigned(col, 10)(9 downto 1);
 			
+			if (hcount_in(3) = '0') then								
+				PixelIn(7 downto 0) <= PIXEL;															
+			else
+				PixelIn(15 downto 8) <= PIXEL;									
+			end if;				
+				
 		end if;
-
 	end if;
 end process;
+
+process_artifact: process(CLOCK_H, hcount_in, captureR, captureG, captureB)
+variable col: integer range 0 to 153600;
+variable PREV_PIXEL: unsigned(15 downto 0);
+variable CUR_PIXEL: unsigned(15 downto 0);
+begin
+	if (rising_edge(CLOCK_H)) then
+		
+		if (captureR = '0' and captureG = '0' and captureB = '0' and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
+--		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
+		
+			col := to_integer(hcount_in(31 downto 3)) - front_porch;		
+			
+			if (hcount_in(3) = '0') then			
+			
+				CUR_PIXEL(7 downto 0) := PIXEL; 
+
+				FakePixel <= CUR_PIXEL;
+
+				if (CUR_PIXEL(7 downto 0) /= PREV_PIXEL(7 downto 0))  then
+
+					if (to_unsigned(col, 10)(1) = '0') then
+						if (CUR_PIXEL(7 downto 2) = "000000") then 
+							FakePixel <= "1110100011101000";
+						else
+							FakePixel <= "0010011100100111";
+						end if;
+					else
+						if (CUR_PIXEL(7 downto 2) = "000000") then
+							FakePixel <= "0010011100100111";
+						else
+							FakePixel <= "1110100011101000";
+						end if;					
+						
+					end if;
+					
+				end if;
+															
+			else
+			
+				CUR_PIXEL(15 downto 8) := PIXEL;				
+										
+				PREV_PIXEL := CUR_PIXEL;				
+				
+			end if;
+			
+		end if;
+		
+	end if;
+	
+end process;
+
 
 store_row: process(hblank, rowStoreAck)
 begin
@@ -421,5 +447,10 @@ begin
 		rowStoreReq <= '1';
 	end if;
 end process;
+
+	with FAKE_COLOR select
+		pixelOut <= PixelIn when '0',
+				      FakePixel when '1';
+						
 
 end behavioral;

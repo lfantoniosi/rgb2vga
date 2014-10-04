@@ -15,7 +15,7 @@ entity genlock is
 			
 			pixelOut		: buffer unsigned(15 downto 0);
 			rowStoreNr	: out unsigned(8 downto 0); 
-			colStoreNr	: out unsigned(8 downto 0); 
+			colStoreNr	: buffer unsigned(8 downto 0); 
 			rowStoreReq	: out std_logic := '0';
 			rowStoreAck : in std_logic;
 			DAC_STEP		: buffer unsigned(2 downto 0);
@@ -196,7 +196,7 @@ begin
 red: process(CLOCK_H)--, DAC_STEP, ARGB(2))
 begin
 	if (rising_edge(CLOCK_H)) then 
-		captureR <= '1';
+
 		case DAC_STEP is		
 			when "001" => 
 				RADC(0) <= ARGB(2);
@@ -214,8 +214,7 @@ begin
 				RADC(6) <= ARGB(2);
 			when "000" =>
 				PIXEL(7 downto 5) <= F_ADC(RADC);
-				
-				captureR <= '0';
+
 		end case;
 	end if;
 end process;
@@ -223,7 +222,7 @@ end process;
 green: process(CLOCK_H)--, DAC_STEP, ARGB(1))
 begin
 	if (rising_edge(CLOCK_H)) then 
-		captureG <= '1';
+
 		case DAC_STEP is		
 			when "001" => 
 				GADC(0) <= ARGB(1);
@@ -242,8 +241,7 @@ begin
 			when "000" =>
 			
 				PIXEL(4 downto 2) <= F_ADC(GADC);
-				
-				captureG <= '0';				
+			
 		end case;
 	end if;
 end process;
@@ -251,7 +249,7 @@ end process;
 blue: process(CLOCK_H)--, DAC_STEP, ARGB(0))
 begin
 	if (rising_edge(CLOCK_H)) then 
-		captureB <= '1'; 	
+	
 		case DAC_STEP is		
 			when "001" => 
 				BADC(0) <= ARGB(0);
@@ -289,9 +287,7 @@ begin
 					when "1111" => PIXEL(1 downto 0) <= "11";
 
 				end case;	
-				
-				captureB <= '0';
-				
+
 		end case;
 	end if;
 end process;
@@ -302,13 +298,8 @@ hsync_lock: process(CLOCK_H)
 begin	
 	if (rising_edge(CLOCK_H)) then
 		hblank <= '1'; 
-		if (HSYNC_IN = SYNC_LEVEL and hcount_in(31 downto 3) >= 799) then
+		if (HSYNC_IN = '1' and hcount_in(31 downto 3) >= 799) then
 			hblank <= '0'; 
-		end if;
-				
-		IS_SYNC <= '0';
-		if (VSYNC_IN /= SYNC_LEVEL and hcount_in(31 downto 3) > 8192) then
-			IS_SYNC <= '1';
 		end if;
 		
 	end if;
@@ -331,9 +322,14 @@ begin
 	if (rising_edge(CLOCK_H)) then		
 		vblank <= '1'; 	
 		
-		if (VSYNC_IN = SYNC_LEVEL and vcount_in > 260) then
+		if (VSYNC_IN = '1' and vcount_in > 260) then
 			vblank <= '0';	
-		end if;
+		end if;		
+				
+		IS_SYNC <= '0';
+		if (VSYNC_IN /= '1' and hcount_in(31 downto 3) > 153600) then
+			IS_SYNC <= '1';
+		end if;		
 		
 	end if;	
 
@@ -361,13 +357,12 @@ begin
 end process;
 
 
-pixel_in: process(CLOCK_H, hcount_in, captureR, captureG, captureB)
+pixel_in: process(CLOCK_H, hcount_in)
 variable row, col: integer range 0 to 153600;
 begin
 	if (rising_edge(CLOCK_H)) then
 		
-		if (captureR = '0' and captureG = '0' and captureB = '0' and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
---		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
+		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
 		
 			col := to_integer(hcount_in(31 downto 3)) - front_porch;		
 			row := to_integer(vcount_in) - top_border;
@@ -384,15 +379,14 @@ begin
 	end if;
 end process;
 
-process_artifact: process(CLOCK_H, hcount_in, captureR, captureG, captureB)
+process_artifact: process(hcount_in)
 variable col: integer range 0 to 153600;
 variable PREV_PIXEL: unsigned(15 downto 0);
 variable CUR_PIXEL: unsigned(15 downto 0);
 begin
 	if (rising_edge(CLOCK_H)) then
 		
-		if (captureR = '0' and captureG = '0' and captureB = '0' and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
---		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
+		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
 		
 			col := to_integer(hcount_in(31 downto 3)) - front_porch;		
 			
@@ -404,7 +398,7 @@ begin
 
 				if (CUR_PIXEL(7 downto 0) /= PREV_PIXEL(7 downto 0))  then
 
-					if (to_unsigned(col, 10)(1) = '0') then
+					if (to_unsigned(col, 9)(1) = '0') then
 						if (CUR_PIXEL(7 downto 2) = "000000") then 
 							FakePixel <= "1110100011101000";
 						else

@@ -1,6 +1,6 @@
 Flow report for rgb2vga
-Thu Oct 02 00:34:12 2014
-Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
+Sat Oct 04 01:27:03 2014
+Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
 ---------------------
@@ -40,17 +40,17 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Thu Oct 02 00:34:09 2014      ;
-; Quartus II 32-bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
+; Flow Status                        ; Successful - Sat Oct 04 01:27:00 2014      ;
+; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE22F17C6                               ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 546 / 22,320 ( 2 % )                       ;
-;     Total combinational functions  ; 498 / 22,320 ( 2 % )                       ;
-;     Dedicated logic registers      ; 330 / 22,320 ( 1 % )                       ;
-; Total registers                    ; 330                                        ;
+; Total logic elements               ; 547 / 22,320 ( 2 % )                       ;
+;     Total combinational functions  ; 499 / 22,320 ( 2 % )                       ;
+;     Dedicated logic registers      ; 329 / 22,320 ( 1 % )                       ;
+; Total registers                    ; 329                                        ;
 ; Total pins                         ; 64 / 154 ( 42 % )                          ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 16,384 / 608,256 ( 3 % )                   ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/02/2014 00:33:52 ;
+; Start date & time ; 10/04/2014 01:26:43 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; rgb2vga             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+---------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 203334041456669.141222443106856       ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 203334041456669.141240040306484       ; --            ; --          ; --         ;
 ; IP_TOOL_NAME                        ; ALTIOBUF                              ; --            ; --          ; --         ;
 ; IP_TOOL_NAME                        ; ALTPLL                                ; --            ; --          ; --         ;
 ; IP_TOOL_VERSION                     ; 13.0                                  ; --            ; --          ; --         ;
@@ -103,11 +103,11 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:04     ; 1.0                     ; 396 MB              ; 00:00:04                           ;
-; Fitter                    ; 00:00:10     ; 1.0                     ; 553 MB              ; 00:00:09                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 363 MB              ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 398 MB              ; 00:00:03                           ;
-; Total                     ; 00:00:18     ; --                      ; --                  ; 00:00:18                           ;
+; Analysis & Synthesis      ; 00:00:04     ; 1.0                     ; 497 MB              ; 00:00:04                           ;
+; Fitter                    ; 00:00:10     ; 1.0                     ; 720 MB              ; 00:00:10                           ;
+; Assembler                 ; 00:00:02     ; 1.0                     ; 409 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 468 MB              ; 00:00:03                           ;
+; Total                     ; 00:00:18     ; --                      ; --                  ; 00:00:19                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

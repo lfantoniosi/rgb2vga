@@ -1,6 +1,6 @@
 TimeQuest Timing Analyzer report for rgb2vga
-Thu Oct 02 00:34:12 2014
-Quartus II 32-bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
+Sat Oct 04 01:27:03 2014
+Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
 ---------------------
@@ -102,7 +102,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; rgb2vga.sdc   ; OK     ; Thu Oct 02 00:34:11 2014 ;
+; rgb2vga.sdc   ; OK     ; Sat Oct 04 01:27:02 2014 ;
 +---------------+--------+--------------------------+
 
 
@@ -163,9 +163,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.692 ;    ;    ; 2.812 ;
-; SWITCH0    ; VGAB1       ; 5.829 ;    ;    ; 6.063 ;
-; SWITCH0    ; VGAG1       ; 6.566 ;    ;    ; 6.936 ;
-; SWITCH0    ; VGAR1       ; 5.854 ;    ;    ; 6.222 ;
+; SWITCH0    ; VGAB1       ; 5.941 ;    ;    ; 6.064 ;
+; SWITCH0    ; VGAG1       ; 6.419 ;    ;    ; 6.607 ;
+; SWITCH0    ; VGAR1       ; 6.299 ;    ;    ; 6.422 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -175,9 +175,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.243 ;    ;    ; 2.365 ;
-; SWITCH0    ; VGAB1       ; 5.642 ;    ;    ; 5.874 ;
-; SWITCH0    ; VGAG1       ; 6.299 ;    ;    ; 6.632 ;
-; SWITCH0    ; VGAR1       ; 5.616 ;    ;    ; 5.945 ;
+; SWITCH0    ; VGAB1       ; 5.749 ;    ;    ; 5.876 ;
+; SWITCH0    ; VGAG1       ; 6.209 ;    ;    ; 6.396 ;
+; SWITCH0    ; VGAR1       ; 6.095 ;    ;    ; 6.219 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -229,9 +229,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.434 ;    ;    ; 2.576 ;
-; SWITCH0    ; VGAB1       ; 5.302 ;    ;    ; 5.472 ;
-; SWITCH0    ; VGAG1       ; 5.964 ;    ;    ; 6.250 ;
-; SWITCH0    ; VGAR1       ; 5.293 ;    ;    ; 5.577 ;
+; SWITCH0    ; VGAB1       ; 5.380 ;    ;    ; 5.465 ;
+; SWITCH0    ; VGAG1       ; 5.816 ;    ;    ; 5.948 ;
+; SWITCH0    ; VGAR1       ; 5.727 ;    ;    ; 5.779 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -241,9 +241,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.024 ;    ;    ; 2.170 ;
-; SWITCH0    ; VGAB1       ; 5.121 ;    ;    ; 5.290 ;
-; SWITCH0    ; VGAG1       ; 5.717 ;    ;    ; 5.963 ;
-; SWITCH0    ; VGAR1       ; 5.071 ;    ;    ; 5.317 ;
+; SWITCH0    ; VGAB1       ; 5.195 ;    ;    ; 5.284 ;
+; SWITCH0    ; VGAG1       ; 5.614 ;    ;    ; 5.750 ;
+; SWITCH0    ; VGAR1       ; 5.528 ;    ;    ; 5.588 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -289,9 +289,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.578 ;    ;    ; 2.019 ;
-; SWITCH0    ; VGAB1       ; 3.403 ;    ;    ; 3.889 ;
-; SWITCH0    ; VGAG1       ; 3.831 ;    ;    ; 4.391 ;
-; SWITCH0    ; VGAR1       ; 3.415 ;    ;    ; 3.934 ;
+; SWITCH0    ; VGAB1       ; 3.504 ;    ;    ; 3.895 ;
+; SWITCH0    ; VGAG1       ; 3.756 ;    ;    ; 4.189 ;
+; SWITCH0    ; VGAR1       ; 3.669 ;    ;    ; 4.081 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -301,9 +301,9 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.305 ;    ;    ; 1.747 ;
-; SWITCH0    ; VGAB1       ; 3.293 ;    ;    ; 3.777 ;
-; SWITCH0    ; VGAG1       ; 3.674 ;    ;    ; 4.213 ;
-; SWITCH0    ; VGAR1       ; 3.276 ;    ;    ; 3.773 ;
+; SWITCH0    ; VGAB1       ; 3.390 ;    ;    ; 3.782 ;
+; SWITCH0    ; VGAG1       ; 3.631 ;    ;    ; 4.065 ;
+; SWITCH0    ; VGAR1       ; 3.547 ;    ;    ; 3.962 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -329,9 +329,9 @@ No synchronizer chains to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.692 ;    ;    ; 2.812 ;
-; SWITCH0    ; VGAB1       ; 5.829 ;    ;    ; 6.063 ;
-; SWITCH0    ; VGAG1       ; 6.566 ;    ;    ; 6.936 ;
-; SWITCH0    ; VGAR1       ; 5.854 ;    ;    ; 6.222 ;
+; SWITCH0    ; VGAB1       ; 5.941 ;    ;    ; 6.064 ;
+; SWITCH0    ; VGAG1       ; 6.419 ;    ;    ; 6.607 ;
+; SWITCH0    ; VGAR1       ; 6.299 ;    ;    ; 6.422 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -341,9 +341,9 @@ No synchronizer chains to report.
 ; Input Port ; Output Port ; RR    ; RF ; FR ; FF    ;
 +------------+-------------+-------+----+----+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.305 ;    ;    ; 1.747 ;
-; SWITCH0    ; VGAB1       ; 3.293 ;    ;    ; 3.777 ;
-; SWITCH0    ; VGAG1       ; 3.674 ;    ;    ; 4.213 ;
-; SWITCH0    ; VGAR1       ; 3.276 ;    ;    ; 3.773 ;
+; SWITCH0    ; VGAB1       ; 3.390 ;    ;    ; 3.782 ;
+; SWITCH0    ; VGAG1       ; 3.631 ;    ;    ; 4.065 ;
+; SWITCH0    ; VGAR1       ; 3.547 ;    ;    ; 3.962 ;
 +------------+-------------+-------+----+----+-------+
 
 
@@ -414,6 +414,7 @@ No synchronizer chains to report.
 +-------------------------+--------------+-----------------+-----------------+
 ; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
 +-------------------------+--------------+-----------------+-----------------+
+; SWITCH1                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; DRAM_DQ[15]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; DRAM_DQ[14]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; DRAM_DQ[13]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -439,7 +440,6 @@ No synchronizer chains to report.
 ; DIFFRn                  ; Bus LVDS     ; 2000 ps         ; 2000 ps         ;
 ; CLOCK_50                ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; VSYNC                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; SWITCH1                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; HSYNC                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH2                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -659,8 +659,8 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 2     ; 2    ;
 ; Unconstrained Clocks            ; 2     ; 2    ;
-; Unconstrained Input Ports       ; 25    ; 25   ;
-; Unconstrained Input Port Paths  ; 45    ; 45   ;
+; Unconstrained Input Ports       ; 24    ; 24   ;
+; Unconstrained Input Port Paths  ; 42    ; 42   ;
 ; Unconstrained Output Ports      ; 50    ; 50   ;
 ; Unconstrained Output Port Paths ; 232   ; 232  ;
 +---------------------------------+-------+------+
@@ -670,9 +670,9 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 ; TimeQuest Timing Analyzer Messages ;
 +------------------------------------+
 Info: *******************************************************************
-Info: Running Quartus II 32-bit TimeQuest Timing Analyzer
+Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Thu Oct 02 00:34:10 2014
+    Info: Processing started: Sat Oct 04 01:27:01 2014
 Info: Command: quartus_sta rgb2vga -c rgb2vga
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
@@ -743,9 +743,9 @@ Info (332140): No Removal paths to report
 Info (332140): No Minimum Pulse Width paths to report
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus II 32-bit TimeQuest Timing Analyzer was successful. 0 errors, 32 warnings
-    Info: Peak virtual memory: 398 megabytes
-    Info: Processing ended: Thu Oct 02 00:34:12 2014
+Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 32 warnings
+    Info: Peak virtual memory: 468 megabytes
+    Info: Processing ended: Sat Oct 04 01:27:03 2014
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:03
 

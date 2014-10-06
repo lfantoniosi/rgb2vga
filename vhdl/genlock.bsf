@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 256 192)
+	(rect 16 16 248 160)
 	(text "genlock" (rect 5 0 34 12)(font "Arial" ))
-	(text "inst" (rect 8 160 20 172)(font "Arial" ))
+	(text "inst" (rect 8 128 20 140)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -61,58 +61,51 @@ applicable agreement for further details.
 	(port
 		(pt 0 112)
 		(input)
-		(text "SYNC_LEVEL" (rect 0 0 67 12)(font "Arial" ))
-		(text "SYNC_LEVEL" (rect 21 107 88 119)(font "Arial" ))
+		(text "ARTIFACT" (rect 0 0 51 12)(font "Arial" ))
+		(text "ARTIFACT" (rect 21 107 72 119)(font "Arial" ))
 		(line (pt 0 112)(pt 16 112)(line_width 1))
 	)
 	(port
-		(pt 0 128)
-		(input)
-		(text "ARTIFACT" (rect 0 0 51 12)(font "Arial" ))
-		(text "ARTIFACT" (rect 21 123 72 135)(font "Arial" ))
-		(line (pt 0 128)(pt 16 128)(line_width 1))
-	)
-	(port
-		(pt 240 32)
+		(pt 232 32)
 		(output)
 		(text "pixelOut[15..0]" (rect 0 0 54 12)(font "Arial" ))
-		(text "pixelOut[15..0]" (rect 165 27 219 39)(font "Arial" ))
-		(line (pt 240 32)(pt 224 32)(line_width 3))
+		(text "pixelOut[15..0]" (rect 157 27 211 39)(font "Arial" ))
+		(line (pt 232 32)(pt 216 32)(line_width 3))
 	)
 	(port
-		(pt 240 48)
+		(pt 232 48)
 		(output)
 		(text "rowStoreNr[8..0]" (rect 0 0 66 12)(font "Arial" ))
-		(text "rowStoreNr[8..0]" (rect 153 43 219 55)(font "Arial" ))
-		(line (pt 240 48)(pt 224 48)(line_width 3))
+		(text "rowStoreNr[8..0]" (rect 145 43 211 55)(font "Arial" ))
+		(line (pt 232 48)(pt 216 48)(line_width 3))
 	)
 	(port
-		(pt 240 64)
+		(pt 232 64)
 		(output)
 		(text "colStoreNr[8..0]" (rect 0 0 62 12)(font "Arial" ))
-		(text "colStoreNr[8..0]" (rect 157 59 219 71)(font "Arial" ))
-		(line (pt 240 64)(pt 224 64)(line_width 3))
+		(text "colStoreNr[8..0]" (rect 149 59 211 71)(font "Arial" ))
+		(line (pt 232 64)(pt 216 64)(line_width 3))
 	)
 	(port
-		(pt 240 80)
+		(pt 232 80)
 		(output)
 		(text "rowStoreReq" (rect 0 0 53 12)(font "Arial" ))
-		(text "rowStoreReq" (rect 166 75 219 87)(font "Arial" ))
-		(line (pt 240 80)(pt 224 80)(line_width 1))
+		(text "rowStoreReq" (rect 158 75 211 87)(font "Arial" ))
+		(line (pt 232 80)(pt 216 80)(line_width 1))
 	)
 	(port
-		(pt 240 96)
+		(pt 232 96)
 		(output)
 		(text "DAC_STEP[2..0]" (rect 0 0 73 12)(font "Arial" ))
-		(text "DAC_STEP[2..0]" (rect 146 91 219 103)(font "Arial" ))
-		(line (pt 240 96)(pt 224 96)(line_width 3))
+		(text "DAC_STEP[2..0]" (rect 138 91 211 103)(font "Arial" ))
+		(line (pt 232 96)(pt 216 96)(line_width 3))
 	)
 	(port
-		(pt 240 112)
+		(pt 232 112)
 		(output)
 		(text "IS_SYNC" (rect 0 0 41 12)(font "Arial" ))
-		(text "IS_SYNC" (rect 178 107 219 119)(font "Arial" ))
-		(line (pt 240 112)(pt 224 112)(line_width 1))
+		(text "IS_SYNC" (rect 170 107 211 119)(font "Arial" ))
+		(line (pt 232 112)(pt 216 112)(line_width 1))
 	)
 	(parameter
 		"front_porch"
@@ -124,8 +117,13 @@ applicable agreement for further details.
 		"0"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"sync_level"
+		"'1'"
+		""
+		(type "PARAMETER_ENUM")	)
 	(drawing
-		(rectangle (rect 16 16 224 160)(line_width 1))
+		(rectangle (rect 16 16 216 128)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 256 -64 356 16))
+	(annotation_block (parameter)(rect 248 -64 348 16))
 )

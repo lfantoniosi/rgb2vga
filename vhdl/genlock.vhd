@@ -5,7 +5,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity genlock is
 	generic(
 		front_porch			: integer := 0;
-		top_border			: integer := 0
+		top_border			: integer := 0;
+		sync_level			: std_logic := '1'
 	);
 
     port(CLOCK_H : in std_logic;
@@ -20,7 +21,6 @@ entity genlock is
 			rowStoreAck : in std_logic;
 			DAC_STEP		: buffer unsigned(2 downto 0);
 			IS_SYNC		: out std_logic;
-			SYNC_LEVEL	: in std_logic;
 			ARTIFACT		: in std_logic
 									
          );
@@ -298,7 +298,7 @@ hsync_lock: process(CLOCK_H)
 begin	
 	if (rising_edge(CLOCK_H)) then
 		hblank <= '1'; 
-		if (HSYNC_IN = '1' and hcount_in(31 downto 3) >= 799) then
+		if (HSYNC_IN = sync_level and hcount_in(31 downto 3) >= 799) then
 			hblank <= '0'; 
 		end if;
 		
@@ -322,12 +322,12 @@ begin
 	if (rising_edge(CLOCK_H)) then		
 		vblank <= '1'; 	
 		
-		if (VSYNC_IN = '1' and vcount_in > 260) then
+		if (VSYNC_IN = sync_level and vcount_in > 260) then
 			vblank <= '0';	
 		end if;		
 				
 		IS_SYNC <= '0';
-		if (VSYNC_IN /= '1' and hcount_in(31 downto 3) > 153600) then
+		if (VSYNC_IN = '0' and hcount_in(31 downto 3) > 153600) then
 			IS_SYNC <= '1';
 		end if;		
 		
@@ -380,15 +380,12 @@ begin
 end process;
 
 process_artifact: process(hcount_in)
-variable col: integer range 0 to 153600;
 variable PREV_PIXEL: unsigned(15 downto 0);
 variable CUR_PIXEL: unsigned(15 downto 0);
 begin
 	if (rising_edge(CLOCK_H)) then
 		
 		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
-		
-			col := to_integer(hcount_in(31 downto 3)) - front_porch;		
 			
 			if (hcount_in(3) = '0') then			
 			
@@ -398,7 +395,7 @@ begin
 
 				if (CUR_PIXEL(7 downto 0) /= PREV_PIXEL(7 downto 0))  then
 
-					if (to_unsigned(col, 9)(1) = '0') then
+					if (colStoreNr(0) = '0') then
 						if (CUR_PIXEL(7 downto 2) = "000000") then 
 							FakePixel <= "1110100011101000";
 						else

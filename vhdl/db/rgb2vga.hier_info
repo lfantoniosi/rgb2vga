@@ -3,7 +3,6 @@ DRAM_CLK <= sdram:inst.pMemClk
 CLOCK_50 => pll:inst1.inclk0
 VSYNC => genlock:inst6.VSYNC_IN
 HSYNC => genlock:inst6.HSYNC_IN
-SWITCH1 => genlock:inst6.SYNC_LEVEL
 SWITCH2 => genlock:inst6.ARTIFACT
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
@@ -63,6 +62,7 @@ DRAM_BA[0] <= sdram:inst.pMemBa0
 DRAM_BA[1] <= sdram:inst.pMemBa1
 DRAM_DQM[0] <= sdram:inst.pMemLdq
 DRAM_DQM[1] <= sdram:inst.pMemUdq
+SWITCH1 => ~NO_FANOUT~
 
 
 |top|sdram:inst
@@ -697,7 +697,6 @@ DAC_STEP[0] <= DAC_STEP[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 DAC_STEP[1] <= DAC_STEP[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 DAC_STEP[2] <= DAC_STEP[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 IS_SYNC <= IS_SYNC~reg0.DB_MAX_OUTPUT_PORT_TYPE
-SYNC_LEVEL => ~NO_FANOUT~
 ARTIFACT => FAKE_COLOR.DATAB
 
 

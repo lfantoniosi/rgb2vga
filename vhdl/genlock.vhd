@@ -29,7 +29,7 @@ end genlock;
 architecture behavioral of genlock is
 
 signal vblank, hblank									: std_ulogic;
-signal hcount_in, vcount_in							: unsigned(31 downto 0);
+signal hcount_in, vcount_in							: unsigned(31 downto 0) := to_unsigned(153601, 32);
 signal captureR, captureG, captureB : std_ulogic;
 
 signal red_adc : unsigned(6 downto 0);

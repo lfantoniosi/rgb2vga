@@ -1395,38 +1395,33 @@ applicable agreement for further details.
 		(pt 224 32)
 		(output)
 		(text "vga_out[9..0]" (rect 0 0 66 12)(font "Arial" ))
-		(text "vga_out[9..0]" (rect 148 27 203 39)(font "Arial" ))
+		(text "vga_out[9..0]" (rect 148 27 214 39)(font "Arial" ))
 		(line (pt 224 32)(pt 208 32)(line_width 3))
 	)
 	(port
 		(pt 224 48)
 		(output)
 		(text "row_number[8..0]" (rect 0 0 84 12)(font "Arial" ))
-		(text "row_number[8..0]" (rect 132 43 203 55)(font "Arial" ))
+		(text "row_number[8..0]" (rect 132 43 216 55)(font "Arial" ))
 		(line (pt 224 48)(pt 208 48)(line_width 3))
 	)
 	(port
 		(pt 224 64)
 		(output)
 		(text "col_number[8..0]" (rect 0 0 82 12)(font "Arial" ))
-		(text "col_number[8..0]" (rect 134 59 203 71)(font "Arial" ))
+		(text "col_number[8..0]" (rect 134 59 216 71)(font "Arial" ))
 		(line (pt 224 64)(pt 208 64)(line_width 3))
 	)
 	(port
 		(pt 224 80)
 		(output)
 		(text "load_req" (rect 0 0 41 12)(font "Arial" ))
-		(text "load_req" (rect 169 75 203 87)(font "Arial" ))
+		(text "load_req" (rect 169 75 210 87)(font "Arial" ))
 		(line (pt 224 80)(pt 208 80))
 	)
 	(drawing
 		(rectangle (rect 16 16 208 128))
 	)
-)
-(connector
-	(text "CLOCK_H" (rect 1338 568 1389 580)(font "Arial" ))
-	(pt 1448 584)
-	(pt 1336 584)
 )
 (connector
 	(text "SDR_DATA[15..0]" (rect 1336 584 1425 596)(font "Arial" ))
@@ -1585,16 +1580,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "CLOCK_H" (rect 1242 1056 1293 1068)(font "Arial" ))
-	(pt 1336 1072)
-	(pt 1232 1072)
-)
-(connector
-	(text "CLOCK_H" (rect 1242 1072 1293 1084)(font "Arial" ))
-	(pt 1336 1088)
-	(pt 1232 1088)
-)
-(connector
 	(text "SDR_Q[15..0]" (rect 1770 976 1839 988)(font "Arial" ))
 	(pt 1864 992)
 	(pt 1760 992)
@@ -1619,11 +1604,6 @@ applicable agreement for further details.
 	(pt 1864 1048)
 	(pt 1760 1048)
 	(bus)
-)
-(connector
-	(text "CLOCK_H" (rect 1770 1056 1821 1068)(font "Arial" ))
-	(pt 1864 1072)
-	(pt 1760 1072)
 )
 (connector
 	(text "CLOCK_VGA" (rect 1770 1072 1837 1084)(font "Arial" ))
@@ -1719,11 +1699,6 @@ applicable agreement for further details.
 	(text "CLOCK_VGA" (rect 1090 368 1157 380)(font "Arial" ))
 	(pt 1080 384)
 	(pt 1168 384)
-)
-(connector
-	(text "CLOCK_H" (rect 1090 352 1141 364)(font "Arial" ))
-	(pt 1080 368)
-	(pt 1168 368)
 )
 (connector
 	(text "MAIN_CLK" (rect 746 336 800 348)(font "Arial" ))
@@ -1873,11 +1848,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "CLOCK_H" (rect 1266 264 1317 276)(font "Arial" ))
-	(pt 1256 280)
-	(pt 1352 280)
-)
-(connector
 	(text "VSYNC" (rect 1266 280 1304 292)(font "Arial" ))
 	(pt 1256 296)
 	(pt 1352 296)
@@ -1933,4 +1903,34 @@ applicable agreement for further details.
 	(text "IS_SCANLINE" (rect 266 464 337 476)(font "Arial" ))
 	(pt 320 480)
 	(pt 264 480)
+)
+(connector
+	(text "CLOCK_PIXEL" (rect 1090 352 1163 364)(font "Arial" ))
+	(pt 1080 368)
+	(pt 1168 368)
+)
+(connector
+	(text "CLOCK_PIXEL" (rect 1338 568 1411 580)(font "Arial" ))
+	(pt 1448 584)
+	(pt 1336 584)
+)
+(connector
+	(text "CLOCK_PIXEL" (rect 1266 264 1339 276)(font "Arial" ))
+	(pt 1256 280)
+	(pt 1352 280)
+)
+(connector
+	(text "CLOCK_PIXEL" (rect 1242 1056 1315 1068)(font "Arial" ))
+	(pt 1336 1072)
+	(pt 1232 1072)
+)
+(connector
+	(text "CLOCK_PIXEL" (rect 1242 1072 1315 1084)(font "Arial" ))
+	(pt 1336 1088)
+	(pt 1232 1088)
+)
+(connector
+	(text "CLOCK_PIXEL" (rect 1770 1056 1843 1068)(font "Arial" ))
+	(pt 1864 1072)
+	(pt 1760 1072)
 )

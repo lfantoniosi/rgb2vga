@@ -1,5 +1,5 @@
 Assembler report for rgb2vga
-Sun Oct 05 23:55:38 2014
+Mon Oct 06 00:04:04 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Oct 05 23:55:38 2014 ;
+; Assembler Status      ; Successful - Mon Oct 06 00:04:04 2014 ;
 ; Revision Name         ; rgb2vga                               ;
 ; Top-level Entity Name ; top                                   ;
 ; Family                ; Cyclone IV E                          ;
@@ -92,8 +92,8 @@ applicable agreement for further details.
 ; Option         ; Setting                                                           ;
 +----------------+-------------------------------------------------------------------+
 ; Device         ; EP4CE22F17C6                                                      ;
-; JTAG usercode  ; 0x00186A7A                                                        ;
-; Checksum       ; 0x00186A7A                                                        ;
+; JTAG usercode  ; 0x0018746B                                                        ;
+; Checksum       ; 0x0018746B                                                        ;
 +----------------+-------------------------------------------------------------------+
 
 
@@ -103,13 +103,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sun Oct 05 23:55:36 2014
+    Info: Processing started: Mon Oct 06 00:04:02 2014
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off rgb2vga -c rgb2vga
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 409 megabytes
-    Info: Processing ended: Sun Oct 05 23:55:38 2014
+    Info: Processing ended: Mon Oct 06 00:04:04 2014
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

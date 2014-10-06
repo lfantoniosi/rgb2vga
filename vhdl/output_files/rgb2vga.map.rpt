@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Sun Oct 05 23:55:24 2014
+Mon Oct 06 00:03:50 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -56,7 +56,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Oct 05 23:55:24 2014      ;
+; Analysis & Synthesis Status        ; Successful - Mon Oct 06 00:03:50 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -354,7 +354,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Number of registers using Synchronous Load   ; 42    ;
 ; Number of registers using Asynchronous Clear ; 66    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 240   ;
+; Number of registers using Clock Enable       ; 241   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -978,7 +978,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sun Oct 05 23:55:20 2014
+    Info: Processing started: Mon Oct 06 00:03:46 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
@@ -1121,6 +1121,17 @@ Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal 
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "DRAM_CKE" is stuck at VCC
     Warning (13410): Pin "DRAM_CS_N" is stuck at GND
+Critical Warning (18061): Ignored Power-Up Level option on the following registers
+    Critical Warning (18010): Register genlock:inst6|dac_step[0] will power up to High
+    Critical Warning (18010): Register genlock:inst6|hcount_in[17] will power up to Low
+    Critical Warning (18010): Register genlock:inst6|hcount_in[14] will power up to Low
+    Critical Warning (18010): Register genlock:inst6|hcount_in[12] will power up to Low
+    Critical Warning (18010): Register genlock:inst6|hcount_in[11] will power up to Low
+    Critical Warning (18010): Register genlock:inst6|vcount_in[0] will power up to Low
+    Critical Warning (18010): Register genlock:inst6|vcount_in[17] will power up to Low
+    Critical Warning (18010): Register genlock:inst6|vcount_in[14] will power up to Low
+    Critical Warning (18010): Register genlock:inst6|vcount_in[12] will power up to Low
+    Critical Warning (18010): Register genlock:inst6|vcount_in[11] will power up to Low
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
@@ -1135,9 +1146,9 @@ Info (21057): Implemented 719 device resources after synthesis - the final resou
     Info (21061): Implemented 622 logic cells
     Info (21064): Implemented 32 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 18 warnings
-    Info: Peak virtual memory: 497 megabytes
-    Info: Processing ended: Sun Oct 05 23:55:24 2014
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 29 warnings
+    Info: Peak virtual memory: 500 megabytes
+    Info: Processing ended: Mon Oct 06 00:03:50 2014
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:04
 

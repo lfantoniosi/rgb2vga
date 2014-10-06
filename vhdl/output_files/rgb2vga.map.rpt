@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Sun Oct 05 23:46:44 2014
+Sun Oct 05 23:55:24 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -56,7 +56,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sun Oct 05 23:46:44 2014      ;
+; Analysis & Synthesis Status        ; Successful - Sun Oct 05 23:55:24 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -308,7 +308,7 @@ Encoding Type:  One-Hot
 ; Latch Name                                         ; Latch Enable Signal           ; Free of Timing Hazards ;
 +----------------------------------------------------+-------------------------------+------------------------+
 ; genlock:inst6|store_req                            ; GND                           ; yes                    ;
-; vgaout:inst7|rowLoadReq                            ; GND                           ; yes                    ;
+; vgaout:inst7|load_req                              ; GND                           ; yes                    ;
 ; genlock:inst6|artifact_mode                        ; genlock:inst6|artifact_detect ; yes                    ;
 ; Number of user-specified and inferred latches = 3  ;                               ;                        ;
 +----------------------------------------------------+-------------------------------+------------------------+
@@ -384,7 +384,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; 12:1               ; 15 bits   ; 120 LEs       ; 15 LEs               ; 105 LEs                ; Yes        ; |top|sdram:inst|SdrAddress[1]    ;
 ; 12:1               ; 9 bits    ; 72 LEs        ; 18 LEs               ; 54 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[11]   ;
 ; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[1] ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|vgaout:inst7|vgaPixel[7]    ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|vgaout:inst7|vga_pixel[7]   ;
 ; 25:1               ; 6 bits    ; 96 LEs        ; 18 LEs               ; 78 LEs                 ; No         ; |top|sdram:inst|Selector7        ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 
@@ -978,7 +978,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sun Oct 05 23:46:40 2014
+    Info: Processing started: Sun Oct 05 23:55:20 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
@@ -1087,10 +1087,10 @@ Info (10041): Inferred latch for "artifact_mode" at genlock.vhd(349)
 Info (12128): Elaborating entity "altiobuf" for hierarchy "altiobuf:inst16"
 Info (12128): Elaborating entity "altiobuf_iobuf_in_k0j" for hierarchy "altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component"
 Info (12128): Elaborating entity "vgaout" for hierarchy "vgaout:inst7"
-Warning (10492): VHDL Process Statement warning at vgaout.vhd(101): signal "IS_SYNC" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at vgaout.vhd(101): signal "is_sync" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at vgaout.vhd(114): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at vgaout.vhd(108): inferring latch(es) for signal or variable "rowLoadReq", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "rowLoadReq" at vgaout.vhd(108)
+Warning (10631): VHDL Process Statement warning at vgaout.vhd(108): inferring latch(es) for signal or variable "load_req", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "load_req" at vgaout.vhd(108)
 Info (12128): Elaborating entity "ram" for hierarchy "ram:inst4"
 Info (12128): Elaborating entity "altsyncram" for hierarchy "ram:inst4|altsyncram:altsyncram_component"
 Info (12130): Elaborated megafunction instantiation "ram:inst4|altsyncram:altsyncram_component"
@@ -1136,8 +1136,8 @@ Info (21057): Implemented 719 device resources after synthesis - the final resou
     Info (21064): Implemented 32 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 18 warnings
-    Info: Peak virtual memory: 507 megabytes
-    Info: Processing ended: Sun Oct 05 23:46:44 2014
+    Info: Peak virtual memory: 497 megabytes
+    Info: Processing ended: Sun Oct 05 23:55:24 2014
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:04
 

@@ -1,5 +1,5 @@
 Fitter report for rgb2vga
-Sun Oct 05 23:46:55 2014
+Sun Oct 05 23:55:35 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -71,7 +71,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Fitter Summary                                                                  ;
 +------------------------------------+--------------------------------------------+
-; Fitter Status                      ; Successful - Sun Oct 05 23:46:55 2014      ;
+; Fitter Status                      ; Successful - Sun Oct 05 23:55:35 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -1142,7 +1142,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; ~GND                                                                               ; 15      ;
 ; genlock:inst6|green_adc[5]                                                         ; 14      ;
 ; genlock:inst6|red_adc[5]                                                           ; 14      ;
-; vgaout:inst7|rowLoadReq                                                            ; 13      ;
+; vgaout:inst7|load_req                                                              ; 13      ;
 ; genlock:inst6|green_adc[4]                                                         ; 13      ;
 ; genlock:inst6|green_adc[0]                                                         ; 13      ;
 ; genlock:inst6|red_adc[4]                                                           ; 13      ;
@@ -1217,8 +1217,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|Equal10~1                                                               ; 4       ;
 ; sdram:inst|process_0~4                                                             ; 4       ;
 ; sdram:inst|SdrRoutine.SdrRoutine_Null                                              ; 4       ;
-; vgaout:inst7|VGA_OUT[7]~0                                                          ; 4       ;
-; vgaout:inst7|videoon~4                                                             ; 4       ;
+; vgaout:inst7|vga_out[7]~0                                                          ; 4       ;
+; vgaout:inst7|blank~4                                                               ; 4       ;
 ; vgaout:inst7|hcount[1]                                                             ; 4       ;
 ; vgaout:inst7|hcount[2]                                                             ; 4       ;
 ; vgaout:inst7|hcount[3]                                                             ; 4       ;
@@ -1305,7 +1305,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|LessThan6~8                                                          ; 2       ;
 ; genlock:inst6|LessThan4~1                                                          ; 2       ;
 ; genlock:inst6|LessThan4~0                                                          ; 2       ;
-; vgaout:inst7|rowLoadNr[0]                                                          ; 2       ;
+; vgaout:inst7|row_number[0]                                                         ; 2       ;
 ; genlock:inst6|LessThan6~7                                                          ; 2       ;
 ; genlock:inst6|LessThan6~5                                                          ; 2       ;
 ; genlock:inst6|LessThan6~0                                                          ; 2       ;
@@ -1323,9 +1323,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|process_0~6                                                             ; 2       ;
 ; sdram:inst|Selector1~0                                                             ; 2       ;
 ; sdram:inst|Equal1~0                                                                ; 2       ;
-; vgaout:inst7|VGA_OUT[8]~2                                                          ; 2       ;
+; vgaout:inst7|vga_out[8]~2                                                          ; 2       ;
 ; vgaout:inst7|pixel_out~0                                                           ; 2       ;
-; vgaout:inst7|videoon~3                                                             ; 2       ;
+; vgaout:inst7|blank~3                                                               ; 2       ;
 ; vgaout:inst7|h_sync~0                                                              ; 2       ;
 ; vgaout:inst7|LessThan8~0                                                           ; 2       ;
 ; vgaout:inst7|Equal1~0                                                              ; 2       ;
@@ -1567,7 +1567,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|rowStoreAck~0                                                           ; 1       ;
 ; sdram:inst|Selector63~0                                                            ; 1       ;
 ; sdram:inst|Selector78~0                                                            ; 1       ;
-; vgaout:inst7|rowLoadNr[0]~24                                                       ; 1       ;
+; vgaout:inst7|row_number[0]~24                                                      ; 1       ;
 ; genlock:inst6|process_pixel~4                                                      ; 1       ;
 ; genlock:inst6|LessThan7~0                                                          ; 1       ;
 ; genlock:inst6|LessThan5~0                                                          ; 1       ;
@@ -1746,20 +1746,20 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|SdrAdr[10]                                                              ; 1       ;
 ; sdram:inst|SdrAdr[11]                                                              ; 1       ;
 ; sdram:inst|SdrAdr[12]                                                              ; 1       ;
-; vgaout:inst7|VGA_OUT[6]~11                                                         ; 1       ;
-; vgaout:inst7|VGA_OUT[9]~10                                                         ; 1       ;
+; vgaout:inst7|vga_out[6]~11                                                         ; 1       ;
+; vgaout:inst7|vga_out[9]~10                                                         ; 1       ;
 ; vgaout:inst7|vsync                                                                 ; 1       ;
-; vgaout:inst7|VGA_OUT[3]~9                                                          ; 1       ;
-; vgaout:inst7|VGA_OUT[3]~8                                                          ; 1       ;
-; vgaout:inst7|VGA_OUT[2]~7                                                          ; 1       ;
-; vgaout:inst7|VGA_OUT[2]~6                                                          ; 1       ;
-; vgaout:inst7|VGA_OUT[5]~5                                                          ; 1       ;
-; vgaout:inst7|VGA_OUT[4]~4                                                          ; 1       ;
-; vgaout:inst7|VGA_OUT[8]~3                                                          ; 1       ;
-; vgaout:inst7|VGA_OUT[7]~1                                                          ; 1       ;
-; vgaout:inst7|videoon~2                                                             ; 1       ;
-; vgaout:inst7|videoon~1                                                             ; 1       ;
-; vgaout:inst7|videoon~0                                                             ; 1       ;
+; vgaout:inst7|vga_out[3]~9                                                          ; 1       ;
+; vgaout:inst7|vga_out[3]~8                                                          ; 1       ;
+; vgaout:inst7|vga_out[2]~7                                                          ; 1       ;
+; vgaout:inst7|vga_out[2]~6                                                          ; 1       ;
+; vgaout:inst7|vga_out[5]~5                                                          ; 1       ;
+; vgaout:inst7|vga_out[4]~4                                                          ; 1       ;
+; vgaout:inst7|vga_out[8]~3                                                          ; 1       ;
+; vgaout:inst7|vga_out[7]~1                                                          ; 1       ;
+; vgaout:inst7|blank~2                                                               ; 1       ;
+; vgaout:inst7|blank~1                                                               ; 1       ;
+; vgaout:inst7|blank~0                                                               ; 1       ;
 ; sdram:inst|SdrCmd[0]                                                               ; 1       ;
 ; sdram:inst|SdrCmd[1]                                                               ; 1       ;
 ; sdram:inst|SdrCmd[2]                                                               ; 1       ;
@@ -1834,21 +1834,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|row_number[2]~10                                                     ; 1       ;
 ; genlock:inst6|row_number[1]~9                                                      ; 1       ;
 ; genlock:inst6|row_number[1]~8                                                      ; 1       ;
-; vgaout:inst7|rowLoadNr[8]~22                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[7]~21                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[7]~20                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[6]~19                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[6]~18                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[5]~17                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[5]~16                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[4]~15                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[4]~14                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[3]~13                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[3]~12                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[2]~11                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[2]~10                                                       ; 1       ;
-; vgaout:inst7|rowLoadNr[1]~9                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[1]~8                                                        ; 1       ;
+; vgaout:inst7|row_number[8]~22                                                      ; 1       ;
+; vgaout:inst7|row_number[7]~21                                                      ; 1       ;
+; vgaout:inst7|row_number[7]~20                                                      ; 1       ;
+; vgaout:inst7|row_number[6]~19                                                      ; 1       ;
+; vgaout:inst7|row_number[6]~18                                                      ; 1       ;
+; vgaout:inst7|row_number[5]~17                                                      ; 1       ;
+; vgaout:inst7|row_number[5]~16                                                      ; 1       ;
+; vgaout:inst7|row_number[4]~15                                                      ; 1       ;
+; vgaout:inst7|row_number[4]~14                                                      ; 1       ;
+; vgaout:inst7|row_number[3]~13                                                      ; 1       ;
+; vgaout:inst7|row_number[3]~12                                                      ; 1       ;
+; vgaout:inst7|row_number[2]~11                                                      ; 1       ;
+; vgaout:inst7|row_number[2]~10                                                      ; 1       ;
+; vgaout:inst7|row_number[1]~9                                                       ; 1       ;
+; vgaout:inst7|row_number[1]~8                                                       ; 1       ;
 ; genlock:inst6|vcount_in[31]~92                                                     ; 1       ;
 ; genlock:inst6|vcount_in[30]~91                                                     ; 1       ;
 ; genlock:inst6|vcount_in[30]~90                                                     ; 1       ;
@@ -1914,21 +1914,21 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|SdrAddress[22]~72                                                       ; 1       ;
 ; sdram:inst|SdrAddress[22]~71                                                       ; 1       ;
 ; genlock:inst6|row_number[1]                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[1]                                                          ; 1       ;
+; vgaout:inst7|row_number[1]                                                         ; 1       ;
 ; genlock:inst6|row_number[2]                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[2]                                                          ; 1       ;
+; vgaout:inst7|row_number[2]                                                         ; 1       ;
 ; genlock:inst6|row_number[3]                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[3]                                                          ; 1       ;
+; vgaout:inst7|row_number[3]                                                         ; 1       ;
 ; genlock:inst6|row_number[4]                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[4]                                                          ; 1       ;
+; vgaout:inst7|row_number[4]                                                         ; 1       ;
 ; genlock:inst6|row_number[5]                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[5]                                                          ; 1       ;
+; vgaout:inst7|row_number[5]                                                         ; 1       ;
 ; genlock:inst6|row_number[6]                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[6]                                                          ; 1       ;
+; vgaout:inst7|row_number[6]                                                         ; 1       ;
 ; genlock:inst6|row_number[7]                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[7]                                                          ; 1       ;
+; vgaout:inst7|row_number[7]                                                         ; 1       ;
 ; genlock:inst6|row_number[8]                                                        ; 1       ;
-; vgaout:inst7|rowLoadNr[8]                                                          ; 1       ;
+; vgaout:inst7|row_number[8]                                                         ; 1       ;
 ; sdram:inst|SdrAddress[21]~67                                                       ; 1       ;
 ; sdram:inst|SdrAddress[21]~66                                                       ; 1       ;
 ; sdram:inst|SdrAddress[20]~65                                                       ; 1       ;
@@ -1973,23 +1973,23 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|SdrAddress[1]~26                                                        ; 1       ;
 ; sdram:inst|SdrAddress[0]~25                                                        ; 1       ;
 ; sdram:inst|SdrAddress[0]~24                                                        ; 1       ;
-; vgaout:inst7|colLoadNr[8]~25                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[7]~24                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[7]~23                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[6]~22                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[6]~21                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[5]~20                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[5]~19                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[4]~18                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[4]~17                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[3]~16                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[3]~15                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[2]~14                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[2]~13                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[1]~12                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[1]~11                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[0]~10                                                       ; 1       ;
-; vgaout:inst7|colLoadNr[0]~9                                                        ; 1       ;
+; vgaout:inst7|col_number[8]~25                                                      ; 1       ;
+; vgaout:inst7|col_number[7]~24                                                      ; 1       ;
+; vgaout:inst7|col_number[7]~23                                                      ; 1       ;
+; vgaout:inst7|col_number[6]~22                                                      ; 1       ;
+; vgaout:inst7|col_number[6]~21                                                      ; 1       ;
+; vgaout:inst7|col_number[5]~20                                                      ; 1       ;
+; vgaout:inst7|col_number[5]~19                                                      ; 1       ;
+; vgaout:inst7|col_number[4]~18                                                      ; 1       ;
+; vgaout:inst7|col_number[4]~17                                                      ; 1       ;
+; vgaout:inst7|col_number[3]~16                                                      ; 1       ;
+; vgaout:inst7|col_number[3]~15                                                      ; 1       ;
+; vgaout:inst7|col_number[2]~14                                                      ; 1       ;
+; vgaout:inst7|col_number[2]~13                                                      ; 1       ;
+; vgaout:inst7|col_number[1]~12                                                      ; 1       ;
+; vgaout:inst7|col_number[1]~11                                                      ; 1       ;
+; vgaout:inst7|col_number[0]~10                                                      ; 1       ;
+; vgaout:inst7|col_number[0]~9                                                       ; 1       ;
 ; genlock:inst6|hcount_in[31]~91                                                     ; 1       ;
 ; genlock:inst6|hcount_in[30]~90                                                     ; 1       ;
 ; genlock:inst6|hcount_in[30]~89                                                     ; 1       ;
@@ -2103,15 +2103,15 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|SdrAdr[6]~2                                                             ; 1       ;
 ; sdram:inst|SdrAdr[7]~1                                                             ; 1       ;
 ; sdram:inst|SdrAdr[8]~0                                                             ; 1       ;
-; vgaout:inst7|colLoadNr[8]                                                          ; 1       ;
-; vgaout:inst7|colLoadNr[7]                                                          ; 1       ;
-; vgaout:inst7|colLoadNr[6]                                                          ; 1       ;
-; vgaout:inst7|colLoadNr[5]                                                          ; 1       ;
-; vgaout:inst7|colLoadNr[4]                                                          ; 1       ;
-; vgaout:inst7|colLoadNr[3]                                                          ; 1       ;
-; vgaout:inst7|colLoadNr[2]                                                          ; 1       ;
-; vgaout:inst7|colLoadNr[1]                                                          ; 1       ;
-; vgaout:inst7|colLoadNr[0]                                                          ; 1       ;
+; vgaout:inst7|col_number[8]                                                         ; 1       ;
+; vgaout:inst7|col_number[7]                                                         ; 1       ;
+; vgaout:inst7|col_number[6]                                                         ; 1       ;
+; vgaout:inst7|col_number[5]                                                         ; 1       ;
+; vgaout:inst7|col_number[4]                                                         ; 1       ;
+; vgaout:inst7|col_number[3]                                                         ; 1       ;
+; vgaout:inst7|col_number[2]                                                         ; 1       ;
+; vgaout:inst7|col_number[1]                                                         ; 1       ;
+; vgaout:inst7|col_number[0]                                                         ; 1       ;
 ; vgaout:inst7|Add0~18                                                               ; 1       ;
 ; vgaout:inst7|Add1~18                                                               ; 1       ;
 ; vgaout:inst7|Add1~17                                                               ; 1       ;
@@ -2533,7 +2533,7 @@ Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 0.17 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.14 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
@@ -2541,8 +2541,8 @@ Info (334004): Delay annotation completed successfully
 Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Info (144001): Generated suppressed messages file C:/altera/projects/rgb2vga/vhdl/output_files/rgb2vga.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 16 warnings
-    Info: Peak virtual memory: 721 megabytes
-    Info: Processing ended: Sun Oct 05 23:46:55 2014
+    Info: Peak virtual memory: 719 megabytes
+    Info: Processing ended: Sun Oct 05 23:55:35 2014
     Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:10
 

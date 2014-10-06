@@ -3,16 +3,16 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity vgaout is
-    port(CLOCK_VGA  : in std_logic;
-         VGA_OUT	  : out unsigned(9 downto 0); -- r, g, b, hsync, vsync
+    port(clock_vga  : in std_logic;
+         vga_out	  : out unsigned(9 downto 0); -- r, g, b, hsync, vsync
 								
-			pixelIn		: in unsigned(15 downto 0);		
-			rowLoadNr	: buffer unsigned(8 downto 0); -- [0:239]
-			colLoadNr	: out unsigned(8 downto 0); -- [0:639]
-			rowLoadReq	: out std_logic := '0';
-			rowLoadAck  : in std_logic;
-			SCANLINE_IN	: in std_logic;
-			IS_SYNC		: in std_logic
+			pixel_in		: in unsigned(15 downto 0);		
+			row_number	: buffer unsigned(8 downto 0); -- [0:239]
+			col_number	: out unsigned(8 downto 0); -- [0:639]
+			load_req	: out std_logic := '0';
+			load_ack  : in std_logic;
+			is_scanline	: in std_logic;
+			is_sync		: in std_logic
 			
          );
 end vgaout;
@@ -21,14 +21,14 @@ architecture behavioral of vgaout is
 
 signal hcount												: unsigned(9 downto 0);
 signal vcount												: unsigned(9 downto 0);
-signal videoon, videov, videoh, hsync, vsync,scanline		: std_ulogic;
-signal vgaPixel											: unsigned(7 downto 0);
+signal blank, videov, videoh, hsync, vsync, scanline		: std_ulogic;
+signal vga_pixel											: unsigned(7 downto 0);
 begin
 
 
-vcounter: process (CLOCK_VGA, hcount, vcount)
+vcounter: process (clock_vga, hcount, vcount)
 begin
-	if(rising_edge(CLOCK_VGA)) then
+	if(rising_edge(clock_vga)) then
 
 		if hcount = 799 then
  		  vcount <= vcount + 1;
@@ -42,9 +42,9 @@ begin
 	end if;
 end process;
 
-v_sync: process(CLOCK_VGA, vcount)
+v_sync: process(clock_vga, vcount)
 begin
-	if(rising_edge(CLOCK_VGA)) then
+	if(rising_edge(clock_vga)) then
 		vsync <= '1';
 		if (vcount <= 492 and vcount >= 490) then
 			vsync <= '0';
@@ -52,9 +52,9 @@ begin
 	end if;
 end process;
 
-hcounter: process (CLOCK_VGA, hcount)
+hcounter: process (clock_vga, hcount)
 begin
-	if (rising_edge(CLOCK_VGA)) then				
+	if (rising_edge(clock_vga)) then				
 		hcount <= hcount + 1;
       if hcount=799 then 
         hcount <= (others => '0');
@@ -62,57 +62,57 @@ begin
 	end if;
 end process;
 
-h_sync: process (CLOCK_VGA, hcount)
+h_sync: process (clock_vga, hcount)
 begin
-	if (rising_edge(CLOCK_VGA)) then     
+	if (rising_edge(clock_vga)) then     
 	   hsync <= '1';		
 		
       if (hcount <= 752 and hcount >= 655) then
- 		  rowLoadNr <= to_unsigned(to_integer(vcount(9 downto 1))+1, rowLoadNr'length);
+ 		  row_number <= to_unsigned(to_integer(vcount(9 downto 1))+1, row_number'length);
         hsync <= '0';
       end if;
 	end if;		
 end process;
 
-pixel_out: process (CLOCK_VGA, hcount)
+pixel_out: process (clock_vga, hcount)
 variable col: integer range 0 to 153600;
 begin
-	if (rising_edge(CLOCK_VGA)) then
+	if (rising_edge(clock_vga)) then
 		if (hcount < 640 and vcount < 480) then
 		
 			col := to_integer(hcount( 9 downto 1)) + 1;
-			colLoadNr <= to_unsigned(col, colLoadNr'length);
+			col_number <= to_unsigned(col, col_number'length);
 
 		else
-			colLoadNr <= (others => '0');
+			col_number <= (others => '0');
 		end if;
 		
 	end if;
 end process;
 
-pixel: process(pixelIn, hcount)
+pixel: process(pixel_in, hcount)
 begin
 	if (hcount(0) = '0') then
-		vgaPixel <= pixelIn(7 downto 0);
+		vga_pixel <= pixel_in(7 downto 0);
 	else
-		vgaPixel <= pixelIn(15 downto 8);
+		vga_pixel <= pixel_in(15 downto 8);
 	end if;
 	
-	if (IS_SYNC = '1') then
-		vgaPixel <= "00000011"; -- out of sync shows blue
+	if (is_sync = '1') then
+		vga_pixel <= "00000011"; -- out of sync shows blue
 	end if;
 	
 end process;
 
 
-load_row: process(hsync, rowLoadAck)
+load_row: process(hsync, load_ack)
 begin
-	if (rowLoadAck = '1') then
-		rowLoadReq <= '0';
+	if (load_ack = '1') then
+		load_req <= '0';
 	end if;
 
 	if (hsync = '0' and vcount(0) = '1') then
-		rowLoadReq <= '1';
+		load_req <= '1';
 	end if;
 end process;
 
@@ -133,18 +133,14 @@ begin
    end if;
 end process;
 
-	videoon <= videoh and videov;
+	blank <= videoh and videov;
 	
 	with (vcount(0)) select
-		scanline <= videoon when '0',
-						(SCANLINE_IN and videoon) when others;
+		scanline <= blank when '0',
+						(is_scanline and blank) when others;
 	
-	VGA_OUT(9 downto 2) <= vgaPixel and videoon&scanline&videoon&videoon&scanline&videoon&scanline&videoon;
+	vga_out(9 downto 2) <= vga_pixel and blank&scanline&blank&blank&scanline&blank&scanline&blank;	
 	
-	--with (hcount(0)) select
-	--	VGA_OUT(9 downto 2) <= (pixelIn(7 downto 0) and videoon&scanline&videoon&videoon&scanline&videoon&scanline&videoon) when '0',
-	--							     (pixelIn(15 downto 8) and videoon&scanline&videoon&videoon&scanline&videoon&scanline&videoon) when others;
-	
-	VGA_OUT(1 downto 0)	<= hsync & vsync;
+	vga_out(1 downto 0)	<= hsync & vsync;
 
 end behavioral;

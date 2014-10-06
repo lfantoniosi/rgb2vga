@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Mon Oct 06 00:03:50 2014
+Mon Oct 06 00:58:46 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -56,7 +56,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Oct 06 00:03:50 2014      ;
+; Analysis & Synthesis Status        ; Successful - Mon Oct 06 00:58:46 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -210,9 +210,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                                             ;                                                                              ;
 ; Total combinational functions               ; 499                                                                          ;
 ; Logic element usage by number of LUT inputs ;                                                                              ;
-;     -- 4 input functions                    ; 183                                                                          ;
+;     -- 4 input functions                    ; 182                                                                          ;
 ;     -- 3 input functions                    ; 101                                                                          ;
-;     -- <=2 input functions                  ; 215                                                                          ;
+;     -- <=2 input functions                  ; 216                                                                          ;
 ;                                             ;                                                                              ;
 ; Logic elements by mode                      ;                                                                              ;
 ;     -- normal mode                          ; 327                                                                          ;
@@ -230,7 +230,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                                             ;                                                                              ;
 ; Maximum fan-out node                        ; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                             ; 379                                                                          ;
-; Total fan-out                               ; 3331                                                                         ;
+; Total fan-out                               ; 3329                                                                         ;
 ; Average fan-out                             ; 3.27                                                                         ;
 +---------------------------------------------+------------------------------------------------------------------------------+
 
@@ -257,8 +257,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |ram:inst4|                                                ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4                                                                ;              ;
 ;       |altsyncram:altsyncram_component|                       ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4|altsyncram:altsyncram_component                                ;              ;
 ;          |altsyncram_o8k1:auto_generated|                     ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated ;              ;
-;    |sdram:inst|                                               ; 162 (162)         ; 152 (152)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|sdram:inst                                                               ;              ;
-;    |vgaout:inst7|                                             ; 87 (87)           ; 40 (40)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|vgaout:inst7                                                             ;              ;
+;    |sdram:inst|                                               ; 161 (161)         ; 152 (152)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|sdram:inst                                                               ;              ;
+;    |vgaout:inst7|                                             ; 88 (88)           ; 40 (40)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|vgaout:inst7                                                             ;              ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -968,7 +968,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:02     ;
+; Top            ; 00:00:01     ;
 +----------------+--------------+
 
 
@@ -978,7 +978,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Mon Oct 06 00:03:46 2014
+    Info: Processing started: Mon Oct 06 00:58:42 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
@@ -1147,8 +1147,8 @@ Info (21057): Implemented 719 device resources after synthesis - the final resou
     Info (21064): Implemented 32 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 29 warnings
-    Info: Peak virtual memory: 500 megabytes
-    Info: Processing ended: Mon Oct 06 00:03:50 2014
+    Info: Peak virtual memory: 508 megabytes
+    Info: Processing ended: Mon Oct 06 00:58:46 2014
     Info: Elapsed time: 00:00:04
     Info: Total CPU time (on all processors): 00:00:04
 

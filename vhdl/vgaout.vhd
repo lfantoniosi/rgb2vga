@@ -99,7 +99,7 @@ begin
 	end if;
 	
 	if (is_sync = '1') then
-		vga_pixel <= "00000011"; -- out of sync shows blue
+		vga_pixel <= "00011100"; -- out of sync shows green
 	end if;
 	
 end process;

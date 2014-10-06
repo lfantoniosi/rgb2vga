@@ -281,9 +281,9 @@ begin
 					when "1001" => pixel_adc(1 downto 0) <= "10";
 					when "1010" => pixel_adc(1 downto 0) <= "10";
 					when "1011" => pixel_adc(1 downto 0) <= "11";
-					when "1100" => pixel_adc(1 downto 0) <= "01";
+					when "1100" => pixel_adc(1 downto 0) <= "00";
 					when "1101" => pixel_adc(1 downto 0) <= "11";
-					when "1110" => pixel_adc(1 downto 0) <= "10";
+					when "1110" => pixel_adc(1 downto 0) <= "11";
 					when "1111" => pixel_adc(1 downto 0) <= "11";
 
 				end case;	

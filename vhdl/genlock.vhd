@@ -9,19 +9,19 @@ entity genlock is
 		sync_level			: std_logic := '1'
 	);
 
-    port(CLOCK_H : in std_logic;
-			VSYNC_IN  : in std_logic; -- digital vsync
-			HSYNC_IN	 : in std_logic; -- digital hsync
-			ARGB	 	 : in	unsigned(2 downto 0); -- analog r, g, b
+    port(clock_pixel : in std_logic;
+			vsync  : in std_logic; -- digital vsync
+			hsync	 : in std_logic; -- digital hsync
+			adc_rgb	 	 : in	unsigned(2 downto 0); -- analog r, g, b
 			
-			pixelOut		: buffer unsigned(15 downto 0);
-			rowStoreNr	: out unsigned(8 downto 0); 
-			colStoreNr	: buffer unsigned(8 downto 0); 
-			rowStoreReq	: out std_logic := '0';
-			rowStoreAck : in std_logic;
-			DAC_STEP		: buffer unsigned(2 downto 0);
-			IS_SYNC		: out std_logic;
-			ARTIFACT		: in std_logic
+			pixel_out		: buffer unsigned(15 downto 0);
+			row_number	: out unsigned(8 downto 0); 
+			col_number	: buffer unsigned(8 downto 0); 
+			store_req	: out std_logic := '0';
+			store_ack : in std_logic;
+			dac_step		: buffer unsigned(2 downto 0);
+			is_sync		: out std_logic;
+			artifact		: in std_logic
 									
          );
 end genlock;
@@ -32,22 +32,22 @@ signal vblank, hblank									: std_ulogic;
 signal hcount_in, vcount_in							: unsigned(31 downto 0);
 signal captureR, captureG, captureB : std_ulogic;
 
-signal RADC : unsigned(6 downto 0);
-signal GADC : unsigned(6 downto 0);
-signal BADC : unsigned(6 downto 0);
-signal PIXEL : unsigned(7 downto 0);
-signal FAKE_COLOR: std_logic;
+signal red_adc : unsigned(6 downto 0);
+signal green_adc : unsigned(6 downto 0);
+signal blue_adc : unsigned(6 downto 0);
+signal pixel_adc : unsigned(7 downto 0);
+signal artifact_mode: std_logic;
 
-signal PixelIn : unsigned (15 downto 0);
-signal FakePixel : unsigned (15 downto 0);
+signal pixel_in : unsigned (15 downto 0);
+signal artifact_pixel : unsigned (15 downto 0);
 
-function F_ADC(ADC: unsigned) return unsigned;
+function f_adc(adc: unsigned) return unsigned;
 
 
-function F_ADC(ADC: unsigned) return unsigned is
+function f_adc(adc: unsigned) return unsigned is
 variable VALUE : unsigned (2 downto 0); 
 begin
-		case ADC(6 downto 0) is
+		case adc(6 downto 0) is
 		
 			when "0000000" => VALUE := "000";
 			
@@ -189,102 +189,102 @@ begin
 		
 		return VALUE;
 		
-end F_ADC;
+end f_adc;
 
 begin
 
-red: process(CLOCK_H)--, DAC_STEP, ARGB(2))
+red: process(clock_pixel)--, dac_step, adc_rgb(2))
 begin
-	if (rising_edge(CLOCK_H)) then 
+	if (rising_edge(clock_pixel)) then 
 
-		case DAC_STEP is		
+		case dac_step is		
 			when "001" => 
-				RADC(0) <= ARGB(2);
+				red_adc(0) <= adc_rgb(2);
 			when "010" => 
-				RADC(1) <= ARGB(2);
+				red_adc(1) <= adc_rgb(2);
 			when "011" => 
-				RADC(2) <= ARGB(2);
+				red_adc(2) <= adc_rgb(2);
 			when "100" => 
-				RADC(3) <= ARGB(2);
+				red_adc(3) <= adc_rgb(2);
 			when "101" => 
-				RADC(4) <= ARGB(2);
+				red_adc(4) <= adc_rgb(2);
 			when "110" => 
-				RADC(5) <= ARGB(2);
+				red_adc(5) <= adc_rgb(2);
 			when "111" => 
-				RADC(6) <= ARGB(2);
+				red_adc(6) <= adc_rgb(2);
 			when "000" =>
-				PIXEL(7 downto 5) <= F_ADC(RADC);
+				pixel_adc(7 downto 5) <= f_adc(red_adc);
 
 		end case;
 	end if;
 end process;
 
-green: process(CLOCK_H)--, DAC_STEP, ARGB(1))
+green: process(clock_pixel)--, dac_step, adc_rgb(1))
 begin
-	if (rising_edge(CLOCK_H)) then 
+	if (rising_edge(clock_pixel)) then 
 
-		case DAC_STEP is		
+		case dac_step is		
 			when "001" => 
-				GADC(0) <= ARGB(1);
+				green_adc(0) <= adc_rgb(1);
 			when "010" => 
-				GADC(1) <= ARGB(1);
+				green_adc(1) <= adc_rgb(1);
 			when "011" => 
-				GADC(2) <= ARGB(1);
+				green_adc(2) <= adc_rgb(1);
 			when "100" => 
-				GADC(3) <= ARGB(1);
+				green_adc(3) <= adc_rgb(1);
 			when "101" => 
-				GADC(4) <= ARGB(1);
+				green_adc(4) <= adc_rgb(1);
 			when "110" => 
-				GADC(5) <= ARGB(1);
+				green_adc(5) <= adc_rgb(1);
 			when "111" => 
-				GADC(6) <= ARGB(1);
+				green_adc(6) <= adc_rgb(1);
 			when "000" =>
 			
-				PIXEL(4 downto 2) <= F_ADC(GADC);
+				pixel_adc(4 downto 2) <= f_adc(green_adc);
 			
 		end case;
 	end if;
 end process;
 
-blue: process(CLOCK_H)--, DAC_STEP, ARGB(0))
+blue: process(clock_pixel)--, dac_step, adc_rgb(0))
 begin
-	if (rising_edge(CLOCK_H)) then 
+	if (rising_edge(clock_pixel)) then 
 	
-		case DAC_STEP is		
+		case dac_step is		
 			when "001" => 
-				BADC(0) <= ARGB(0);
+				blue_adc(0) <= adc_rgb(0);
 			when "010" => 
-				BADC(1) <= ARGB(0);
+				blue_adc(1) <= adc_rgb(0);
 			when "011" => 
-				BADC(2) <= ARGB(0);
+				blue_adc(2) <= adc_rgb(0);
 			when "100" => 
-				BADC(3) <= ARGB(0);
+				blue_adc(3) <= adc_rgb(0);
 			when "101" => 
-				BADC(4) <= ARGB(0);
+				blue_adc(4) <= adc_rgb(0);
 			when "110" => 
-				BADC(5) <= ARGB(0);
+				blue_adc(5) <= adc_rgb(0);
 			when "111" => 
-				BADC(6) <= ARGB(0);
+				blue_adc(6) <= adc_rgb(0);
 			when "000" =>
 			
-				case BADC(6 downto 3) is
+				case blue_adc(6 downto 3) is
 
-					when "0000" => PIXEL(1 downto 0) <= "00";
-					when "0001" => PIXEL(1 downto 0) <= "01";
-					when "0010" => PIXEL(1 downto 0) <= "01";
-					when "0011" => PIXEL(1 downto 0) <= "01";
-					when "0100" => PIXEL(1 downto 0) <= "10";
-					when "0101" => PIXEL(1 downto 0) <= "10";
-					when "0110" => PIXEL(1 downto 0) <= "10";
-					when "0111" => PIXEL(1 downto 0) <= "11";
-					when "1000" => PIXEL(1 downto 0) <= "00";
-					when "1001" => PIXEL(1 downto 0) <= "10";
-					when "1010" => PIXEL(1 downto 0) <= "10";
-					when "1011" => PIXEL(1 downto 0) <= "11";
-					when "1100" => PIXEL(1 downto 0) <= "01";
-					when "1101" => PIXEL(1 downto 0) <= "11";
-					when "1110" => PIXEL(1 downto 0) <= "10";
-					when "1111" => PIXEL(1 downto 0) <= "11";
+					when "0000" => pixel_adc(1 downto 0) <= "00";
+					when "0001" => pixel_adc(1 downto 0) <= "01";
+					when "0010" => pixel_adc(1 downto 0) <= "01";
+					when "0011" => pixel_adc(1 downto 0) <= "01";
+					when "0100" => pixel_adc(1 downto 0) <= "10";
+					when "0101" => pixel_adc(1 downto 0) <= "10";
+					when "0110" => pixel_adc(1 downto 0) <= "10";
+					when "0111" => pixel_adc(1 downto 0) <= "11";
+					when "1000" => pixel_adc(1 downto 0) <= "00";
+					when "1001" => pixel_adc(1 downto 0) <= "10";
+					when "1010" => pixel_adc(1 downto 0) <= "10";
+					when "1011" => pixel_adc(1 downto 0) <= "11";
+					when "1100" => pixel_adc(1 downto 0) <= "01";
+					when "1101" => pixel_adc(1 downto 0) <= "11";
+					when "1110" => pixel_adc(1 downto 0) <= "10";
+					when "1111" => pixel_adc(1 downto 0) <= "11";
 
 				end case;	
 
@@ -294,85 +294,85 @@ end process;
 
 
 
-hsync_lock: process(CLOCK_H)
+hsync_lock: process(clock_pixel)
 begin	
-	if (rising_edge(CLOCK_H)) then
+	if (rising_edge(clock_pixel)) then
 		hblank <= '1'; 
-		if (HSYNC_IN = sync_level and hcount_in(31 downto 3) >= 799) then
+		if (hsync = sync_level and hcount_in(31 downto 3) >= 799) then
 			hblank <= '0'; 
 		end if;
 		
 	end if;
 end process;
 
-hraster: process (CLOCK_H, hblank, vblank)
+hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
 		hcount_in <= (others => '0');
-		DAC_STEP <= "111"; -- next clock will digitize
-	elsif (rising_edge(CLOCK_H)) then
+		dac_step <= "111"; -- next clock will digitize
+	elsif (rising_edge(clock_pixel)) then
 		hcount_in <= hcount_in + 1;
-		DAC_STEP <= DAC_STEP + 1;
+		dac_step <= dac_step + 1;
 
 	end if;
 end process;
 
-vsync_lock: process(CLOCK_H)
+vsync_lock: process(clock_pixel)
 begin	
-	if (rising_edge(CLOCK_H)) then		
+	if (rising_edge(clock_pixel)) then		
 		vblank <= '1'; 	
 		
-		if (VSYNC_IN = sync_level and vcount_in > 260) then
+		if (vsync = sync_level and vcount_in > 260) then
 			vblank <= '0';	
 		end if;		
 				
-		IS_SYNC <= '0';
-		if (VSYNC_IN = '0' and hcount_in(31 downto 3) > 153600) then
-			IS_SYNC <= '1';
+		is_sync <= '0';
+		if (vsync = '0' and hcount_in(31 downto 3) > 153600) then
+			is_sync <= '1';
 		end if;		
 		
 	end if;	
 
 end process;
 
-vraster: process (CLOCK_H, vblank)
+vraster: process (clock_pixel, vblank)
 begin
 	if (vblank = '0') then 
 			vcount_in <= (others => '0');
-	elsif(rising_edge(CLOCK_H)) then
+	elsif(rising_edge(clock_pixel)) then
 		if hblank = '0' then
 			vcount_in <= vcount_in + 1;
 		end if;
 	end if;
 end process;
 
-artifact_detect: process(CLOCK_H, hcount_in)
+artifact_detect: process(clock_pixel, hcount_in)
 begin
 	if (vcount_in >= top_border and hcount_in(31 downto 3) < front_porch) then
-		FAKE_COLOR <= ARTIFACT;
-		if (PIXEL /= "11111111") then
-			FAKE_COLOR <= '0';
+		artifact_mode <= artifact;
+		if (pixel_adc /= "11111111") then
+			artifact_mode <= '0';
 		end if;
 	end if;
 end process;
 
 
-pixel_in: process(CLOCK_H, hcount_in)
+process_pixel: process(clock_pixel, hcount_in)
 variable row, col: integer range 0 to 153600;
 begin
-	if (rising_edge(CLOCK_H)) then
+	if (rising_edge(clock_pixel)) then
 		
 		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
 		
 			col := to_integer(hcount_in(31 downto 3)) - front_porch;		
 			row := to_integer(vcount_in) - top_border;
-			rowStoreNr <= to_unsigned(row, rowStoreNr'length);
-			colStoreNr <= to_unsigned(col, 10)(9 downto 1);
+			row_number <= to_unsigned(row, row_number'length);
+			col_number <= to_unsigned(col, 10)(9 downto 1);
 			
 			if (hcount_in(3) = '0') then								
-				PixelIn(7 downto 0) <= PIXEL;															
+				pixel_in(7 downto 0) <= pixel_adc;															
 			else
-				PixelIn(15 downto 8) <= PIXEL;									
+				pixel_in(15 downto 8) <= pixel_adc;									
 			end if;				
 				
 		end if;
@@ -380,32 +380,32 @@ begin
 end process;
 
 process_artifact: process(hcount_in)
-variable PREV_PIXEL: unsigned(15 downto 0);
-variable CUR_PIXEL: unsigned(15 downto 0);
+variable prev_pixel: unsigned(15 downto 0);
+variable cur_pixel: unsigned(15 downto 0);
 begin
-	if (rising_edge(CLOCK_H)) then
+	if (rising_edge(clock_pixel)) then
 		
 		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
 			
 			if (hcount_in(3) = '0') then			
 			
-				CUR_PIXEL(7 downto 0) := PIXEL; 
+				cur_pixel(7 downto 0) := pixel_adc; 
 
-				FakePixel <= CUR_PIXEL;
+				artifact_pixel <= cur_pixel;
 
-				if (CUR_PIXEL(7 downto 0) /= PREV_PIXEL(7 downto 0))  then
+				if (cur_pixel(7 downto 0) /= prev_pixel(7 downto 0))  then
 
-					if (colStoreNr(0) = '0') then
-						if (CUR_PIXEL(7 downto 2) = "000000") then 
-							FakePixel <= "1110100011101000";
+					if (col_number(0) = '0') then
+						if (cur_pixel(7 downto 2) = "000000") then 
+							artifact_pixel <= "1110100011101000";
 						else
-							FakePixel <= "0010011100100111";
+							artifact_pixel <= "0010011100100111";
 						end if;
 					else
-						if (CUR_PIXEL(7 downto 2) = "000000") then
-							FakePixel <= "0010011100100111";
+						if (cur_pixel(7 downto 2) = "000000") then
+							artifact_pixel <= "0010011100100111";
 						else
-							FakePixel <= "1110100011101000";
+							artifact_pixel <= "1110100011101000";
 						end if;					
 						
 					end if;
@@ -414,9 +414,9 @@ begin
 															
 			else
 			
-				CUR_PIXEL(15 downto 8) := PIXEL;				
+				cur_pixel(15 downto 8) := pixel_adc;				
 										
-				PREV_PIXEL := CUR_PIXEL;				
+				prev_pixel := cur_pixel;				
 				
 			end if;
 			
@@ -427,21 +427,21 @@ begin
 end process;
 
 
-store_row: process(hblank, rowStoreAck)
+store_row: process(hblank, store_ack)
 begin
 	
-	if (rowStoreAck = '1') then
-		rowStoreReq <= '0';
+	if (store_ack = '1') then
+		store_req <= '0';
 	end if;
 	
 	if (hblank = '0') then
-		rowStoreReq <= '1';
+		store_req <= '1';
 	end if;
 end process;
 
-	with FAKE_COLOR select
-		pixelOut <= PixelIn when '0',
-				      FakePixel when '1';
+	with artifact_mode select
+		pixel_out <= pixel_in when '0',
+				       artifact_pixel when '1';
 						
 
 end behavioral;

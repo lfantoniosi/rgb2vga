@@ -1,5 +1,5 @@
 Flow report for rgb2vga
-Sun Oct 05 23:32:26 2014
+Sun Oct 05 23:47:01 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -40,7 +40,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Sun Oct 05 23:32:22 2014      ;
+; Flow Status                        ; Successful - Sun Oct 05 23:46:57 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/05/2014 23:32:05 ;
+; Start date & time ; 10/05/2014 23:46:40 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; rgb2vga             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+---------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 203334041456669.141256632506764       ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 203334041456669.141256720006356       ; --            ; --          ; --         ;
 ; IP_TOOL_NAME                        ; ALTIOBUF                              ; --            ; --          ; --         ;
 ; IP_TOOL_NAME                        ; ALTPLL                                ; --            ; --          ; --         ;
 ; IP_TOOL_VERSION                     ; 13.0                                  ; --            ; --          ; --         ;
@@ -104,10 +104,10 @@ applicable agreement for further details.
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Analysis & Synthesis      ; 00:00:04     ; 1.0                     ; 497 MB              ; 00:00:04                           ;
-; Fitter                    ; 00:00:10     ; 1.0                     ; 722 MB              ; 00:00:10                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 409 MB              ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 477 MB              ; 00:00:03                           ;
-; Total                     ; 00:00:19     ; --                      ; --                  ; 00:00:19                           ;
+; Fitter                    ; 00:00:10     ; 1.0                     ; 721 MB              ; 00:00:10                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 409 MB              ; 00:00:02                           ;
+; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 486 MB              ; 00:00:03                           ;
+; Total                     ; 00:00:18     ; --                      ; --                  ; 00:00:19                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

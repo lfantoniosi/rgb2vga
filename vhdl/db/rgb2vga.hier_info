@@ -11,6 +11,7 @@ DIFFGn => altiobuf:inst12.datain_b[0]
 DIFFB => altiobuf:inst13.datain[0]
 DIFFBn => altiobuf:inst13.datain_b[0]
 SWITCH0 => vgaout:inst7.is_scanline
+SWITCH1 => vgaout:inst7.alternate
 DRAM_DQ[0] <> sdram:inst.pMemDat[0]
 DRAM_DQ[1] <> sdram:inst.pMemDat[1]
 DRAM_DQ[2] <> sdram:inst.pMemDat[2]
@@ -62,7 +63,7 @@ DRAM_BA[0] <= sdram:inst.pMemBa0
 DRAM_BA[1] <= sdram:inst.pMemBa1
 DRAM_DQM[0] <= sdram:inst.pMemLdq
 DRAM_DQM[1] <= sdram:inst.pMemUdq
-SWITCH1 => ~NO_FANOUT~
+SWITCH3 => ~NO_FANOUT~
 
 
 |top|sdram:inst
@@ -390,7 +391,6 @@ pMemDat[15] <> pMemDat[15]
 
 |top|pll:inst1
 inclk0 => altpll:altpll_component.inclk[0]
-c0 <= altpll:altpll_component.clk[0]
 c1 <= altpll:altpll_component.clk[1]
 c2 <= altpll:altpll_component.clk[2]
 
@@ -787,21 +787,53 @@ vga_out[6] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
 vga_out[7] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
 vga_out[8] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
 vga_out[9] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-pixel_in[0] => vga_pixel.DATAB
-pixel_in[1] => vga_pixel.DATAB
-pixel_in[2] => vga_pixel.DATAB
-pixel_in[3] => vga_pixel.DATAB
-pixel_in[4] => vga_pixel.DATAB
-pixel_in[5] => vga_pixel.DATAB
-pixel_in[6] => vga_pixel.DATAB
-pixel_in[7] => vga_pixel.DATAB
+pixel_in[0] => Equal2.IN15
+pixel_in[0] => Equal3.IN15
+pixel_in[0] => vga_pixel.DATAA
+pixel_in[1] => Equal2.IN14
+pixel_in[1] => Equal3.IN14
+pixel_in[1] => vga_pixel.DATAA
+pixel_in[2] => Equal2.IN13
+pixel_in[2] => Equal3.IN13
+pixel_in[2] => vga_pixel.DATAA
+pixel_in[3] => Equal2.IN12
+pixel_in[3] => Equal3.IN12
+pixel_in[3] => vga_pixel.DATAA
+pixel_in[4] => Equal2.IN11
+pixel_in[4] => Equal3.IN11
+pixel_in[4] => vga_pixel.DATAA
+pixel_in[5] => Equal2.IN10
+pixel_in[5] => Equal3.IN10
+pixel_in[5] => vga_pixel.DATAA
+pixel_in[6] => Equal2.IN9
+pixel_in[6] => Equal3.IN9
+pixel_in[6] => vga_pixel.DATAA
+pixel_in[7] => Equal2.IN8
+pixel_in[7] => Equal3.IN8
+pixel_in[7] => vga_pixel.DATAA
+pixel_in[8] => Equal4.IN15
+pixel_in[8] => Equal5.IN15
 pixel_in[8] => vga_pixel.DATAA
+pixel_in[9] => Equal4.IN14
+pixel_in[9] => Equal5.IN14
 pixel_in[9] => vga_pixel.DATAA
+pixel_in[10] => Equal4.IN13
+pixel_in[10] => Equal5.IN13
 pixel_in[10] => vga_pixel.DATAA
+pixel_in[11] => Equal4.IN12
+pixel_in[11] => Equal5.IN12
 pixel_in[11] => vga_pixel.DATAA
+pixel_in[12] => Equal4.IN11
+pixel_in[12] => Equal5.IN11
 pixel_in[12] => vga_pixel.DATAA
+pixel_in[13] => Equal4.IN10
+pixel_in[13] => Equal5.IN10
 pixel_in[13] => vga_pixel.DATAA
+pixel_in[14] => Equal4.IN9
+pixel_in[14] => Equal5.IN9
 pixel_in[14] => vga_pixel.DATAA
+pixel_in[15] => Equal4.IN8
+pixel_in[15] => Equal5.IN8
 pixel_in[15] => vga_pixel.DATAA
 row_number[0] <= row_number[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 row_number[1] <= row_number[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -832,6 +864,10 @@ is_sync => vga_pixel[3].OUTPUTSELECT
 is_sync => vga_pixel[2].OUTPUTSELECT
 is_sync => vga_pixel[1].OUTPUTSELECT
 is_sync => vga_pixel[0].OUTPUTSELECT
+alternate => pixel.IN1
+alternate => pixel.IN1
+alternate => pixel.IN1
+alternate => pixel.IN1
 
 
 |top|ram:inst4

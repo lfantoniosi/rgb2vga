@@ -59,6 +59,13 @@ applicable agreement for further details.
 		(line (pt 0 96)(pt 16 96)(line_width 1))
 	)
 	(port
+		(pt 0 112)
+		(input)
+		(text "alternate" (rect 0 0 33 12)(font "Arial" ))
+		(text "alternate" (rect 21 107 54 119)(font "Arial" ))
+		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
 		(pt 224 32)
 		(output)
 		(text "vga_out[9..0]" (rect 0 0 53 12)(font "Arial" ))

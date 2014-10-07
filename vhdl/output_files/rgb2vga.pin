@@ -258,7 +258,7 @@ VCCINT                       : M11       : power  :                   : 1.2V    
 GNDA4                        : M12       : gnd    :                   :         :           :                
 GND                          : M13       : gnd    :                   :         :           :                
 VCCIO5                       : M14       : power  :                   : 2.5V    : 5         :                
-GND+                         : M15       :        :                   :         : 5         :                
+SWITCH3                      : M15       : input  : 2.5 V             :         : 5         : Y              
 GND+                         : M16       :        :                   :         : 5         :                
 DRAM_ADDR[11]                : N1        : output : 2.5 V             :         : 2         : Y              
 DRAM_ADDR[10]                : N2        : output : 2.5 V             :         : 2         : Y              

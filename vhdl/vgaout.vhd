@@ -12,7 +12,8 @@ entity vgaout is
 			load_req	: out std_logic := '0';
 			load_ack  : in std_logic;
 			is_scanline	: in std_logic;
-			is_sync		: in std_logic
+			is_sync		: in std_logic;
+			alternate	: in std_logic
 			
          );
 end vgaout;
@@ -93,9 +94,21 @@ end process;
 pixel: process(pixel_in, hcount)
 begin
 	if (hcount(0) = '0') then
-		vga_pixel <= pixel_in(7 downto 0);
+		if (alternate = '1' and pixel_in(7 downto 0) = "11101000") then
+			vga_pixel <= "00100111";			
+		elsif(alternate = '1' and pixel_in(7 downto 0) = "00100111") then
+			vga_pixel <= "11101000";
+		else
+			vga_pixel <= pixel_in(7 downto 0);
+		end if;
 	else
-		vga_pixel <= pixel_in(15 downto 8);
+		if (alternate = '1' and pixel_in(15 downto 8) = "11101000") then
+			vga_pixel <= "00100111";			
+		elsif(alternate = '1' and pixel_in(15 downto 8) = "00100111") then
+			vga_pixel <= "11101000";
+		else
+			vga_pixel <= pixel_in(15 downto 8);
+		end if;
 	end if;
 	
 	if (is_sync = '1') then

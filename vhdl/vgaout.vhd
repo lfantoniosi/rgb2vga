@@ -22,7 +22,7 @@ architecture behavioral of vgaout is
 
 signal hcount												: unsigned(9 downto 0);
 signal vcount												: unsigned(9 downto 0);
-signal blank, videov, videoh, hsync, vsync, scanline		: std_ulogic;
+signal blank, videov, videoh, hsync, vsync, scanline,b0,b1		: std_ulogic;
 signal vga_pixel											: unsigned(7 downto 0);
 begin
 
@@ -151,8 +151,9 @@ end process;
 	with (vcount(0)) select
 		scanline <= blank when '0',
 						(is_scanline and blank) when others;
-	
-	vga_out(9 downto 2) <= vga_pixel and blank&scanline&blank&blank&scanline&blank&scanline&blank;	
+						
+	--vga_out(9 downto 2) <= vga_pixel and blank&scanline&blank&blank&scanline&blank&scanline&blank;	
+	vga_out(9 downto 2) <= vga_pixel and blank&blank&scanline&blank&blank&scanline&blank&scanline;	
 	
 	vga_out(1 downto 0)	<= hsync & vsync;
 

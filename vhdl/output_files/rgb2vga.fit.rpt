@@ -1,5 +1,5 @@
 Fitter report for rgb2vga
-Tue Oct 07 00:12:19 2014
+Sat Oct 11 02:26:46 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -71,17 +71,17 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Fitter Summary                                                                  ;
 +------------------------------------+--------------------------------------------+
-; Fitter Status                      ; Successful - Tue Oct 07 00:12:19 2014      ;
+; Fitter Status                      ; Successful - Sat Oct 11 02:26:46 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE22F17C6                               ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 570 / 22,320 ( 3 % )                       ;
-;     Total combinational functions  ; 522 / 22,320 ( 2 % )                       ;
-;     Dedicated logic registers      ; 329 / 22,320 ( 1 % )                       ;
-; Total registers                    ; 329                                        ;
+; Total logic elements               ; 530 / 22,320 ( 2 % )                       ;
+;     Total combinational functions  ; 486 / 22,320 ( 2 % )                       ;
+;     Dedicated logic registers      ; 331 / 22,320 ( 1 % )                       ;
+; Total registers                    ; 331                                        ;
 ; Total pins                         ; 65 / 154 ( 42 % )                          ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 16,384 / 608,256 ( 3 % )                   ;
@@ -251,8 +251,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; Type                ; Value                  ;
 +---------------------+------------------------+
 ; Placement (by node) ;                        ;
-;     -- Requested    ; 0 / 1057 ( 0.00 % )    ;
-;     -- Achieved     ; 0 / 1057 ( 0.00 % )    ;
+;     -- Requested    ; 0 / 1023 ( 0.00 % )    ;
+;     -- Achieved     ; 0 / 1023 ( 0.00 % )    ;
 ;                     ;                        ;
 ; Routing (by net)    ;                        ;
 ;     -- Requested    ; 0 / 0 ( 0.00 % )       ;
@@ -275,7 +275,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 ; Partition Name                 ; # Nodes ; # Preserved Nodes ; Preservation Level Used ; Netlist Type Used ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
-; Top                            ; 1044    ; 0                 ; N/A                     ; Source File       ;
+; Top                            ; 1010    ; 0                 ; N/A                     ; Source File       ;
 ; hard_block:auto_generated_inst ; 13      ; 0                 ; N/A                     ; Source File       ;
 +--------------------------------+---------+-------------------+-------------------------+-------------------+
 
@@ -291,23 +291,23 @@ The pin-out file can be found in C:/altera/projects/rgb2vga/vhdl/output_files/rg
 +---------------------------------------------+--------------------------+
 ; Resource                                    ; Usage                    ;
 +---------------------------------------------+--------------------------+
-; Total logic elements                        ; 570 / 22,320 ( 3 % )     ;
-;     -- Combinational with no register       ; 241                      ;
-;     -- Register only                        ; 48                       ;
-;     -- Combinational with a register        ; 281                      ;
+; Total logic elements                        ; 530 / 22,320 ( 2 % )     ;
+;     -- Combinational with no register       ; 199                      ;
+;     -- Register only                        ; 44                       ;
+;     -- Combinational with a register        ; 287                      ;
 ;                                             ;                          ;
 ; Logic element usage by number of LUT inputs ;                          ;
-;     -- 4 input functions                    ; 202                      ;
-;     -- 3 input functions                    ; 106                      ;
-;     -- <=2 input functions                  ; 214                      ;
-;     -- Register only                        ; 48                       ;
+;     -- 4 input functions                    ; 160                      ;
+;     -- 3 input functions                    ; 113                      ;
+;     -- <=2 input functions                  ; 213                      ;
+;     -- Register only                        ; 44                       ;
 ;                                             ;                          ;
 ; Logic elements by mode                      ;                          ;
-;     -- normal mode                          ; 350                      ;
+;     -- normal mode                          ; 314                      ;
 ;     -- arithmetic mode                      ; 172                      ;
 ;                                             ;                          ;
-; Total registers*                            ; 329 / 23,018 ( 1 % )     ;
-;     -- Dedicated logic registers            ; 329 / 22,320 ( 1 % )     ;
+; Total registers*                            ; 331 / 23,018 ( 1 % )     ;
+;     -- Dedicated logic registers            ; 331 / 22,320 ( 1 % )     ;
 ;     -- I/O registers                        ; 0 / 698 ( 0 % )          ;
 ;                                             ;                          ;
 ; Total LABs:  partially or completely used   ; 39 / 1,395 ( 3 % )       ;
@@ -327,12 +327,12 @@ The pin-out file can be found in C:/altera/projects/rgb2vga/vhdl/output_files/rg
 ; CRC blocks                                  ; 0 / 1 ( 0 % )            ;
 ; ASMI blocks                                 ; 0 / 1 ( 0 % )            ;
 ; Impedance control blocks                    ; 0 / 4 ( 0 % )            ;
-; Average interconnect usage (total/H/V)      ; 1% / 1% / 1%             ;
-; Peak interconnect usage (total/H/V)         ; 3% / 3% / 3%             ;
-; Maximum fan-out                             ; 292                      ;
+; Average interconnect usage (total/H/V)      ; 0% / 0% / 1%             ;
+; Peak interconnect usage (total/H/V)         ; 3% / 3% / 4%             ;
+; Maximum fan-out                             ; 294                      ;
 ; Highest non-global fan-out                  ; 36                       ;
-; Total fan-out                               ; 2828                     ;
-; Average fan-out                             ; 2.70                     ;
+; Total fan-out                               ; 2674                     ;
+; Average fan-out                             ; 2.65                     ;
 +---------------------------------------------+--------------------------+
 *  Register count does not include registers inside RAM blocks or DSP blocks.
 
@@ -345,23 +345,23 @@ The pin-out file can be found in C:/altera/projects/rgb2vga/vhdl/output_files/rg
 +---------------------------------------------+---------------------+--------------------------------+
 ; Difficulty Clustering Region                ; Low                 ; Low                            ;
 ;                                             ;                     ;                                ;
-; Total logic elements                        ; 570 / 22320 ( 3 % ) ; 0 / 22320 ( 0 % )              ;
-;     -- Combinational with no register       ; 241                 ; 0                              ;
-;     -- Register only                        ; 48                  ; 0                              ;
-;     -- Combinational with a register        ; 281                 ; 0                              ;
+; Total logic elements                        ; 530 / 22320 ( 2 % ) ; 0 / 22320 ( 0 % )              ;
+;     -- Combinational with no register       ; 199                 ; 0                              ;
+;     -- Register only                        ; 44                  ; 0                              ;
+;     -- Combinational with a register        ; 287                 ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic element usage by number of LUT inputs ;                     ;                                ;
-;     -- 4 input functions                    ; 202                 ; 0                              ;
-;     -- 3 input functions                    ; 106                 ; 0                              ;
-;     -- <=2 input functions                  ; 214                 ; 0                              ;
-;     -- Register only                        ; 48                  ; 0                              ;
+;     -- 4 input functions                    ; 160                 ; 0                              ;
+;     -- 3 input functions                    ; 113                 ; 0                              ;
+;     -- <=2 input functions                  ; 213                 ; 0                              ;
+;     -- Register only                        ; 44                  ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Logic elements by mode                      ;                     ;                                ;
-;     -- normal mode                          ; 350                 ; 0                              ;
+;     -- normal mode                          ; 314                 ; 0                              ;
 ;     -- arithmetic mode                      ; 172                 ; 0                              ;
 ;                                             ;                     ;                                ;
-; Total registers                             ; 329                 ; 0                              ;
-;     -- Dedicated logic registers            ; 329 / 22320 ( 1 % ) ; 0 / 22320 ( 0 % )              ;
+; Total registers                             ; 331                 ; 0                              ;
+;     -- Dedicated logic registers            ; 331 / 22320 ( 1 % ) ; 0 / 22320 ( 0 % )              ;
 ;                                             ;                     ;                                ;
 ; Total LABs:  partially or completely used   ; 39 / 1395 ( 3 % )   ; 0 / 1395 ( 0 % )               ;
 ;                                             ;                     ;                                ;
@@ -375,18 +375,18 @@ The pin-out file can be found in C:/altera/projects/rgb2vga/vhdl/output_files/rg
 ; Clock control block                         ; 2 / 24 ( 8 % )      ; 2 / 24 ( 8 % )                 ;
 ;                                             ;                     ;                                ;
 ; Connections                                 ;                     ;                                ;
-;     -- Input Connections                    ; 349                 ; 1                              ;
-;     -- Registered Input Connections         ; 330                 ; 0                              ;
-;     -- Output Connections                   ; 17                  ; 333                            ;
+;     -- Input Connections                    ; 351                 ; 1                              ;
+;     -- Registered Input Connections         ; 332                 ; 0                              ;
+;     -- Output Connections                   ; 17                  ; 335                            ;
 ;     -- Registered Output Connections        ; 0                   ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Internal Connections                        ;                     ;                                ;
-;     -- Total Connections                    ; 2842                ; 342                            ;
-;     -- Registered Connections               ; 1391                ; 0                              ;
+;     -- Total Connections                    ; 2688                ; 344                            ;
+;     -- Registered Connections               ; 1281                ; 0                              ;
 ;                                             ;                     ;                                ;
 ; External Connections                        ;                     ;                                ;
-;     -- Top                                  ; 32                  ; 334                            ;
-;     -- hard_block:auto_generated_inst       ; 334                 ; 0                              ;
+;     -- Top                                  ; 32                  ; 336                            ;
+;     -- hard_block:auto_generated_inst       ; 336                 ; 0                              ;
 ;                                             ;                     ;                                ;
 ; Partition Interface                         ;                     ;                                ;
 ;     -- Input Ports                          ; 13                  ; 1                              ;
@@ -415,7 +415,7 @@ The pin-out file can be found in C:/altera/projects/rgb2vga/vhdl/output_files/rg
 ; Name     ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Combinational Fan-Out ; Registered Fan-Out ; Global ; Input Register ; Power Up High ; PCI I/O Enabled ; Bus Hold ; Weak Pull Up ; I/O Standard ; Termination Control Block ; Location assigned by ;
 +----------+-------+----------+--------------+--------------+--------------+-----------------------+--------------------+--------+----------------+---------------+-----------------+----------+--------------+--------------+---------------------------+----------------------+
 ; CLOCK_50 ; R8    ; 3        ; 27           ; 0            ; 21           ; 1                     ; 0                  ; no     ; no             ; no            ; yes             ; no       ; Off          ; 2.5 V        ; --                        ; User                 ;
-; DIFFB    ; B12   ; 7        ; 43           ; 34           ; 21           ; 4                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; Bus LVDS     ; --                        ; User                 ;
+; DIFFB    ; B12   ; 7        ; 43           ; 34           ; 21           ; 7                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; Bus LVDS     ; --                        ; User                 ;
 ; DIFFBn   ; A12   ; 7        ; 43           ; 34           ; 14           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; Bus LVDS     ; --                        ; User                 ;
 ; DIFFG    ; D12   ; 7        ; 51           ; 34           ; 21           ; 7                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; Bus LVDS     ; --                        ; User                 ;
 ; DIFFGn   ; D11   ; 7        ; 51           ; 34           ; 14           ; 0                     ; 0                  ; no     ; no             ; no            ; no              ; no       ; Off          ; Bus LVDS     ; --                        ; User                 ;
@@ -866,14 +866,14 @@ Note: Pin directions (input, output or bidir) are based on device operating in u
 +---------------------------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+-------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                    ; Logic Cells ; Dedicated Logic Registers ; I/O Registers ; Memory Bits ; M9Ks ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; LUT-Only LCs ; Register-Only LCs ; LUT/Register LCs ; Full Hierarchy Name                                                           ; Library Name ;
 +---------------------------------------------------------------+-------------+---------------------------+---------------+-------------+------+--------------+---------+-----------+------+--------------+--------------+-------------------+------------------+-------------------------------------------------------------------------------+--------------+
-; |top                                                          ; 570 (1)     ; 329 (0)                   ; 0 (0)         ; 16384       ; 2    ; 0            ; 0       ; 0         ; 65   ; 0            ; 241 (1)      ; 48 (0)            ; 281 (0)          ; |top                                                                          ;              ;
+; |top                                                          ; 530 (1)     ; 331 (0)                   ; 0 (0)         ; 16384       ; 2    ; 0            ; 0       ; 0         ; 65   ; 0            ; 199 (1)      ; 44 (0)            ; 287 (0)          ; |top                                                                          ;              ;
 ;    |altiobuf:inst12|                                          ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|altiobuf:inst12                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
 ;    |altiobuf:inst13|                                          ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|altiobuf:inst13                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
 ;    |altiobuf:inst16|                                          ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|altiobuf:inst16                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
-;    |genlock:inst6|                                            ; 257 (257)   ; 153 (153)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 104 (104)    ; 8 (8)             ; 145 (145)        ; |top|genlock:inst6                                                            ;              ;
+;    |genlock:inst6|                                            ; 217 (217)   ; 155 (155)                 ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 62 (62)      ; 4 (4)             ; 151 (151)        ; |top|genlock:inst6                                                            ;              ;
 ;    |pll:inst1|                                                ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|pll:inst1                                                                ;              ;
 ;       |altpll:altpll_component|                               ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|pll:inst1|altpll:altpll_component                                        ;              ;
 ;          |pll_altpll:auto_generated|                          ; 0 (0)       ; 0 (0)                     ; 0 (0)         ; 0           ; 0    ; 0            ; 0       ; 0         ; 0    ; 0            ; 0 (0)        ; 0 (0)             ; 0 (0)            ; |top|pll:inst1|altpll:altpll_component|pll_altpll:auto_generated              ;              ;
@@ -931,30 +931,30 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; DRAM_DQM[1]   ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; DRAM_DQM[0]   ; Output   ; --            ; --            ; --                    ; --  ; --   ;
 ; SWITCH3       ; Input    ; --            ; --            ; --                    ; --  ; --   ;
-; DRAM_DQ[15]   ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; DRAM_DQ[14]   ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; DRAM_DQ[13]   ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; DRAM_DQ[15]   ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; DRAM_DQ[14]   ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; DRAM_DQ[13]   ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; DRAM_DQ[12]   ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; DRAM_DQ[11]   ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; DRAM_DQ[10]   ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; DRAM_DQ[9]    ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; DRAM_DQ[8]    ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; DRAM_DQ[7]    ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; DRAM_DQ[7]    ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; DRAM_DQ[6]    ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; DRAM_DQ[5]    ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; DRAM_DQ[4]    ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; DRAM_DQ[5]    ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; DRAM_DQ[4]    ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; DRAM_DQ[3]    ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
 ; DRAM_DQ[2]    ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; DRAM_DQ[1]    ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; DRAM_DQ[0]    ; Bidir    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; DRAM_DQ[0]    ; Bidir    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
 ; SWITCH0       ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 ; SWITCH1       ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
-; DIFFB         ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; DIFFBn        ; Input    ; --            ; (0) 0 ps      ; --                    ; --  ; --   ;
-; DIFFG         ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
-; DIFFGn        ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
-; DIFFR         ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
-; DIFFRn        ; Input    ; --            ; (0) 0 ps      ; --                    ; --  ; --   ;
+; DIFFB         ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; DIFFBn        ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
+; DIFFG         ; Input    ; --            ; (6) 1314 ps   ; --                    ; --  ; --   ;
+; DIFFGn        ; Input    ; --            ; (0) 0 ps      ; --                    ; --  ; --   ;
+; DIFFR         ; Input    ; (6) 1314 ps   ; --            ; --                    ; --  ; --   ;
+; DIFFRn        ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 ; CLOCK_50      ; Input    ; --            ; --            ; --                    ; --  ; --   ;
 ; VSYNC         ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
 ; HSYNC         ; Input    ; (0) 0 ps      ; --            ; --                    ; --  ; --   ;
@@ -962,93 +962,99 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +---------------+----------+---------------+---------------+-----------------------+-----+------+
 
 
-+-----------------------------------------------------------------------+
-; Pad To Core Delay Chain Fanout                                        ;
-+-----------------------------------------+-------------------+---------+
-; Source Pin / Fanout                     ; Pad To Core Index ; Setting ;
-+-----------------------------------------+-------------------+---------+
-; SWITCH3                                 ;                   ;         ;
-; DRAM_DQ[15]                             ;                   ;         ;
-;      - sdram:inst|pixelOut[15]          ; 0                 ; 6       ;
-; DRAM_DQ[14]                             ;                   ;         ;
-;      - sdram:inst|pixelOut[14]~feeder   ; 0                 ; 6       ;
-; DRAM_DQ[13]                             ;                   ;         ;
-;      - sdram:inst|pixelOut[13]~feeder   ; 0                 ; 6       ;
-; DRAM_DQ[12]                             ;                   ;         ;
-;      - sdram:inst|pixelOut[12]~feeder   ; 0                 ; 6       ;
-; DRAM_DQ[11]                             ;                   ;         ;
-;      - sdram:inst|pixelOut[11]          ; 0                 ; 6       ;
-; DRAM_DQ[10]                             ;                   ;         ;
-;      - sdram:inst|pixelOut[10]~feeder   ; 0                 ; 6       ;
-; DRAM_DQ[9]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[9]~feeder    ; 1                 ; 6       ;
-; DRAM_DQ[8]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[8]           ; 0                 ; 6       ;
-; DRAM_DQ[7]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[7]~feeder    ; 0                 ; 6       ;
-; DRAM_DQ[6]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[6]~feeder    ; 1                 ; 6       ;
-; DRAM_DQ[5]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[5]           ; 1                 ; 6       ;
-; DRAM_DQ[4]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[4]~feeder    ; 1                 ; 6       ;
-; DRAM_DQ[3]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[3]           ; 1                 ; 6       ;
-; DRAM_DQ[2]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[2]~feeder    ; 0                 ; 6       ;
-; DRAM_DQ[1]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[1]~feeder    ; 1                 ; 6       ;
-; DRAM_DQ[0]                              ;                   ;         ;
-;      - sdram:inst|pixelOut[0]           ; 1                 ; 6       ;
-; SWITCH0                                 ;                   ;         ;
-; SWITCH1                                 ;                   ;         ;
-; DIFFB                                   ;                   ;         ;
-;      - genlock:inst6|blue_adc[3]        ; 1                 ; 6       ;
-;      - genlock:inst6|blue_adc[6]        ; 1                 ; 6       ;
-;      - genlock:inst6|blue_adc[4]~feeder ; 1                 ; 6       ;
-;      - genlock:inst6|blue_adc[5]~feeder ; 1                 ; 6       ;
-; DIFFBn                                  ;                   ;         ;
-;      - genlock:inst6|blue_adc[3]        ; 1                 ; 0       ;
-;      - genlock:inst6|blue_adc[6]        ; 1                 ; 0       ;
-;      - genlock:inst6|blue_adc[4]~feeder ; 1                 ; 0       ;
-;      - genlock:inst6|blue_adc[5]~feeder ; 1                 ; 0       ;
-; DIFFG                                   ;                   ;         ;
-;      - genlock:inst6|green_adc[0]       ; 0                 ; 6       ;
-;      - genlock:inst6|green_adc[1]       ; 0                 ; 6       ;
-;      - genlock:inst6|green_adc[2]       ; 0                 ; 6       ;
-;      - genlock:inst6|green_adc[6]       ; 0                 ; 6       ;
-;      - genlock:inst6|green_adc[4]       ; 0                 ; 6       ;
-;      - genlock:inst6|green_adc[5]       ; 0                 ; 6       ;
-;      - genlock:inst6|green_adc[3]       ; 0                 ; 6       ;
-; DIFFGn                                  ;                   ;         ;
-;      - genlock:inst6|green_adc[0]       ; 0                 ; 0       ;
-;      - genlock:inst6|green_adc[1]       ; 0                 ; 0       ;
-;      - genlock:inst6|green_adc[2]       ; 0                 ; 0       ;
-;      - genlock:inst6|green_adc[6]       ; 0                 ; 0       ;
-;      - genlock:inst6|green_adc[4]       ; 0                 ; 0       ;
-;      - genlock:inst6|green_adc[5]       ; 0                 ; 0       ;
-;      - genlock:inst6|green_adc[3]       ; 0                 ; 0       ;
-; DIFFR                                   ;                   ;         ;
-;      - genlock:inst6|red_adc[0]         ; 1                 ; 6       ;
-;      - genlock:inst6|red_adc[1]         ; 1                 ; 6       ;
-;      - genlock:inst6|red_adc[5]         ; 1                 ; 6       ;
-;      - genlock:inst6|red_adc[3]         ; 1                 ; 6       ;
-;      - genlock:inst6|red_adc[4]         ; 1                 ; 6       ;
-;      - genlock:inst6|red_adc[2]         ; 1                 ; 6       ;
-;      - genlock:inst6|red_adc[6]         ; 1                 ; 6       ;
-; DIFFRn                                  ;                   ;         ;
-;      - genlock:inst6|red_adc[0]         ; 1                 ; 0       ;
-;      - genlock:inst6|red_adc[1]         ; 1                 ; 0       ;
-;      - genlock:inst6|red_adc[5]         ; 1                 ; 0       ;
-;      - genlock:inst6|red_adc[3]         ; 1                 ; 0       ;
-;      - genlock:inst6|red_adc[4]         ; 1                 ; 0       ;
-;      - genlock:inst6|red_adc[2]         ; 1                 ; 0       ;
-;      - genlock:inst6|red_adc[6]         ; 1                 ; 0       ;
-; CLOCK_50                                ;                   ;         ;
-; VSYNC                                   ;                   ;         ;
-; HSYNC                                   ;                   ;         ;
-; SWITCH2                                 ;                   ;         ;
-+-----------------------------------------+-------------------+---------+
++---------------------------------------------------------------------+
+; Pad To Core Delay Chain Fanout                                      ;
++---------------------------------------+-------------------+---------+
+; Source Pin / Fanout                   ; Pad To Core Index ; Setting ;
++---------------------------------------+-------------------+---------+
+; SWITCH3                               ;                   ;         ;
+; DRAM_DQ[15]                           ;                   ;         ;
+;      - sdram:inst|pixelOut[15]        ; 1                 ; 6       ;
+; DRAM_DQ[14]                           ;                   ;         ;
+;      - sdram:inst|pixelOut[14]~feeder ; 1                 ; 6       ;
+; DRAM_DQ[13]                           ;                   ;         ;
+;      - sdram:inst|pixelOut[13]~feeder ; 1                 ; 6       ;
+; DRAM_DQ[12]                           ;                   ;         ;
+;      - sdram:inst|pixelOut[12]        ; 0                 ; 6       ;
+; DRAM_DQ[11]                           ;                   ;         ;
+;      - sdram:inst|pixelOut[11]        ; 0                 ; 6       ;
+; DRAM_DQ[10]                           ;                   ;         ;
+;      - sdram:inst|pixelOut[10]~feeder ; 0                 ; 6       ;
+; DRAM_DQ[9]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[9]~feeder  ; 1                 ; 6       ;
+; DRAM_DQ[8]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[8]~feeder  ; 0                 ; 6       ;
+; DRAM_DQ[7]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[7]         ; 1                 ; 6       ;
+; DRAM_DQ[6]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[6]         ; 1                 ; 6       ;
+; DRAM_DQ[5]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[5]~feeder  ; 0                 ; 6       ;
+; DRAM_DQ[4]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[4]         ; 0                 ; 6       ;
+; DRAM_DQ[3]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[3]         ; 1                 ; 6       ;
+; DRAM_DQ[2]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[2]~feeder  ; 0                 ; 6       ;
+; DRAM_DQ[1]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[1]         ; 1                 ; 6       ;
+; DRAM_DQ[0]                            ;                   ;         ;
+;      - sdram:inst|pixelOut[0]         ; 0                 ; 6       ;
+; SWITCH0                               ;                   ;         ;
+; SWITCH1                               ;                   ;         ;
+; DIFFB                                 ;                   ;         ;
+;      - genlock:inst6|blue_adc[5]      ; 0                 ; 6       ;
+;      - genlock:inst6|blue_adc[2]      ; 0                 ; 6       ;
+;      - genlock:inst6|blue_adc[3]      ; 0                 ; 6       ;
+;      - genlock:inst6|blue_adc[0]      ; 0                 ; 6       ;
+;      - genlock:inst6|blue_adc[4]      ; 0                 ; 6       ;
+;      - genlock:inst6|blue_adc[6]      ; 0                 ; 6       ;
+;      - genlock:inst6|blue_adc[1]      ; 0                 ; 6       ;
+; DIFFBn                                ;                   ;         ;
+;      - genlock:inst6|blue_adc[5]      ; 0                 ; 0       ;
+;      - genlock:inst6|blue_adc[2]      ; 0                 ; 0       ;
+;      - genlock:inst6|blue_adc[3]      ; 0                 ; 0       ;
+;      - genlock:inst6|blue_adc[0]      ; 0                 ; 0       ;
+;      - genlock:inst6|blue_adc[4]      ; 0                 ; 0       ;
+;      - genlock:inst6|blue_adc[6]      ; 0                 ; 0       ;
+;      - genlock:inst6|blue_adc[1]      ; 0                 ; 0       ;
+; DIFFG                                 ;                   ;         ;
+;      - genlock:inst6|green_adc[4]     ; 1                 ; 6       ;
+;      - genlock:inst6|green_adc[5]     ; 1                 ; 6       ;
+;      - genlock:inst6|green_adc[6]     ; 1                 ; 6       ;
+;      - genlock:inst6|green_adc[0]     ; 1                 ; 6       ;
+;      - genlock:inst6|green_adc[1]     ; 1                 ; 6       ;
+;      - genlock:inst6|green_adc[2]     ; 1                 ; 6       ;
+;      - genlock:inst6|green_adc[3]     ; 1                 ; 6       ;
+; DIFFGn                                ;                   ;         ;
+;      - genlock:inst6|green_adc[4]     ; 1                 ; 0       ;
+;      - genlock:inst6|green_adc[5]     ; 1                 ; 0       ;
+;      - genlock:inst6|green_adc[6]     ; 1                 ; 0       ;
+;      - genlock:inst6|green_adc[0]     ; 1                 ; 0       ;
+;      - genlock:inst6|green_adc[1]     ; 1                 ; 0       ;
+;      - genlock:inst6|green_adc[2]     ; 1                 ; 0       ;
+;      - genlock:inst6|green_adc[3]     ; 1                 ; 0       ;
+; DIFFR                                 ;                   ;         ;
+;      - genlock:inst6|red_adc[5]       ; 0                 ; 6       ;
+;      - genlock:inst6|red_adc[2]       ; 0                 ; 6       ;
+;      - genlock:inst6|red_adc[3]       ; 0                 ; 6       ;
+;      - genlock:inst6|red_adc[6]       ; 0                 ; 6       ;
+;      - genlock:inst6|red_adc[4]       ; 0                 ; 6       ;
+;      - genlock:inst6|red_adc[0]       ; 0                 ; 6       ;
+;      - genlock:inst6|red_adc[1]       ; 0                 ; 6       ;
+; DIFFRn                                ;                   ;         ;
+;      - genlock:inst6|red_adc[5]       ; 0                 ; 0       ;
+;      - genlock:inst6|red_adc[2]       ; 0                 ; 0       ;
+;      - genlock:inst6|red_adc[3]       ; 0                 ; 0       ;
+;      - genlock:inst6|red_adc[6]       ; 0                 ; 0       ;
+;      - genlock:inst6|red_adc[4]       ; 0                 ; 0       ;
+;      - genlock:inst6|red_adc[0]       ; 0                 ; 0       ;
+;      - genlock:inst6|red_adc[1]       ; 0                 ; 0       ;
+; CLOCK_50                              ;                   ;         ;
+; VSYNC                                 ;                   ;         ;
+; HSYNC                                 ;                   ;         ;
+; SWITCH2                               ;                   ;         ;
++---------------------------------------+-------------------+---------+
 
 
 +------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -1057,65 +1063,64 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; Name                                                                         ; Location           ; Fan-Out ; Usage         ; Global ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
 +------------------------------------------------------------------------------+--------------------+---------+---------------+--------+----------------------+------------------+---------------------------+
 ; CLOCK_50                                                                     ; PIN_R8             ; 1       ; Clock         ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|Mux12~0                                                        ; LCCOMB_X37_Y26_N8  ; 8       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|Mux12~1                                                        ; LCCOMB_X37_Y26_N10 ; 2       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|Mux12~2                                                        ; LCCOMB_X37_Y26_N4  ; 2       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|Mux12~3                                                        ; LCCOMB_X37_Y26_N6  ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|Mux12~4                                                        ; LCCOMB_X37_Y26_N0  ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|Mux12~5                                                        ; LCCOMB_X37_Y26_N18 ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|Mux12~6                                                        ; LCCOMB_X37_Y26_N12 ; 2       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|Mux12~7                                                        ; LCCOMB_X37_Y26_N30 ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|\process_artifact:cur_pixel[15]~0                              ; LCCOMB_X26_Y20_N24 ; 16      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|artifact_detect~0                                              ; LCCOMB_X27_Y24_N30 ; 1       ; Latch enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|artifact_pixel[15]~2                                           ; LCCOMB_X26_Y20_N6  ; 24      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|hblank                                                         ; FF_X27_Y25_N27     ; 35      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|hraster~0                                                      ; LCCOMB_X27_Y25_N6  ; 34      ; Async. clear  ; yes    ; Global Clock         ; GCLK12           ; --                        ;
-; genlock:inst6|process_pixel~13                                               ; LCCOMB_X27_Y24_N2  ; 20      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; genlock:inst6|vblank                                                         ; FF_X27_Y25_N21     ; 32      ; Async. clear  ; yes    ; Global Clock         ; GCLK10           ; --                        ;
-; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[1] ; PLL_4              ; 292     ; Clock         ; yes    ; Global Clock         ; GCLK18           ; --                        ;
+; genlock:inst6|Mux3~0                                                         ; LCCOMB_X26_Y22_N12 ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|Mux3~1                                                         ; LCCOMB_X26_Y22_N30 ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|Mux3~2                                                         ; LCCOMB_X26_Y22_N16 ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|Mux3~3                                                         ; LCCOMB_X26_Y22_N10 ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|Mux3~4                                                         ; LCCOMB_X26_Y22_N20 ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|Mux3~5                                                         ; LCCOMB_X26_Y22_N14 ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|Mux3~6                                                         ; LCCOMB_X26_Y22_N8  ; 3       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|\process_artifact:cur_pixel[15]~0                              ; LCCOMB_X25_Y19_N8  ; 16      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|artifact_detect~0                                              ; LCCOMB_X21_Y25_N18 ; 1       ; Latch enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|artifact_pixel[15]~2                                           ; LCCOMB_X25_Y19_N0  ; 24      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|hblank                                                         ; FF_X21_Y25_N1      ; 35      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|hraster~0                                                      ; LCCOMB_X23_Y26_N28 ; 33      ; Async. clear  ; yes    ; Global Clock         ; GCLK10           ; --                        ;
+; genlock:inst6|process_pixel~13                                               ; LCCOMB_X21_Y25_N14 ; 20      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; genlock:inst6|vblank                                                         ; FF_X23_Y26_N3      ; 32      ; Async. clear  ; yes    ; Global Clock         ; GCLK13           ; --                        ;
+; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[1] ; PLL_4              ; 294     ; Clock         ; yes    ; Global Clock         ; GCLK18           ; --                        ;
 ; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[2] ; PLL_4              ; 41      ; Clock         ; yes    ; Global Clock         ; GCLK19           ; --                        ;
-; sdram:inst|Equal8~1                                                          ; LCCOMB_X20_Y13_N8  ; 36      ; Sync. load    ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrAddress[1]~70                                                  ; LCCOMB_X21_Y13_N12 ; 24      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrAdr[9]~4                                                       ; LCCOMB_X20_Y13_N0  ; 13      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrBa1~2                                                          ; LCCOMB_X20_Y12_N6  ; 2       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrCmd~0                                                          ; LCCOMB_X20_Y12_N2  ; 15      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[0]~en                                                      ; FF_X1_Y4_N29       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[10]~en                                                     ; FF_X1_Y4_N19       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[11]~en                                                     ; FF_X1_Y4_N9        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|Equal8~1                                                          ; LCCOMB_X16_Y13_N20 ; 36      ; Sync. load    ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrAddress[4]~70                                                  ; LCCOMB_X17_Y13_N30 ; 24      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrAdr[9]~4                                                       ; LCCOMB_X16_Y13_N28 ; 13      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrBa1~2                                                          ; LCCOMB_X18_Y13_N26 ; 2       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrCmd~0                                                          ; LCCOMB_X18_Y13_N16 ; 15      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[0]~en                                                      ; FF_X1_Y4_N21       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[10]~en                                                     ; FF_X1_Y4_N11       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[11]~en                                                     ; FF_X1_Y4_N17       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
 ; sdram:inst|SdrDat[12]~en                                                     ; FF_X1_Y4_N31       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[13]~en                                                     ; FF_X1_Y4_N21       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[14]~en                                                     ; FF_X1_Y4_N27       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[15]~en                                                     ; FF_X1_Y4_N1        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[1]~en                                                      ; FF_X1_Y4_N11       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[2]~en                                                      ; FF_X1_Y4_N17       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[3]~en                                                      ; FF_X1_Y4_N7        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[13]~en                                                     ; FF_X1_Y4_N5        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[14]~en                                                     ; FF_X1_Y4_N19       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[15]~en                                                     ; FF_X1_Y4_N9        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[1]~en                                                      ; FF_X1_Y4_N27       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[2]~en                                                      ; FF_X1_Y4_N1        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[3]~en                                                      ; FF_X1_Y4_N23       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
 ; sdram:inst|SdrDat[4]~en                                                      ; FF_X1_Y4_N13       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[5]~en                                                      ; FF_X1_Y4_N3        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[6]~en                                                      ; FF_X21_Y13_N15     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[5]~en                                                      ; FF_X17_Y13_N17     ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[6]~en                                                      ; FF_X1_Y4_N3        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
 ; sdram:inst|SdrDat[7]~en                                                      ; FF_X1_Y4_N25       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[8]~en                                                      ; FF_X1_Y4_N23       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrDat[9]~en                                                      ; FF_X1_Y4_N5        ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrRoutine.SdrRoutine_Idle                                        ; FF_X21_Y12_N9      ; 30      ; Sync. load    ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|SdrRoutine.SdrRoutine_Init                                        ; FF_X21_Y12_N29     ; 23      ; Sync. load    ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|Selector78~1                                                      ; LCCOMB_X21_Y13_N24 ; 17      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|Selector7~6                                                       ; LCCOMB_X20_Y13_N22 ; 16      ; Sync. clear   ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|colStoreNr[0]~11                                                  ; LCCOMB_X21_Y13_N20 ; 9       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; sdram:inst|pixelOut[13]~0                                                    ; LCCOMB_X21_Y13_N30 ; 25      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; vgaout:inst7|h_sync~3                                                        ; LCCOMB_X23_Y15_N28 ; 10      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
-; vgaout:inst7|pixel_out~1                                                     ; LCCOMB_X23_Y15_N22 ; 9       ; Sync. clear   ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[8]~en                                                      ; FF_X1_Y4_N15       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrDat[9]~en                                                      ; FF_X1_Y4_N29       ; 1       ; Output enable ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrRoutine.SdrRoutine_Idle                                        ; FF_X18_Y13_N13     ; 30      ; Sync. load    ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|SdrRoutine.SdrRoutine_Init                                        ; FF_X18_Y13_N3      ; 23      ; Sync. load    ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|Selector5~6                                                       ; LCCOMB_X16_Y13_N2  ; 16      ; Sync. clear   ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|Selector78~1                                                      ; LCCOMB_X17_Y13_N8  ; 17      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|colStoreNr[0]~11                                                  ; LCCOMB_X17_Y13_N28 ; 9       ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; sdram:inst|pixelOut[13]~0                                                    ; LCCOMB_X17_Y13_N0  ; 25      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; vgaout:inst7|h_sync~3                                                        ; LCCOMB_X21_Y17_N28 ; 10      ; Clock enable  ; no     ; --                   ; --               ; --                        ;
+; vgaout:inst7|pixel_out~1                                                     ; LCCOMB_X21_Y17_N22 ; 9       ; Sync. clear   ; no     ; --                   ; --               ; --                        ;
 +------------------------------------------------------------------------------+--------------------+---------+---------------+--------+----------------------+------------------+---------------------------+
 
 
-+-------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Global & Other Fast Signals                                                                                                                                                                                             ;
-+------------------------------------------------------------------------------+-------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; Name                                                                         ; Location          ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
-+------------------------------------------------------------------------------+-------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
-; genlock:inst6|hraster~0                                                      ; LCCOMB_X27_Y25_N6 ; 34      ; 0                                    ; Global Clock         ; GCLK12           ; --                        ;
-; genlock:inst6|vblank                                                         ; FF_X27_Y25_N21    ; 32      ; 0                                    ; Global Clock         ; GCLK10           ; --                        ;
-; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[1] ; PLL_4             ; 292     ; 0                                    ; Global Clock         ; GCLK18           ; --                        ;
-; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[2] ; PLL_4             ; 41      ; 0                                    ; Global Clock         ; GCLK19           ; --                        ;
-+------------------------------------------------------------------------------+-------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
++--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Global & Other Fast Signals                                                                                                                                                                                              ;
++------------------------------------------------------------------------------+--------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
+; Name                                                                         ; Location           ; Fan-Out ; Fan-Out Using Intentional Clock Skew ; Global Resource Used ; Global Line Name ; Enable Signal Source Name ;
++------------------------------------------------------------------------------+--------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
+; genlock:inst6|hraster~0                                                      ; LCCOMB_X23_Y26_N28 ; 33      ; 0                                    ; Global Clock         ; GCLK10           ; --                        ;
+; genlock:inst6|vblank                                                         ; FF_X23_Y26_N3      ; 32      ; 0                                    ; Global Clock         ; GCLK13           ; --                        ;
+; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[1] ; PLL_4              ; 294     ; 0                                    ; Global Clock         ; GCLK18           ; --                        ;
+; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[2] ; PLL_4              ; 41      ; 0                                    ; Global Clock         ; GCLK19           ; --                        ;
++------------------------------------------------------------------------------+--------------------+---------+--------------------------------------+----------------------+------------------+---------------------------+
 
 
 +----------------------------------------------------------------------------------------------+
@@ -1128,48 +1133,34 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|SdrRoutine.SdrRoutine_Idle                                              ; 30      ;
 ; sdram:inst|pixelOut[13]~0                                                          ; 25      ;
 ; genlock:inst6|artifact_pixel[15]~2                                                 ; 24      ;
-; sdram:inst|SdrAddress[1]~70                                                        ; 24      ;
+; sdram:inst|SdrAddress[4]~70                                                        ; 24      ;
 ; sdram:inst|SdrRoutine.SdrRoutine_Init                                              ; 23      ;
 ; genlock:inst6|process_pixel~13                                                     ; 20      ;
 ; genlock:inst6|artifact_mode                                                        ; 17      ;
 ; sdram:inst|Selector78~1                                                            ; 17      ;
 ; vgaout:inst7|hcount[0]                                                             ; 17      ;
-; genlock:inst6|green_adc[2]                                                         ; 16      ;
-; genlock:inst6|green_adc[1]                                                         ; 16      ;
-; genlock:inst6|red_adc[2]                                                           ; 16      ;
-; genlock:inst6|red_adc[1]                                                           ; 16      ;
 ; genlock:inst6|\process_artifact:cur_pixel[15]~0                                    ; 16      ;
 ; genlock:inst6|Equal1~4                                                             ; 16      ;
 ; sdram:inst|Selector63~1                                                            ; 16      ;
-; sdram:inst|Selector7~6                                                             ; 16      ;
+; sdram:inst|Selector5~6                                                             ; 16      ;
 ; ~GND                                                                               ; 15      ;
 ; sdram:inst|SdrCmd~0                                                                ; 15      ;
-; genlock:inst6|green_adc[5]                                                         ; 14      ;
-; genlock:inst6|red_adc[5]                                                           ; 14      ;
 ; vgaout:inst7|load_req                                                              ; 13      ;
-; genlock:inst6|green_adc[4]                                                         ; 13      ;
-; genlock:inst6|green_adc[0]                                                         ; 13      ;
-; genlock:inst6|red_adc[4]                                                           ; 13      ;
-; genlock:inst6|red_adc[0]                                                           ; 13      ;
 ; sdram:inst|SdrAdr[9]~4                                                             ; 13      ;
 ; vgaout:inst7|Equal0~2                                                              ; 13      ;
-; genlock:inst6|dac_step[0]                                                          ; 13      ;
-; genlock:inst6|green_adc[3]                                                         ; 12      ;
-; genlock:inst6|red_adc[3]                                                           ; 12      ;
 ; genlock:inst6|artifact_pixel~0                                                     ; 12      ;
 ; sdram:inst|SdrRoutine.SdrRoutine_StoreRow                                          ; 12      ;
-; genlock:inst6|dac_step[1]                                                          ; 11      ;
-; genlock:inst6|green_adc[6]                                                         ; 10      ;
-; genlock:inst6|red_adc[6]                                                           ; 10      ;
+; genlock:inst6|hcount_in[0]                                                         ; 11      ;
 ; vgaout:inst7|h_sync~3                                                              ; 10      ;
-; vgaout:inst7|Equal1~2                                                              ; 10      ;
+; vgaout:inst7|Equal1~3                                                              ; 10      ;
 ; sdram:inst|Equal9~0                                                                ; 10      ;
-; genlock:inst6|dac_step[2]                                                          ; 10      ;
+; genlock:inst6|hcount_in[1]                                                         ; 10      ;
 ; sdram:inst|SdrRoutineSeq[3]                                                        ; 10      ;
 ; sdram:inst|colStoreNr[0]~11                                                        ; 9       ;
 ; vgaout:inst7|pixel_out~1                                                           ; 9       ;
+; genlock:inst6|dac_step[2]                                                          ; 9       ;
 ; sdram:inst|SdrRoutineSeq[1]                                                        ; 9       ;
-; genlock:inst6|Mux12~0                                                              ; 8       ;
+; vgaout:inst7|hcount[9]                                                             ; 8       ;
 ; vgaout:inst7|vcount[0]                                                             ; 8       ;
 ; sdram:inst|SdrRoutineSeq[2]                                                        ; 8       ;
 ; sdram:inst|SdrRoutineSeq[8]                                                        ; 8       ;
@@ -1179,11 +1170,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|SdrRoutine.SdrRoutine_LoadRow                                           ; 7       ;
 ; vgaout:inst7|pixel~7                                                               ; 7       ;
 ; vgaout:inst7|pixel~2                                                               ; 7       ;
-; vgaout:inst7|blank~4                                                               ; 7       ;
-; genlock:inst6|is_sync                                                              ; 7       ;
 ; sdram:inst|SdrRoutineSeq[0]                                                        ; 7       ;
 ; altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component|wire_ibufa_o ; 7       ;
 ; altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component|wire_ibufa_o ; 7       ;
+; altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component|wire_ibufa_o ; 7       ;
 ; genlock:inst6|pixel_adc[5]                                                         ; 6       ;
 ; genlock:inst6|pixel_adc[4]                                                         ; 6       ;
 ; genlock:inst6|pixel_adc[3]                                                         ; 6       ;
@@ -1191,22 +1181,29 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|pixel_adc[7]                                                         ; 6       ;
 ; genlock:inst6|pixel_adc[6]                                                         ; 6       ;
 ; genlock:inst6|vcount_in[0]                                                         ; 6       ;
-; sdram:inst|Selector7~7                                                             ; 6       ;
+; sdram:inst|Selector5~7                                                             ; 6       ;
 ; genlock:inst6|hcount_in[4]                                                         ; 6       ;
 ; genlock:inst6|hcount_in[7]                                                         ; 6       ;
 ; genlock:inst6|hcount_in[11]                                                        ; 6       ;
 ; genlock:inst6|hcount_in[12]                                                        ; 6       ;
-; vgaout:inst7|vga_pixel[7]~1                                                        ; 6       ;
-; vgaout:inst7|vga_pixel[7]~0                                                        ; 6       ;
-; vgaout:inst7|vcount[9]                                                             ; 6       ;
+; vgaout:inst7|vga_pixel[4]~1                                                        ; 6       ;
+; vgaout:inst7|vga_pixel[4]~0                                                        ; 6       ;
 ; vgaout:inst7|hcount[7]                                                             ; 6       ;
 ; vgaout:inst7|hcount[8]                                                             ; 6       ;
-; vgaout:inst7|hcount[9]                                                             ; 6       ;
-; vgaout:inst7|vcount[8]                                                             ; 6       ;
-; vgaout:inst7|vcount[7]                                                             ; 6       ;
+; vgaout:inst7|vcount[9]                                                             ; 6       ;
 ; vgaout:inst7|vcount[2]                                                             ; 6       ;
 ; vgaout:inst7|vcount[3]                                                             ; 6       ;
+; vgaout:inst7|vcount[8]                                                             ; 6       ;
+; vgaout:inst7|vcount[7]                                                             ; 6       ;
 ; vgaout:inst7|vcount[1]                                                             ; 6       ;
+; genlock:inst6|green_adc[3]                                                         ; 5       ;
+; genlock:inst6|green_adc[0]                                                         ; 5       ;
+; genlock:inst6|green_adc[5]                                                         ; 5       ;
+; genlock:inst6|green_adc[4]                                                         ; 5       ;
+; genlock:inst6|red_adc[4]                                                           ; 5       ;
+; genlock:inst6|red_adc[6]                                                           ; 5       ;
+; genlock:inst6|red_adc[3]                                                           ; 5       ;
+; genlock:inst6|red_adc[5]                                                           ; 5       ;
 ; genlock:inst6|pixel_adc[1]                                                         ; 5       ;
 ; genlock:inst6|pixel_adc[0]                                                         ; 5       ;
 ; genlock:inst6|hcount_in[9]                                                         ; 5       ;
@@ -1221,7 +1218,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; vgaout:inst7|vcount[4]                                                             ; 5       ;
 ; vgaout:inst7|vcount[6]                                                             ; 5       ;
 ; vgaout:inst7|vcount[5]                                                             ; 5       ;
+; genlock:inst6|is_sync                                                              ; 5       ;
 ; SWITCH1~input                                                                      ; 4       ;
+; genlock:inst6|blue_adc[4]                                                          ; 4       ;
+; genlock:inst6|blue_adc[0]                                                          ; 4       ;
+; genlock:inst6|blue_adc[3]                                                          ; 4       ;
+; genlock:inst6|blue_adc[5]                                                          ; 4       ;
+; genlock:inst6|green_adc[2]                                                         ; 4       ;
+; genlock:inst6|green_adc[1]                                                         ; 4       ;
+; genlock:inst6|green_adc[6]                                                         ; 4       ;
+; genlock:inst6|red_adc[1]                                                           ; 4       ;
+; genlock:inst6|red_adc[0]                                                           ; 4       ;
+; genlock:inst6|red_adc[2]                                                           ; 4       ;
 ; genlock:inst6|vcount_in[4]                                                         ; 4       ;
 ; genlock:inst6|vcount_in[5]                                                         ; 4       ;
 ; genlock:inst6|vcount_in[6]                                                         ; 4       ;
@@ -1249,14 +1257,19 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|SdrAddress[8]                                                           ; 4       ;
 ; sdram:inst|SdrRoutineSeq[6]                                                        ; 4       ;
 ; sdram:inst|SdrRoutineSeq[5]                                                        ; 4       ;
-; altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component|wire_ibufa_o ; 4       ;
 ; sdram:inst|Equal6~4                                                                ; 3       ;
-; genlock:inst6|Mux12~7                                                              ; 3       ;
-; genlock:inst6|Mux12~5                                                              ; 3       ;
-; genlock:inst6|Mux12~4                                                              ; 3       ;
-; genlock:inst6|Mux12~3                                                              ; 3       ;
+; genlock:inst6|Mux3~6                                                               ; 3       ;
+; genlock:inst6|Mux3~5                                                               ; 3       ;
+; genlock:inst6|Mux3~4                                                               ; 3       ;
+; genlock:inst6|Mux3~3                                                               ; 3       ;
+; genlock:inst6|Mux3~2                                                               ; 3       ;
+; genlock:inst6|Mux3~1                                                               ; 3       ;
+; genlock:inst6|Mux3~0                                                               ; 3       ;
+; genlock:inst6|blue_adc[1]                                                          ; 3       ;
+; genlock:inst6|blue_adc[6]                                                          ; 3       ;
+; genlock:inst6|blue_adc[2]                                                          ; 3       ;
 ; genlock:inst6|process_pixel~2                                                      ; 3       ;
-; sdram:inst|Selector7~15                                                            ; 3       ;
+; sdram:inst|Selector5~15                                                            ; 3       ;
 ; genlock:inst6|hcount_in[14]                                                        ; 3       ;
 ; genlock:inst6|hcount_in[15]                                                        ; 3       ;
 ; genlock:inst6|hcount_in[13]                                                        ; 3       ;
@@ -1270,6 +1283,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|process_0~4                                                             ; 3       ;
 ; sdram:inst|SdrLdq                                                                  ; 3       ;
 ; vgaout:inst7|hsync                                                                 ; 3       ;
+; vgaout:inst7|vga_out[8]~2                                                          ; 3       ;
+; vgaout:inst7|blank~3                                                               ; 3       ;
+; vgaout:inst7|blank~2                                                               ; 3       ;
+; vgaout:inst7|blank~1                                                               ; 3       ;
 ; sdram:inst|Add0~46                                                                 ; 3       ;
 ; ram:inst4|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated|q_b[1]    ; 3       ;
 ; ram:inst4|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated|q_b[2]    ; 3       ;
@@ -1291,29 +1308,9 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; SWITCH0~input                                                                      ; 2       ;
 ; genlock:inst6|store_req                                                            ; 2       ;
 ; sdram:inst|SdrBa1~2                                                                ; 2       ;
-; genlock:inst6|Mux12~6                                                              ; 2       ;
-; genlock:inst6|Mux12~2                                                              ; 2       ;
-; genlock:inst6|Mux12~1                                                              ; 2       ;
-; genlock:inst6|blue_adc[6]                                                          ; 2       ;
-; genlock:inst6|blue_adc[5]                                                          ; 2       ;
-; genlock:inst6|blue_adc[4]                                                          ; 2       ;
-; genlock:inst6|blue_adc[3]                                                          ; 2       ;
-; genlock:inst6|Mux13~3                                                              ; 2       ;
-; genlock:inst6|Mux13~2                                                              ; 2       ;
-; genlock:inst6|Mux13~1                                                              ; 2       ;
-; genlock:inst6|Mux13~0                                                              ; 2       ;
-; genlock:inst6|Mux0~3                                                               ; 2       ;
-; genlock:inst6|Mux0~2                                                               ; 2       ;
-; genlock:inst6|Mux0~1                                                               ; 2       ;
-; genlock:inst6|Mux0~0                                                               ; 2       ;
-; genlock:inst6|\process_artifact:cur_pixel[0]                                       ; 2       ;
-; genlock:inst6|\process_artifact:cur_pixel[1]                                       ; 2       ;
-; genlock:inst6|\process_artifact:cur_pixel[2]                                       ; 2       ;
-; genlock:inst6|\process_artifact:cur_pixel[3]                                       ; 2       ;
-; genlock:inst6|\process_artifact:cur_pixel[4]                                       ; 2       ;
-; genlock:inst6|\process_artifact:cur_pixel[5]                                       ; 2       ;
-; genlock:inst6|\process_artifact:cur_pixel[6]                                       ; 2       ;
-; genlock:inst6|\process_artifact:cur_pixel[7]                                       ; 2       ;
+; genlock:inst6|Mux27~6                                                              ; 2       ;
+; genlock:inst6|Mux17~5                                                              ; 2       ;
+; genlock:inst6|Mux7~6                                                               ; 2       ;
 ; genlock:inst6|\process_artifact:cur_pixel[8]                                       ; 2       ;
 ; genlock:inst6|\process_artifact:cur_pixel[9]                                       ; 2       ;
 ; genlock:inst6|\process_artifact:cur_pixel[10]                                      ; 2       ;
@@ -1321,8 +1318,16 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|\process_artifact:cur_pixel[12]                                      ; 2       ;
 ; genlock:inst6|\process_artifact:cur_pixel[13]                                      ; 2       ;
 ; genlock:inst6|\process_artifact:cur_pixel[14]                                      ; 2       ;
-; genlock:inst6|col_number[0]                                                        ; 2       ;
 ; genlock:inst6|\process_artifact:cur_pixel[15]                                      ; 2       ;
+; genlock:inst6|\process_artifact:cur_pixel[0]                                       ; 2       ;
+; genlock:inst6|\process_artifact:cur_pixel[1]                                       ; 2       ;
+; genlock:inst6|\process_artifact:cur_pixel[2]                                       ; 2       ;
+; genlock:inst6|\process_artifact:cur_pixel[3]                                       ; 2       ;
+; genlock:inst6|\process_artifact:cur_pixel[4]                                       ; 2       ;
+; genlock:inst6|\process_artifact:cur_pixel[5]                                       ; 2       ;
+; genlock:inst6|\process_artifact:cur_pixel[6]                                       ; 2       ;
+; genlock:inst6|col_number[0]                                                        ; 2       ;
+; genlock:inst6|\process_artifact:cur_pixel[7]                                       ; 2       ;
 ; genlock:inst6|LessThan6~2                                                          ; 2       ;
 ; genlock:inst6|LessThan6~1                                                          ; 2       ;
 ; genlock:inst6|process_pixel~11                                                     ; 2       ;
@@ -1356,11 +1361,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|vcount_in[31]                                                        ; 2       ;
 ; genlock:inst6|LessThan6~0                                                          ; 2       ;
 ; genlock:inst6|LessThan5~0                                                          ; 2       ;
-; sdram:inst|Selector7~17                                                            ; 2       ;
-; sdram:inst|Selector7~14                                                            ; 2       ;
-; sdram:inst|Selector7~13                                                            ; 2       ;
-; sdram:inst|Selector7~12                                                            ; 2       ;
-; vgaout:inst7|Equal0~1                                                              ; 2       ;
+; sdram:inst|Selector5~18                                                            ; 2       ;
+; sdram:inst|Selector5~14                                                            ; 2       ;
+; sdram:inst|Selector5~13                                                            ; 2       ;
+; sdram:inst|Selector5~12                                                            ; 2       ;
 ; genlock:inst6|LessThan2~8                                                          ; 2       ;
 ; genlock:inst6|hcount_in[21]                                                        ; 2       ;
 ; genlock:inst6|hcount_in[22]                                                        ; 2       ;
@@ -1374,17 +1378,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|hcount_in[30]                                                        ; 2       ;
 ; genlock:inst6|hcount_in[31]                                                        ; 2       ;
 ; genlock:inst6|LessThan0~0                                                          ; 2       ;
+; vgaout:inst7|Equal0~1                                                              ; 2       ;
 ; sdram:inst|rowLoadAck~1                                                            ; 2       ;
 ; sdram:inst|Selector2~1                                                             ; 2       ;
 ; sdram:inst|process_0~7                                                             ; 2       ;
 ; sdram:inst|process_0~6                                                             ; 2       ;
 ; sdram:inst|Selector1~0                                                             ; 2       ;
 ; sdram:inst|Equal1~0                                                                ; 2       ;
-; vgaout:inst7|vga_out[8]~6                                                          ; 2       ;
-; vgaout:inst7|pixel_out~0                                                           ; 2       ;
-; vgaout:inst7|blank~3                                                               ; 2       ;
+; vgaout:inst7|vga_out[7]~0                                                          ; 2       ;
 ; vgaout:inst7|h_sync~0                                                              ; 2       ;
 ; vgaout:inst7|LessThan8~0                                                           ; 2       ;
+; vgaout:inst7|pixel_out~0                                                           ; 2       ;
+; vgaout:inst7|blank~0                                                               ; 2       ;
 ; vgaout:inst7|Equal1~0                                                              ; 2       ;
 ; sdram:inst|colStoreNr[8]                                                           ; 2       ;
 ; sdram:inst|colStoreNr[7]                                                           ; 2       ;
@@ -1459,70 +1464,39 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|col_number[0]~24                                                     ; 1       ;
 ; genlock:inst6|row_number[0]~24                                                     ; 1       ;
 ; genlock:inst6|vcount_in[0]~0                                                       ; 1       ;
-; genlock:inst6|dac_step[0]~2                                                        ; 1       ;
+; genlock:inst6|hcount_in[0]~0                                                       ; 1       ;
+; genlock:inst6|Mux27~9                                                              ; 1       ;
+; genlock:inst6|Mux27~8                                                              ; 1       ;
+; genlock:inst6|Mux28~5                                                              ; 1       ;
+; genlock:inst6|Mux9~3                                                               ; 1       ;
+; genlock:inst6|Mux17~8                                                              ; 1       ;
+; genlock:inst6|Mux17~7                                                              ; 1       ;
+; genlock:inst6|Mux18~5                                                              ; 1       ;
+; genlock:inst6|Mux19~4                                                              ; 1       ;
+; genlock:inst6|Mux7~9                                                               ; 1       ;
+; genlock:inst6|Mux7~8                                                               ; 1       ;
+; genlock:inst6|Mux8~5                                                               ; 1       ;
 ; sdram:inst|process_0~12                                                            ; 1       ;
-; vgaout:inst7|vga_out[9]~26                                                         ; 1       ;
-; vgaout:inst7|vga_out[2]~25                                                         ; 1       ;
-; genlock:inst6|Mux26~0                                                              ; 1       ;
-; genlock:inst6|Mux27~0                                                              ; 1       ;
-; genlock:inst6|Mux2~12                                                              ; 1       ;
-; genlock:inst6|Mux2~11                                                              ; 1       ;
-; genlock:inst6|Mux2~10                                                              ; 1       ;
-; genlock:inst6|Mux2~9                                                               ; 1       ;
-; genlock:inst6|Mux2~8                                                               ; 1       ;
-; genlock:inst6|Mux2~7                                                               ; 1       ;
-; genlock:inst6|Mux2~6                                                               ; 1       ;
-; genlock:inst6|Mux2~5                                                               ; 1       ;
-; genlock:inst6|Mux2~4                                                               ; 1       ;
-; genlock:inst6|Mux2~3                                                               ; 1       ;
-; genlock:inst6|Mux2~2                                                               ; 1       ;
-; genlock:inst6|Mux2~1                                                               ; 1       ;
-; genlock:inst6|Mux2~0                                                               ; 1       ;
-; genlock:inst6|Mux13~6                                                              ; 1       ;
-; genlock:inst6|Mux13~5                                                              ; 1       ;
-; genlock:inst6|Mux13~4                                                              ; 1       ;
-; genlock:inst6|Mux14~12                                                             ; 1       ;
-; genlock:inst6|Mux14~11                                                             ; 1       ;
-; genlock:inst6|Mux14~10                                                             ; 1       ;
-; genlock:inst6|Mux14~9                                                              ; 1       ;
-; genlock:inst6|Mux14~8                                                              ; 1       ;
-; genlock:inst6|Mux14~7                                                              ; 1       ;
-; genlock:inst6|Mux14~6                                                              ; 1       ;
-; genlock:inst6|Mux14~5                                                              ; 1       ;
-; genlock:inst6|Mux14~4                                                              ; 1       ;
-; genlock:inst6|Mux14~3                                                              ; 1       ;
-; genlock:inst6|Mux14~2                                                              ; 1       ;
-; genlock:inst6|Mux14~1                                                              ; 1       ;
-; genlock:inst6|Mux14~0                                                              ; 1       ;
-; genlock:inst6|Mux15~12                                                             ; 1       ;
-; genlock:inst6|Mux15~11                                                             ; 1       ;
-; genlock:inst6|Mux15~10                                                             ; 1       ;
-; genlock:inst6|Mux15~9                                                              ; 1       ;
-; genlock:inst6|Mux15~8                                                              ; 1       ;
-; genlock:inst6|Mux15~7                                                              ; 1       ;
-; genlock:inst6|Mux15~6                                                              ; 1       ;
-; genlock:inst6|Mux15~5                                                              ; 1       ;
-; genlock:inst6|Mux15~4                                                              ; 1       ;
-; genlock:inst6|Mux15~3                                                              ; 1       ;
-; genlock:inst6|Mux15~2                                                              ; 1       ;
-; genlock:inst6|Mux15~1                                                              ; 1       ;
-; genlock:inst6|Mux15~0                                                              ; 1       ;
-; genlock:inst6|Mux0~6                                                               ; 1       ;
-; genlock:inst6|Mux0~5                                                               ; 1       ;
-; genlock:inst6|Mux0~4                                                               ; 1       ;
-; genlock:inst6|Mux1~12                                                              ; 1       ;
-; genlock:inst6|Mux1~11                                                              ; 1       ;
-; genlock:inst6|Mux1~10                                                              ; 1       ;
-; genlock:inst6|Mux1~9                                                               ; 1       ;
-; genlock:inst6|Mux1~8                                                               ; 1       ;
-; genlock:inst6|Mux1~7                                                               ; 1       ;
-; genlock:inst6|Mux1~6                                                               ; 1       ;
-; genlock:inst6|Mux1~5                                                               ; 1       ;
-; genlock:inst6|Mux1~4                                                               ; 1       ;
-; genlock:inst6|Mux1~3                                                               ; 1       ;
-; genlock:inst6|Mux1~2                                                               ; 1       ;
-; genlock:inst6|Mux1~1                                                               ; 1       ;
-; genlock:inst6|Mux1~0                                                               ; 1       ;
+; genlock:inst6|Mux27~7                                                              ; 1       ;
+; genlock:inst6|Mux27~5                                                              ; 1       ;
+; genlock:inst6|Mux28~4                                                              ; 1       ;
+; genlock:inst6|Mux28~3                                                              ; 1       ;
+; genlock:inst6|Mux27~4                                                              ; 1       ;
+; genlock:inst6|Mux28~2                                                              ; 1       ;
+; genlock:inst6|Mux9~2                                                               ; 1       ;
+; genlock:inst6|Mux17~6                                                              ; 1       ;
+; genlock:inst6|Mux17~4                                                              ; 1       ;
+; genlock:inst6|Mux18~4                                                              ; 1       ;
+; genlock:inst6|Mux18~3                                                              ; 1       ;
+; genlock:inst6|Mux18~2                                                              ; 1       ;
+; genlock:inst6|Mux19~3                                                              ; 1       ;
+; genlock:inst6|Mux19~2                                                              ; 1       ;
+; genlock:inst6|Mux7~7                                                               ; 1       ;
+; genlock:inst6|Mux7~5                                                               ; 1       ;
+; genlock:inst6|Mux8~4                                                               ; 1       ;
+; genlock:inst6|Mux8~3                                                               ; 1       ;
+; genlock:inst6|Mux7~4                                                               ; 1       ;
+; genlock:inst6|Mux8~2                                                               ; 1       ;
 ; genlock:inst6|artifact_pixel~17                                                    ; 1       ;
 ; genlock:inst6|artifact_pixel~16                                                    ; 1       ;
 ; genlock:inst6|artifact_pixel~15                                                    ; 1       ;
@@ -1629,9 +1603,8 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|Selector46~0                                                            ; 1       ;
 ; sdram:inst|Selector45~0                                                            ; 1       ;
 ; sdram:inst|Selector44~0                                                            ; 1       ;
-; sdram:inst|SdrAddress[1]~69                                                        ; 1       ;
-; sdram:inst|SdrAddress[1]~68                                                        ; 1       ;
-; genlock:inst6|hcount_in[1]                                                         ; 1       ;
+; sdram:inst|SdrAddress[4]~69                                                        ; 1       ;
+; sdram:inst|SdrAddress[4]~68                                                        ; 1       ;
 ; genlock:inst6|hcount_in[2]                                                         ; 1       ;
 ; genlock:inst6|vsync_lock~1                                                         ; 1       ;
 ; genlock:inst6|process_pixel~8                                                      ; 1       ;
@@ -1647,11 +1620,11 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|LessThan0~2                                                          ; 1       ;
 ; genlock:inst6|LessThan0~1                                                          ; 1       ;
 ; sdram:inst|Selector8~0                                                             ; 1       ;
-; sdram:inst|Selector7~18                                                            ; 1       ;
-; sdram:inst|Selector7~16                                                            ; 1       ;
+; sdram:inst|Selector7~0                                                             ; 1       ;
+; sdram:inst|Selector5~17                                                            ; 1       ;
 ; sdram:inst|Selector4~0                                                             ; 1       ;
 ; sdram:inst|SdrRoutine.SdrRoutine_Null~0                                            ; 1       ;
-; sdram:inst|Selector5~0                                                             ; 1       ;
+; sdram:inst|Selector5~16                                                            ; 1       ;
 ; sdram:inst|refreshDelayCounter[23]                                                 ; 1       ;
 ; sdram:inst|refreshDelayCounter[22]                                                 ; 1       ;
 ; sdram:inst|refreshDelayCounter[21]                                                 ; 1       ;
@@ -1661,32 +1634,32 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|refreshDelayCounter[17]                                                 ; 1       ;
 ; sdram:inst|refreshDelayCounter[16]                                                 ; 1       ;
 ; sdram:inst|refreshDelayCounter[15]                                                 ; 1       ;
-; sdram:inst|Selector7~11                                                            ; 1       ;
+; sdram:inst|Selector5~11                                                            ; 1       ;
 ; sdram:inst|refreshDelayCounter[14]                                                 ; 1       ;
 ; sdram:inst|refreshDelayCounter[13]                                                 ; 1       ;
 ; sdram:inst|refreshDelayCounter[12]                                                 ; 1       ;
 ; sdram:inst|refreshDelayCounter[11]                                                 ; 1       ;
-; sdram:inst|Selector7~10                                                            ; 1       ;
+; sdram:inst|Selector5~10                                                            ; 1       ;
 ; sdram:inst|refreshDelayCounter[10]                                                 ; 1       ;
 ; sdram:inst|refreshDelayCounter[9]                                                  ; 1       ;
 ; sdram:inst|refreshDelayCounter[8]                                                  ; 1       ;
 ; sdram:inst|refreshDelayCounter[7]                                                  ; 1       ;
-; sdram:inst|Selector7~9                                                             ; 1       ;
+; sdram:inst|Selector5~9                                                             ; 1       ;
 ; sdram:inst|refreshDelayCounter[6]                                                  ; 1       ;
 ; sdram:inst|refreshDelayCounter[5]                                                  ; 1       ;
 ; sdram:inst|refreshDelayCounter[4]                                                  ; 1       ;
 ; sdram:inst|refreshDelayCounter[3]                                                  ; 1       ;
-; sdram:inst|Selector7~8                                                             ; 1       ;
+; sdram:inst|Selector5~8                                                             ; 1       ;
 ; sdram:inst|refreshDelayCounter[2]                                                  ; 1       ;
 ; sdram:inst|refreshDelayCounter[1]                                                  ; 1       ;
 ; sdram:inst|refreshDelayCounter[0]                                                  ; 1       ;
-; sdram:inst|Selector7~5                                                             ; 1       ;
-; sdram:inst|Selector7~4                                                             ; 1       ;
-; sdram:inst|Selector7~3                                                             ; 1       ;
+; sdram:inst|Selector5~5                                                             ; 1       ;
+; sdram:inst|Selector5~4                                                             ; 1       ;
+; sdram:inst|Selector5~3                                                             ; 1       ;
 ; sdram:inst|process_0~10                                                            ; 1       ;
-; sdram:inst|Selector7~2                                                             ; 1       ;
-; sdram:inst|Selector7~1                                                             ; 1       ;
-; sdram:inst|Selector7~0                                                             ; 1       ;
+; sdram:inst|Selector5~2                                                             ; 1       ;
+; sdram:inst|Selector5~1                                                             ; 1       ;
+; sdram:inst|Selector5~0                                                             ; 1       ;
 ; sdram:inst|Selector25~2                                                            ; 1       ;
 ; sdram:inst|Selector25~1                                                            ; 1       ;
 ; sdram:inst|Selector25~0                                                            ; 1       ;
@@ -1719,7 +1692,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|pixelOut[4]                                                             ; 1       ;
 ; sdram:inst|pixelOut[0]                                                             ; 1       ;
 ; sdram:inst|pixelOut[6]                                                             ; 1       ;
-; vgaout:inst7|vcount[0]~9                                                           ; 1       ;
 ; sdram:inst|pixelOut[5]                                                             ; 1       ;
 ; sdram:inst|colLoadNr[8]                                                            ; 1       ;
 ; sdram:inst|colLoadNr[7]                                                            ; 1       ;
@@ -1731,20 +1703,18 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|colLoadNr[1]                                                            ; 1       ;
 ; sdram:inst|colLoadNr[0]                                                            ; 1       ;
 ; sdram:inst|pixelOut[13]                                                            ; 1       ;
-; vgaout:inst7|vcount[9]~8                                                           ; 1       ;
 ; vgaout:inst7|hcount~2                                                              ; 1       ;
 ; vgaout:inst7|hcount~1                                                              ; 1       ;
 ; vgaout:inst7|hcount~0                                                              ; 1       ;
-; vgaout:inst7|vcount[8]~7                                                           ; 1       ;
-; vgaout:inst7|vcount[7]~6                                                           ; 1       ;
-; vgaout:inst7|vcount[2]~5                                                           ; 1       ;
-; vgaout:inst7|vcount[3]~4                                                           ; 1       ;
-; vgaout:inst7|vcount[1]~3                                                           ; 1       ;
-; vgaout:inst7|vcount[4]~2                                                           ; 1       ;
-; vgaout:inst7|vcount[6]~1                                                           ; 1       ;
-; vgaout:inst7|vcount[5]~0                                                           ; 1       ;
-; vgaout:inst7|Equal1~1                                                              ; 1       ;
-; vgaout:inst7|Equal0~0                                                              ; 1       ;
+; vgaout:inst7|vcount[9]~9                                                           ; 1       ;
+; vgaout:inst7|vcount[2]~8                                                           ; 1       ;
+; vgaout:inst7|vcount[3]~7                                                           ; 1       ;
+; vgaout:inst7|vcount[8]~6                                                           ; 1       ;
+; vgaout:inst7|vcount[7]~5                                                           ; 1       ;
+; vgaout:inst7|vcount[1]~4                                                           ; 1       ;
+; vgaout:inst7|vcount[4]~3                                                           ; 1       ;
+; vgaout:inst7|vcount[6]~2                                                           ; 1       ;
+; vgaout:inst7|vcount[5]~1                                                           ; 1       ;
 ; genlock:inst6|vsync_lock~0                                                         ; 1       ;
 ; genlock:inst6|LessThan2~7                                                          ; 1       ;
 ; genlock:inst6|LessThan2~6                                                          ; 1       ;
@@ -1754,8 +1724,10 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|LessThan2~2                                                          ; 1       ;
 ; genlock:inst6|LessThan2~1                                                          ; 1       ;
 ; genlock:inst6|LessThan2~0                                                          ; 1       ;
-; genlock:inst6|dac_step[2]~1                                                        ; 1       ;
-; genlock:inst6|dac_step[1]~0                                                        ; 1       ;
+; vgaout:inst7|vcount[0]~0                                                           ; 1       ;
+; vgaout:inst7|Equal1~2                                                              ; 1       ;
+; vgaout:inst7|Equal0~0                                                              ; 1       ;
+; genlock:inst6|dac_step[2]~0                                                        ; 1       ;
 ; genlock:inst6|vblank                                                               ; 1       ;
 ; sdram:inst|Selector2~2                                                             ; 1       ;
 ; sdram:inst|rowLoadAck~0                                                            ; 1       ;
@@ -1772,39 +1744,38 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|SdrAdr[10]                                                              ; 1       ;
 ; sdram:inst|SdrAdr[11]                                                              ; 1       ;
 ; sdram:inst|SdrAdr[12]                                                              ; 1       ;
-; vgaout:inst7|vga_out[6]~24                                                         ; 1       ;
-; vgaout:inst7|vga_out[6]~23                                                         ; 1       ;
-; vgaout:inst7|vga_out[9]~22                                                         ; 1       ;
-; vgaout:inst7|vga_out[9]~21                                                         ; 1       ;
+; vgaout:inst7|vga_out[6]~22                                                         ; 1       ;
+; vgaout:inst7|vga_out[6]~21                                                         ; 1       ;
+; vgaout:inst7|vga_out[9]~20                                                         ; 1       ;
+; vgaout:inst7|vga_out[9]~19                                                         ; 1       ;
+; vgaout:inst7|vga_out[9]~18                                                         ; 1       ;
 ; vgaout:inst7|vsync                                                                 ; 1       ;
-; vgaout:inst7|vga_out[3]~20                                                         ; 1       ;
-; vgaout:inst7|vga_out[3]~19                                                         ; 1       ;
-; vgaout:inst7|vga_out[3]~18                                                         ; 1       ;
-; vgaout:inst7|vga_out[2]~17                                                         ; 1       ;
-; vgaout:inst7|vga_out[2]~16                                                         ; 1       ;
-; vgaout:inst7|vga_out[5]~15                                                         ; 1       ;
-; vgaout:inst7|vga_out[5]~14                                                         ; 1       ;
-; vgaout:inst7|vga_out[5]~13                                                         ; 1       ;
+; vgaout:inst7|vga_out[3]~17                                                         ; 1       ;
+; vgaout:inst7|vga_out[3]~16                                                         ; 1       ;
+; vgaout:inst7|vga_out[3]~15                                                         ; 1       ;
+; vgaout:inst7|vga_out[2]~14                                                         ; 1       ;
+; vgaout:inst7|vga_out[2]~13                                                         ; 1       ;
+; vgaout:inst7|vga_out[2]~12                                                         ; 1       ;
+; vgaout:inst7|vga_out[5]~11                                                         ; 1       ;
+; vgaout:inst7|vga_out[5]~10                                                         ; 1       ;
+; vgaout:inst7|vga_out[5]~9                                                          ; 1       ;
+; vgaout:inst7|vga_out[4]~8                                                          ; 1       ;
+; vgaout:inst7|vga_out[4]~7                                                          ; 1       ;
+; vgaout:inst7|vga_out[4]~6                                                          ; 1       ;
 ; vgaout:inst7|scanline~0                                                            ; 1       ;
-; vgaout:inst7|vga_out[4]~12                                                         ; 1       ;
-; vgaout:inst7|vga_out[4]~11                                                         ; 1       ;
-; vgaout:inst7|vga_out[4]~10                                                         ; 1       ;
-; vgaout:inst7|vga_out[8]~9                                                          ; 1       ;
-; vgaout:inst7|vga_out[8]~8                                                          ; 1       ;
+; vgaout:inst7|vga_out[8]~5                                                          ; 1       ;
+; vgaout:inst7|vga_out[8]~4                                                          ; 1       ;
 ; vgaout:inst7|pixel~9                                                               ; 1       ;
 ; vgaout:inst7|pixel~8                                                               ; 1       ;
 ; vgaout:inst7|pixel~6                                                               ; 1       ;
 ; vgaout:inst7|pixel~5                                                               ; 1       ;
-; vgaout:inst7|vga_out[8]~7                                                          ; 1       ;
+; vgaout:inst7|vga_out[8]~3                                                          ; 1       ;
 ; vgaout:inst7|pixel~4                                                               ; 1       ;
 ; vgaout:inst7|pixel~3                                                               ; 1       ;
 ; vgaout:inst7|pixel~1                                                               ; 1       ;
 ; vgaout:inst7|pixel~0                                                               ; 1       ;
-; vgaout:inst7|vga_out[7]~5                                                          ; 1       ;
-; vgaout:inst7|vga_out[7]~4                                                          ; 1       ;
-; vgaout:inst7|blank~2                                                               ; 1       ;
-; vgaout:inst7|blank~1                                                               ; 1       ;
-; vgaout:inst7|blank~0                                                               ; 1       ;
+; vgaout:inst7|vga_out[7]~1                                                          ; 1       ;
+; vgaout:inst7|Equal1~1                                                              ; 1       ;
 ; sdram:inst|SdrCmd[0]                                                               ; 1       ;
 ; sdram:inst|SdrCmd[1]                                                               ; 1       ;
 ; sdram:inst|SdrCmd[2]                                                               ; 1       ;
@@ -2094,8 +2065,6 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; genlock:inst6|Add0~4                                                               ; 1       ;
 ; genlock:inst6|Add0~3                                                               ; 1       ;
 ; genlock:inst6|Add0~2                                                               ; 1       ;
-; genlock:inst6|Add0~1                                                               ; 1       ;
-; genlock:inst6|Add0~0                                                               ; 1       ;
 ; sdram:inst|SdrRoutineSeq[11]~34                                                    ; 1       ;
 ; sdram:inst|SdrRoutineSeq[10]~33                                                    ; 1       ;
 ; sdram:inst|SdrRoutineSeq[10]~32                                                    ; 1       ;
@@ -2123,6 +2092,42 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 ; sdram:inst|Add0~43                                                                 ; 1       ;
 ; sdram:inst|Add0~41                                                                 ; 1       ;
 ; sdram:inst|Add0~39                                                                 ; 1       ;
+; sdram:inst|Add0~37                                                                 ; 1       ;
+; sdram:inst|Add0~35                                                                 ; 1       ;
+; sdram:inst|Add0~33                                                                 ; 1       ;
+; sdram:inst|Add0~31                                                                 ; 1       ;
+; sdram:inst|Add0~29                                                                 ; 1       ;
+; sdram:inst|Add0~27                                                                 ; 1       ;
+; sdram:inst|Add0~25                                                                 ; 1       ;
+; sdram:inst|Add0~23                                                                 ; 1       ;
+; sdram:inst|Add0~21                                                                 ; 1       ;
+; sdram:inst|Add0~19                                                                 ; 1       ;
+; sdram:inst|Add0~17                                                                 ; 1       ;
+; sdram:inst|Add0~15                                                                 ; 1       ;
+; sdram:inst|Add0~13                                                                 ; 1       ;
+; sdram:inst|Add0~11                                                                 ; 1       ;
+; sdram:inst|Add0~9                                                                  ; 1       ;
+; sdram:inst|Add0~7                                                                  ; 1       ;
+; sdram:inst|Add0~5                                                                  ; 1       ;
+; sdram:inst|Add0~3                                                                  ; 1       ;
+; sdram:inst|Add0~1                                                                  ; 1       ;
+; sdram:inst|SdrAdr[3]~3                                                             ; 1       ;
+; sdram:inst|SdrAdr[6]~2                                                             ; 1       ;
+; sdram:inst|SdrAdr[7]~1                                                             ; 1       ;
+; sdram:inst|SdrAdr[8]~0                                                             ; 1       ;
+; vgaout:inst7|col_number[8]                                                         ; 1       ;
+; vgaout:inst7|col_number[7]                                                         ; 1       ;
+; vgaout:inst7|col_number[6]                                                         ; 1       ;
+; vgaout:inst7|col_number[5]                                                         ; 1       ;
+; vgaout:inst7|col_number[4]                                                         ; 1       ;
+; vgaout:inst7|col_number[3]                                                         ; 1       ;
+; vgaout:inst7|col_number[2]                                                         ; 1       ;
+; vgaout:inst7|col_number[1]                                                         ; 1       ;
+; vgaout:inst7|col_number[0]                                                         ; 1       ;
+; vgaout:inst7|Add1~18                                                               ; 1       ;
+; vgaout:inst7|Add1~17                                                               ; 1       ;
+; vgaout:inst7|Add1~16                                                               ; 1       ;
+; vgaout:inst7|Add1~15                                                               ; 1       ;
 +------------------------------------------------------------------------------------+---------+
 
 
@@ -2131,7 +2136,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------+----------------+----------------------+-----------------+-----------------+
 ; Name                                                                                ; Type ; Mode             ; Clock Mode   ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Port A Input Registers ; Port A Output Registers ; Port B Input Registers ; Port B Output Registers ; Size ; Implementation Port A Depth ; Implementation Port A Width ; Implementation Port B Depth ; Implementation Port B Width ; Implementation Bits ; M9Ks ; MIF  ; Location       ; Mixed Width RDW Mode ; Port A RDW Mode ; Port B RDW Mode ;
 +-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------+----------------+----------------------+-----------------+-----------------+
-; ram:inst2|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; Single Clock ; 512          ; 16           ; 512          ; 16           ; yes                    ; no                      ; yes                    ; yes                     ; 8192 ; 512                         ; 16                          ; 512                         ; 16                          ; 8192                ; 1    ; None ; M9K_X22_Y16_N0 ; Don't care           ; Old data        ; Old data        ;
+; ram:inst2|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; Single Clock ; 512          ; 16           ; 512          ; 16           ; yes                    ; no                      ; yes                    ; yes                     ; 8192 ; 512                         ; 16                          ; 512                         ; 16                          ; 8192                ; 1    ; None ; M9K_X22_Y19_N0 ; Don't care           ; Old data        ; Old data        ;
 ; ram:inst4|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; Dual Clocks  ; 512          ; 16           ; 512          ; 16           ; yes                    ; no                      ; yes                    ; no                      ; 8192 ; 512                         ; 16                          ; 512                         ; 16                          ; 8192                ; 1    ; None ; M9K_X22_Y15_N0 ; Don't care           ; Old data        ; Old data        ;
 +-------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+--------------+------------------------+-------------------------+------------------------+-------------------------+------+-----------------------------+-----------------------------+-----------------------------+-----------------------------+---------------------+------+------+----------------+----------------------+-----------------+-----------------+
 Note: Fitter may spread logical memories into multiple blocks to improve timing. The actual required RAM blocks can be found in the Fitter Resource Usage section.
@@ -2142,92 +2147,92 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 +-----------------------------+------------------------+
 ; Other Routing Resource Type ; Usage                  ;
 +-----------------------------+------------------------+
-; Block interconnects         ; 640 / 71,559 ( < 1 % ) ;
-; C16 interconnects           ; 45 / 2,597 ( 2 % )     ;
-; C4 interconnects            ; 399 / 46,848 ( < 1 % ) ;
-; Direct links                ; 148 / 71,559 ( < 1 % ) ;
+; Block interconnects         ; 613 / 71,559 ( < 1 % ) ;
+; C16 interconnects           ; 56 / 2,597 ( 2 % )     ;
+; C4 interconnects            ; 376 / 46,848 ( < 1 % ) ;
+; Direct links                ; 147 / 71,559 ( < 1 % ) ;
 ; Global clocks               ; 4 / 20 ( 20 % )        ;
-; Local interconnects         ; 354 / 24,624 ( 1 % )   ;
-; R24 interconnects           ; 60 / 2,496 ( 2 % )     ;
-; R4 interconnects            ; 443 / 62,424 ( < 1 % ) ;
+; Local interconnects         ; 326 / 24,624 ( 1 % )   ;
+; R24 interconnects           ; 53 / 2,496 ( 2 % )     ;
+; R4 interconnects            ; 390 / 62,424 ( < 1 % ) ;
 +-----------------------------+------------------------+
 
 
 +----------------------------------------------------------------------------+
 ; LAB Logic Elements                                                         ;
 +---------------------------------------------+------------------------------+
-; Number of Logic Elements  (Average = 14.62) ; Number of LABs  (Total = 39) ;
+; Number of Logic Elements  (Average = 13.59) ; Number of LABs  (Total = 39) ;
 +---------------------------------------------+------------------------------+
 ; 1                                           ; 1                            ;
 ; 2                                           ; 0                            ;
-; 3                                           ; 0                            ;
+; 3                                           ; 1                            ;
 ; 4                                           ; 0                            ;
-; 5                                           ; 0                            ;
-; 6                                           ; 0                            ;
-; 7                                           ; 1                            ;
-; 8                                           ; 0                            ;
-; 9                                           ; 1                            ;
-; 10                                          ; 1                            ;
-; 11                                          ; 0                            ;
-; 12                                          ; 1                            ;
-; 13                                          ; 1                            ;
-; 14                                          ; 1                            ;
+; 5                                           ; 1                            ;
+; 6                                           ; 1                            ;
+; 7                                           ; 0                            ;
+; 8                                           ; 1                            ;
+; 9                                           ; 0                            ;
+; 10                                          ; 0                            ;
+; 11                                          ; 3                            ;
+; 12                                          ; 0                            ;
+; 13                                          ; 2                            ;
+; 14                                          ; 4                            ;
 ; 15                                          ; 8                            ;
-; 16                                          ; 24                           ;
+; 16                                          ; 17                           ;
 +---------------------------------------------+------------------------------+
 
 
 +-------------------------------------------------------------------+
 ; LAB-wide Signals                                                  ;
 +------------------------------------+------------------------------+
-; LAB-wide Signals  (Average = 1.67) ; Number of LABs  (Total = 39) ;
+; LAB-wide Signals  (Average = 1.56) ; Number of LABs  (Total = 39) ;
 +------------------------------------+------------------------------+
 ; 1 Async. clear                     ; 6                            ;
 ; 1 Clock                            ; 34                           ;
-; 1 Clock enable                     ; 11                           ;
+; 1 Clock enable                     ; 10                           ;
 ; 1 Sync. clear                      ; 1                            ;
-; 1 Sync. load                       ; 4                            ;
-; 2 Clock enables                    ; 9                            ;
+; 1 Sync. load                       ; 3                            ;
+; 2 Clock enables                    ; 7                            ;
 +------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Signals Sourced                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Signals Sourced  (Average = 22.74) ; Number of LABs  (Total = 39) ;
+; Number of Signals Sourced  (Average = 21.79) ; Number of LABs  (Total = 39) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
-; 1                                            ; 0                            ;
-; 2                                            ; 1                            ;
+; 1                                            ; 1                            ;
+; 2                                            ; 0                            ;
 ; 3                                            ; 0                            ;
 ; 4                                            ; 0                            ;
 ; 5                                            ; 0                            ;
-; 6                                            ; 0                            ;
+; 6                                            ; 1                            ;
 ; 7                                            ; 1                            ;
 ; 8                                            ; 0                            ;
 ; 9                                            ; 0                            ;
 ; 10                                           ; 0                            ;
-; 11                                           ; 0                            ;
+; 11                                           ; 1                            ;
 ; 12                                           ; 1                            ;
-; 13                                           ; 1                            ;
-; 14                                           ; 0                            ;
-; 15                                           ; 0                            ;
-; 16                                           ; 3                            ;
-; 17                                           ; 0                            ;
-; 18                                           ; 4                            ;
-; 19                                           ; 0                            ;
-; 20                                           ; 3                            ;
-; 21                                           ; 2                            ;
-; 22                                           ; 1                            ;
-; 23                                           ; 2                            ;
-; 24                                           ; 2                            ;
-; 25                                           ; 3                            ;
-; 26                                           ; 1                            ;
+; 13                                           ; 0                            ;
+; 14                                           ; 2                            ;
+; 15                                           ; 2                            ;
+; 16                                           ; 1                            ;
+; 17                                           ; 2                            ;
+; 18                                           ; 1                            ;
+; 19                                           ; 1                            ;
+; 20                                           ; 1                            ;
+; 21                                           ; 1                            ;
+; 22                                           ; 3                            ;
+; 23                                           ; 0                            ;
+; 24                                           ; 1                            ;
+; 25                                           ; 4                            ;
+; 26                                           ; 2                            ;
 ; 27                                           ; 2                            ;
-; 28                                           ; 4                            ;
+; 28                                           ; 3                            ;
 ; 29                                           ; 1                            ;
-; 30                                           ; 1                            ;
-; 31                                           ; 3                            ;
+; 30                                           ; 2                            ;
+; 31                                           ; 2                            ;
 ; 32                                           ; 3                            ;
 +----------------------------------------------+------------------------------+
 
@@ -2240,57 +2245,61 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 ; 0                                                ; 0                            ;
 ; 1                                                ; 1                            ;
 ; 2                                                ; 1                            ;
-; 3                                                ; 0                            ;
-; 4                                                ; 3                            ;
-; 5                                                ; 0                            ;
-; 6                                                ; 1                            ;
-; 7                                                ; 5                            ;
-; 8                                                ; 2                            ;
-; 9                                                ; 5                            ;
+; 3                                                ; 1                            ;
+; 4                                                ; 2                            ;
+; 5                                                ; 1                            ;
+; 6                                                ; 3                            ;
+; 7                                                ; 3                            ;
+; 8                                                ; 3                            ;
+; 9                                                ; 1                            ;
 ; 10                                               ; 3                            ;
-; 11                                               ; 3                            ;
-; 12                                               ; 5                            ;
-; 13                                               ; 1                            ;
+; 11                                               ; 5                            ;
+; 12                                               ; 4                            ;
+; 13                                               ; 2                            ;
 ; 14                                               ; 1                            ;
-; 15                                               ; 3                            ;
-; 16                                               ; 5                            ;
+; 15                                               ; 4                            ;
+; 16                                               ; 3                            ;
+; 17                                               ; 0                            ;
+; 18                                               ; 0                            ;
+; 19                                               ; 0                            ;
+; 20                                               ; 1                            ;
 +--------------------------------------------------+------------------------------+
 
 
 +-----------------------------------------------------------------------------+
 ; LAB Distinct Inputs                                                         ;
 +----------------------------------------------+------------------------------+
-; Number of Distinct Inputs  (Average = 12.26) ; Number of LABs  (Total = 39) ;
+; Number of Distinct Inputs  (Average = 11.74) ; Number of LABs  (Total = 39) ;
 +----------------------------------------------+------------------------------+
 ; 0                                            ; 0                            ;
-; 1                                            ; 0                            ;
-; 2                                            ; 1                            ;
+; 1                                            ; 1                            ;
+; 2                                            ; 0                            ;
 ; 3                                            ; 5                            ;
 ; 4                                            ; 3                            ;
 ; 5                                            ; 0                            ;
-; 6                                            ; 1                            ;
+; 6                                            ; 2                            ;
 ; 7                                            ; 2                            ;
-; 8                                            ; 1                            ;
-; 9                                            ; 2                            ;
+; 8                                            ; 0                            ;
+; 9                                            ; 1                            ;
 ; 10                                           ; 1                            ;
-; 11                                           ; 2                            ;
+; 11                                           ; 3                            ;
 ; 12                                           ; 2                            ;
-; 13                                           ; 3                            ;
-; 14                                           ; 1                            ;
-; 15                                           ; 4                            ;
-; 16                                           ; 3                            ;
+; 13                                           ; 8                            ;
+; 14                                           ; 3                            ;
+; 15                                           ; 1                            ;
+; 16                                           ; 1                            ;
 ; 17                                           ; 1                            ;
-; 18                                           ; 2                            ;
+; 18                                           ; 1                            ;
 ; 19                                           ; 0                            ;
-; 20                                           ; 1                            ;
+; 20                                           ; 0                            ;
 ; 21                                           ; 0                            ;
 ; 22                                           ; 0                            ;
 ; 23                                           ; 0                            ;
 ; 24                                           ; 0                            ;
-; 25                                           ; 1                            ;
+; 25                                           ; 0                            ;
 ; 26                                           ; 0                            ;
 ; 27                                           ; 1                            ;
-; 28                                           ; 0                            ;
+; 28                                           ; 1                            ;
 ; 29                                           ; 0                            ;
 ; 30                                           ; 1                            ;
 ; 31                                           ; 1                            ;
@@ -2533,22 +2542,22 @@ Info (170137): Fitter placement was successful
 Info (170192): Fitter placement operations ending: elapsed time is 00:00:00
 Info (170193): Fitter routing operations beginning
 Info (170195): Router estimated average interconnect usage is 0% of the available device resources
-    Info (170196): Router estimated peak interconnect usage is 3% of the available device resources in the region that extends from location X21_Y11 to location X31_Y22
+    Info (170196): Router estimated peak interconnect usage is 3% of the available device resources in the region that extends from location X10_Y11 to location X20_Y22
 Info (170194): Fitter routing operations ending: elapsed time is 00:00:02
 Info (170199): The Fitter performed an Auto Fit compilation.  Optimizations were skipped to reduce compilation time.
     Info (170201): Optimizations that may affect the design's routability were skipped
     Info (170200): Optimizations that may affect the design's timing were skipped
-Info (11888): Total time spent on timing analysis during the Fitter is 0.16 seconds.
+Info (11888): Total time spent on timing analysis during the Fitter is 0.22 seconds.
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:02
 Info (144001): Generated suppressed messages file C:/altera/projects/rgb2vga/vhdl/output_files/rgb2vga.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 15 warnings
-    Info: Peak virtual memory: 721 megabytes
-    Info: Processing ended: Tue Oct 07 00:12:20 2014
-    Info: Elapsed time: 00:00:11
+    Info: Peak virtual memory: 713 megabytes
+    Info: Processing ended: Sat Oct 11 02:26:47 2014
+    Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:10
 
 

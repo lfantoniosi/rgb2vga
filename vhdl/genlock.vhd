@@ -30,7 +30,6 @@ architecture behavioral of genlock is
 
 signal vblank, hblank									: std_ulogic;
 signal hcount_in, vcount_in							: unsigned(31 downto 0) := to_unsigned(153601, 32);
-signal captureR, captureG, captureB : std_ulogic;
 
 signal red_adc : unsigned(6 downto 0);
 signal green_adc : unsigned(6 downto 0);
@@ -43,10 +42,8 @@ signal artifact_pixel : unsigned (15 downto 0);
 
 function f_adc(adc: unsigned) return unsigned;
 
-
 function f_adc(adc: unsigned) return unsigned is
 variable VALUE : unsigned (2 downto 0); 
-variable cnt: integer;
 begin
 
 		case adc(6 downto 0) is
@@ -58,16 +55,15 @@ begin
 			when "0001111" => VALUE := "100";
 			when "0011111" => VALUE := "101";
 			when "0111111" => VALUE := "110";
-			when "1111111" => VALUE := "111";			
-
+			when "1111111" => VALUE := "111";
 
 			when "0000010" => VALUE := "001";
 			
-			when "0000100" => VALUE := "001";
+			when "0000100" => VALUE := "000";
 			when "0000101" => VALUE := "010";
 			when "0000110" => VALUE := "010";
 			
-			when "0001000" => VALUE := "001";
+			when "0001000" => VALUE := "000";
 			when "0001001" => VALUE := "010";
 			when "0001010" => VALUE := "010";
 			when "0001011" => VALUE := "011";
@@ -75,7 +71,7 @@ begin
 			when "0001101" => VALUE := "011";
 			when "0001110" => VALUE := "011";
 			
-			when "0010000" => VALUE := "001";
+			when "0010000" => VALUE := "000";
 			when "0010001" => VALUE := "010";
 			when "0010010" => VALUE := "010";
 			when "0010011" => VALUE := "011";
@@ -91,7 +87,7 @@ begin
 			when "0011101" => VALUE := "100";
 			when "0011110" => VALUE := "100";
 			
-			when "0100000" => VALUE := "001";
+			when "0100000" => VALUE := "000";
 			when "0100001" => VALUE := "010";
 			when "0100010" => VALUE := "010";
 			when "0100011" => VALUE := "011";
@@ -123,7 +119,7 @@ begin
 			when "0111101" => VALUE := "101";
 			when "0111110" => VALUE := "101";
 			
-			when "1000000" => VALUE := "001";
+			when "1000000" => VALUE := "000";
 			when "1000001" => VALUE := "010";
 			when "1000010" => VALUE := "010";
 			when "1000011" => VALUE := "011";
@@ -155,7 +151,7 @@ begin
 			when "1011101" => VALUE := "101";
 			when "1011110" => VALUE := "101";
 			when "1011111" => VALUE := "110";
-			when "1100000" => VALUE := "010";
+			when "1100000" => VALUE := "000";
 			when "1100001" => VALUE := "011";
 			when "1100010" => VALUE := "011";
 			when "1100011" => VALUE := "100";
@@ -185,8 +181,7 @@ begin
 			when "1111011" => VALUE := "110";
 			when "1111100" => VALUE := "101";
 			when "1111101" => VALUE := "110";
-			when "1111110" => VALUE := "110";
-		
+			when "1111110" => VALUE := "110";		
 
 		end case;
 		
@@ -196,8 +191,7 @@ end f_adc;
 
 begin
 
-
-red: process(dac_step)
+red: process(dac_step) 
 begin
 	if (rising_edge(clock_pixel)) then 
 			case dac_step is		
@@ -222,8 +216,7 @@ begin
 	end if;
 end process;
 
-
-green: process(dac_step)
+green: process(dac_step) 
 begin
 	if (rising_edge(clock_pixel)) then 
 			case dac_step is		
@@ -248,8 +241,7 @@ begin
 	end if;
 end process;
 
-
-blue: process(dac_step) 
+blue: process(dac_step)
 begin
 	if (rising_edge(clock_pixel)) then 	
 			case dac_step is		
@@ -270,10 +262,9 @@ begin
 				when "000" =>	
 					null;
 			end case;			
-			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);	
+			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);					
 	end if;
 end process;
-
 
 hsync_lock: process(clock_pixel)
 begin	
@@ -281,8 +272,7 @@ begin
 		hblank <= '1'; 
 		if (hsync = sync_level and hcount_in(31 downto 3) >= 799) then
 			hblank <= '0'; 
-		end if;
-		
+		end if;		
 	end if;
 end process;
 
@@ -290,11 +280,10 @@ hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
 		hcount_in <= (others => '0');
-		dac_step <= "000"; -- next clock will digitize
+		dac_step <= "000";
 	elsif (rising_edge(clock_pixel)) then
 		hcount_in <= hcount_in + 1;
 		dac_step <= dac_step + 1;
-
 	end if;
 end process;
 
@@ -327,6 +316,58 @@ begin
 	end if;
 end process;
 
+process_pixel: process(dac_step) 
+variable row, col: integer range 0 to 1024;
+begin
+	if (dac_step = "100" and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
+	
+		col := to_integer(hcount_in(31 downto 3)) - front_porch;		
+		row := to_integer(vcount_in) - top_border;
+		row_number <= to_unsigned(row, row_number'length);
+		col_number <= to_unsigned(col, 10)(9 downto 1);
+		
+		if (hcount_in(3) = '0') then								
+			pixel_in(7 downto 0) <= pixel_adc;															
+		else
+			pixel_in(15 downto 8) <= pixel_adc;									
+		end if;								
+	end if;
+end process;
+
+process_artifact: process(dac_step)
+variable prev_pixel: unsigned(15 downto 0);
+variable cur_pixel: unsigned(15 downto 0);
+begin
+	if (dac_step = "100" and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
+		
+		if (hcount_in(3) = '1') then			
+		
+			cur_pixel(7 downto 0) := pixel_adc; 
+			artifact_pixel <= cur_pixel;
+
+			if (cur_pixel(7 downto 0) /= prev_pixel(7 downto 0))  then
+
+				if (col_number(0) = '0') then
+					if (to_integer(cur_pixel(7 downto 2)) < 16) then 
+						artifact_pixel <= "1110100011101000";
+					else
+						artifact_pixel <= "0010011100100111";
+					end if;
+				else
+					if (to_integer(cur_pixel(7 downto 2)) < 16) then
+						artifact_pixel <= "0010011100100111";
+					else
+						artifact_pixel <= "1110100011101000";
+					end if;											
+				end if;					
+			end if;														
+		else			
+			cur_pixel(15 downto 8) := pixel_adc;														
+			prev_pixel := cur_pixel;								
+		end if;			
+	end if;		
+end process;
+
 artifact_detect: process(clock_pixel, hcount_in)
 begin
 	if (vcount_in >= top_border and hcount_in(31 downto 3) < front_porch) then
@@ -336,77 +377,6 @@ begin
 		end if;
 	end if;
 end process;
-
-
-process_pixel: process(clock_pixel, hcount_in)
-variable row, col: integer range 0 to 153600;
-begin
-	if (rising_edge(clock_pixel)) then
-		
-		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
-		
-			col := to_integer(hcount_in(31 downto 3)) - front_porch;		
-			row := to_integer(vcount_in) - top_border;
-			row_number <= to_unsigned(row, row_number'length);
-			col_number <= to_unsigned(col, 10)(9 downto 1);
-			
-			if (hcount_in(3) = '0') then								
-				pixel_in(7 downto 0) <= pixel_adc;															
-			else
-				pixel_in(15 downto 8) <= pixel_adc;									
-			end if;				
-				
-		end if;
-	end if;
-end process;
-
-process_artifact: process(clock_pixel, hcount_in)
-variable prev_pixel: unsigned(15 downto 0);
-variable cur_pixel: unsigned(15 downto 0);
-begin
-	if (rising_edge(clock_pixel)) then
-		
-		if (hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
-			
-			if (hcount_in(3) = '1') then			
-			
-				cur_pixel(7 downto 0) := pixel_adc; 
-
-				artifact_pixel <= cur_pixel;
-
-				if (cur_pixel(7 downto 0) /= prev_pixel(7 downto 0))  then
-
-					if (col_number(0) = '0') then
-						if (cur_pixel(7 downto 2) = "000000") then 
-							artifact_pixel <= "1110100011101000";
-						else
-							artifact_pixel <= "0010011100100111";
-						end if;
-					else
-						if (cur_pixel(7 downto 2) = "000000") then
-							artifact_pixel <= "0010011100100111";
-						else
-							artifact_pixel <= "1110100011101000";
-						end if;					
-						
-					end if;
-					
-				end if;
-															
-			else
-			
-				cur_pixel(15 downto 8) := pixel_adc;				
-										
-				prev_pixel := cur_pixel;				
-				
-			end if;
-			
-		end if;
-		
-	end if;
-	
-end process;
-
 
 store_row: process(hblank, store_ack)
 begin

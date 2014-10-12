@@ -22,8 +22,33 @@ architecture behavioral of vgaout is
 
 signal hcount												: unsigned(9 downto 0);
 signal vcount												: unsigned(9 downto 0);
-signal blank, videov, videoh, hsync, vsync, scanline,b0,b1		: std_ulogic;
+signal blank, videov, videoh, hsync, vsync, scanline		: std_ulogic;
 signal vga_pixel											: unsigned(7 downto 0);
+
+
+function f_scanline(color: unsigned) return unsigned;
+
+function f_scanline(color: unsigned) return unsigned is
+variable VALUE : unsigned (2 downto 0); 
+begin
+
+		case color is
+		
+			when "000" => VALUE := "000";
+			when "001" => VALUE := "001";
+			when "010" => VALUE := "001";
+			when "011" => VALUE := "010";
+			when "100" => VALUE := "011";
+			when "101" => VALUE := "100";
+			when "110" => VALUE := "101";
+			when "111" => VALUE := "110";
+			
+		end case;
+
+		return VALUE;
+		
+end f_scanline;		
+		
 begin
 
 
@@ -92,28 +117,36 @@ begin
 end process;
 
 pixel: process(pixel_in, hcount)
+variable pixel: unsigned (7 downto 0);
 begin
 	if (hcount(0) = '0') then
 		if (alternate = '1' and pixel_in(7 downto 0) = "11101000") then
-			vga_pixel <= "00100111";			
+			pixel := "00100111";			
 		elsif(alternate = '1' and pixel_in(7 downto 0) = "00100111") then
-			vga_pixel <= "11101000";
+			pixel := "11101000";
 		else
-			vga_pixel <= pixel_in(7 downto 0);
+			pixel := pixel_in(7 downto 0);
 		end if;
 	else
 		if (alternate = '1' and pixel_in(15 downto 8) = "11101000") then
-			vga_pixel <= "00100111";			
+			pixel := "00100111";			
 		elsif(alternate = '1' and pixel_in(15 downto 8) = "00100111") then
-			vga_pixel <= "11101000";
+			pixel := "11101000";
 		else
-			vga_pixel <= pixel_in(15 downto 8);
+			pixel := pixel_in(15 downto 8);
 		end if;
 	end if;
-	
+
 	if (is_sync = '1') then
-		vga_pixel <= "00011100"; -- out of sync shows green
+		pixel := "00011100"; -- out of sync shows green
 	end if;
+
+	if (vcount(0) = '1' and is_scanline = '1') then
+		vga_pixel <= f_scanline(pixel(7 downto 5)) & f_scanline(pixel(4 downto 2)) & f_scanline('0'&pixel(1 downto 0))(1 downto 0);
+	else
+		vga_pixel <= pixel;
+	end if;
+	
 	
 end process;
 
@@ -148,12 +181,7 @@ end process;
 
 	blank <= videoh and videov;
 	
-	with (vcount(0)) select
-		scanline <= blank when '0',
-						(is_scanline and blank) when others;
-						
-	--vga_out(9 downto 2) <= vga_pixel and blank&scanline&blank&blank&scanline&blank&scanline&blank;	
-	vga_out(9 downto 2) <= vga_pixel and blank&blank&scanline&blank&blank&scanline&blank&scanline;	
+	vga_out(9 downto 2) <= vga_pixel and blank&blank&blank&blank&blank&blank&blank&blank;	
 	
 	vga_out(1 downto 0)	<= hsync & vsync;
 

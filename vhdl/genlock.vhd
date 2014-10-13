@@ -21,15 +21,16 @@ entity genlock is
 			store_ack : in std_logic;
 			dac_step		: buffer unsigned(2 downto 0);
 			is_sync		: out std_logic;
-			artifact		: in std_logic
+			artifact		: in std_logic;
+			mode 			: in std_logic
 									
          );
 end genlock;
 
 architecture behavioral of genlock is
 
-signal vblank, hblank									: std_ulogic;
-signal hcount_in, vcount_in							: unsigned(31 downto 0) := to_unsigned(153601, 32);
+signal vblank, hblank							: std_ulogic;
+signal hcount, vcount							: unsigned(13 downto 0) := to_unsigned(1024, 14);
 
 signal red_adc : unsigned(6 downto 0);
 signal green_adc : unsigned(6 downto 0);
@@ -270,7 +271,7 @@ hsync_lock: process(clock_pixel)
 begin	
 	if (rising_edge(clock_pixel)) then
 		hblank <= '1'; 
-		if (hsync = sync_level and hcount_in(31 downto 3) >= 799) then
+		if (hsync = sync_level and hcount(13 downto 3) >= 799) then
 			hblank <= '0'; 
 		end if;		
 	end if;
@@ -279,10 +280,12 @@ end process;
 hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
-		hcount_in <= (others => '0');
+		hcount <= (others => '0');
 		dac_step <= "000";
 	elsif (rising_edge(clock_pixel)) then
-		hcount_in <= hcount_in + 1;
+		if (hcount(13 downto 3) < 1024) then
+			hcount <= hcount + 1;
+		end if;
 		dac_step <= dac_step + 1;
 	end if;
 end process;
@@ -292,12 +295,12 @@ begin
 	if (rising_edge(clock_pixel)) then		
 		vblank <= '1'; 	
 		
-		if (vsync = sync_level and vcount_in > 260) then
+		if (vsync = sync_level and vcount > 260) then
 			vblank <= '0';	
 		end if;		
 				
 		is_sync <= '0';
-		if (vsync = '0' and hcount_in(31 downto 3) > 153600) then
+		if (vsync = '0' and hcount(13 downto 3) >= 1024) then
 			is_sync <= '1';
 		end if;		
 		
@@ -308,10 +311,10 @@ end process;
 vraster: process (clock_pixel, vblank)
 begin
 	if (vblank = '0') then 
-			vcount_in <= (others => '0');
+			vcount <= (others => '0');
 	elsif(rising_edge(clock_pixel)) then
 		if hblank = '0' then
-			vcount_in <= vcount_in + 1;
+			vcount <= vcount + 1;
 		end if;
 	end if;
 end process;
@@ -319,14 +322,14 @@ end process;
 process_pixel: process(dac_step) 
 variable row, col: integer range 0 to 1024;
 begin
-	if (dac_step = "100" and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
+	if (dac_step = "100" and hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 240+top_border) then		
 	
-		col := to_integer(hcount_in(31 downto 3)) - front_porch;		
-		row := to_integer(vcount_in) - top_border;
+		col := to_integer(hcount(13 downto 3)) - front_porch;		
+		row := to_integer(vcount) - top_border;
 		row_number <= to_unsigned(row, row_number'length);
 		col_number <= to_unsigned(col, 10)(9 downto 1);
 		
-		if (hcount_in(3) = '0') then								
+		if (hcount(3) = '0') then								
 			pixel_in(7 downto 0) <= pixel_adc;															
 		else
 			pixel_in(15 downto 8) <= pixel_adc;									
@@ -335,45 +338,50 @@ begin
 end process;
 
 process_artifact: process(dac_step)
-variable prev_pixel: unsigned(15 downto 0);
-variable cur_pixel: unsigned(15 downto 0);
+variable prev_pixel: integer range 0 to 255;
+variable cur_pixel: integer range 0 to 255;
+variable col: integer range 0 to 1024;
 begin
-	if (dac_step = "100" and hcount_in(31 downto 3) >= front_porch and hcount_in(31 downto 3) < 640+front_porch and vcount_in >= top_border and vcount_in < 240+top_border) then		
-		
-		if (hcount_in(3) = '1') then			
-		
-			cur_pixel(7 downto 0) := pixel_adc; 
-			artifact_pixel <= cur_pixel;
+	if (dac_step = "100") then
+	
+		if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 240+top_border) then		
+			
+			if (hcount(3) = '1') then			
+			
+				col := to_integer(hcount(13 downto 3)) - front_porch;		
+			
+				artifact_pixel <= pixel_adc & pixel_adc;
 
-			if (cur_pixel(7 downto 0) /= prev_pixel(7 downto 0))  then
+				cur_pixel := to_integer(pixel_adc(7 downto 2));		
+				
+				if (cur_pixel < 32) then
+					cur_pixel := 0;
+				end if;
+				
+				if (cur_pixel /= prev_pixel)  then
 
-				if (col_number(0) = '0') then
-					if (to_integer(cur_pixel(7 downto 2)) < 16) then 
-						artifact_pixel <= "1110100011101000";
+					if (to_unsigned(col, 9)(1) = mode) then
+						if (cur_pixel > 32) then 
+							artifact_pixel <= "1110100011101000";
+						else
+							artifact_pixel <= "0010011100100111";
+						end if;
 					else
-						artifact_pixel <= "0010011100100111";
-					end if;
-				else
-					if (to_integer(cur_pixel(7 downto 2)) < 16) then
-						artifact_pixel <= "0010011100100111";
-					else
-						artifact_pixel <= "1110100011101000";
-					end if;											
-				end if;					
-			end if;														
-		else			
-			cur_pixel(15 downto 8) := pixel_adc;														
-			prev_pixel := cur_pixel;								
-		end if;			
-	end if;		
-end process;
-
-artifact_detect: process(clock_pixel, hcount_in)
-begin
-	if (vcount_in >= top_border and hcount_in(31 downto 3) < front_porch) then
-		artifact_mode <= artifact;
-		if (pixel_adc /= "11111111") then
-			artifact_mode <= '0';
+						if (cur_pixel > 32) then
+							artifact_pixel <= "0010011100100111";
+						else
+							artifact_pixel <= "1110100011101000";
+						end if;											
+					end if;					
+				end if;														
+			else			
+				prev_pixel := cur_pixel;								
+			end if;	
+		else
+			artifact_mode <= artifact;
+			if (pixel_adc /= "11111111") then
+				artifact_mode <= '0';
+			end if;
 		end if;
 	end if;
 end process;

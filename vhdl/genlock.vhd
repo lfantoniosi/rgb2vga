@@ -35,6 +35,7 @@ signal hcount, vcount							: unsigned(13 downto 0) := to_unsigned(1024, 14);
 signal red_adc : unsigned(6 downto 0);
 signal green_adc : unsigned(6 downto 0);
 signal blue_adc : unsigned(6 downto 0);
+
 signal pixel_adc : unsigned(7 downto 0);
 signal artifact_mode: std_logic;
 
@@ -267,6 +268,7 @@ begin
 	end if;
 end process;
 
+
 hsync_lock: process(clock_pixel)
 begin	
 	if (rising_edge(clock_pixel)) then
@@ -343,7 +345,7 @@ variable cur_pixel: integer range 0 to 255;
 variable col: integer range 0 to 1024;
 begin
 	if (dac_step = "100") then
-	
+
 		if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 240+top_border) then		
 			
 			if (hcount(3) = '1') then			

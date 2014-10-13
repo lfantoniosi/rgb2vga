@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Mon Oct 13 00:38:15 2014
+Mon Oct 13 01:10:07 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -56,7 +56,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Mon Oct 13 00:38:15 2014      ;
+; Analysis & Synthesis Status        ; Successful - Mon Oct 13 01:10:07 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -1030,7 +1030,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Mon Oct 13 00:38:11 2014
+    Info: Processing started: Mon Oct 13 01:10:02 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
@@ -1127,101 +1127,101 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/pll_
     Info (12023): Found entity 1: pll_altpll
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "pll:inst1|altpll:altpll_component|pll_altpll:auto_generated"
 Info (12128): Elaborating entity "genlock" for hierarchy "genlock:inst6"
-Warning (10492): VHDL Process Statement warning at genlock.vhd(197): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(222): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(247): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(325): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(325): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(198): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(223): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(248): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at genlock.vhd(327): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(328): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(332): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(333): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(327): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(329): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(330): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(334): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at genlock.vhd(335): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at genlock.vhd(322): inferring latch(es) for signal or variable "row_number", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(322): inferring latch(es) for signal or variable "col_number", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(322): inferring latch(es) for signal or variable "pixel_in", which holds its previous value in one or more paths through the process
-Warning (10492): VHDL Process Statement warning at genlock.vhd(347): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(347): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(337): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at genlock.vhd(324): inferring latch(es) for signal or variable "row_number", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(324): inferring latch(es) for signal or variable "col_number", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(324): inferring latch(es) for signal or variable "pixel_in", which holds its previous value in one or more paths through the process
 Warning (10492): VHDL Process Statement warning at genlock.vhd(349): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(349): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at genlock.vhd(351): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(353): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(353): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at genlock.vhd(355): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(363): signal "mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(381): signal "artifact" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(382): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at genlock.vhd(340): inferring latch(es) for signal or variable "artifact_pixel", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(340): inferring latch(es) for signal or variable "cur_pixel", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(340): inferring latch(es) for signal or variable "prev_pixel", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(340): inferring latch(es) for signal or variable "artifact_mode", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(389): inferring latch(es) for signal or variable "store_req", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "store_req" at genlock.vhd(389)
-Info (10041): Inferred latch for "artifact_mode" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[0]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[1]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[2]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[3]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[4]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[5]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[6]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[7]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[8]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[9]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[10]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[11]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[12]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[13]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[14]" at genlock.vhd(340)
-Info (10041): Inferred latch for "artifact_pixel[15]" at genlock.vhd(340)
-Info (10041): Inferred latch for "process_artifact:prev_pixel[0]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:prev_pixel[1]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:prev_pixel[2]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:prev_pixel[3]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:prev_pixel[4]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:prev_pixel[5]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:prev_pixel[6]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:prev_pixel[7]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:cur_pixel[0]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:cur_pixel[1]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:cur_pixel[2]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:cur_pixel[3]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:cur_pixel[4]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:cur_pixel[5]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:cur_pixel[6]" at genlock.vhd(345)
-Info (10041): Inferred latch for "process_artifact:cur_pixel[7]" at genlock.vhd(345)
-Info (10041): Inferred latch for "pixel_in[0]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[1]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[2]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[3]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[4]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[5]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[6]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[7]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[8]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[9]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[10]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[11]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[12]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[13]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[14]" at genlock.vhd(322)
-Info (10041): Inferred latch for "pixel_in[15]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[0]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[1]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[2]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[3]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[4]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[5]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[6]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[7]" at genlock.vhd(322)
-Info (10041): Inferred latch for "col_number[8]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[0]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[1]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[2]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[3]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[4]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[5]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[6]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[7]" at genlock.vhd(322)
-Info (10041): Inferred latch for "row_number[8]" at genlock.vhd(322)
+Warning (10492): VHDL Process Statement warning at genlock.vhd(357): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(365): signal "mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(383): signal "artifact" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(384): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at genlock.vhd(342): inferring latch(es) for signal or variable "artifact_pixel", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(342): inferring latch(es) for signal or variable "cur_pixel", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(342): inferring latch(es) for signal or variable "prev_pixel", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(342): inferring latch(es) for signal or variable "artifact_mode", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(391): inferring latch(es) for signal or variable "store_req", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "store_req" at genlock.vhd(391)
+Info (10041): Inferred latch for "artifact_mode" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[0]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[1]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[2]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[3]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[4]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[5]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[6]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[7]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[8]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[9]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[10]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[11]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[12]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[13]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[14]" at genlock.vhd(342)
+Info (10041): Inferred latch for "artifact_pixel[15]" at genlock.vhd(342)
+Info (10041): Inferred latch for "process_artifact:prev_pixel[0]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:prev_pixel[1]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:prev_pixel[2]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:prev_pixel[3]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:prev_pixel[4]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:prev_pixel[5]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:prev_pixel[6]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:prev_pixel[7]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:cur_pixel[0]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:cur_pixel[1]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:cur_pixel[2]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:cur_pixel[3]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:cur_pixel[4]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:cur_pixel[5]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:cur_pixel[6]" at genlock.vhd(347)
+Info (10041): Inferred latch for "process_artifact:cur_pixel[7]" at genlock.vhd(347)
+Info (10041): Inferred latch for "pixel_in[0]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[1]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[2]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[3]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[4]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[5]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[6]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[7]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[8]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[9]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[10]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[11]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[12]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[13]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[14]" at genlock.vhd(324)
+Info (10041): Inferred latch for "pixel_in[15]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[0]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[1]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[2]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[3]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[4]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[5]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[6]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[7]" at genlock.vhd(324)
+Info (10041): Inferred latch for "col_number[8]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[0]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[1]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[2]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[3]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[4]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[5]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[6]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[7]" at genlock.vhd(324)
+Info (10041): Inferred latch for "row_number[8]" at genlock.vhd(324)
 Info (12128): Elaborating entity "altiobuf" for hierarchy "altiobuf:inst16"
 Info (12128): Elaborating entity "altiobuf_iobuf_in_k0j" for hierarchy "altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component"
 Info (12128): Elaborating entity "vgaout" for hierarchy "vgaout:inst7"
@@ -1286,9 +1286,9 @@ Info (21057): Implemented 686 device resources after synthesis - the final resou
     Info (21064): Implemented 32 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 44 warnings
-    Info: Peak virtual memory: 493 megabytes
-    Info: Processing ended: Mon Oct 13 00:38:15 2014
-    Info: Elapsed time: 00:00:04
+    Info: Peak virtual memory: 505 megabytes
+    Info: Processing ended: Mon Oct 13 01:10:07 2014
+    Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:04
 
 

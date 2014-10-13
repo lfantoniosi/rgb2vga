@@ -1,5 +1,5 @@
 Assembler report for rgb2vga
-Mon Oct 13 00:38:28 2014
+Mon Oct 13 01:10:20 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Mon Oct 13 00:38:28 2014 ;
+; Assembler Status      ; Successful - Mon Oct 13 01:10:20 2014 ;
 ; Revision Name         ; rgb2vga                               ;
 ; Top-level Entity Name ; top                                   ;
 ; Family                ; Cyclone IV E                          ;
@@ -103,13 +103,13 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Mon Oct 13 00:38:26 2014
+    Info: Processing started: Mon Oct 13 01:10:18 2014
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off rgb2vga -c rgb2vga
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
     Info: Peak virtual memory: 410 megabytes
-    Info: Processing ended: Mon Oct 13 00:38:28 2014
+    Info: Processing ended: Mon Oct 13 01:10:20 2014
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

@@ -4,15 +4,15 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity vgaout is
 	generic(
-		hor_active_video			: integer := 640;
-		hor_front_porch			: integer := 16;
-		hor_sync_pulse				: integer := 96;
-		hor_back_porch				: integer := 48;
+		hor_active_video			: integer := 800;
+		hor_front_porch			: integer := 56;
+		hor_sync_pulse				: integer := 120;
+		hor_back_porch				: integer := 64;
 
-		vert_active_video			: integer := 480;
-		vert_front_porch			: integer := 11;
-		vert_sync_pulse			: integer := 2;
-		vert_back_porch			: integer := 32
+		vert_active_video			: integer := 600;
+		vert_front_porch			: integer := 37;
+		vert_sync_pulse			: integer := 6;
+		vert_back_porch			: integer := 23
 		
 	);
 
@@ -47,7 +47,7 @@ begin
 		case color is
 		
 			when "000" => VALUE := "000";
-			when "001" => VALUE := "000";
+			when "001" => VALUE := "001";
 			when "010" => VALUE := "001";
 			when "011" => VALUE := "010";
 			when "100" => VALUE := "011";
@@ -69,14 +69,13 @@ begin
 	if(rising_edge(clock_vga)) then
 
 		if hcount = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1) then
- 		  vcount <= vcount + 1;
-
+			vcount <= vcount + 1;
 		end if;
 		
-      if vcount = (vert_active_video + vert_front_porch + vert_sync_pulse + vert_back_porch) then 
-       vcount <= (others => '0');
-		end if;				
-
+      if vcount = (vert_active_video + vert_front_porch + vert_sync_pulse + vert_back_porch - 1) and hcount = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1) then 
+			vcount <= (others => '0');
+		end if;
+		
 	end if;
 end process;
 
@@ -84,7 +83,7 @@ v_sync: process(clock_vga, vcount)
 begin
 	if(rising_edge(clock_vga)) then
 		vsync <= '1';
-		if (vcount <= (vert_active_video + vert_front_porch + vert_sync_pulse) and vcount >= (vert_active_video + vert_front_porch + vert_sync_pulse - 1)) then
+		if (vcount <= (vert_active_video + vert_front_porch + vert_sync_pulse - 1) and vcount >= (vert_active_video + vert_front_porch - 1)) then
 			vsync <= '0';
 		end if;
 	end if;
@@ -104,7 +103,7 @@ h_sync: process (clock_vga, hcount)
 begin
 	if (rising_edge(clock_vga)) then     
 	   hsync <= '1';				
-      if (hcount <= (hor_active_video + hor_front_porch + hor_sync_pulse) and hcount >= (hor_active_video + hor_front_porch - 1)) then
+      if (hcount <= (hor_active_video + hor_front_porch + hor_sync_pulse - 1) and hcount >= (hor_active_video + hor_front_porch - 1)) then
  		  row_number <= to_unsigned(to_integer(vcount(9 downto 1)) + 1, row_number'length);
         hsync <= '0';
       end if;
@@ -112,7 +111,7 @@ begin
 end process;
 
 pixel_out: process (clock_vga, hcount)
-variable col: integer range 0 to 153600;
+variable col: integer range 0 to 1024;
 begin
 	if (rising_edge(clock_vga)) then
 		if (hcount < 640 and vcount < 480) then
@@ -131,9 +130,9 @@ pixel: process(pixel_in, hcount)
 variable pixel: unsigned (7 downto 0);
 begin
 	if (hcount(0) = '0') then
-			pixel := pixel_in(7 downto 0);
+		pixel := pixel_in(7 downto 0);
 	else
-			pixel := pixel_in(15 downto 8);
+		pixel := pixel_in(15 downto 8);
 	end if;
 
 	if (is_sync = '1') then
@@ -173,14 +172,14 @@ end process;
 process (hcount)
 begin
    videoh <= '1';
-   if hcount > hor_active_video then
+   if hcount > hor_active_video-1 then
 		videoh <= '0';
    end if;
 end process;
 
 	blank <= videoh and videov;
 	
-	vga_out(9 downto 2) <= vga_pixel and blank&blank&blank&blank&blank&blank&blank&blank;	
+	vga_out(9 downto 2) <= vga_pixel(7 downto 2)&vga_pixel(0)&vga_pixel(1) and blank&blank&blank&blank&blank&blank&blank&blank;	
 	
 	vga_out(1 downto 0)	<= hsync & vsync;
 

@@ -1458,7 +1458,7 @@ applicable agreement for further details.
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"vert_front_porch"
-		"11"
+		"10"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
@@ -1468,7 +1468,7 @@ applicable agreement for further details.
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"vert_back_porch"
-		"32"
+		"33"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
@@ -1674,11 +1674,6 @@ applicable agreement for further details.
 	(pt 320 280)
 )
 (connector
-	(text "MAIN_CLK" (rect 266 208 320 220)(font "Arial" ))
-	(pt 264 224)
-	(pt 320 224)
-)
-(connector
 	(text "DAC_STEP[1]" (rect 338 144 407 156)(font "Arial" ))
 	(pt 328 160)
 	(pt 456 160)
@@ -1742,11 +1737,6 @@ applicable agreement for further details.
 	(text "DIFFR" (rect 266 304 300 316)(font "Arial" ))
 	(pt 264 320)
 	(pt 320 320)
-)
-(connector
-	(text "MAIN_CLK" (rect 746 336 800 348)(font "Arial" ))
-	(pt 808 352)
-	(pt 736 352)
 )
 (connector
 	(text "DIFFR" (rect -6 632 28 644)(font "Arial" ))
@@ -1991,6 +1981,16 @@ applicable agreement for further details.
 	(text "MODE" (rect 274 512 305 524)(font "Arial" ))
 	(pt 264 528)
 	(pt 320 528)
+)
+(connector
+	(text "CLOCK_MAIN" (rect 266 208 336 220)(font "Arial" ))
+	(pt 264 224)
+	(pt 320 224)
+)
+(connector
+	(text "CLOCK_MAIN" (rect 746 336 816 348)(font "Arial" ))
+	(pt 808 352)
+	(pt 736 352)
 )
 (connector
 	(text "CLOCK_VGA" (rect 1090 352 1157 364)(font "Arial" ))

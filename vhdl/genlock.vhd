@@ -48,7 +48,7 @@ function f_adc(adc: unsigned) return unsigned is
 variable VALUE : unsigned (2 downto 0); 
 begin
 
-		case adc(6 downto 0) is
+		case adc is
 		
 			when "0000000" => VALUE := "000";
 			when "0000001" => VALUE := "001";
@@ -214,7 +214,6 @@ begin
 				when "000" =>
 					null;
 			end case;
-			pixel_adc(7 downto 5) <= f_adc(red_adc);
 	end if;
 end process;
 
@@ -239,7 +238,6 @@ begin
 				when "000" =>			
 					null;							
 			end case;
-			pixel_adc(4 downto 2) <= f_adc(green_adc);		
 	end if;
 end process;
 
@@ -264,6 +262,14 @@ begin
 				when "000" =>	
 					null;
 			end case;			
+	end if;
+end process;
+
+digitize: process(dac_step)
+begin
+	if (rising_edge(clock_pixel)) then
+			pixel_adc(7 downto 5) <= f_adc(red_adc);
+			pixel_adc(4 downto 2) <= f_adc(green_adc);		
 			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);					
 	end if;
 end process;
@@ -288,7 +294,9 @@ begin
 		if (hcount(13 downto 3) < 1024) then
 			hcount <= hcount + 1;
 		end if;
-		dac_step <= dac_step + 1;
+		
+		dac_step <= dac_step + 1;			
+		
 	end if;
 end process;
 
@@ -364,15 +372,15 @@ begin
 
 					if (to_unsigned(col, 9)(1) = mode) then
 						if (cur_pixel > 32) then 
-							artifact_pixel <= "1110100011101000";
+							artifact_pixel <= "1110110011101100";
 						else
-							artifact_pixel <= "0010011100100111";
+							artifact_pixel <= "0100101101001011";
 						end if;
 					else
 						if (cur_pixel > 32) then
-							artifact_pixel <= "0010011100100111";
+							artifact_pixel <= "0100101101001011";
 						else
-							artifact_pixel <= "1110100011101000";
+							artifact_pixel <= "1110110011101100";
 						end if;											
 					end if;					
 				end if;														

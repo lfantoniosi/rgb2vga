@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for rgb2vga
-Wed Oct 15 00:23:00 2014
+Sat Oct 18 03:35:35 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -102,7 +102,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; rgb2vga.sdc   ; OK     ; Wed Oct 15 00:22:59 2014 ;
+; rgb2vga.sdc   ; OK     ; Sat Oct 18 03:35:33 2014 ;
 +---------------+--------+--------------------------+
 
 
@@ -163,14 +163,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.692 ;       ;       ; 2.812 ;
-; SWITCH0    ; VGAB0       ;       ; 6.474 ; 6.483 ;       ;
-; SWITCH0    ; VGAB1       ; 6.716 ; 6.772 ; 6.731 ; 6.939 ;
-; SWITCH0    ; VGAG0       ; 7.134 ; 7.536 ; 7.235 ; 7.635 ;
-; SWITCH0    ; VGAG1       ; 7.050 ; 7.198 ; 7.179 ; 7.294 ;
-; SWITCH0    ; VGAG2       ;       ; 7.443 ; 7.374 ;       ;
-; SWITCH0    ; VGAR0       ; 6.989 ; 7.043 ; 7.021 ; 7.210 ;
-; SWITCH0    ; VGAR1       ; 6.302 ; 6.389 ; 6.485 ; 6.563 ;
-; SWITCH0    ; VGAR2       ;       ; 6.290 ; 6.410 ;       ;
+; SWITCH0    ; VGAB0       ;       ; 5.909 ; 5.946 ;       ;
+; SWITCH0    ; VGAB1       ; 6.480 ; 6.631 ; 6.570 ; 6.733 ;
+; SWITCH0    ; VGAG0       ; 7.563 ; 7.881 ; 7.654 ; 7.972 ;
+; SWITCH0    ; VGAG1       ; 6.640 ; 6.786 ; 6.763 ; 6.876 ;
+; SWITCH0    ; VGAG2       ;       ; 6.879 ; 6.866 ;       ;
+; SWITCH0    ; VGAR0       ; 7.220 ; 7.257 ; 7.329 ; 7.375 ;
+; SWITCH0    ; VGAR1       ; 5.918 ; 5.994 ; 6.133 ; 6.140 ;
+; SWITCH0    ; VGAR2       ;       ; 6.453 ; 6.602 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -180,14 +180,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.243 ;       ;       ; 2.365 ;
-; SWITCH0    ; VGAB0       ;       ; 6.263 ; 6.276 ;       ;
-; SWITCH0    ; VGAB1       ; 6.494 ; 6.549 ; 6.515 ; 6.716 ;
-; SWITCH0    ; VGAG0       ; 6.887 ; 7.258 ; 7.019 ; 7.390 ;
-; SWITCH0    ; VGAG1       ; 6.814 ; 6.956 ; 6.942 ; 7.056 ;
-; SWITCH0    ; VGAG2       ;       ; 7.166 ; 7.119 ;       ;
-; SWITCH0    ; VGAR0       ; 6.720 ; 6.782 ; 6.774 ; 6.938 ;
-; SWITCH0    ; VGAR1       ; 6.095 ; 6.180 ; 6.278 ; 6.354 ;
-; SWITCH0    ; VGAR2       ;       ; 6.085 ; 6.205 ;       ;
+; SWITCH0    ; VGAB0       ;       ; 5.717 ; 5.761 ;       ;
+; SWITCH0    ; VGAB1       ; 6.263 ; 6.410 ; 6.359 ; 6.517 ;
+; SWITCH0    ; VGAG0       ; 7.223 ; 7.610 ; 7.348 ; 7.710 ;
+; SWITCH0    ; VGAG1       ; 6.403 ; 6.542 ; 6.527 ; 6.638 ;
+; SWITCH0    ; VGAG2       ;       ; 6.630 ; 6.628 ;       ;
+; SWITCH0    ; VGAR0       ; 6.962 ; 6.981 ; 7.075 ; 7.103 ;
+; SWITCH0    ; VGAR1       ; 5.725 ; 5.792 ; 5.937 ; 5.946 ;
+; SWITCH0    ; VGAR2       ;       ; 6.242 ; 6.390 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -239,14 +239,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.434 ;       ;       ; 2.576 ;
-; SWITCH0    ; VGAB0       ;       ; 5.801 ; 5.908 ;       ;
-; SWITCH0    ; VGAB1       ; 6.104 ; 6.075 ; 6.134 ; 6.241 ;
-; SWITCH0    ; VGAG0       ; 6.432 ; 6.737 ; 6.556 ; 6.856 ;
-; SWITCH0    ; VGAG1       ; 6.410 ; 6.466 ; 6.557 ; 6.582 ;
-; SWITCH0    ; VGAG2       ;       ; 6.644 ; 6.725 ;       ;
-; SWITCH0    ; VGAR0       ; 6.363 ; 6.334 ; 6.411 ; 6.501 ;
-; SWITCH0    ; VGAR1       ; 5.741 ; 5.754 ; 5.909 ; 5.914 ;
-; SWITCH0    ; VGAR2       ;       ; 5.674 ; 5.850 ;       ;
+; SWITCH0    ; VGAB0       ;       ; 5.306 ; 5.407 ;       ;
+; SWITCH0    ; VGAB1       ; 5.858 ; 5.930 ; 5.976 ; 6.065 ;
+; SWITCH0    ; VGAG0       ; 6.794 ; 7.023 ; 6.933 ; 7.165 ;
+; SWITCH0    ; VGAG1       ; 6.005 ; 6.059 ; 6.174 ; 6.197 ;
+; SWITCH0    ; VGAG2       ;       ; 6.169 ; 6.257 ;       ;
+; SWITCH0    ; VGAR0       ; 6.568 ; 6.494 ; 6.702 ; 6.636 ;
+; SWITCH0    ; VGAR1       ; 5.370 ; 5.365 ; 5.582 ; 5.519 ;
+; SWITCH0    ; VGAR2       ;       ; 5.808 ; 6.020 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -256,14 +256,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.024 ;       ;       ; 2.170 ;
-; SWITCH0    ; VGAB0       ;       ; 5.599 ; 5.708 ;       ;
-; SWITCH0    ; VGAB1       ; 5.889 ; 5.862 ; 5.926 ; 6.030 ;
-; SWITCH0    ; VGAG0       ; 6.200 ; 6.476 ; 6.347 ; 6.626 ;
-; SWITCH0    ; VGAG1       ; 6.184 ; 6.236 ; 6.330 ; 6.356 ;
-; SWITCH0    ; VGAG2       ;       ; 6.383 ; 6.482 ;       ;
-; SWITCH0    ; VGAR0       ; 6.108 ; 6.087 ; 6.173 ; 6.250 ;
-; SWITCH0    ; VGAR1       ; 5.542 ; 5.555 ; 5.709 ; 5.716 ;
-; SWITCH0    ; VGAR2       ;       ; 5.479 ; 5.652 ;       ;
+; SWITCH0    ; VGAB0       ;       ; 5.123 ; 5.226 ;       ;
+; SWITCH0    ; VGAB1       ; 5.653 ; 5.723 ; 5.773 ; 5.858 ;
+; SWITCH0    ; VGAG0       ; 6.485 ; 6.775 ; 6.652 ; 6.914 ;
+; SWITCH0    ; VGAG1       ; 5.778 ; 5.829 ; 5.944 ; 5.969 ;
+; SWITCH0    ; VGAG2       ;       ; 5.935 ; 6.025 ;       ;
+; SWITCH0    ; VGAR0       ; 6.322 ; 6.239 ; 6.459 ; 6.382 ;
+; SWITCH0    ; VGAR1       ; 5.184 ; 5.173 ; 5.394 ; 5.335 ;
+; SWITCH0    ; VGAR2       ;       ; 5.606 ; 5.814 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -309,14 +309,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.578 ;       ;       ; 2.019 ;
-; SWITCH0    ; VGAB0       ;       ; 3.915 ; 4.045 ;       ;
-; SWITCH0    ; VGAB1       ; 3.946 ; 4.095 ; 4.166 ; 4.404 ;
-; SWITCH0    ; VGAG0       ; 4.243 ; 4.616 ; 4.506 ; 4.879 ;
-; SWITCH0    ; VGAG1       ; 4.116 ; 4.328 ; 4.398 ; 4.591 ;
-; SWITCH0    ; VGAG2       ;       ; 4.473 ; 4.541 ;       ;
-; SWITCH0    ; VGAR0       ; 4.064 ; 4.207 ; 4.294 ; 4.518 ;
-; SWITCH0    ; VGAR1       ; 3.714 ; 3.872 ; 4.056 ; 4.207 ;
-; SWITCH0    ; VGAR2       ;       ; 3.806 ; 3.988 ;       ;
+; SWITCH0    ; VGAB0       ;       ; 3.566 ; 3.738 ;       ;
+; SWITCH0    ; VGAB1       ; 3.809 ; 3.990 ; 4.082 ; 4.267 ;
+; SWITCH0    ; VGAG0       ; 4.511 ; 4.834 ; 4.762 ; 5.085 ;
+; SWITCH0    ; VGAG1       ; 3.868 ; 4.033 ; 4.138 ; 4.284 ;
+; SWITCH0    ; VGAG2       ;       ; 4.114 ; 4.215 ;       ;
+; SWITCH0    ; VGAR0       ; 4.147 ; 4.340 ; 4.436 ; 4.636 ;
+; SWITCH0    ; VGAR1       ; 3.440 ; 3.571 ; 3.813 ; 3.901 ;
+; SWITCH0    ; VGAR2       ;       ; 3.872 ; 4.077 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -326,14 +326,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.305 ;       ;       ; 1.747 ;
-; SWITCH0    ; VGAB0       ;       ; 3.786 ; 3.924 ;       ;
-; SWITCH0    ; VGAB1       ; 3.812 ; 3.957 ; 4.040 ; 4.269 ;
-; SWITCH0    ; VGAG0       ; 4.094 ; 4.443 ; 4.380 ; 4.729 ;
-; SWITCH0    ; VGAG1       ; 3.978 ; 4.183 ; 4.265 ; 4.451 ;
-; SWITCH0    ; VGAG2       ;       ; 4.307 ; 4.394 ;       ;
-; SWITCH0    ; VGAR0       ; 3.908 ; 4.050 ; 4.156 ; 4.357 ;
-; SWITCH0    ; VGAR1       ; 3.592 ; 3.745 ; 3.936 ; 4.082 ;
-; SWITCH0    ; VGAR2       ;       ; 3.682 ; 3.870 ;       ;
+; SWITCH0    ; VGAB0       ;       ; 3.451 ; 3.628 ;       ;
+; SWITCH0    ; VGAB1       ; 3.683 ; 3.858 ; 3.959 ; 4.138 ;
+; SWITCH0    ; VGAG0       ; 4.299 ; 4.662 ; 4.573 ; 4.934 ;
+; SWITCH0    ; VGAG1       ; 3.732 ; 3.889 ; 4.006 ; 4.144 ;
+; SWITCH0    ; VGAG2       ;       ; 3.966 ; 4.080 ;       ;
+; SWITCH0    ; VGAR0       ; 4.000 ; 4.179 ; 4.291 ; 4.477 ;
+; SWITCH0    ; VGAR1       ; 3.329 ; 3.451 ; 3.703 ; 3.789 ;
+; SWITCH0    ; VGAR2       ;       ; 3.744 ; 3.955 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -359,14 +359,14 @@ No synchronizer chains to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.692 ;       ;       ; 2.812 ;
-; SWITCH0    ; VGAB0       ;       ; 6.474 ; 6.483 ;       ;
-; SWITCH0    ; VGAB1       ; 6.716 ; 6.772 ; 6.731 ; 6.939 ;
-; SWITCH0    ; VGAG0       ; 7.134 ; 7.536 ; 7.235 ; 7.635 ;
-; SWITCH0    ; VGAG1       ; 7.050 ; 7.198 ; 7.179 ; 7.294 ;
-; SWITCH0    ; VGAG2       ;       ; 7.443 ; 7.374 ;       ;
-; SWITCH0    ; VGAR0       ; 6.989 ; 7.043 ; 7.021 ; 7.210 ;
-; SWITCH0    ; VGAR1       ; 6.302 ; 6.389 ; 6.485 ; 6.563 ;
-; SWITCH0    ; VGAR2       ;       ; 6.290 ; 6.410 ;       ;
+; SWITCH0    ; VGAB0       ;       ; 5.909 ; 5.946 ;       ;
+; SWITCH0    ; VGAB1       ; 6.480 ; 6.631 ; 6.570 ; 6.733 ;
+; SWITCH0    ; VGAG0       ; 7.563 ; 7.881 ; 7.654 ; 7.972 ;
+; SWITCH0    ; VGAG1       ; 6.640 ; 6.786 ; 6.763 ; 6.876 ;
+; SWITCH0    ; VGAG2       ;       ; 6.879 ; 6.866 ;       ;
+; SWITCH0    ; VGAR0       ; 7.220 ; 7.257 ; 7.329 ; 7.375 ;
+; SWITCH0    ; VGAR1       ; 5.918 ; 5.994 ; 6.133 ; 6.140 ;
+; SWITCH0    ; VGAR2       ;       ; 6.453 ; 6.602 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -376,14 +376,14 @@ No synchronizer chains to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.305 ;       ;       ; 1.747 ;
-; SWITCH0    ; VGAB0       ;       ; 3.786 ; 3.924 ;       ;
-; SWITCH0    ; VGAB1       ; 3.812 ; 3.957 ; 4.040 ; 4.269 ;
-; SWITCH0    ; VGAG0       ; 4.094 ; 4.443 ; 4.380 ; 4.729 ;
-; SWITCH0    ; VGAG1       ; 3.978 ; 4.183 ; 4.265 ; 4.451 ;
-; SWITCH0    ; VGAG2       ;       ; 4.307 ; 4.394 ;       ;
-; SWITCH0    ; VGAR0       ; 3.908 ; 4.050 ; 4.156 ; 4.357 ;
-; SWITCH0    ; VGAR1       ; 3.592 ; 3.745 ; 3.936 ; 4.082 ;
-; SWITCH0    ; VGAR2       ;       ; 3.682 ; 3.870 ;       ;
+; SWITCH0    ; VGAB0       ;       ; 3.451 ; 3.628 ;       ;
+; SWITCH0    ; VGAB1       ; 3.683 ; 3.858 ; 3.959 ; 4.138 ;
+; SWITCH0    ; VGAG0       ; 4.299 ; 4.662 ; 4.573 ; 4.934 ;
+; SWITCH0    ; VGAG1       ; 3.732 ; 3.889 ; 4.006 ; 4.144 ;
+; SWITCH0    ; VGAG2       ;       ; 3.966 ; 4.080 ;       ;
+; SWITCH0    ; VGAR0       ; 4.000 ; 4.179 ; 4.291 ; 4.477 ;
+; SWITCH0    ; VGAR1       ; 3.329 ; 3.451 ; 3.703 ; 3.789 ;
+; SWITCH0    ; VGAR2       ;       ; 3.744 ; 3.955 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -454,7 +454,6 @@ No synchronizer chains to report.
 +-------------------------+--------------+-----------------+-----------------+
 ; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
 +-------------------------+--------------+-----------------+-----------------+
-; SWITCH1                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; DRAM_DQ[15]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; DRAM_DQ[14]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; DRAM_DQ[13]             ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -481,6 +480,7 @@ No synchronizer chains to report.
 ; CLOCK_50                ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; VSYNC                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; HSYNC                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; SWITCH1                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH3                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH2                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -700,8 +700,8 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 2     ; 2    ;
 ; Unconstrained Clocks            ; 2     ; 2    ;
-; Unconstrained Input Ports       ; 25    ; 25   ;
-; Unconstrained Input Port Paths  ; 55    ; 55   ;
+; Unconstrained Input Ports       ; 26    ; 26   ;
+; Unconstrained Input Port Paths  ; 57    ; 57   ;
 ; Unconstrained Output Ports      ; 50    ; 50   ;
 ; Unconstrained Output Port Paths ; 194   ; 194  ;
 +---------------------------------+-------+------+
@@ -713,7 +713,7 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Wed Oct 15 00:22:58 2014
+    Info: Processing started: Sat Oct 18 03:35:32 2014
 Info: Command: quartus_sta rgb2vga -c rgb2vga
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
@@ -785,9 +785,9 @@ Info (332140): No Minimum Pulse Width paths to report
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 32 warnings
-    Info: Peak virtual memory: 468 megabytes
-    Info: Processing ended: Wed Oct 15 00:23:00 2014
-    Info: Elapsed time: 00:00:02
+    Info: Peak virtual memory: 472 megabytes
+    Info: Processing ended: Sat Oct 18 03:35:35 2014
+    Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 
 

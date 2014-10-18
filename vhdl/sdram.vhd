@@ -186,7 +186,7 @@ begin
 						
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						
-					elsif( SdrRoutineSeq >= X"008" and SdrRoutineSeq < X"198" ) then
+					elsif( SdrRoutineSeq >= X"008" and SdrRoutineSeq < X"1A8" ) then
 						SdrCmd <= SdrCmd_xx;						
 						
 						colLoadNr <= SdrAddress(8 downto 0);
@@ -195,12 +195,12 @@ begin
 						SdrAddress := SdrAddress + 1;
 						SdrRoutineSeq := SdrRoutineSeq + 1;					
 						
-					elsif( SdrRoutineSeq = X"198" ) then
+					elsif( SdrRoutineSeq = X"1A8" ) then
 						SdrCmd <= SdrCmd_bs;	
 						rowLoadAck <= '1'; 					
 						SdrRoutineSeq := SdrRoutineSeq + 1;					
 
-					elsif( SdrRoutineSeq = X"199" ) then
+					elsif( SdrRoutineSeq = X"1A9" ) then
 						SdrCmd <= SdrCmd_xx;						
 						SdrRoutineSeq := X"000";
 						SdrRoutine := SdrRoutine_Idle;
@@ -235,7 +235,7 @@ begin
 						SdrUdq <= '0';
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						
-					elsif( SdrRoutineSeq >= X"003" and SdrRoutineSeq < X"193") then
+					elsif( SdrRoutineSeq >= X"003" and SdrRoutineSeq < X"1A3") then
 						SdrCmd <= SdrCmd_xx;
 						
 						SdrDat <= pixelIn;					
@@ -244,13 +244,13 @@ begin
 						
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						
-					elsif( SdrRoutineSeq = X"193") then
+					elsif( SdrRoutineSeq = X"1A3") then
 						SdrCmd <= SdrCmd_bs;
 						SdrDat <= (others => 'Z');
 						rowStoreAck <= '1';		
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						
-					elsif( SdrRoutineSeq = X"194" ) then						
+					elsif( SdrRoutineSeq = X"1A4" ) then						
 						SdrCmd <= SdrCmd_xx;
 						SdrRoutineSeq := X"000";
 						SdrRoutine := SdrRoutine_Idle;

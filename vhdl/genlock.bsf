@@ -73,6 +73,13 @@ applicable agreement for further details.
 		(line (pt 0 128)(pt 16 128)(line_width 1))
 	)
 	(port
+		(pt 0 144)
+		(input)
+		(text "sync_level" (rect 0 0 43 12)(font "Arial" ))
+		(text "sync_level" (rect 21 139 64 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 1))
+	)
+	(port
 		(pt 224 32)
 		(output)
 		(text "pixel_out[15..0]" (rect 0 0 57 12)(font "Arial" ))
@@ -124,11 +131,6 @@ applicable agreement for further details.
 		"0"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"sync_level"
-		"'1'"
-		""
-		(type "PARAMETER_ENUM")	)
 	(drawing
 		(rectangle (rect 16 16 208 160)(line_width 1))
 	)

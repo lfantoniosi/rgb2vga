@@ -4,11 +4,14 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity genlock is
 	generic(
-		front_porch			: integer := 0;
-		top_border			: integer := 0;
-		sync_level			: std_logic := '1'
+		front_porch			: integer := 182;
+		top_border			: integer := 16
 	);
-
+	
+	-- front_porch: 192 MSX2+
+	--					 182 Coco3
+	
+	
     port(clock_pixel : in std_logic;
 			vsync  : in std_logic; -- digital vsync
 			hsync	 : in std_logic; -- digital hsync
@@ -22,7 +25,8 @@ entity genlock is
 			dac_step		: buffer unsigned(2 downto 0);
 			is_sync		: out std_logic;
 			artifact		: in std_logic;
-			mode 			: in std_logic
+			mode 			: in std_logic;
+			sync_level	: in std_logic
 									
          );
 end genlock;
@@ -276,12 +280,15 @@ end process;
 
 
 hsync_lock: process(clock_pixel)
+variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then
 		hblank <= '1'; 
-		if (hsync = sync_level and hcount(13 downto 3) >= 799) then
+--		if (hsync = sync_level and hcount(13 downto 3) >= 799) then
+		if (hsync = sync_level and hcount(13 downto 3) >= (717+front_porch)) then
 			hblank <= '0'; 
 		end if;		
+		
 	end if;
 end process;
 
@@ -301,11 +308,12 @@ begin
 end process;
 
 vsync_lock: process(clock_pixel)
+variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then		
-		vblank <= '1'; 	
-		
-		if (vsync = sync_level and vcount > 260) then
+
+		vblank <= '1'; 					
+		if (vsync = sync_level and vcount > 261) then
 			vblank <= '0';	
 		end if;		
 				
@@ -332,7 +340,7 @@ end process;
 process_pixel: process(dac_step) 
 variable row, col: integer range 0 to 1024;
 begin
-	if (dac_step = "100" and hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 240+top_border) then		
+	if (dac_step = "100" and hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 262) then		
 	
 		col := to_integer(hcount(13 downto 3)) - front_porch;		
 		row := to_integer(vcount) - top_border;
@@ -354,7 +362,7 @@ variable col: integer range 0 to 1024;
 begin
 	if (dac_step = "100") then
 
-		if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 240+top_border) then		
+		if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 262) then		
 			
 			if (hcount(3) = '1') then			
 			

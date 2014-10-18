@@ -5,6 +5,7 @@ VSYNC => genlock:inst6.vsync
 HSYNC => genlock:inst6.hsync
 SWITCH2 => genlock:inst6.artifact
 SWITCH3 => genlock:inst6.mode
+SWITCH1 => genlock:inst6.sync_level
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
 DIFFG => altiobuf:inst12.datain[0]
@@ -63,7 +64,6 @@ DRAM_BA[0] <= sdram:inst.pMemBa0
 DRAM_BA[1] <= sdram:inst.pMemBa1
 DRAM_DQM[0] <= sdram:inst.pMemLdq
 DRAM_DQM[1] <= sdram:inst.pMemUdq
-SWITCH1 => ~NO_FANOUT~
 
 
 |top|sdram:inst
@@ -500,6 +500,14 @@ clock_pixel => hcount[11].CLK
 clock_pixel => hcount[12].CLK
 clock_pixel => hcount[13].CLK
 clock_pixel => hblank.CLK
+clock_pixel => pixel_adc[0].CLK
+clock_pixel => pixel_adc[1].CLK
+clock_pixel => pixel_adc[2].CLK
+clock_pixel => pixel_adc[3].CLK
+clock_pixel => pixel_adc[4].CLK
+clock_pixel => pixel_adc[5].CLK
+clock_pixel => pixel_adc[6].CLK
+clock_pixel => pixel_adc[7].CLK
 clock_pixel => blue_adc[0].CLK
 clock_pixel => blue_adc[1].CLK
 clock_pixel => blue_adc[2].CLK
@@ -521,17 +529,9 @@ clock_pixel => red_adc[3].CLK
 clock_pixel => red_adc[4].CLK
 clock_pixel => red_adc[5].CLK
 clock_pixel => red_adc[6].CLK
-clock_pixel => pixel_adc[0].CLK
-clock_pixel => pixel_adc[1].CLK
-clock_pixel => pixel_adc[2].CLK
-clock_pixel => pixel_adc[3].CLK
-clock_pixel => pixel_adc[4].CLK
-clock_pixel => pixel_adc[5].CLK
-clock_pixel => pixel_adc[6].CLK
-clock_pixel => pixel_adc[7].CLK
+vsync => vsync_lock.IN0
 vsync => vsync_lock.IN1
-vsync => vsync_lock.IN1
-hsync => hsync_lock.IN1
+hsync => hsync_lock.IN0
 adc_rgb[0] => Mux14.IN0
 adc_rgb[0] => Mux15.IN0
 adc_rgb[0] => Mux16.IN0
@@ -595,6 +595,8 @@ dac_step[2] <= dac_step[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 is_sync <= is_sync~reg0.DB_MAX_OUTPUT_PORT_TYPE
 artifact => artifact_mode.DATAB
 mode => process_artifact.IN1
+sync_level => hsync_lock.IN1
+sync_level => vsync_lock.IN1
 
 
 |top|altiobuf:inst16

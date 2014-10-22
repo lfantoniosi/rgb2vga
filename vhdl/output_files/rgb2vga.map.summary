@@ -1,13 +1,13 @@
-Analysis & Synthesis Status : Successful - Sat Oct 18 03:35:18 2014
+Analysis & Synthesis Status : Successful - Tue Oct 21 23:14:12 2014
 Quartus II 64-Bit Version : 13.0.0 Build 156 04/24/2013 SJ Web Edition
 Revision Name : rgb2vga
 Top-level Entity Name : top
 Family : Cyclone IV E
-Total logic elements : 547
-    Total combinational functions : 470
+Total logic elements : 537
+    Total combinational functions : 458
     Dedicated logic registers : 255
 Total registers : 255
-Total pins : 65
+Total pins : 73
 Total virtual pins : 0
 Total memory bits : 16,384
 Embedded Multiplier 9-bit elements : 0

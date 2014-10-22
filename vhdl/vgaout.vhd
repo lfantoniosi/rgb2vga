@@ -47,13 +47,13 @@ begin
 		case color is
 		
 			when "000" => VALUE := "000";
-			when "001" => VALUE := "001";
+			when "001" => VALUE := "000";
 			when "010" => VALUE := "001";
-			when "011" => VALUE := "010";
-			when "100" => VALUE := "011";
-			when "101" => VALUE := "100";
-			when "110" => VALUE := "101";
-			when "111" => VALUE := "110";
+			when "011" => VALUE := "001";
+			when "100" => VALUE := "010";
+			when "101" => VALUE := "010";
+			when "110" => VALUE := "011";
+			when "111" => VALUE := "011";
 			
 		end case;
 
@@ -179,7 +179,7 @@ end process;
 
 	blank <= videoh and videov;
 	
-	vga_out(9 downto 2) <= vga_pixel(7 downto 2)&vga_pixel(0)&vga_pixel(1) and blank&blank&blank&blank&blank&blank&blank&blank;	
+	vga_out(9 downto 2) <= vga_pixel(7 downto 0) and blank&blank&blank&blank&blank&blank&blank&blank;	
 	
 	vga_out(1 downto 0)	<= hsync & vsync;
 

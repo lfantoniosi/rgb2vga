@@ -3,14 +3,14 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity genlock is
-	generic(
-		front_porch			: integer := 182;
-		top_border			: integer := 16
-	);
-	
+
 	-- front_porch: 192 MSX2+
 	--					 182 Coco3
-	
+	--generic(
+	--	front_porch : integer := 192;
+	--	top_border	: integer := 16
+	--	
+	--);	
 	
     port(clock_pixel : in std_logic;
 			vsync  : in std_logic; -- digital vsync
@@ -26,7 +26,9 @@ entity genlock is
 			is_sync		: out std_logic;
 			artifact		: in std_logic;
 			mode 			: in std_logic;
-			sync_level	: in std_logic
+			sync_level	: in std_logic;
+			front_porch : in unsigned(7 downto 0);
+			top_border	: in unsigned(5 downto 0)
 									
          );
 end genlock;
@@ -269,23 +271,34 @@ begin
 	end if;
 end process;
 
-digitize: process(dac_step)
+digitizeR: process(red_adc)
 begin
 	if (rising_edge(clock_pixel)) then
 			pixel_adc(7 downto 5) <= f_adc(red_adc);
-			pixel_adc(4 downto 2) <= f_adc(green_adc);		
-			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);					
 	end if;
 end process;
 
+digitizeG: process(green_adc)
+begin
+	if (rising_edge(clock_pixel)) then
+			pixel_adc(4 downto 2) <= f_adc(green_adc);		
+	end if;
+end process;
+
+digitizeB: process(blue_adc)
+begin
+	if (rising_edge(clock_pixel)) then
+			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);					
+	end if;
+end process;
 
 hsync_lock: process(clock_pixel)
 variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then
 		hblank <= '1'; 
---		if (hsync = sync_level and hcount(13 downto 3) >= 799) then
-		if (hsync = sync_level and hcount(13 downto 3) >= (717+front_porch)) then
+		if (hsync = sync_level and hcount(13 downto 3) >= 909) then
+		--if (hsync = sync_level and hcount(13 downto 3) >= 717+front_porch) then
 			hblank <= '0'; 
 		end if;		
 		
@@ -296,13 +309,19 @@ hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
 		hcount <= (others => '0');
-		dac_step <= "000";
+		dac_step <= "001";
 	elsif (rising_edge(clock_pixel)) then
 		if (hcount(13 downto 3) < 1024) then
 			hcount <= hcount + 1;
 		end if;
 		
-		dac_step <= dac_step + 1;			
+		case hcount(2 downto 0) is
+			when "000" => 
+					dac_step <= "001";
+			when others =>
+					dac_step <= hcount(2 downto 0);					
+		end case;
+		--dac_step <= dac_step + 1;			
 		
 	end if;
 end process;
@@ -339,66 +358,57 @@ end process;
 
 process_pixel: process(dac_step) 
 variable row, col: integer range 0 to 1024;
-begin
-	if (dac_step = "100" and hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 262) then		
-	
-		col := to_integer(hcount(13 downto 3)) - front_porch;		
-		row := to_integer(vcount) - top_border;
-		row_number <= to_unsigned(row, row_number'length);
-		col_number <= to_unsigned(col, 10)(9 downto 1);
-		
-		if (hcount(3) = '0') then								
-			pixel_in(7 downto 0) <= pixel_adc;															
-		else
-			pixel_in(15 downto 8) <= pixel_adc;									
-		end if;								
-	end if;
-end process;
-
-process_artifact: process(dac_step)
 variable prev_pixel: integer range 0 to 255;
 variable cur_pixel: integer range 0 to 255;
-variable col: integer range 0 to 1024;
 begin
 	if (dac_step = "100") then
-
-		if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 262) then		
+		if (hcount(13 downto 3) >= to_integer(front_porch) and hcount(13 downto 3) < 640+to_integer(front_porch) and vcount >= to_integer(top_border) and vcount < 312) then		
+		--if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 312) then		
+		
+			col := to_integer(hcount(13 downto 3)) - to_integer(front_porch);		
+			--col := to_integer(hcount(13 downto 3)) - front_porch;		
+			row := to_integer(vcount) - to_integer(top_border);
+			--row := to_integer(vcount) - top_border;
+			row_number <= to_unsigned(row, row_number'length);
+			col_number <= to_unsigned(col, 10)(9 downto 1);
 			
-			if (hcount(3) = '1') then			
+			if (hcount(3) = '0') then								
+				pixel_out(7 downto 0) <= pixel_adc;		
+				prev_pixel := cur_pixel;				
+			else
+				pixel_out(15 downto 8) <= pixel_adc;									
 			
-				col := to_integer(hcount(13 downto 3)) - front_porch;		
-			
-				artifact_pixel <= pixel_adc & pixel_adc;
-
-				cur_pixel := to_integer(pixel_adc(7 downto 2));		
+				if (artifact_mode = '1') then
 				
-				if (cur_pixel < 32) then
-					cur_pixel := 0;
-				end if;
-				
-				if (cur_pixel /= prev_pixel)  then
+					pixel_out <= pixel_adc & pixel_adc;
 
-					if (to_unsigned(col, 9)(1) = mode) then
-						if (cur_pixel > 32) then 
-							artifact_pixel <= "1110110011101100";
+					cur_pixel := to_integer(pixel_adc(7 downto 2));							
+					if (cur_pixel < 32) then
+						cur_pixel := 0;
+					end if;
+					
+					if (cur_pixel /= prev_pixel)  then
+
+						if (to_unsigned(col, 9)(1) = mode) then
+							if (cur_pixel = 0) then 
+								pixel_out <= "1110110011101100";
+							else
+								pixel_out <= "0100101101001011";
+							end if;
 						else
-							artifact_pixel <= "0100101101001011";
-						end if;
-					else
-						if (cur_pixel > 32) then
-							artifact_pixel <= "0100101101001011";
-						else
-							artifact_pixel <= "1110110011101100";
-						end if;											
-					end if;					
-				end if;														
-			else			
-				prev_pixel := cur_pixel;								
-			end if;	
+							if (cur_pixel = 0) then
+								pixel_out <= "0100101101001011";
+							else
+								pixel_out <= "1110110011101100";
+							end if;											
+						end if;					
+					end if;														
+				end if;	
+			end if;
 		else
-			artifact_mode <= artifact;
-			if (pixel_adc /= "11111111") then
-				artifact_mode <= '0';
+			artifact_mode <= '0';
+			if (pixel_adc(7 downto 2) = "111111") then
+				artifact_mode <= artifact;
 			end if;
 		end if;
 	end if;
@@ -415,9 +425,5 @@ begin
 		store_req <= '1';
 	end if;
 end process;
-
-	with artifact_mode select
-		pixel_out <= pixel_in when '0',
-				       artifact_pixel when '1';
 
 end behavioral;

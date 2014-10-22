@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for rgb2vga
-Sat Oct 18 03:35:35 2014
+Tue Oct 21 23:14:29 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -102,7 +102,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; rgb2vga.sdc   ; OK     ; Sat Oct 18 03:35:33 2014 ;
+; rgb2vga.sdc   ; OK     ; Tue Oct 21 23:14:27 2014 ;
 +---------------+--------+--------------------------+
 
 
@@ -163,14 +163,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.692 ;       ;       ; 2.812 ;
-; SWITCH0    ; VGAB0       ;       ; 5.909 ; 5.946 ;       ;
-; SWITCH0    ; VGAB1       ; 6.480 ; 6.631 ; 6.570 ; 6.733 ;
-; SWITCH0    ; VGAG0       ; 7.563 ; 7.881 ; 7.654 ; 7.972 ;
-; SWITCH0    ; VGAG1       ; 6.640 ; 6.786 ; 6.763 ; 6.876 ;
-; SWITCH0    ; VGAG2       ;       ; 6.879 ; 6.866 ;       ;
-; SWITCH0    ; VGAR0       ; 7.220 ; 7.257 ; 7.329 ; 7.375 ;
-; SWITCH0    ; VGAR1       ; 5.918 ; 5.994 ; 6.133 ; 6.140 ;
-; SWITCH0    ; VGAR2       ;       ; 6.453 ; 6.602 ;       ;
+; SWITCH0    ; VGAB0       ; 6.392 ; 6.465 ; 6.574 ; 6.638 ;
+; SWITCH0    ; VGAB1       ;       ; 5.982 ; 6.092 ;       ;
+; SWITCH0    ; VGAG0       ; 7.146 ; 7.570 ; 7.417 ; 7.669 ;
+; SWITCH0    ; VGAG1       ; 6.297 ; 6.445 ; 6.471 ; 6.529 ;
+; SWITCH0    ; VGAG2       ;       ; 6.217 ; 6.359 ;       ;
+; SWITCH0    ; VGAR0       ; 6.628 ; 6.701 ; 6.794 ; 6.932 ;
+; SWITCH0    ; VGAR1       ; 6.276 ; 6.375 ; 6.532 ; 6.479 ;
+; SWITCH0    ; VGAR2       ;       ; 6.569 ; 6.708 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -180,14 +180,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.243 ;       ;       ; 2.365 ;
-; SWITCH0    ; VGAB0       ;       ; 5.717 ; 5.761 ;       ;
-; SWITCH0    ; VGAB1       ; 6.263 ; 6.410 ; 6.359 ; 6.517 ;
-; SWITCH0    ; VGAG0       ; 7.223 ; 7.610 ; 7.348 ; 7.710 ;
-; SWITCH0    ; VGAG1       ; 6.403 ; 6.542 ; 6.527 ; 6.638 ;
-; SWITCH0    ; VGAG2       ;       ; 6.630 ; 6.628 ;       ;
-; SWITCH0    ; VGAR0       ; 6.962 ; 6.981 ; 7.075 ; 7.103 ;
-; SWITCH0    ; VGAR1       ; 5.725 ; 5.792 ; 5.937 ; 5.946 ;
-; SWITCH0    ; VGAR2       ;       ; 6.242 ; 6.390 ;       ;
+; SWITCH0    ; VGAB0       ; 6.180 ; 6.252 ; 6.362 ; 6.425 ;
+; SWITCH0    ; VGAB1       ;       ; 5.788 ; 5.899 ;       ;
+; SWITCH0    ; VGAG0       ; 6.928 ; 7.348 ; 7.197 ; 7.451 ;
+; SWITCH0    ; VGAG1       ; 6.089 ; 6.234 ; 6.262 ; 6.320 ;
+; SWITCH0    ; VGAG2       ;       ; 6.013 ; 6.156 ;       ;
+; SWITCH0    ; VGAR0       ; 6.407 ; 6.478 ; 6.574 ; 6.707 ;
+; SWITCH0    ; VGAR1       ; 6.067 ; 6.164 ; 6.323 ; 6.273 ;
+; SWITCH0    ; VGAR2       ;       ; 6.351 ; 6.491 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -239,14 +239,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.434 ;       ;       ; 2.576 ;
-; SWITCH0    ; VGAB0       ;       ; 5.306 ; 5.407 ;       ;
-; SWITCH0    ; VGAB1       ; 5.858 ; 5.930 ; 5.976 ; 6.065 ;
-; SWITCH0    ; VGAG0       ; 6.794 ; 7.023 ; 6.933 ; 7.165 ;
-; SWITCH0    ; VGAG1       ; 6.005 ; 6.059 ; 6.174 ; 6.197 ;
-; SWITCH0    ; VGAG2       ;       ; 6.169 ; 6.257 ;       ;
-; SWITCH0    ; VGAR0       ; 6.568 ; 6.494 ; 6.702 ; 6.636 ;
-; SWITCH0    ; VGAR1       ; 5.370 ; 5.365 ; 5.582 ; 5.519 ;
-; SWITCH0    ; VGAR2       ;       ; 5.808 ; 6.020 ;       ;
+; SWITCH0    ; VGAB0       ; 5.788 ; 5.787 ; 5.977 ; 5.968 ;
+; SWITCH0    ; VGAB1       ;       ; 5.349 ; 5.530 ;       ;
+; SWITCH0    ; VGAG0       ; 6.429 ; 6.759 ; 6.698 ; 6.878 ;
+; SWITCH0    ; VGAG1       ; 5.705 ; 5.771 ; 5.896 ; 5.876 ;
+; SWITCH0    ; VGAG2       ;       ; 5.601 ; 5.775 ;       ;
+; SWITCH0    ; VGAR0       ; 5.995 ; 5.996 ; 6.173 ; 6.227 ;
+; SWITCH0    ; VGAR1       ; 5.675 ; 5.752 ; 5.933 ; 5.874 ;
+; SWITCH0    ; VGAR2       ;       ; 5.878 ; 6.098 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -256,14 +256,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.024 ;       ;       ; 2.170 ;
-; SWITCH0    ; VGAB0       ;       ; 5.123 ; 5.226 ;       ;
-; SWITCH0    ; VGAB1       ; 5.653 ; 5.723 ; 5.773 ; 5.858 ;
-; SWITCH0    ; VGAG0       ; 6.485 ; 6.775 ; 6.652 ; 6.914 ;
-; SWITCH0    ; VGAG1       ; 5.778 ; 5.829 ; 5.944 ; 5.969 ;
-; SWITCH0    ; VGAG2       ;       ; 5.935 ; 6.025 ;       ;
-; SWITCH0    ; VGAR0       ; 6.322 ; 6.239 ; 6.459 ; 6.382 ;
-; SWITCH0    ; VGAR1       ; 5.184 ; 5.173 ; 5.394 ; 5.335 ;
-; SWITCH0    ; VGAR2       ;       ; 5.606 ; 5.814 ;       ;
+; SWITCH0    ; VGAB0       ; 5.584 ; 5.584 ; 5.772 ; 5.766 ;
+; SWITCH0    ; VGAB1       ;       ; 5.163 ; 5.343 ;       ;
+; SWITCH0    ; VGAG0       ; 6.220 ; 6.548 ; 6.486 ; 6.670 ;
+; SWITCH0    ; VGAG1       ; 5.504 ; 5.569 ; 5.695 ; 5.677 ;
+; SWITCH0    ; VGAG2       ;       ; 5.405 ; 5.579 ;       ;
+; SWITCH0    ; VGAR0       ; 5.784 ; 5.785 ; 5.962 ; 6.015 ;
+; SWITCH0    ; VGAR1       ; 5.476 ; 5.552 ; 5.731 ; 5.676 ;
+; SWITCH0    ; VGAR2       ;       ; 5.672 ; 5.890 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -309,14 +309,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.578 ;       ;       ; 2.019 ;
-; SWITCH0    ; VGAB0       ;       ; 3.566 ; 3.738 ;       ;
-; SWITCH0    ; VGAB1       ; 3.809 ; 3.990 ; 4.082 ; 4.267 ;
-; SWITCH0    ; VGAG0       ; 4.511 ; 4.834 ; 4.762 ; 5.085 ;
-; SWITCH0    ; VGAG1       ; 3.868 ; 4.033 ; 4.138 ; 4.284 ;
-; SWITCH0    ; VGAG2       ;       ; 4.114 ; 4.215 ;       ;
-; SWITCH0    ; VGAR0       ; 4.147 ; 4.340 ; 4.436 ; 4.636 ;
-; SWITCH0    ; VGAR1       ; 3.440 ; 3.571 ; 3.813 ; 3.901 ;
-; SWITCH0    ; VGAR2       ;       ; 3.872 ; 4.077 ;       ;
+; SWITCH0    ; VGAB0       ; 3.764 ; 3.882 ; 4.078 ; 4.189 ;
+; SWITCH0    ; VGAB1       ;       ; 3.585 ; 3.812 ;       ;
+; SWITCH0    ; VGAG0       ; 4.265 ; 4.629 ; 4.639 ; 4.899 ;
+; SWITCH0    ; VGAG1       ; 3.716 ; 3.873 ; 4.007 ; 4.133 ;
+; SWITCH0    ; VGAG2       ;       ; 3.744 ; 3.956 ;       ;
+; SWITCH0    ; VGAR0       ; 3.898 ; 4.008 ; 4.205 ; 4.354 ;
+; SWITCH0    ; VGAR1       ; 3.700 ; 3.834 ; 4.065 ; 4.106 ;
+; SWITCH0    ; VGAR2       ;       ; 3.917 ; 4.121 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -326,14 +326,14 @@ No paths to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.305 ;       ;       ; 1.747 ;
-; SWITCH0    ; VGAB0       ;       ; 3.451 ; 3.628 ;       ;
-; SWITCH0    ; VGAB1       ; 3.683 ; 3.858 ; 3.959 ; 4.138 ;
-; SWITCH0    ; VGAG0       ; 4.299 ; 4.662 ; 4.573 ; 4.934 ;
-; SWITCH0    ; VGAG1       ; 3.732 ; 3.889 ; 4.006 ; 4.144 ;
-; SWITCH0    ; VGAG2       ;       ; 3.966 ; 4.080 ;       ;
-; SWITCH0    ; VGAR0       ; 4.000 ; 4.179 ; 4.291 ; 4.477 ;
-; SWITCH0    ; VGAR1       ; 3.329 ; 3.451 ; 3.703 ; 3.789 ;
-; SWITCH0    ; VGAR2       ;       ; 3.744 ; 3.955 ;       ;
+; SWITCH0    ; VGAB0       ; 3.640 ; 3.756 ; 3.956 ; 4.065 ;
+; SWITCH0    ; VGAB1       ;       ; 3.471 ; 3.701 ;       ;
+; SWITCH0    ; VGAG0       ; 4.139 ; 4.496 ; 4.512 ; 4.771 ;
+; SWITCH0    ; VGAG1       ; 3.593 ; 3.745 ; 3.888 ; 4.011 ;
+; SWITCH0    ; VGAG2       ;       ; 3.622 ; 3.839 ;       ;
+; SWITCH0    ; VGAR0       ; 3.769 ; 3.877 ; 4.078 ; 4.224 ;
+; SWITCH0    ; VGAR1       ; 3.580 ; 3.708 ; 3.943 ; 3.984 ;
+; SWITCH0    ; VGAR2       ;       ; 3.789 ; 3.996 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -359,14 +359,14 @@ No synchronizer chains to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 2.692 ;       ;       ; 2.812 ;
-; SWITCH0    ; VGAB0       ;       ; 5.909 ; 5.946 ;       ;
-; SWITCH0    ; VGAB1       ; 6.480 ; 6.631 ; 6.570 ; 6.733 ;
-; SWITCH0    ; VGAG0       ; 7.563 ; 7.881 ; 7.654 ; 7.972 ;
-; SWITCH0    ; VGAG1       ; 6.640 ; 6.786 ; 6.763 ; 6.876 ;
-; SWITCH0    ; VGAG2       ;       ; 6.879 ; 6.866 ;       ;
-; SWITCH0    ; VGAR0       ; 7.220 ; 7.257 ; 7.329 ; 7.375 ;
-; SWITCH0    ; VGAR1       ; 5.918 ; 5.994 ; 6.133 ; 6.140 ;
-; SWITCH0    ; VGAR2       ;       ; 6.453 ; 6.602 ;       ;
+; SWITCH0    ; VGAB0       ; 6.392 ; 6.465 ; 6.574 ; 6.638 ;
+; SWITCH0    ; VGAB1       ;       ; 5.982 ; 6.092 ;       ;
+; SWITCH0    ; VGAG0       ; 7.146 ; 7.570 ; 7.417 ; 7.669 ;
+; SWITCH0    ; VGAG1       ; 6.297 ; 6.445 ; 6.471 ; 6.529 ;
+; SWITCH0    ; VGAG2       ;       ; 6.217 ; 6.359 ;       ;
+; SWITCH0    ; VGAR0       ; 6.628 ; 6.701 ; 6.794 ; 6.932 ;
+; SWITCH0    ; VGAR1       ; 6.276 ; 6.375 ; 6.532 ; 6.479 ;
+; SWITCH0    ; VGAR2       ;       ; 6.569 ; 6.708 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -376,14 +376,14 @@ No synchronizer chains to report.
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
 ; CLOCK_50   ; DRAM_CLK    ; 1.305 ;       ;       ; 1.747 ;
-; SWITCH0    ; VGAB0       ;       ; 3.451 ; 3.628 ;       ;
-; SWITCH0    ; VGAB1       ; 3.683 ; 3.858 ; 3.959 ; 4.138 ;
-; SWITCH0    ; VGAG0       ; 4.299 ; 4.662 ; 4.573 ; 4.934 ;
-; SWITCH0    ; VGAG1       ; 3.732 ; 3.889 ; 4.006 ; 4.144 ;
-; SWITCH0    ; VGAG2       ;       ; 3.966 ; 4.080 ;       ;
-; SWITCH0    ; VGAR0       ; 4.000 ; 4.179 ; 4.291 ; 4.477 ;
-; SWITCH0    ; VGAR1       ; 3.329 ; 3.451 ; 3.703 ; 3.789 ;
-; SWITCH0    ; VGAR2       ;       ; 3.744 ; 3.955 ;       ;
+; SWITCH0    ; VGAB0       ; 3.640 ; 3.756 ; 3.956 ; 4.065 ;
+; SWITCH0    ; VGAB1       ;       ; 3.471 ; 3.701 ;       ;
+; SWITCH0    ; VGAG0       ; 4.139 ; 4.496 ; 4.512 ; 4.771 ;
+; SWITCH0    ; VGAG1       ; 3.593 ; 3.745 ; 3.888 ; 4.011 ;
+; SWITCH0    ; VGAG2       ;       ; 3.622 ; 3.839 ;       ;
+; SWITCH0    ; VGAR0       ; 3.769 ; 3.877 ; 4.078 ; 4.224 ;
+; SWITCH0    ; VGAR1       ; 3.580 ; 3.708 ; 3.943 ; 3.984 ;
+; SWITCH0    ; VGAR2       ;       ; 3.789 ; 3.996 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -407,10 +407,10 @@ No synchronizer chains to report.
 ; VGAG1         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; VGAB0         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; VGAB1         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; VGAVS         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
-; VGAHS         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; VGAR2         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; VGAG2         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; VGAVS         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
+; VGAHS         ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; DRAM_ADDR[12] ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; DRAM_ADDR[11] ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
 ; DRAM_ADDR[10] ; 2.5 V        ; 0 in              ; 0 H/in                  ; 0 F/in                  ; short         ; -                   ; open           ; open             ; open   ; 0 in             ; 0 H/in                 ; 0 F/in                 ; short        ; open          ; open            ; open  ; 0 V                 ; -                  ; n/a           ; n/a             ; n/a         ;
@@ -481,6 +481,14 @@ No synchronizer chains to report.
 ; VSYNC                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; HSYNC                   ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH1                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; FP1                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; FP0                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; FP7                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; FP6                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; FP5                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; FP4                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; FP3                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
+; FP2                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH3                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH2                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -509,10 +517,10 @@ No synchronizer chains to report.
 ; VGAG1         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
 ; VGAB0         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
 ; VGAB1         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
-; VGAVS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
-; VGAHS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
 ; VGAR2         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
 ; VGAG2         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
+; VGAVS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
+; VGAHS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 3.99e-09 V                   ; 2.53 V              ; -0.0412 V           ; 0.279 V                              ; 0.088 V                              ; 1.14e-10 s                  ; 2.15e-10 s                  ; No                         ; Yes                        ; 2.32 V                      ; 3.99e-09 V                  ; 2.53 V             ; -0.0412 V          ; 0.279 V                             ; 0.088 V                             ; 1.14e-10 s                 ; 2.15e-10 s                 ; No                        ; Yes                       ;
 ; DRAM_ADDR[12] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.39 V              ; -0.0265 V           ; 0.2 V                                ; 0.033 V                              ; 2.94e-10 s                  ; 3.12e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.39 V             ; -0.0265 V          ; 0.2 V                               ; 0.033 V                             ; 2.94e-10 s                 ; 3.12e-10 s                 ; Yes                       ; Yes                       ;
 ; DRAM_ADDR[11] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.38 V              ; -0.0145 V           ; 0.169 V                              ; 0.026 V                              ; 4.83e-10 s                  ; 4.71e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.38 V             ; -0.0145 V          ; 0.169 V                             ; 0.026 V                             ; 4.83e-10 s                 ; 4.71e-10 s                 ; Yes                       ; Yes                       ;
 ; DRAM_ADDR[10] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 4.44e-09 V                   ; 2.38 V              ; -0.0145 V           ; 0.169 V                              ; 0.026 V                              ; 4.83e-10 s                  ; 4.71e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 4.44e-09 V                  ; 2.38 V             ; -0.0145 V          ; 0.169 V                             ; 0.026 V                             ; 4.83e-10 s                 ; 4.71e-10 s                 ; Yes                       ; Yes                       ;
@@ -571,10 +579,10 @@ No synchronizer chains to report.
 ; VGAG1         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
 ; VGAB0         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
 ; VGAB1         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
-; VGAVS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
-; VGAHS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
 ; VGAR2         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
 ; VGAG2         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
+; VGAVS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
+; VGAHS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 6.99e-07 V                   ; 2.39 V              ; -0.0291 V           ; 0.081 V                              ; 0.039 V                              ; 1.9e-10 s                   ; 2.97e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 6.99e-07 V                  ; 2.39 V             ; -0.0291 V          ; 0.081 V                             ; 0.039 V                             ; 1.9e-10 s                  ; 2.97e-10 s                 ; Yes                       ; Yes                       ;
 ; DRAM_ADDR[12] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.36 V              ; -0.00476 V          ; 0.096 V                              ; 0.013 V                              ; 4.39e-10 s                  ; 4.15e-10 s                  ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.36 V             ; -0.00476 V         ; 0.096 V                             ; 0.013 V                             ; 4.39e-10 s                 ; 4.15e-10 s                 ; Yes                       ; Yes                       ;
 ; DRAM_ADDR[11] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.35 V              ; -0.00832 V          ; 0.101 V                              ; 0.024 V                              ; 6.39e-10 s                  ; 6e-10 s                     ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.35 V             ; -0.00832 V         ; 0.101 V                             ; 0.024 V                             ; 6.39e-10 s                 ; 6e-10 s                    ; Yes                       ; Yes                       ;
 ; DRAM_ADDR[10] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.32 V                       ; 7.16e-07 V                   ; 2.35 V              ; -0.00832 V          ; 0.101 V                              ; 0.024 V                              ; 6.39e-10 s                  ; 6e-10 s                     ; Yes                        ; Yes                        ; 2.32 V                      ; 7.16e-07 V                  ; 2.35 V             ; -0.00832 V         ; 0.101 V                             ; 0.024 V                             ; 6.39e-10 s                 ; 6e-10 s                    ; Yes                       ; Yes                       ;
@@ -633,10 +641,10 @@ No synchronizer chains to report.
 ; VGAG1         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
 ; VGAB0         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
 ; VGAB1         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
-; VGAVS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
-; VGAHS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
 ; VGAR2         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
 ; VGAG2         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
+; VGAVS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
+; VGAHS         ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.65e-08 V                   ; 3.12 V              ; -0.147 V            ; 0.571 V                              ; 0.186 V                              ; 8.91e-11 s                  ; 1.76e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.65e-08 V                  ; 3.12 V             ; -0.147 V           ; 0.571 V                             ; 0.186 V                             ; 8.91e-11 s                 ; 1.76e-10 s                 ; No                        ; Yes                       ;
 ; DRAM_ADDR[12] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.73 V              ; -0.0384 V           ; 0.169 V                              ; 0.089 V                              ; 2.7e-10 s                   ; 2.62e-10 s                  ; Yes                        ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.73 V             ; -0.0384 V          ; 0.169 V                             ; 0.089 V                             ; 2.7e-10 s                  ; 2.62e-10 s                 ; Yes                       ; Yes                       ;
 ; DRAM_ADDR[11] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.71 V              ; -0.0317 V           ; 0.148 V                              ; 0.064 V                              ; 4.51e-10 s                  ; 4.15e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.71 V             ; -0.0317 V          ; 0.148 V                             ; 0.064 V                             ; 4.51e-10 s                 ; 4.15e-10 s                 ; No                        ; Yes                       ;
 ; DRAM_ADDR[10] ; 2.5 V        ; 0 s                 ; 0 s                 ; 2.62 V                       ; 2.74e-08 V                   ; 2.71 V              ; -0.0317 V           ; 0.148 V                              ; 0.064 V                              ; 4.51e-10 s                  ; 4.15e-10 s                  ; No                         ; Yes                        ; 2.62 V                      ; 2.74e-08 V                  ; 2.71 V             ; -0.0317 V          ; 0.148 V                             ; 0.064 V                             ; 4.51e-10 s                 ; 4.15e-10 s                 ; No                        ; Yes                       ;
@@ -700,8 +708,8 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 2     ; 2    ;
 ; Unconstrained Clocks            ; 2     ; 2    ;
-; Unconstrained Input Ports       ; 26    ; 26   ;
-; Unconstrained Input Port Paths  ; 57    ; 57   ;
+; Unconstrained Input Ports       ; 34    ; 34   ;
+; Unconstrained Input Port Paths  ; 120   ; 120  ;
 ; Unconstrained Output Ports      ; 50    ; 50   ;
 ; Unconstrained Output Port Paths ; 194   ; 194  ;
 +---------------------------------+-------+------+
@@ -713,14 +721,13 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sat Oct 18 03:35:32 2014
+    Info: Processing started: Tue Oct 21 23:14:26 2014
 Info: Command: quartus_sta rgb2vga -c rgb2vga
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
-Info (21077): Core supply voltage is 1.2V
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
-Warning (335093): TimeQuest Timing Analyzer is analyzing 57 combinational loops as latches.
+Warning (335093): TimeQuest Timing Analyzer is analyzing 49 combinational loops as latches.
 Info (332104): Reading SDC File: 'rgb2vga.sdc'
 Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {inst1|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 55 -multiply_by 126 -duty_cycle 50.00 -name {inst1|altpll_component|auto_generated|pll1|clk[1]} {inst1|altpll_component|auto_generated|pll1|clk[1]}
@@ -731,7 +738,7 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: genlock:inst6|dac_step[0] was determined to be a clock but was found without an associated clock assignment.
+Warning (332060): Node: FP0 was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -753,7 +760,7 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: genlock:inst6|dac_step[0] was determined to be a clock but was found without an associated clock assignment.
+Warning (332060): Node: FP0 was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -771,7 +778,7 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: genlock:inst6|dac_step[0] was determined to be a clock but was found without an associated clock assignment.
+Warning (332060): Node: FP0 was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -785,9 +792,9 @@ Info (332140): No Minimum Pulse Width paths to report
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
 Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 32 warnings
-    Info: Peak virtual memory: 472 megabytes
-    Info: Processing ended: Sat Oct 18 03:35:35 2014
-    Info: Elapsed time: 00:00:03
+    Info: Peak virtual memory: 476 megabytes
+    Info: Processing ended: Tue Oct 21 23:14:28 2014
+    Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:03
 
 

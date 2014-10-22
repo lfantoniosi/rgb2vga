@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 240 192)
+	(rect 16 16 256 224)
 	(text "genlock" (rect 5 0 34 12)(font "Arial" ))
-	(text "inst" (rect 8 160 20 172)(font "Arial" ))
+	(text "inst" (rect 8 192 20 204)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -80,59 +80,62 @@ applicable agreement for further details.
 		(line (pt 0 144)(pt 16 144)(line_width 1))
 	)
 	(port
-		(pt 224 32)
+		(pt 0 160)
+		(input)
+		(text "front_porch[7..0]" (rect 0 0 67 12)(font "Arial" ))
+		(text "front_porch[7..0]" (rect 21 155 88 167)(font "Arial" ))
+		(line (pt 0 160)(pt 16 160)(line_width 3))
+	)
+	(port
+		(pt 0 176)
+		(input)
+		(text "top_border[5..0]" (rect 0 0 63 12)(font "Arial" ))
+		(text "top_border[5..0]" (rect 21 171 84 183)(font "Arial" ))
+		(line (pt 0 176)(pt 16 176)(line_width 3))
+	)
+	(port
+		(pt 240 32)
 		(output)
 		(text "pixel_out[15..0]" (rect 0 0 57 12)(font "Arial" ))
-		(text "pixel_out[15..0]" (rect 146 27 203 39)(font "Arial" ))
-		(line (pt 224 32)(pt 208 32)(line_width 3))
+		(text "pixel_out[15..0]" (rect 162 27 219 39)(font "Arial" ))
+		(line (pt 240 32)(pt 224 32)(line_width 3))
 	)
 	(port
-		(pt 224 48)
+		(pt 240 48)
 		(output)
 		(text "row_number[8..0]" (rect 0 0 70 12)(font "Arial" ))
-		(text "row_number[8..0]" (rect 133 43 203 55)(font "Arial" ))
-		(line (pt 224 48)(pt 208 48)(line_width 3))
+		(text "row_number[8..0]" (rect 149 43 219 55)(font "Arial" ))
+		(line (pt 240 48)(pt 224 48)(line_width 3))
 	)
 	(port
-		(pt 224 64)
+		(pt 240 64)
 		(output)
 		(text "col_number[8..0]" (rect 0 0 67 12)(font "Arial" ))
-		(text "col_number[8..0]" (rect 136 59 203 71)(font "Arial" ))
-		(line (pt 224 64)(pt 208 64)(line_width 3))
+		(text "col_number[8..0]" (rect 152 59 219 71)(font "Arial" ))
+		(line (pt 240 64)(pt 224 64)(line_width 3))
 	)
 	(port
-		(pt 224 80)
+		(pt 240 80)
 		(output)
 		(text "store_req" (rect 0 0 38 12)(font "Arial" ))
-		(text "store_req" (rect 165 75 203 87)(font "Arial" ))
-		(line (pt 224 80)(pt 208 80)(line_width 1))
+		(text "store_req" (rect 181 75 219 87)(font "Arial" ))
+		(line (pt 240 80)(pt 224 80)(line_width 1))
 	)
 	(port
-		(pt 224 96)
+		(pt 240 96)
 		(output)
 		(text "dac_step[2..0]" (rect 0 0 56 12)(font "Arial" ))
-		(text "dac_step[2..0]" (rect 147 91 203 103)(font "Arial" ))
-		(line (pt 224 96)(pt 208 96)(line_width 3))
+		(text "dac_step[2..0]" (rect 163 91 219 103)(font "Arial" ))
+		(line (pt 240 96)(pt 224 96)(line_width 3))
 	)
 	(port
-		(pt 224 112)
+		(pt 240 112)
 		(output)
 		(text "is_sync" (rect 0 0 31 12)(font "Arial" ))
-		(text "is_sync" (rect 172 107 203 119)(font "Arial" ))
-		(line (pt 224 112)(pt 208 112)(line_width 1))
+		(text "is_sync" (rect 188 107 219 119)(font "Arial" ))
+		(line (pt 240 112)(pt 224 112)(line_width 1))
 	)
-	(parameter
-		"front_porch"
-		"0"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"top_border"
-		"0"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 208 160)(line_width 1))
+		(rectangle (rect 16 16 224 192)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 240 -64 340 16))
 )

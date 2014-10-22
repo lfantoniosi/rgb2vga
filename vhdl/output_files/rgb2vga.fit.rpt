@@ -1,5 +1,5 @@
 Fitter report for rgb2vga
-Tue Oct 21 23:14:22 2014
+Tue Oct 21 23:46:29 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -12,40 +12,41 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
   4. Parallel Compilation
   5. I/O Assignment Warnings
   6. Fitter Netlist Optimizations
-  7. Incremental Compilation Preservation Summary
-  8. Incremental Compilation Partition Settings
-  9. Incremental Compilation Placement Preservation
- 10. Pin-Out File
- 11. Fitter Resource Usage Summary
- 12. Fitter Partition Statistics
- 13. Input Pins
- 14. Output Pins
- 15. Bidir Pins
- 16. Dual Purpose and Dedicated Pins
- 17. I/O Bank Usage
- 18. All Package Pins
- 19. PLL Summary
- 20. PLL Usage
- 21. Fitter Resource Utilization by Entity
- 22. Delay Chain Summary
- 23. Pad To Core Delay Chain Fanout
- 24. Control Signals
- 25. Global & Other Fast Signals
- 26. Non-Global High Fan-Out Signals
- 27. Fitter RAM Summary
- 28. Other Routing Usage Summary
- 29. LAB Logic Elements
- 30. LAB-wide Signals
- 31. LAB Signals Sourced
- 32. LAB Signals Sourced Out
- 33. LAB Distinct Inputs
- 34. I/O Rules Summary
- 35. I/O Rules Details
- 36. I/O Rules Matrix
- 37. Fitter Device Options
- 38. Operating Settings and Conditions
- 39. Fitter Messages
- 40. Fitter Suppressed Messages
+  7. Ignored Assignments
+  8. Incremental Compilation Preservation Summary
+  9. Incremental Compilation Partition Settings
+ 10. Incremental Compilation Placement Preservation
+ 11. Pin-Out File
+ 12. Fitter Resource Usage Summary
+ 13. Fitter Partition Statistics
+ 14. Input Pins
+ 15. Output Pins
+ 16. Bidir Pins
+ 17. Dual Purpose and Dedicated Pins
+ 18. I/O Bank Usage
+ 19. All Package Pins
+ 20. PLL Summary
+ 21. PLL Usage
+ 22. Fitter Resource Utilization by Entity
+ 23. Delay Chain Summary
+ 24. Pad To Core Delay Chain Fanout
+ 25. Control Signals
+ 26. Global & Other Fast Signals
+ 27. Non-Global High Fan-Out Signals
+ 28. Fitter RAM Summary
+ 29. Other Routing Usage Summary
+ 30. LAB Logic Elements
+ 31. LAB-wide Signals
+ 32. LAB Signals Sourced
+ 33. LAB Signals Sourced Out
+ 34. LAB Distinct Inputs
+ 35. I/O Rules Summary
+ 36. I/O Rules Details
+ 37. I/O Rules Matrix
+ 38. Fitter Device Options
+ 39. Operating Settings and Conditions
+ 40. Fitter Messages
+ 41. Fitter Suppressed Messages
 
 
 
@@ -71,7 +72,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Fitter Summary                                                                  ;
 +------------------------------------+--------------------------------------------+
-; Fitter Status                      ; Successful - Tue Oct 21 23:14:22 2014      ;
+; Fitter Status                      ; Successful - Tue Oct 21 23:46:29 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -171,19 +172,19 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; DRAM_RAS_N    ; Missing drive strength and slew rate ;
 ; DRAM_CAS_N    ; Missing drive strength and slew rate ;
 ; DRAM_WE_N     ; Missing drive strength and slew rate ;
-; D0            ; Missing slew rate                    ;
-; D1            ; Missing slew rate                    ;
-; D2            ; Missing slew rate                    ;
-; VGAR0         ; Missing slew rate                    ;
-; VGAR1         ; Missing slew rate                    ;
-; VGAG0         ; Missing slew rate                    ;
-; VGAG1         ; Missing slew rate                    ;
-; VGAB0         ; Missing slew rate                    ;
-; VGAB1         ; Missing slew rate                    ;
-; VGAR2         ; Missing slew rate                    ;
-; VGAG2         ; Missing slew rate                    ;
-; VGAVS         ; Missing slew rate                    ;
-; VGAHS         ; Missing slew rate                    ;
+; D0            ; Missing drive strength and slew rate ;
+; D1            ; Missing drive strength and slew rate ;
+; D2            ; Missing drive strength and slew rate ;
+; VGAR0         ; Missing drive strength and slew rate ;
+; VGAR1         ; Missing drive strength and slew rate ;
+; VGAG0         ; Missing drive strength and slew rate ;
+; VGAG1         ; Missing drive strength and slew rate ;
+; VGAB0         ; Missing drive strength and slew rate ;
+; VGAB1         ; Missing drive strength and slew rate ;
+; VGAR2         ; Missing drive strength and slew rate ;
+; VGAG2         ; Missing drive strength and slew rate ;
+; VGAVS         ; Missing drive strength and slew rate ;
+; VGAHS         ; Missing drive strength and slew rate ;
 ; DRAM_ADDR[12] ; Missing drive strength and slew rate ;
 ; DRAM_ADDR[11] ; Missing drive strength and slew rate ;
 ; DRAM_ADDR[10] ; Missing drive strength and slew rate ;
@@ -242,6 +243,17 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; sdram:inst|SdrDat[14] ; Packed Register ; Register Packing ; Timing optimization ; Q         ;                ; ram:inst2|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated|q_b[14] ; PORTBDATAOUT     ;                       ;
 ; sdram:inst|SdrDat[15] ; Packed Register ; Register Packing ; Timing optimization ; Q         ;                ; ram:inst2|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated|q_b[15] ; PORTBDATAOUT     ;                       ;
 +-----------------------+-----------------+------------------+---------------------+-----------+----------------+----------------------------------------------------------------------------------+------------------+-----------------------+
+
+
++-------------------------------------------------------------------------------------------------------------------+
+; Ignored Assignments                                                                                               ;
++-------------------------------------+----------------+--------------+------------+---------------+----------------+
+; Name                                ; Ignored Entity ; Ignored From ; Ignored To ; Ignored Value ; Ignored Source ;
++-------------------------------------+----------------+--------------+------------+---------------+----------------+
+; Enable Beneficial Skew Optimization ; top            ;              ; DIFFB      ; ON            ; QSF Assignment ;
+; Enable Beneficial Skew Optimization ; top            ;              ; DIFFG      ; ON            ; QSF Assignment ;
+; Enable Beneficial Skew Optimization ; top            ;              ; DIFFR      ; ON            ; QSF Assignment ;
++-------------------------------------+----------------+--------------+------------+---------------+----------------+
 
 
 +----------------------------------------------+
@@ -442,9 +454,9 @@ The pin-out file can be found in C:/altera/projects/rgb2vga/vhdl/output_files/rg
 +---------------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
 ; Name          ; Pin # ; I/O Bank ; X coordinate ; Y coordinate ; Z coordinate ; Output Register ; Output Enable Register ; Power Up High ; Slew Rate ; PCI I/O Enabled ; Open Drain ; TRI Primitive ; Bus Hold ; Weak Pull Up ; I/O Standard ; Current Strength ; Termination                       ; Termination Control Block ; Output Buffer Pre-emphasis ; Voltage Output Differential ; Location assigned by ; Output Enable Source ; Output Enable Group ;
 +---------------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
-; D0            ; D3    ; 8        ; 1            ; 34           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; D1            ; C3    ; 8        ; 1            ; 34           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; D2            ; A3    ; 8        ; 7            ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; D0            ; D3    ; 8        ; 1            ; 34           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; D1            ; C3    ; 8        ; 1            ; 34           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; D2            ; A3    ; 8        ; 7            ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; DRAM_ADDR[0]  ; P2    ; 2        ; 0            ; 4            ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; DRAM_ADDR[10] ; N2    ; 2        ; 0            ; 8            ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; DRAM_ADDR[11] ; N1    ; 2        ; 0            ; 7            ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
@@ -468,16 +480,16 @@ The pin-out file can be found in C:/altera/projects/rgb2vga/vhdl/output_files/rg
 ; DRAM_DQM[1]   ; T5    ; 3        ; 14           ; 0            ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; DRAM_RAS_N    ; L2    ; 2        ; 0            ; 11           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 ; DRAM_WE_N     ; C2    ; 1        ; 0            ; 27           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAB0         ; E9    ; 7        ; 29           ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAB1         ; F8    ; 8        ; 20           ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAG0         ; C6    ; 8        ; 18           ; 34           ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAG1         ; E6    ; 8        ; 14           ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAG2         ; D8    ; 8        ; 23           ; 34           ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAHS         ; B4    ; 8        ; 7            ; 34           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAR0         ; D5    ; 8        ; 5            ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAR1         ; A6    ; 8        ; 16           ; 34           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAR2         ; D6    ; 8        ; 9            ; 34           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
-; VGAVS         ; B5    ; 8        ; 11           ; 34           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; 16mA             ; Off                               ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAB0         ; E9    ; 7        ; 29           ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAB1         ; F8    ; 8        ; 20           ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAG0         ; C6    ; 8        ; 18           ; 34           ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAG1         ; E6    ; 8        ; 14           ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAG2         ; D8    ; 8        ; 23           ; 34           ; 21           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAHS         ; B4    ; 8        ; 7            ; 34           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAR0         ; D5    ; 8        ; 5            ; 34           ; 14           ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAR1         ; A6    ; 8        ; 16           ; 34           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAR2         ; D6    ; 8        ; 9            ; 34           ; 7            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
+; VGAVS         ; B5    ; 8        ; 11           ; 34           ; 0            ; no              ; no                     ; no            ; 2         ; no              ; no         ; no            ; no       ; Off          ; 2.5 V        ; Default          ; Series 50 Ohm without Calibration ; --                        ; no                         ; no                          ; User                 ; -                    ; -                   ;
 +---------------+-------+----------+--------------+--------------+--------------+-----------------+------------------------+---------------+-----------+-----------------+------------+---------------+----------+--------------+--------------+------------------+-----------------------------------+---------------------------+----------------------------+-----------------------------+----------------------+----------------------+---------------------+
 
 
@@ -2308,9 +2320,9 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
 ; Pin/Rules          ; IO_000001 ; IO_000002    ; IO_000003 ; IO_000004    ; IO_000005    ; IO_000006 ; IO_000007 ; IO_000008    ; IO_000009 ; IO_000010 ; IO_000011    ; IO_000012    ; IO_000013    ; IO_000014    ; IO_000015    ; IO_000018    ; IO_000019    ; IO_000020    ; IO_000021    ; IO_000022    ; IO_000023    ; IO_000024    ; IO_000026    ; IO_000027    ; IO_000045    ; IO_000046    ; IO_000047    ; IO_000033 ; IO_000034    ; IO_000042    ;
 +--------------------+-----------+--------------+-----------+--------------+--------------+-----------+-----------+--------------+-----------+-----------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+--------------+-----------+--------------+--------------+
-; Total Pass         ; 73        ; 0            ; 73        ; 0            ; 0            ; 73        ; 73        ; 0            ; 73        ; 73        ; 19           ; 39           ; 0            ; 8            ; 31           ; 19           ; 39           ; 31           ; 8            ; 0            ; 0            ; 39           ; 58           ; 0            ; 0            ; 0            ; 0            ; 73        ; 58           ; 0            ;
+; Total Pass         ; 73        ; 0            ; 73        ; 0            ; 0            ; 73        ; 73        ; 0            ; 73        ; 73        ; 6            ; 52           ; 0            ; 8            ; 31           ; 6            ; 52           ; 31           ; 8            ; 0            ; 0            ; 52           ; 58           ; 0            ; 0            ; 0            ; 0            ; 73        ; 58           ; 0            ;
 ; Total Unchecked    ; 0         ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
-; Total Inapplicable ; 0         ; 73           ; 0         ; 73           ; 73           ; 0         ; 0         ; 73           ; 0         ; 0         ; 54           ; 34           ; 73           ; 65           ; 42           ; 54           ; 34           ; 42           ; 65           ; 73           ; 73           ; 34           ; 15           ; 73           ; 73           ; 73           ; 73           ; 0         ; 15           ; 73           ;
+; Total Inapplicable ; 0         ; 73           ; 0         ; 73           ; 73           ; 0         ; 0         ; 73           ; 0         ; 0         ; 67           ; 21           ; 73           ; 65           ; 42           ; 67           ; 21           ; 42           ; 65           ; 73           ; 73           ; 21           ; 15           ; 73           ; 73           ; 73           ; 73           ; 0         ; 15           ; 73           ;
 ; Total Fail         ; 0         ; 0            ; 0         ; 0            ; 0            ; 0         ; 0         ; 0            ; 0         ; 0         ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0            ; 0         ; 0            ; 0            ;
 ; DRAM_CLK           ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
 ; DRAM_CKE           ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
@@ -2318,19 +2330,19 @@ Note: Fitter may spread logical memories into multiple blocks to improve timing.
 ; DRAM_RAS_N         ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
 ; DRAM_CAS_N         ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
 ; DRAM_WE_N          ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; D0                 ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; D1                 ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; D2                 ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAR0              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAR1              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAG0              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAG1              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAB0              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAB1              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAR2              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAG2              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAVS              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
-; VGAHS              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; D0                 ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; D1                 ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; D2                 ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAR0              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAR1              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAG0              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAG1              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAB0              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAB1              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAR2              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAG2              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAVS              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
+; VGAHS              ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
 ; DRAM_ADDR[12]      ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
 ; DRAM_ADDR[11]      ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
 ; DRAM_ADDR[10]      ; Pass      ; Inapplicable ; Pass      ; Inapplicable ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass      ; Pass      ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass         ; Pass         ; Inapplicable ; Inapplicable ; Inapplicable ; Inapplicable ; Pass      ; Pass         ; Inapplicable ;
@@ -2513,13 +2525,14 @@ Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:02
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
+Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info (144001): Generated suppressed messages file C:/altera/projects/rgb2vga/vhdl/output_files/rgb2vga.fit.smsg
-Info: Quartus II 64-Bit Fitter was successful. 0 errors, 15 warnings
-    Info: Peak virtual memory: 713 megabytes
-    Info: Processing ended: Tue Oct 21 23:14:23 2014
-    Info: Elapsed time: 00:00:10
-    Info: Total CPU time (on all processors): 00:00:10
+Info: Quartus II 64-Bit Fitter was successful. 0 errors, 16 warnings
+    Info: Peak virtual memory: 712 megabytes
+    Info: Processing ended: Tue Oct 21 23:46:29 2014
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:09
 
 
 +----------------------------+

@@ -1,5 +1,5 @@
 Assembler report for rgb2vga
-Tue Oct 21 23:46:32 2014
+Wed Oct 22 21:31:42 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -10,7 +10,7 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
   2. Assembler Summary
   3. Assembler Settings
   4. Assembler Generated Files
-  5. Assembler Device Options: C:/altera/projects/rgb2vga/vhdl/output_files/rgb2vga.sof
+  5. Assembler Device Options: rgb2vga.sof
   6. Assembler Messages
 
 
@@ -37,7 +37,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Tue Oct 21 23:46:32 2014 ;
+; Assembler Status      ; Successful - Wed Oct 22 21:31:42 2014 ;
 ; Revision Name         ; rgb2vga                               ;
 ; Top-level Entity Name ; top                                   ;
 ; Family                ; Cyclone IV E                          ;
@@ -77,24 +77,24 @@ applicable agreement for further details.
 +-----------------------------------------------------------------------------+----------+---------------+
 
 
-+----------------------------------------------------------+
-; Assembler Generated Files                                ;
-+----------------------------------------------------------+
-; File Name                                                ;
-+----------------------------------------------------------+
-; C:/altera/projects/rgb2vga/vhdl/output_files/rgb2vga.sof ;
-+----------------------------------------------------------+
++---------------------------+
+; Assembler Generated Files ;
++---------------------------+
+; File Name                 ;
++---------------------------+
+; rgb2vga.sof               ;
++---------------------------+
 
 
-+------------------------------------------------------------------------------------+
-; Assembler Device Options: C:/altera/projects/rgb2vga/vhdl/output_files/rgb2vga.sof ;
-+----------------+-------------------------------------------------------------------+
-; Option         ; Setting                                                           ;
-+----------------+-------------------------------------------------------------------+
-; Device         ; EP4CE22F17C6                                                      ;
-; JTAG usercode  ; 0x0018BF36                                                        ;
-; Checksum       ; 0x0018BF36                                                        ;
-+----------------+-------------------------------------------------------------------+
++---------------------------------------+
+; Assembler Device Options: rgb2vga.sof ;
++----------------+----------------------+
+; Option         ; Setting              ;
++----------------+----------------------+
+; Device         ; EP4CE22F17C6         ;
+; JTAG usercode  ; 0x0018D545           ;
+; Checksum       ; 0x0018D545           ;
++----------------+----------------------+
 
 
 +--------------------+
@@ -103,14 +103,14 @@ applicable agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Tue Oct 21 23:46:30 2014
+    Info: Processing started: Wed Oct 22 21:31:31 2014
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off rgb2vga -c rgb2vga
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 409 megabytes
-    Info: Processing ended: Tue Oct 21 23:46:32 2014
-    Info: Elapsed time: 00:00:02
-    Info: Total CPU time (on all processors): 00:00:02
+    Info: Peak virtual memory: 549 megabytes
+    Info: Processing ended: Wed Oct 22 21:31:42 2014
+    Info: Elapsed time: 00:00:11
+    Info: Total CPU time (on all processors): 00:00:10
 
 

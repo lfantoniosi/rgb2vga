@@ -70,7 +70,7 @@ Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage 
 -------------------------------------------------------------------------------------------------------------
 VCCIO8                       : A1        : power  :                   : 2.5V    : 8         :                
 GND*                         : A2        :        :                   :         : 8         :                
-D2                           : A3        : output : 2.5 V             :         : 8         : Y              
+D0                           : A3        : output : 2.5 V             :         : 8         : Y              
 GND*                         : A4        :        :                   :         : 8         :                
 FP0                          : A5        : input  : 2.5 V             :         : 8         : Y              
 VGAR1                        : A6        : output : 2.5 V             :         : 8         : Y              
@@ -118,7 +118,7 @@ GND*                         : C15       :        :                   :         
 GND*                         : C16       :        :                   :         : 6         :                
 GND*                         : D1        :        :                   :         : 1         :                
 ~ALTERA_FLASH_nCE_nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : D2        : input  : 2.5 V             :         : 1         : N              
-D0                           : D3        : output : 2.5 V             :         : 8         : Y              
+D2                           : D3        : output : 2.5 V             :         : 8         : Y              
 VCCD_PLL3                    : D4        : power  :                   : 1.2V    :           :                
 VGAR0                        : D5        : output : 2.5 V             :         : 8         : Y              
 VGAR2                        : D6        : output : 2.5 V             :         : 8         : Y              
@@ -140,7 +140,7 @@ GNDA3                        : E5        : gnd    :                   :         
 VGAG1                        : E6        : output : 2.5 V             :         : 8         : Y              
 FP5                          : E7        : input  : 2.5 V             :         : 8         : Y              
 FP6                          : E8        : input  : 2.5 V             :         : 8         : Y              
-VGAB0                        : E9        : output : 2.5 V             :         : 7         : Y              
+VGAB1                        : E9        : output : 2.5 V             :         : 7         : Y              
 GND*                         : E10       :        :                   :         : 7         :                
 GND*                         : E11       :        :                   :         : 7         :                
 GNDA2                        : E12       : gnd    :                   :         :           :                
@@ -155,7 +155,7 @@ nSTATUS                      : F4        :        :                   :         
 VCCA3                        : F5        : power  :                   : 2.5V    :           :                
 GND                          : F6        : gnd    :                   :         :           :                
 VCCINT                       : F7        : power  :                   : 1.2V    :           :                
-VGAB1                        : F8        : output : 2.5 V             :         : 8         : Y              
+VGAB0                        : F8        : output : 2.5 V             :         : 8         : Y              
 FP7                          : F9        : input  : 2.5 V             :         : 7         : Y              
 GND                          : F10       : gnd    :                   :         :           :                
 VCCINT                       : F11       : power  :                   : 1.2V    :           :                

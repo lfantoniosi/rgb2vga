@@ -103,12 +103,12 @@ set_location_assignment PIN_A6 -to VGAR1
 set_location_assignment PIN_D6 -to VGAR2
 set_location_assignment PIN_C6 -to VGAG0
 set_location_assignment PIN_E6 -to VGAG1
-set_location_assignment PIN_E9 -to VGAB0
-set_location_assignment PIN_F8 -to VGAB1
+set_location_assignment PIN_F8 -to VGAB0
+set_location_assignment PIN_E9 -to VGAB1
 set_location_assignment PIN_B4 -to VGAHS
-set_location_assignment PIN_D3 -to D0
+set_location_assignment PIN_A3 -to D0
 set_location_assignment PIN_C3 -to D1
-set_location_assignment PIN_A3 -to D2
+set_location_assignment PIN_D3 -to D2
 set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFB
 set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFG
 set_instance_assignment -name IO_STANDARD "BUS LVDS" -to DIFFR

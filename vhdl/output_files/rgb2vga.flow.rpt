@@ -1,5 +1,5 @@
 Flow report for rgb2vga
-Tue Oct 21 23:46:35 2014
+Wed Oct 22 21:32:08 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -40,7 +40,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Tue Oct 21 23:46:32 2014      ;
+; Flow Status                        ; Successful - Wed Oct 22 21:31:42 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -64,7 +64,7 @@ applicable agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 10/21/2014 23:46:16 ;
+; Start date & time ; 10/22/2014 21:29:37 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; rgb2vga             ;
 +-------------------+---------------------+
@@ -75,7 +75,7 @@ applicable agreement for further details.
 +-------------------------------------+---------------------------------------+---------------+-------------+------------+
 ; Assignment Name                     ; Value                                 ; Default Value ; Entity Name ; Section Id ;
 +-------------------------------------+---------------------------------------+---------------+-------------+------------+
-; COMPILER_SIGNATURE_ID               ; 203334041456669.141394957501068       ; --            ; --          ; --         ;
+; COMPILER_SIGNATURE_ID               ; 31288984481427.141402777704306        ; --            ; --          ; --         ;
 ; IP_TOOL_NAME                        ; ALTIOBUF                              ; --            ; --          ; --         ;
 ; IP_TOOL_NAME                        ; ALTPLL                                ; --            ; --          ; --         ;
 ; IP_TOOL_NAME                        ; ALTPLL                                ; --            ; --          ; --         ;
@@ -111,24 +111,24 @@ applicable agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:04     ; 1.0                     ; 497 MB              ; 00:00:04                           ;
-; Fitter                    ; 00:00:09     ; 1.0                     ; 712 MB              ; 00:00:09                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 409 MB              ; 00:00:02                           ;
-; TimeQuest Timing Analyzer ; 00:00:02     ; 1.0                     ; 471 MB              ; 00:00:03                           ;
-; Total                     ; 00:00:17     ; --                      ; --                  ; 00:00:18                           ;
+; Analysis & Synthesis      ; 00:00:26     ; 1.0                     ; 664 MB              ; 00:00:24                           ;
+; Fitter                    ; 00:00:57     ; 1.0                     ; 782 MB              ; 00:00:50                           ;
+; Assembler                 ; 00:00:11     ; 1.0                     ; 549 MB              ; 00:00:10                           ;
+; TimeQuest Timing Analyzer ; 00:00:15     ; 1.0                     ; 595 MB              ; 00:00:13                           ;
+; Total                     ; 00:01:49     ; --                      ; --                  ; 00:01:37                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 
-+----------------------------------------------------------------------------------------+
-; Flow OS Summary                                                                        ;
-+---------------------------+------------------+-----------+------------+----------------+
-; Module Name               ; Machine Hostname ; OS Name   ; OS Version ; Processor type ;
-+---------------------------+------------------+-----------+------------+----------------+
-; Analysis & Synthesis      ; home             ; Windows 7 ; 6.2        ; x86_64         ;
-; Fitter                    ; home             ; Windows 7 ; 6.2        ; x86_64         ;
-; Assembler                 ; home             ; Windows 7 ; 6.2        ; x86_64         ;
-; TimeQuest Timing Analyzer ; home             ; Windows 7 ; 6.2        ; x86_64         ;
-+---------------------------+------------------+-----------+------------+----------------+
++--------------------------------------------------------------------------------------------------+
+; Flow OS Summary                                                                                  ;
++---------------------------+-----------------------+----------------+------------+----------------+
+; Module Name               ; Machine Hostname      ; OS Name        ; OS Version ; Processor type ;
++---------------------------+-----------------------+----------------+------------+----------------+
+; Analysis & Synthesis      ; felipe-Aspire-One-522 ; Ubuntu 14.04.1 ; 14         ; x86_64         ;
+; Fitter                    ; felipe-Aspire-One-522 ; Ubuntu 14.04.1 ; 14         ; x86_64         ;
+; Assembler                 ; felipe-Aspire-One-522 ; Ubuntu 14.04.1 ; 14         ; x86_64         ;
+; TimeQuest Timing Analyzer ; felipe-Aspire-One-522 ; Ubuntu 14.04.1 ; 14         ; x86_64         ;
++---------------------------+-----------------------+----------------+------------+----------------+
 
 
 ------------

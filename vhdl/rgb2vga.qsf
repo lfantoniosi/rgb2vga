@@ -97,14 +97,14 @@ set_location_assignment PIN_C2 -to DRAM_WE_N
 set_location_assignment PIN_B8 -to VSYNC
 set_location_assignment PIN_A8 -to HSYNC
 set_location_assignment PIN_T12 -to VGAVS
-set_location_assignment PIN_L15 -to VGAG2
-set_location_assignment PIN_R11 -to VGAR0
-set_location_assignment PIN_R10 -to VGAR1
-set_location_assignment PIN_P9 -to VGAR2
-set_location_assignment PIN_N11 -to VGAG0
-set_location_assignment PIN_K16 -to VGAG1
-set_location_assignment PIN_N16 -to VGAB0
-set_location_assignment PIN_P16 -to VGAB1
+set_location_assignment PIN_K16 -to VGAG2
+set_location_assignment PIN_L15 -to VGAR0
+set_location_assignment PIN_P16 -to VGAR1
+set_location_assignment PIN_N16 -to VGAR2
+set_location_assignment PIN_P9 -to VGAG0
+set_location_assignment PIN_N11 -to VGAG1
+set_location_assignment PIN_R11 -to VGAB0
+set_location_assignment PIN_R10 -to VGAB1
 set_location_assignment PIN_T11 -to VGAHS
 set_location_assignment PIN_A3 -to D0
 set_location_assignment PIN_C3 -to D1
@@ -140,7 +140,6 @@ set_location_assignment PIN_M1 -to SWITCH0
 set_location_assignment PIN_T8 -to SWITCH1
 set_location_assignment PIN_B9 -to SWITCH2
 set_location_assignment PIN_M15 -to SWITCH3
-set_global_assignment -name QIP_FILE pll_vga.qip
 set_location_assignment PIN_A5 -to FP0
 set_location_assignment PIN_B6 -to FP1
 set_location_assignment PIN_B7 -to FP2
@@ -167,4 +166,14 @@ set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -
 set_instance_assignment -name ENABLE_BENEFICIAL_SKEW_OPTIMIZATION ON -to DIFFB
 set_instance_assignment -name ENABLE_BENEFICIAL_SKEW_OPTIMIZATION ON -to DIFFG
 set_instance_assignment -name ENABLE_BENEFICIAL_SKEW_OPTIMIZATION ON -to DIFFR
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAB0
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAB1
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAG0
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAG1
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAG2
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAHS
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAR0
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAR1
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAR2
+set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAVS
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

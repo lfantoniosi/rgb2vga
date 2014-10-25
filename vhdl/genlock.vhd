@@ -22,13 +22,12 @@ entity genlock is
 			col_number	: buffer unsigned(8 downto 0); 
 			store_req	: out std_logic := '0';
 			store_ack : in std_logic;
-			dac_step		: buffer unsigned(2 downto 0);
-			is_sync		: out std_logic;
+			dac_step		: buffer unsigned(2 downto 0);			
 			artifact		: in std_logic;
 			mode 			: in std_logic;
 			sync_level	: in std_logic;
-			front_porch : in unsigned(7 downto 0);
-			top_border	: in unsigned(5 downto 0)
+			msx		   : in std_logic;
+			scale_down	: in std_logic
 									
          );
 end genlock;
@@ -37,6 +36,8 @@ architecture behavioral of genlock is
 
 signal vblank, hblank							: std_ulogic;
 signal hcount, vcount							: unsigned(13 downto 0) := to_unsigned(1024, 14);
+signal top_border									: integer := 32;
+signal front_porch								: integer := 182;
 
 signal red_adc : unsigned(6 downto 0);
 signal green_adc : unsigned(6 downto 0);
@@ -298,7 +299,6 @@ begin
 	if (rising_edge(clock_pixel)) then
 		hblank <= '1'; 
 		if (hsync = sync_level and hcount(13 downto 3) >= 909) then
-		--if (hsync = sync_level and hcount(13 downto 3) >= 717+front_porch) then
 			hblank <= '0'; 
 		end if;		
 		
@@ -311,9 +311,8 @@ begin
 		hcount <= (others => '0');
 		dac_step <= "001";
 	elsif (rising_edge(clock_pixel)) then
-		if (hcount(13 downto 3) < 1024) then
-			hcount <= hcount + 1;
-		end if;
+
+		hcount <= hcount + 1;
 		
 		case hcount(2 downto 0) is
 			when "000" => 
@@ -321,7 +320,6 @@ begin
 			when others =>
 					dac_step <= hcount(2 downto 0);					
 		end case;
-		--dac_step <= dac_step + 1;			
 		
 	end if;
 end process;
@@ -333,14 +331,16 @@ begin
 
 		vblank <= '1'; 					
 		if (vsync = sync_level and vcount > 261) then
+		
+			if (vcount > 270) then
+				top_border <= 48;
+			else
+				top_border <= 16;
+			end if;
+		
 			vblank <= '0';	
 		end if;		
-				
-		is_sync <= '0';
-		if (vsync = '0' and hcount(13 downto 3) >= 1024) then
-			is_sync <= '1';
-		end if;		
-		
+						
 	end if;	
 
 end process;
@@ -362,21 +362,18 @@ variable prev_pixel: integer range 0 to 255;
 variable cur_pixel: integer range 0 to 255;
 begin
 	if (dac_step = "100") then
-		if (hcount(13 downto 3) >= to_integer(front_porch) and hcount(13 downto 3) < 640+to_integer(front_porch) and vcount >= to_integer(top_border) and vcount < 312) then		
-		--if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 640+front_porch and vcount >= top_border and vcount < 312) then		
+		if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 730+front_porch and vcount >= top_border and vcount < 312) then		
 		
-			col := to_integer(hcount(13 downto 3)) - to_integer(front_porch);		
-			--col := to_integer(hcount(13 downto 3)) - front_porch;		
-			row := to_integer(vcount) - to_integer(top_border);
-			--row := to_integer(vcount) - top_border;
+			col := to_integer(hcount(13 downto 3)) - front_porch;		
+			row := to_integer(vcount) - top_border;
 			row_number <= to_unsigned(row, row_number'length);
 			col_number <= to_unsigned(col, 10)(9 downto 1);
 			
 			if (hcount(3) = '0') then								
-				pixel_out(7 downto 0) <= pixel_adc;		
+				pixel_out(15 downto 8) <= pixel_adc;		
 				prev_pixel := cur_pixel;				
 			else
-				pixel_out(15 downto 8) <= pixel_adc;									
+				pixel_out(7 downto 0) <= pixel_adc;									
 			
 				if (artifact_mode = '1') then
 				
@@ -423,6 +420,19 @@ begin
 	
 	if (hblank = '0') then
 		store_req <= '1';
+	end if;
+end process;
+
+fporch: process(msx)
+begin
+	if (msx = '0') then
+		if (scale_down = '0') then
+			front_porch <= 152;
+		else
+			front_porch <= 192;
+		end if;
+	else
+		front_porch <= 182;
 	end if;
 end process;
 

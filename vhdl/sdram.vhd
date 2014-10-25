@@ -39,7 +39,9 @@ entity sdram is
 		pMemBa1     : out std_logic;                        -- SD-RAM Bank select address 1
 		pMemBa0     : out std_logic;                        -- SD-RAM Bank select address 0
 		pMemAdr     : out unsigned(12 downto 0);    -- SD-RAM Address
-		pMemDat     : inout unsigned(15 downto 0)   -- SD-RAM Data
+		pMemDat     : inout unsigned(15 downto 0);   -- SD-RAM Data
+		
+		scale_down	: in std_logic
 	);
   
 end sdram;
@@ -64,7 +66,7 @@ architecture rtl of sdram is
 	constant SdrCmd_rd : unsigned(3 downto 0) := "0101"; -- read
 	constant SdrCmd_wr : unsigned(3 downto 0) := "0100"; -- write		
 	constant SdrCmd_bs : unsigned(3 downto 0) := "0110"; -- burst stop
-	
+		
 begin
 	
 	process( clk )
@@ -77,6 +79,10 @@ begin
 		variable SdrRefreshCounter : unsigned(15 downto 0) := X"0000";
 		
 		variable SdrAddress : unsigned(23 downto 0);
+		variable curCol	 : unsigned(8 downto 0);
+		variable prevData	  : unsigned(15 downto 0);
+
+		
 		
 	begin
 	
@@ -175,7 +181,9 @@ begin
 						SdrBa0 <= SdrAddress(22);
 						SdrBa1 <= SdrAddress(23);
 						SdrAdr <= SdrAddress(21 downto 9);						
-						SdrRoutineSeq := SdrRoutineSeq + 1;						
+						SdrRoutineSeq := SdrRoutineSeq + 1;			
+						curCol := (others => '0');
+						prevData := (others => '0');
 
 					elsif( SdrRoutineSeq = X"002" ) then					
 						SdrCmd <= SdrCmd_rd;
@@ -188,12 +196,36 @@ begin
 						
 					elsif( SdrRoutineSeq >= X"008" and SdrRoutineSeq < X"1A8" ) then
 						SdrCmd <= SdrCmd_xx;						
+
+						colLoadNr <= curCol;
+
+						if (scale_down = '0' and SdrAddress(2 downto 0) = "100") then			
+							pixelOut(15 downto 8) <= prevData(15 downto 8);
+							pixelOut(7 downto 5) <= to_unsigned(to_integer(prevData(7 downto 5)) + to_integer(pMemDat(15 downto 13)), 4)(3 downto 1);
+							pixelOut(4 downto 2) <= to_unsigned(to_integer(prevData(4 downto 2)) + to_integer(pMemDat(12 downto 10)), 4)(3 downto 1);
+							pixelOut(1 downto 0) <= to_unsigned(to_integer(prevData(1 downto 0)) + to_integer(pMemDat(9 downto 8)), 3)(2 downto 1);
+						elsif (scale_down = '0' and SdrAddress(2 downto 0) = "101") then
 						
-						colLoadNr <= SdrAddress(8 downto 0);
-						pixelOut <= pMemDat;
+							pixelOut(7 downto 0) <= pMemDat(7 downto 0);
+							pixelOut(15 downto 13) <= to_unsigned(to_integer(prevData(7 downto 5)) + to_integer(pMemDat(15 downto 13)), 4)(3 downto 1);
+							pixelOut(12 downto 10) <= to_unsigned(to_integer(prevData(4 downto 2)) + to_integer(pMemDat(12 downto 10)), 4)(3 downto 1);
+							pixelOut(9 downto 8) <= to_unsigned(to_integer(prevData(1 downto 0)) + to_integer(pMemDat(9 downto 8)), 3)(2 downto 1);
+
+							curCol := curCol + 1;
+
+						else
+							curCol := curCol + 1;
+							pixelOut <= pMemDat;
+						end if;
 						
-						SdrAddress := SdrAddress + 1;
+						--colLoadNr <= SdrAddress(8 downto 0);
+						--pixelOut <= pMemDat;
+																
+						SdrAddress := SdrAddress + 1;					
+						
 						SdrRoutineSeq := SdrRoutineSeq + 1;					
+
+						prevData := pMemDat;
 						
 					elsif( SdrRoutineSeq = X"1A8" ) then
 						SdrCmd <= SdrCmd_bs;	
@@ -240,7 +272,12 @@ begin
 						
 						SdrDat <= pixelIn;					
 						SdrAddress := SdrAddress + 1;
-						colStoreNr <= colStoreNr + 1;
+						
+						--if (scale_down = '0' and SdrAddress(2 downto 0) = "100") then
+						--	colStoreNr <= colStoreNr + 2;
+						--else
+							colStoreNr <= colStoreNr + 1;
+						--end if;
 						
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						

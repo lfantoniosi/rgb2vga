@@ -24,8 +24,7 @@ entity vgaout is
 			col_number	: out unsigned(8 downto 0); -- [0:639]
 			load_req	: out std_logic := '0';
 			load_ack  : in std_logic;
-			is_scanline	: in std_logic;
-			is_sync		: in std_logic
+			is_scanline	: in std_logic
 			
          );
 end vgaout;
@@ -130,13 +129,9 @@ pixel: process(pixel_in, hcount)
 variable pixel: unsigned (7 downto 0);
 begin
 	if (hcount(0) = '0') then
-		pixel := pixel_in(7 downto 0);
-	else
 		pixel := pixel_in(15 downto 8);
-	end if;
-
-	if (is_sync = '1') then
-		pixel := "00011100"; -- out of sync shows green
+	else
+		pixel := pixel_in(7 downto 0);
 	end if;
 
 	if (vcount(0) = '1' and is_scanline = '1') then

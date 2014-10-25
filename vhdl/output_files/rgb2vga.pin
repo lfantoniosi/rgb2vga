@@ -73,7 +73,7 @@ GND*                         : A2        :        :                   :         
 D0                           : A3        : output : 2.5 V             :         : 8         : Y              
 GND*                         : A4        :        :                   :         : 8         :                
 FP0                          : A5        : input  : 2.5 V             :         : 8         : Y              
-VGAR1                        : A6        : output : 2.5 V             :         : 8         : Y              
+GND*                         : A6        :        :                   :         : 8         :                
 FP3                          : A7        : input  : 2.5 V             :         : 8         : Y              
 HSYNC                        : A8        : input  : 2.5 V             :         : 8         : Y              
 GND+                         : A9        :        :                   :         : 7         :                
@@ -87,8 +87,8 @@ VCCIO7                       : A16       : power  :                   : 2.5V    
 GND*                         : B1        :        :                   :         : 1         :                
 GND                          : B2        : gnd    :                   :         :           :                
 GND*                         : B3        :        :                   :         : 8         :                
-VGAHS                        : B4        : output : 2.5 V             :         : 8         : Y              
-VGAVS                        : B5        : output : 2.5 V             :         : 8         : Y              
+GND*                         : B4        :        :                   :         : 8         :                
+GND*                         : B5        :        :                   :         : 8         :                
 FP1                          : B6        : input  : 2.5 V             :         : 8         : Y              
 FP2                          : B7        : input  : 2.5 V             :         : 8         : Y              
 VSYNC                        : B8        : input  : 2.5 V             :         : 8         : Y              
@@ -105,7 +105,7 @@ DRAM_WE_N                    : C2        : output : 2.5 V             :         
 D1                           : C3        : output : 2.5 V             :         : 8         : Y              
 VCCIO8                       : C4        : power  :                   : 2.5V    : 8         :                
 GND                          : C5        : gnd    :                   :         :           :                
-VGAG0                        : C6        : output : 2.5 V             :         : 8         : Y              
+GND*                         : C6        :        :                   :         : 8         :                
 VCCIO8                       : C7        : power  :                   : 2.5V    : 8         :                
 FP4                          : C8        : input  : 2.5 V             :         : 8         : Y              
 DIFFRn                       : C9        : input  : Bus LVDS          :         : 7         : Y              
@@ -120,10 +120,10 @@ GND*                         : D1        :        :                   :         
 ~ALTERA_FLASH_nCE_nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : D2        : input  : 2.5 V             :         : 1         : N              
 D2                           : D3        : output : 2.5 V             :         : 8         : Y              
 VCCD_PLL3                    : D4        : power  :                   : 1.2V    :           :                
-VGAR0                        : D5        : output : 2.5 V             :         : 8         : Y              
-VGAR2                        : D6        : output : 2.5 V             :         : 8         : Y              
+GND*                         : D5        :        :                   :         : 8         :                
+GND*                         : D6        :        :                   :         : 8         :                
 GND                          : D7        : gnd    :                   :         :           :                
-VGAG2                        : D8        : output : 2.5 V             :         : 8         : Y              
+GND*                         : D8        :        :                   :         : 8         :                
 DIFFR                        : D9        : input  : Bus LVDS          :         : 7         : Y              
 GND                          : D10       : gnd    :                   :         :           :                
 DIFFGn                       : D11       : input  : Bus LVDS          :         : 7         : Y              
@@ -137,10 +137,10 @@ GND                          : E2        : gnd    :                   :         
 VCCIO1                       : E3        : power  :                   : 2.5V    : 1         :                
 GND                          : E4        : gnd    :                   :         :           :                
 GNDA3                        : E5        : gnd    :                   :         :           :                
-VGAG1                        : E6        : output : 2.5 V             :         : 8         : Y              
+GND*                         : E6        :        :                   :         : 8         :                
 FP5                          : E7        : input  : 2.5 V             :         : 8         : Y              
 FP6                          : E8        : input  : 2.5 V             :         : 8         : Y              
-VGAB1                        : E9        : output : 2.5 V             :         : 7         : Y              
+GND*                         : E9        :        :                   :         : 7         :                
 GND*                         : E10       :        :                   :         : 7         :                
 GND*                         : E11       :        :                   :         : 7         :                
 GNDA2                        : E12       : gnd    :                   :         :           :                
@@ -155,7 +155,7 @@ nSTATUS                      : F4        :        :                   :         
 VCCA3                        : F5        : power  :                   : 2.5V    :           :                
 GND                          : F6        : gnd    :                   :         :           :                
 VCCINT                       : F7        : power  :                   : 1.2V    :           :                
-VGAB0                        : F8        : output : 2.5 V             :         : 8         : Y              
+GND*                         : F8        :        :                   :         : 8         :                
 FP7                          : F9        : input  : 2.5 V             :         : 7         : Y              
 GND                          : F10       : gnd    :                   :         :           :                
 VCCINT                       : F11       : power  :                   : 1.2V    :           :                
@@ -227,7 +227,7 @@ GND                          : K12       : gnd    :                   :         
 GND                          : K13       : gnd    :                   :         :           :                
 VCCIO5                       : K14       : power  :                   : 2.5V    : 5         :                
 GND*                         : K15       :        :                   :         : 5         :                
-GND*                         : K16       :        :                   :         : 5         :                
+VGAG1                        : K16       : output : 2.5 V             :         : 5         : Y              
 DRAM_CAS_N                   : L1        : output : 2.5 V             :         : 2         : Y              
 DRAM_RAS_N                   : L2        : output : 2.5 V             :         : 2         : Y              
 GND*                         : L3        :        :                   :         : 2         :                
@@ -242,7 +242,7 @@ GND                          : L11       : gnd    :                   :         
 VCCA4                        : L12       : power  :                   : 2.5V    :           :                
 GND*                         : L13       :        :                   :         : 5         :                
 GND*                         : L14       :        :                   :         : 5         :                
-GND*                         : L15       :        :                   :         : 5         :                
+VGAG2                        : L15       : output : 2.5 V             :         : 5         : Y              
 GND*                         : L16       :        :                   :         : 5         :                
 SWITCH0                      : M1        : input  : 2.5 V             :         : 2         : Y              
 GND+                         : M2        :        :                   :         : 2         :                
@@ -270,12 +270,12 @@ GND                          : N7        : gnd    :                   :         
 DRAM_ADDR[6]                 : N8        : output : 2.5 V             :         : 3         : Y              
 GND*                         : N9        :        :                   :         : 4         :                
 GND                          : N10       : gnd    :                   :         :           :                
-GND*                         : N11       :        :                   :         : 4         :                
+VGAG0                        : N11       : output : 2.5 V             :         : 4         : Y              
 GND*                         : N12       :        :                   :         : 4         :                
 VCCD_PLL4                    : N13       : power  :                   : 1.2V    :           :                
 GND*                         : N14       :        :                   :         : 5         :                
 GND*                         : N15       :        :                   :         : 5         :                
-GND*                         : N16       :        :                   :         : 5         :                
+VGAB0                        : N16       : output : 2.5 V             :         : 5         : Y              
 DRAM_ADDR[9]                 : P1        : output : 2.5 V             :         : 2         : Y              
 DRAM_ADDR[0]                 : P2        : output : 2.5 V             :         : 2         : Y              
 DRAM_DQ[13]                  : P3        : bidir  : 2.5 V             :         : 3         : Y              
@@ -284,14 +284,14 @@ GND                          : P5        : gnd    :                   :         
 DRAM_CS_N                    : P6        : output : 2.5 V             :         : 3         : Y              
 VCCIO3                       : P7        : power  :                   : 2.5V    : 3         :                
 DRAM_ADDR[4]                 : P8        : output : 2.5 V             :         : 3         : Y              
-GND*                         : P9        :        :                   :         : 4         :                
+VGAR2                        : P9        : output : 2.5 V             :         : 4         : Y              
 VCCIO4                       : P10       : power  :                   : 2.5V    : 4         :                
 GND*                         : P11       :        :                   :         : 4         :                
 GND                          : P12       : gnd    :                   :         :           :                
 VCCIO4                       : P13       : power  :                   : 2.5V    : 4         :                
 GND*                         : P14       :        :                   :         : 4         :                
 GND*                         : P15       :        :                   :         : 5         :                
-GND*                         : P16       :        :                   :         : 5         :                
+VGAB1                        : P16       : output : 2.5 V             :         : 5         : Y              
 DRAM_ADDR[8]                 : R1        : output : 2.5 V             :         : 2         : Y              
 GND                          : R2        : gnd    :                   :         :           :                
 DRAM_DQ[11]                  : R3        : bidir  : 2.5 V             :         : 3         : Y              
@@ -301,8 +301,8 @@ DRAM_DQM[0]                  : R6        : output : 2.5 V             :         
 DRAM_DQ[7]                   : R7        : bidir  : 2.5 V             :         : 3         : Y              
 CLOCK_50                     : R8        : input  : 2.5 V             :         : 3         : Y              
 GND+                         : R9        :        :                   :         : 4         :                
-GND*                         : R10       :        :                   :         : 4         :                
-GND*                         : R11       :        :                   :         : 4         :                
+VGAR1                        : R10       : output : 2.5 V             :         : 4         : Y              
+VGAR0                        : R11       : output : 2.5 V             :         : 4         : Y              
 GND*                         : R12       :        :                   :         : 4         :                
 GND*                         : R13       :        :                   :         : 4         :                
 GND*                         : R14       :        :                   :         : 4         :                
@@ -318,8 +318,8 @@ DRAM_ADDR[5]                 : T7        : output : 2.5 V             :         
 SWITCH1                      : T8        : input  : 2.5 V             :         : 3         : Y              
 GND+                         : T9        :        :                   :         : 4         :                
 GND*                         : T10       :        :                   :         : 4         :                
-GND*                         : T11       :        :                   :         : 4         :                
-GND*                         : T12       :        :                   :         : 4         :                
+VGAHS                        : T11       : output : 2.5 V             :         : 4         : Y              
+VGAVS                        : T12       : output : 2.5 V             :         : 4         : Y              
 GND*                         : T13       :        :                   :         : 4         :                
 GND*                         : T14       :        :                   :         : 4         :                
 GND*                         : T15       :        :                   :         : 4         :                

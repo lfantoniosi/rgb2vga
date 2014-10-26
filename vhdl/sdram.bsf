@@ -40,8 +40,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 64)
 		(input)
-		(text "rowStoreNr[8..0]" (rect 0 0 66 12)(font "Arial" ))
-		(text "rowStoreNr[8..0]" (rect 21 59 87 71)(font "Arial" ))
+		(text "rowStoreNr[9..0]" (rect 0 0 66 12)(font "Arial" ))
+		(text "rowStoreNr[9..0]" (rect 21 59 87 71)(font "Arial" ))
 		(line (pt 0 64)(pt 16 64)(line_width 3))
 	)
 	(port
@@ -54,8 +54,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 96)
 		(input)
-		(text "rowLoadNr[8..0]" (rect 0 0 64 12)(font "Arial" ))
-		(text "rowLoadNr[8..0]" (rect 21 91 85 103)(font "Arial" ))
+		(text "rowLoadNr[9..0]" (rect 0 0 64 12)(font "Arial" ))
+		(text "rowLoadNr[9..0]" (rect 21 91 85 103)(font "Arial" ))
 		(line (pt 0 96)(pt 16 96)(line_width 3))
 	)
 	(port

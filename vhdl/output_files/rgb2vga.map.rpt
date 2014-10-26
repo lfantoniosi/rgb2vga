@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Sat Oct 25 17:58:03 2014
+Sat Oct 25 23:14:26 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -56,15 +56,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Oct 25 17:58:03 2014      ;
+; Analysis & Synthesis Status        ; Successful - Sat Oct 25 23:14:26 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 583                                        ;
-;     Total combinational functions  ; 519                                        ;
-;     Dedicated logic registers      ; 281                                        ;
-; Total registers                    ; 281                                        ;
+; Total logic elements               ; 598                                        ;
+;     Total combinational functions  ; 534                                        ;
+;     Dedicated logic registers      ; 283                                        ;
+; Total registers                    ; 283                                        ;
 ; Total pins                         ; 73                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 16,384                                     ;
@@ -206,20 +206,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                        ;
 +---------------------------------------------+------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 583                                                                          ;
+; Estimated Total logic elements              ; 598                                                                          ;
 ;                                             ;                                                                              ;
-; Total combinational functions               ; 519                                                                          ;
+; Total combinational functions               ; 534                                                                          ;
 ; Logic element usage by number of LUT inputs ;                                                                              ;
-;     -- 4 input functions                    ; 171                                                                          ;
-;     -- 3 input functions                    ; 164                                                                          ;
-;     -- <=2 input functions                  ; 184                                                                          ;
+;     -- 4 input functions                    ; 177                                                                          ;
+;     -- 3 input functions                    ; 168                                                                          ;
+;     -- <=2 input functions                  ; 189                                                                          ;
 ;                                             ;                                                                              ;
 ; Logic elements by mode                      ;                                                                              ;
-;     -- normal mode                          ; 377                                                                          ;
-;     -- arithmetic mode                      ; 142                                                                          ;
+;     -- normal mode                          ; 389                                                                          ;
+;     -- arithmetic mode                      ; 145                                                                          ;
 ;                                             ;                                                                              ;
-; Total registers                             ; 281                                                                          ;
-;     -- Dedicated logic registers            ; 281                                                                          ;
+; Total registers                             ; 283                                                                          ;
+;     -- Dedicated logic registers            ; 283                                                                          ;
 ;     -- I/O registers                        ; 0                                                                            ;
 ;                                             ;                                                                              ;
 ; I/O pins                                    ; 73                                                                           ;
@@ -229,9 +229,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- PLLs                                 ; 1                                                                            ;
 ;                                             ;                                                                              ;
 ; Maximum fan-out node                        ; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 315                                                                          ;
-; Total fan-out                               ; 3226                                                                         ;
-; Average fan-out                             ; 3.25                                                                         ;
+; Maximum fan-out                             ; 317                                                                          ;
+; Total fan-out                               ; 3297                                                                         ;
+; Average fan-out                             ; 3.27                                                                         ;
 +---------------------------------------------+------------------------------------------------------------------------------+
 
 
@@ -240,14 +240,14 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                           ; Library Name ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
-; |top                                                          ; 519 (1)           ; 281 (0)      ; 16384       ; 0            ; 0       ; 0         ; 73   ; 0            ; |top                                                                          ;              ;
+; |top                                                          ; 534 (1)           ; 283 (0)      ; 16384       ; 0            ; 0       ; 0         ; 73   ; 0            ; |top                                                                          ;              ;
 ;    |altiobuf:inst12|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
 ;    |altiobuf:inst13|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
 ;    |altiobuf:inst16|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
-;    |genlock:inst6|                                            ; 212 (212)         ; 64 (64)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst6                                                            ;              ;
+;    |genlock:inst6|                                            ; 226 (226)         ; 65 (65)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst6                                                            ;              ;
 ;    |pll:inst1|                                                ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1                                                                ;              ;
 ;       |altpll:altpll_component|                               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1|altpll:altpll_component                                        ;              ;
 ;          |pll_altpll:auto_generated|                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1|altpll:altpll_component|pll_altpll:auto_generated              ;              ;
@@ -257,8 +257,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |ram:inst4|                                                ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4                                                                ;              ;
 ;       |altsyncram:altsyncram_component|                       ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4|altsyncram:altsyncram_component                                ;              ;
 ;          |altsyncram_o8k1:auto_generated|                     ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated ;              ;
-;    |sdram:inst|                                               ; 219 (219)         ; 177 (177)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|sdram:inst                                                               ;              ;
-;    |vgaout:inst7|                                             ; 87 (87)           ; 40 (40)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|vgaout:inst7                                                             ;              ;
+;    |sdram:inst|                                               ; 220 (220)         ; 177 (177)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|sdram:inst                                                               ;              ;
+;    |vgaout:inst7|                                             ; 87 (87)           ; 41 (41)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|vgaout:inst7                                                             ;              ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -309,25 +309,26 @@ Encoding Type:  One-Hot
 +-----------------------------------------------------+--------------------------------------------+------------------------+
 ; genlock:inst6|store_req                             ; GND                                        ; yes                    ;
 ; vgaout:inst7|load_req                               ; GND                                        ; yes                    ;
-; genlock:inst6|row_number[8]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|row_number[7]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|row_number[6]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|row_number[5]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|row_number[4]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|row_number[3]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|row_number[2]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|row_number[1]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|row_number[0]                         ; genlock:inst6|row_number[8]                ; yes                    ;
+; genlock:inst6|row_number[9]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[8]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[7]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[6]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[5]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[4]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[3]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[2]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[1]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|row_number[0]                         ; genlock:inst6|row_number[9]                ; yes                    ;
 ; genlock:inst6|pixel_out[15]                         ; genlock:inst6|pixel_out[15]                ; yes                    ;
-; genlock:inst6|col_number[0]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|col_number[1]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|col_number[2]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|col_number[3]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|col_number[4]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|col_number[5]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|col_number[6]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|col_number[7]                         ; genlock:inst6|row_number[8]                ; yes                    ;
-; genlock:inst6|col_number[8]                         ; genlock:inst6|row_number[8]                ; yes                    ;
+; genlock:inst6|col_number[0]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|col_number[1]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|col_number[2]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|col_number[3]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|col_number[4]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|col_number[5]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|col_number[6]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|col_number[7]                         ; genlock:inst6|row_number[9]                ; yes                    ;
+; genlock:inst6|col_number[8]                         ; genlock:inst6|row_number[9]                ; yes                    ;
 ; genlock:inst6|pixel_out[14]                         ; genlock:inst6|pixel_out[15]                ; yes                    ;
 ; genlock:inst6|pixel_out[13]                         ; genlock:inst6|pixel_out[15]                ; yes                    ;
 ; genlock:inst6|pixel_out[12]                         ; genlock:inst6|pixel_out[15]                ; yes                    ;
@@ -356,7 +357,7 @@ Encoding Type:  One-Hot
 ; genlock:inst6|\process_pixel:cur_pixel[3]           ; genlock:inst6|\process_pixel:cur_pixel[0]  ; yes                    ;
 ; genlock:inst6|\process_pixel:cur_pixel[4]           ; genlock:inst6|\process_pixel:cur_pixel[0]  ; yes                    ;
 ; genlock:inst6|\process_pixel:cur_pixel[5]           ; genlock:inst6|\process_pixel:cur_pixel[0]  ; yes                    ;
-; Number of user-specified and inferred latches = 49  ;                                            ;                        ;
+; Number of user-specified and inferred latches = 50  ;                                            ;                        ;
 +-----------------------------------------------------+--------------------------------------------+------------------------+
 Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
@@ -379,12 +380,12 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 281   ;
+; Total registers                              ; 283   ;
 ; Number of registers using Synchronous Clear  ; 30    ;
-; Number of registers using Synchronous Load   ; 50    ;
+; Number of registers using Synchronous Load   ; 60    ;
 ; Number of registers using Asynchronous Clear ; 31    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 187   ;
+; Number of registers using Clock Enable       ; 189   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -395,7 +396,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
 ; genlock:inst6|dac_step[0]              ; 8       ;
-; genlock:inst6|top_border[5]            ; 2       ;
+; genlock:inst6|top_border[5]            ; 3       ;
 ; Total number of inverted registers = 2 ;         ;
 +----------------------------------------+---------+
 
@@ -405,19 +406,19 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[5]      ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |top|sdram:inst|pixelOut[11]     ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|sdram:inst|prevData[11]     ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|sdram:inst|colStoreNr[2]    ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[0]      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|sdram:inst|prevData[10]     ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|sdram:inst|colStoreNr[6]    ;
 ; 5:1                ; 9 bits    ; 27 LEs        ; 9 LEs                ; 18 LEs                 ; Yes        ; |top|sdram:inst|curCol[7]        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |top|sdram:inst|pixelOut[11]     ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|sdram:inst|SdrBa0           ;
 ; 8:1                ; 4 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[12]       ;
-; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[3]        ;
-; 12:1               ; 15 bits   ; 120 LEs       ; 15 LEs               ; 105 LEs                ; Yes        ; |top|sdram:inst|SdrAddress[0]    ;
-; 12:1               ; 9 bits    ; 72 LEs        ; 18 LEs               ; 54 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[10]   ;
-; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[4] ;
+; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[0]        ;
+; 12:1               ; 14 bits   ; 112 LEs       ; 14 LEs               ; 98 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[1]    ;
+; 12:1               ; 10 bits   ; 80 LEs        ; 20 LEs               ; 60 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[13]   ;
+; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[8] ;
 ; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |top|vgaout:inst7|vga_pixel[5]   ;
-; 25:1               ; 6 bits    ; 96 LEs        ; 18 LEs               ; 78 LEs                 ; No         ; |top|sdram:inst|Selector4        ;
+; 25:1               ; 6 bits    ; 96 LEs        ; 18 LEs               ; 78 LEs                 ; No         ; |top|sdram:inst|Selector8        ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 
 
@@ -1015,7 +1016,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sat Oct 25 17:57:59 2014
+    Info: Processing started: Sat Oct 25 23:14:22 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
@@ -1045,7 +1046,6 @@ Warning (275009): Pin "SWITCH0" not connected
 Warning (275009): Pin "SWITCH1" not connected
 Warning (275009): Pin "SWITCH2" not connected
 Warning (275009): Pin "SWITCH3" not connected
-Warning (275009): Pin "FP2" not connected
 Warning (275009): Pin "FP3" not connected
 Warning (275008): Primitive "VCC" of instance "inst8" not used
 Warning (275008): Primitive "GND" of instance "inst9" not used
@@ -1116,97 +1116,99 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/pll_
     Info (12023): Found entity 1: pll_altpll
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "pll:inst1|altpll:altpll_component|pll_altpll:auto_generated"
 Info (12128): Elaborating entity "genlock" for hierarchy "genlock:inst6"
-Warning (10492): VHDL Process Statement warning at genlock.vhd(205): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(229): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(253): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(277): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(284): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(291): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(365): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(365): signal "front_porch" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(365): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(365): signal "top_border" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(367): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(367): signal "front_porch" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(368): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(368): signal "top_border" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(207): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(231): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(255): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(279): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(286): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(293): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
 Warning (10492): VHDL Process Statement warning at genlock.vhd(372): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(373): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(376): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(378): signal "artifact_mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(380): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(382): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(389): signal "mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(407): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(408): signal "artifact" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at genlock.vhd(359): inferring latch(es) for signal or variable "row_number", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(359): inferring latch(es) for signal or variable "col_number", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(359): inferring latch(es) for signal or variable "pixel_out", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(359): inferring latch(es) for signal or variable "prev_pixel", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(359): inferring latch(es) for signal or variable "cur_pixel", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(359): inferring latch(es) for signal or variable "artifact_mode", which holds its previous value in one or more paths through the process
-Warning (10631): VHDL Process Statement warning at genlock.vhd(414): inferring latch(es) for signal or variable "store_req", which holds its previous value in one or more paths through the process
-Warning (10492): VHDL Process Statement warning at genlock.vhd(429): signal "scale_down" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Info (10041): Inferred latch for "store_req" at genlock.vhd(414)
-Info (10041): Inferred latch for "artifact_mode" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[0]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[1]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[2]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[3]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[4]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[5]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[6]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[7]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[8]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[9]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[10]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[11]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[12]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[13]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[14]" at genlock.vhd(359)
-Info (10041): Inferred latch for "pixel_out[15]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[0]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[1]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[2]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[3]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[4]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[5]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[6]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[7]" at genlock.vhd(359)
-Info (10041): Inferred latch for "col_number[8]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[0]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[1]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[2]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[3]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[4]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[5]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[6]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[7]" at genlock.vhd(359)
-Info (10041): Inferred latch for "row_number[8]" at genlock.vhd(359)
-Info (10041): Inferred latch for "process_pixel:cur_pixel[0]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:cur_pixel[1]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:cur_pixel[2]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:cur_pixel[3]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:cur_pixel[4]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:cur_pixel[5]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:cur_pixel[6]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:cur_pixel[7]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:prev_pixel[0]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:prev_pixel[1]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:prev_pixel[2]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:prev_pixel[3]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:prev_pixel[4]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:prev_pixel[5]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:prev_pixel[6]" at genlock.vhd(364)
-Info (10041): Inferred latch for "process_pixel:prev_pixel[7]" at genlock.vhd(364)
+Warning (10492): VHDL Process Statement warning at genlock.vhd(372): signal "front_porch" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(372): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(372): signal "top_border" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(374): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(374): signal "front_porch" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(375): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(375): signal "top_border" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(377): signal "deinterlace" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(378): signal "frame" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(384): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(385): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(388): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(390): signal "artifact_mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(392): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(394): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(401): signal "mode" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(419): signal "pixel_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(420): signal "artifact" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at genlock.vhd(365): inferring latch(es) for signal or variable "row_number", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(365): inferring latch(es) for signal or variable "col_number", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(365): inferring latch(es) for signal or variable "pixel_out", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(365): inferring latch(es) for signal or variable "prev_pixel", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(365): inferring latch(es) for signal or variable "cur_pixel", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(365): inferring latch(es) for signal or variable "artifact_mode", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(426): inferring latch(es) for signal or variable "store_req", which holds its previous value in one or more paths through the process
+Warning (10492): VHDL Process Statement warning at genlock.vhd(441): signal "scale_down" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (10041): Inferred latch for "store_req" at genlock.vhd(426)
+Info (10041): Inferred latch for "artifact_mode" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[0]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[1]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[2]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[3]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[4]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[5]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[6]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[7]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[8]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[9]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[10]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[11]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[12]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[13]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[14]" at genlock.vhd(365)
+Info (10041): Inferred latch for "pixel_out[15]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[0]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[1]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[2]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[3]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[4]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[5]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[6]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[7]" at genlock.vhd(365)
+Info (10041): Inferred latch for "col_number[8]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[0]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[1]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[2]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[3]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[4]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[5]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[6]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[7]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[8]" at genlock.vhd(365)
+Info (10041): Inferred latch for "row_number[9]" at genlock.vhd(365)
+Info (10041): Inferred latch for "process_pixel:cur_pixel[0]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:cur_pixel[1]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:cur_pixel[2]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:cur_pixel[3]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:cur_pixel[4]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:cur_pixel[5]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:cur_pixel[6]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:cur_pixel[7]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:prev_pixel[0]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:prev_pixel[1]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:prev_pixel[2]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:prev_pixel[3]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:prev_pixel[4]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:prev_pixel[5]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:prev_pixel[6]" at genlock.vhd(371)
+Info (10041): Inferred latch for "process_pixel:prev_pixel[7]" at genlock.vhd(371)
 Info (12128): Elaborating entity "altiobuf" for hierarchy "altiobuf:inst16"
 Info (12128): Elaborating entity "altiobuf_iobuf_in_k0j" for hierarchy "altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component"
 Info (12128): Elaborating entity "vgaout" for hierarchy "vgaout:inst7"
-Warning (10492): VHDL Process Statement warning at vgaout.vhd(137): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at vgaout.vhd(137): signal "is_scanline" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at vgaout.vhd(153): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at vgaout.vhd(147): inferring latch(es) for signal or variable "load_req", which holds its previous value in one or more paths through the process
-Info (10041): Inferred latch for "load_req" at vgaout.vhd(147)
+Warning (10492): VHDL Process Statement warning at vgaout.vhd(145): signal "vcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at vgaout.vhd(145): signal "is_scanline" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at vgaout.vhd(155): inferring latch(es) for signal or variable "load_req", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "load_req" at vgaout.vhd(155)
 Info (12128): Elaborating entity "ram" for hierarchy "ram:inst4"
 Info (12128): Elaborating entity "altsyncram" for hierarchy "ram:inst4|altsyncram:altsyncram_component"
 Info (12130): Elaborated megafunction instantiation "ram:inst4|altsyncram:altsyncram_component"
@@ -1232,6 +1234,8 @@ Info (12133): Instantiated megafunction "ram:inst4|altsyncram:altsyncram_compone
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_o8k1.tdf
     Info (12023): Found entity 1: altsyncram_o8k1
 Info (12128): Elaborating entity "altsyncram_o8k1" for hierarchy "ram:inst4|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated"
+Warning (13012): Latch genlock:inst6|row_number[4] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal genlock:inst6|vcount[3]
 Warning (13012): Latch genlock:inst6|row_number[3] has unsafe behavior
     Warning (13013): Ports D and ENA on the latch are fed by the same signal genlock:inst6|vcount[3]
 Warning (13012): Latch genlock:inst6|pixel_out[15] has unsafe behavior
@@ -1261,24 +1265,23 @@ Critical Warning (18061): Ignored Power-Up Level option on the following registe
 Info (286030): Timing-Driven Synthesis is running
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
-Warning (21074): Design contains 6 input pin(s) that do not drive logic
+Warning (21074): Design contains 5 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SWITCH0"
     Warning (15610): No output dependent on input pin "SWITCH1"
     Warning (15610): No output dependent on input pin "SWITCH2"
     Warning (15610): No output dependent on input pin "SWITCH3"
-    Warning (15610): No output dependent on input pin "FP2"
     Warning (15610): No output dependent on input pin "FP3"
-Info (21057): Implemented 714 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 729 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 21 input pins
     Info (21059): Implemented 36 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 608 logic cells
+    Info (21061): Implemented 623 logic cells
     Info (21064): Implemented 32 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 75 warnings
-    Info: Peak virtual memory: 501 megabytes
-    Info: Processing ended: Sat Oct 25 17:58:03 2014
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 76 warnings
+    Info: Peak virtual memory: 505 megabytes
+    Info: Processing ended: Sat Oct 25 23:14:26 2014
     Info: Elapsed time: 00:00:04
-    Info: Total CPU time (on all processors): 00:00:04
+    Info: Total CPU time (on all processors): 00:00:05
 
 

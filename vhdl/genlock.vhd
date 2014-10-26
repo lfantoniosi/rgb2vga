@@ -18,7 +18,7 @@ entity genlock is
 			adc_rgb	 	 : in	unsigned(2 downto 0); -- analog r, g, b
 			
 			pixel_out		: buffer unsigned(15 downto 0);
-			row_number	: out unsigned(8 downto 0); 
+			row_number	: out unsigned(9 downto 0); 
 			col_number	: buffer unsigned(8 downto 0); 
 			store_req	: out std_logic := '0';
 			store_ack : in std_logic;
@@ -27,7 +27,8 @@ entity genlock is
 			mode 			: in std_logic;
 			sync_level	: in std_logic;
 			msx		   : in std_logic;
-			scale_down	: in std_logic
+			scale_down	: in std_logic;
+			deinterlace	: in std_logic
 									
          );
 end genlock;
@@ -48,6 +49,7 @@ signal artifact_mode: std_logic;
 
 signal pixel_in : unsigned (15 downto 0);
 signal artifact_pixel : unsigned (15 downto 0);
+signal frame: unsigned(0 downto 0);
 
 function f_adc(adc: unsigned) return unsigned;
 
@@ -338,7 +340,8 @@ begin
 				top_border <= 16;
 			end if;
 		
-			vblank <= '0';	
+			vblank <= '0';
+			
 		end if;		
 						
 	end if;	
@@ -352,20 +355,29 @@ begin
 	elsif(rising_edge(clock_pixel)) then
 		if hblank = '0' then
 			vcount <= vcount + 1;
+			if (vcount = 0) then 
+				frame <= not frame;
+			end if;
 		end if;
 	end if;
 end process;
 
-process_pixel: process(dac_step) 
+process_pixel: process(dac_step, vsync) 
 variable row, col: integer range 0 to 1024;
 variable prev_pixel: integer range 0 to 255;
 variable cur_pixel: integer range 0 to 255;
 begin
+	
 	if (dac_step = "100") then
 		if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 730+front_porch and vcount >= top_border and vcount < 312) then		
 		
 			col := to_integer(hcount(13 downto 3)) - front_porch;		
 			row := to_integer(vcount) - top_border;
+			
+			if (deinterlace = '0') then
+				row := row + row + to_integer(frame);
+			end if;
+			
 			row_number <= to_unsigned(row, row_number'length);
 			col_number <= to_unsigned(col, 10)(9 downto 1);
 			

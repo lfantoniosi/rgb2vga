@@ -9,6 +9,8 @@ FP6 => genlock:inst6.sync_level
 FP1 => genlock:inst6.msx
 FP0 => genlock:inst6.scale_down
 FP0 => sdram:inst.scale_down
+FP2 => genlock:inst6.deinterlace
+FP2 => vgaout:inst7.deinterlace
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
 DIFFG => altiobuf:inst12.datain[0]
@@ -71,7 +73,6 @@ SWITCH0 => ~NO_FANOUT~
 SWITCH1 => ~NO_FANOUT~
 SWITCH2 => ~NO_FANOUT~
 SWITCH3 => ~NO_FANOUT~
-FP2 => ~NO_FANOUT~
 FP3 => ~NO_FANOUT~
 
 
@@ -277,6 +278,7 @@ rowStoreNr[5] => SdrAddress.DATAB
 rowStoreNr[6] => SdrAddress.DATAB
 rowStoreNr[7] => SdrAddress.DATAB
 rowStoreNr[8] => SdrAddress.DATAB
+rowStoreNr[9] => SdrAddress.DATAB
 colStoreNr[0] <= colStoreNr[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 colStoreNr[1] <= colStoreNr[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 colStoreNr[2] <= colStoreNr[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -342,6 +344,7 @@ rowLoadNr[5] => SdrAddress.DATAB
 rowLoadNr[6] => SdrAddress.DATAB
 rowLoadNr[7] => SdrAddress.DATAB
 rowLoadNr[8] => SdrAddress.DATAB
+rowLoadNr[9] => SdrAddress.DATAB
 colLoadNr[0] <= colLoadNr[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 colLoadNr[1] <= colLoadNr[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 colLoadNr[2] <= colLoadNr[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -421,6 +424,31 @@ pMemDat[12] <> pMemDat[12]
 pMemDat[13] <> pMemDat[13]
 pMemDat[14] <> pMemDat[14]
 pMemDat[15] <> pMemDat[15]
+scale_down => curCol.OUTPUTSELECT
+scale_down => curCol.OUTPUTSELECT
+scale_down => curCol.OUTPUTSELECT
+scale_down => curCol.OUTPUTSELECT
+scale_down => curCol.OUTPUTSELECT
+scale_down => curCol.OUTPUTSELECT
+scale_down => curCol.OUTPUTSELECT
+scale_down => curCol.OUTPUTSELECT
+scale_down => curCol.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
+scale_down => pixelOut.OUTPUTSELECT
 scale_down => process_0.IN1
 scale_down => process_0.IN1
 
@@ -502,6 +530,7 @@ inclk[1] => pll1.CLK1
 
 
 |top|genlock:inst6
+clock_pixel => frame[0].CLK
 clock_pixel => vcount[0].CLK
 clock_pixel => vcount[1].CLK
 clock_pixel => vcount[2].CLK
@@ -644,6 +673,7 @@ row_number[5] <= row_number[5]$latch.DB_MAX_OUTPUT_PORT_TYPE
 row_number[6] <= row_number[6]$latch.DB_MAX_OUTPUT_PORT_TYPE
 row_number[7] <= row_number[7]$latch.DB_MAX_OUTPUT_PORT_TYPE
 row_number[8] <= row_number[8]$latch.DB_MAX_OUTPUT_PORT_TYPE
+row_number[9] <= row_number[9]$latch.DB_MAX_OUTPUT_PORT_TYPE
 col_number[0] <= col_number[0]$latch.DB_MAX_OUTPUT_PORT_TYPE
 col_number[1] <= col_number[1]$latch.DB_MAX_OUTPUT_PORT_TYPE
 col_number[2] <= col_number[2]$latch.DB_MAX_OUTPUT_PORT_TYPE
@@ -677,6 +707,16 @@ msx => Add3.IN53
 scale_down => front_porch[6].DATAB
 scale_down => front_porch[4].DATAB
 scale_down => front_porch[3].DATAB
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
 
 
 |top|altiobuf:inst16
@@ -734,6 +774,7 @@ clock_vga => row_number[5]~reg0.CLK
 clock_vga => row_number[6]~reg0.CLK
 clock_vga => row_number[7]~reg0.CLK
 clock_vga => row_number[8]~reg0.CLK
+clock_vga => row_number[9]~reg0.CLK
 clock_vga => hsync.CLK
 clock_vga => hcount[0].CLK
 clock_vga => hcount[1].CLK
@@ -791,6 +832,7 @@ row_number[5] <= row_number[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 row_number[6] <= row_number[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 row_number[7] <= row_number[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 row_number[8] <= row_number[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+row_number[9] <= row_number[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 col_number[0] <= col_number[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 col_number[1] <= col_number[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 col_number[2] <= col_number[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -803,6 +845,16 @@ col_number[8] <= col_number[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 load_req <= load_req$latch.DB_MAX_OUTPUT_PORT_TYPE
 load_ack => load_req.IN1
 is_scanline => pixel.IN1
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
+deinterlace => row.OUTPUTSELECT
 
 
 |top|ram:inst4

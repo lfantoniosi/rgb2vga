@@ -13,17 +13,17 @@ entity sdram is
 	--);
 
 	port(
-		clk			 : in std_logic; -- 200 Mhz
+		clk			 : in std_logic; 
 
 		pixelIn		: in unsigned(15 downto 0);		
-		rowStoreNr	: in unsigned(8 downto 0); -- [0:239]
-		colStoreNr	: buffer unsigned(8 downto 0); -- [0:639]
+		rowStoreNr	: in unsigned(9 downto 0); 
+		colStoreNr	: buffer unsigned(8 downto 0); 
 		rowStoreReq	: in std_logic;
 		rowStoreAck : out std_logic := '0';
 		
 		pixelOut		: out unsigned(15 downto 0);
-		rowLoadNr	: in unsigned(8 downto 0); -- [0:239]
-		colLoadNr	: buffer unsigned(8 downto 0); -- [0:639]
+		rowLoadNr	: in unsigned(9 downto 0); 
+		colLoadNr	: buffer unsigned(8 downto 0); 
 		rowLoadReq	: in std_logic;
 		rowLoadAck  : out std_logic := '0';
 		
@@ -141,14 +141,14 @@ begin
 					SdrDat <= (others => 'Z');
 					
 					if( rowLoadReq = '1' ) then
-						SdrAddress(23 downto 18) := "000000";
-						SdrAddress(17 downto 9) := rowLoadNr;
+						SdrAddress(23 downto 19) := "00000";
+						SdrAddress(18 downto 9) := rowLoadNr;
 						SdrAddress(8 downto 0) := "000000000";
 						SdrRoutine := SdrRoutine_LoadRow;
 					
 					elsif( rowStoreReq = '1' ) then
-						SdrAddress(23 downto 18) := "000000";
-						SdrAddress(17 downto 9) := rowStoreNr;
+						SdrAddress(23 downto 19) := "00000";
+						SdrAddress(18 downto 9) := rowStoreNr;
 						SdrAddress(8 downto 0) := "000000000";
 						SdrRoutine := SdrRoutine_StoreRow;
 
@@ -199,23 +199,25 @@ begin
 
 						colLoadNr <= curCol;
 
-						if (scale_down = '0' and SdrAddress(2 downto 0) = "100") then			
-							pixelOut(15 downto 8) <= prevData(15 downto 8);
-							pixelOut(7 downto 5) <= to_unsigned(to_integer(prevData(7 downto 5)) + to_integer(pMemDat(15 downto 13)), 4)(3 downto 1);
-							pixelOut(4 downto 2) <= to_unsigned(to_integer(prevData(4 downto 2)) + to_integer(pMemDat(12 downto 10)), 4)(3 downto 1);
-							pixelOut(1 downto 0) <= to_unsigned(to_integer(prevData(1 downto 0)) + to_integer(pMemDat(9 downto 8)), 3)(2 downto 1);
-						elsif (scale_down = '0' and SdrAddress(2 downto 0) = "101") then
-						
-							pixelOut(7 downto 0) <= pMemDat(7 downto 0);
-							pixelOut(15 downto 13) <= to_unsigned(to_integer(prevData(7 downto 5)) + to_integer(pMemDat(15 downto 13)), 4)(3 downto 1);
-							pixelOut(12 downto 10) <= to_unsigned(to_integer(prevData(4 downto 2)) + to_integer(pMemDat(12 downto 10)), 4)(3 downto 1);
-							pixelOut(9 downto 8) <= to_unsigned(to_integer(prevData(1 downto 0)) + to_integer(pMemDat(9 downto 8)), 3)(2 downto 1);
-
-							curCol := curCol + 1;
-
+						if (scale_down = '1') then
+								curCol := curCol + 1;
+								pixelOut <= pMemDat;
 						else
-							curCol := curCol + 1;
-							pixelOut <= pMemDat;
+							if (scale_down = '0' and SdrAddress(2 downto 0) = "100") then								
+								pixelOut(15 downto 8) <= prevData(15 downto 8);
+								pixelOut(7 downto 5) <= to_unsigned(to_integer(prevData(7 downto 5)) + to_integer(pMemDat(15 downto 13)), 4)(3 downto 1);
+								pixelOut(4 downto 2) <= to_unsigned(to_integer(prevData(4 downto 2)) + to_integer(pMemDat(12 downto 10)), 4)(3 downto 1);
+								pixelOut(1 downto 0) <= to_unsigned(to_integer(prevData(1 downto 0)) + to_integer(pMemDat(9 downto 8)), 3)(2 downto 1);								
+							elsif (scale_down = '0' and SdrAddress(2 downto 0) = "101") then							
+								pixelOut(7 downto 0) <= pMemDat(7 downto 0);
+								pixelOut(15 downto 13) <= to_unsigned(to_integer(prevData(7 downto 5)) + to_integer(pMemDat(15 downto 13)), 4)(3 downto 1);
+								pixelOut(12 downto 10) <= to_unsigned(to_integer(prevData(4 downto 2)) + to_integer(pMemDat(12 downto 10)), 4)(3 downto 1);
+								pixelOut(9 downto 8) <= to_unsigned(to_integer(prevData(1 downto 0)) + to_integer(pMemDat(9 downto 8)), 3)(2 downto 1);
+								curCol := curCol + 1;	
+							else
+								curCol := curCol + 1;
+								pixelOut <= pMemDat;
+							end if;
 						end if;
 						
 						--colLoadNr <= SdrAddress(8 downto 0);
@@ -273,11 +275,7 @@ begin
 						SdrDat <= pixelIn;					
 						SdrAddress := SdrAddress + 1;
 						
-						--if (scale_down = '0' and SdrAddress(2 downto 0) = "100") then
-						--	colStoreNr <= colStoreNr + 2;
-						--else
-							colStoreNr <= colStoreNr + 1;
-						--end if;
+						colStoreNr <= colStoreNr + 1;
 						
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						

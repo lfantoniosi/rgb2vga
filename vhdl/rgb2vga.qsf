@@ -121,12 +121,6 @@ set_location_assignment PIN_D12 -to DIFFG
 set_location_assignment PIN_D11 -to DIFFGn
 set_location_assignment PIN_D9 -to DIFFR
 set_location_assignment PIN_C9 -to DIFFRn
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFB
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFBn
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFG
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFR
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFRn
-set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFGn
 set_global_assignment -name VHDL_FILE pll.vhd
 set_global_assignment -name VHDL_FILE vgaout.vhd
 set_global_assignment -name VHDL_FILE genlock.vhd
@@ -166,14 +160,7 @@ set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -
 set_instance_assignment -name ENABLE_BENEFICIAL_SKEW_OPTIMIZATION ON -to DIFFB
 set_instance_assignment -name ENABLE_BENEFICIAL_SKEW_OPTIMIZATION ON -to DIFFG
 set_instance_assignment -name ENABLE_BENEFICIAL_SKEW_OPTIMIZATION ON -to DIFFR
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAB0
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAB1
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAG0
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAG1
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAG2
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAHS
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAR0
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAR1
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAR2
-set_instance_assignment -name CURRENT_STRENGTH_NEW 4MA -to VGAVS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D2
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -101,6 +101,13 @@ applicable agreement for further details.
 		(line (pt 0 192)(pt 16 192)(line_width 1))
 	)
 	(port
+		(pt 0 208)
+		(input)
+		(text "monochrome" (rect 0 0 53 12)(font "Arial" ))
+		(text "monochrome" (rect 21 203 74 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
+	)
+	(port
 		(pt 224 32)
 		(output)
 		(text "pixel_out[15..0]" (rect 0 0 57 12)(font "Arial" ))

@@ -28,7 +28,8 @@ entity genlock is
 			sync_level	: in std_logic;
 			msx		   : in std_logic;
 			scale_down	: in std_logic;
-			deinterlace	: in std_logic
+			deinterlace	: in std_logic;
+			monochrome	: in std_logic
 									
          );
 end genlock;
@@ -277,7 +278,11 @@ end process;
 digitizeR: process(red_adc)
 begin
 	if (rising_edge(clock_pixel)) then
+		if (monochrome = '0') then
+			pixel_adc(7 downto 5) <= f_adc(green_adc);
+		else
 			pixel_adc(7 downto 5) <= f_adc(red_adc);
+		end if;
 	end if;
 end process;
 
@@ -291,7 +296,11 @@ end process;
 digitizeB: process(blue_adc)
 begin
 	if (rising_edge(clock_pixel)) then
+		if (monochrome = '0') then
+			pixel_adc(1 downto 0) <= f_adc(green_adc)(2 downto 1);
+		else
 			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);					
+		end if;
 	end if;
 end process;
 
@@ -362,7 +371,7 @@ begin
 	end if;
 end process;
 
-process_pixel: process(dac_step, vsync) 
+process_pixel: process(dac_step, vsync, hsync) 
 variable row, col: integer range 0 to 1024;
 variable prev_pixel: integer range 0 to 255;
 variable cur_pixel: integer range 0 to 255;
@@ -387,7 +396,7 @@ begin
 			else
 				pixel_out(7 downto 0) <= pixel_adc;									
 			
-				if (artifact_mode = '1') then
+				if (artifact_mode = '0') then
 				
 					pixel_out <= pixel_adc & pixel_adc;
 
@@ -415,8 +424,8 @@ begin
 				end if;	
 			end if;
 		else
-			artifact_mode <= '0';
-			if (pixel_adc(7 downto 2) = "111111") then
+			artifact_mode <= '1';
+			if (pixel_adc(7 downto 2) = "111111" or monochrome = '0') then
 				artifact_mode <= artifact;
 			end if;
 		end if;

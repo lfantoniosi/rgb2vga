@@ -11,6 +11,7 @@ FP0 => genlock:inst6.scale_down
 FP0 => sdram:inst.scale_down
 FP2 => genlock:inst6.deinterlace
 FP2 => vgaout:inst7.deinterlace
+FP3 => genlock:inst6.monochrome
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
 DIFFG => altiobuf:inst12.datain[0]
@@ -73,7 +74,6 @@ SWITCH0 => ~NO_FANOUT~
 SWITCH1 => ~NO_FANOUT~
 SWITCH2 => ~NO_FANOUT~
 SWITCH3 => ~NO_FANOUT~
-FP3 => ~NO_FANOUT~
 
 
 |top|sdram:inst
@@ -717,6 +717,12 @@ deinterlace => row.OUTPUTSELECT
 deinterlace => row.OUTPUTSELECT
 deinterlace => row.OUTPUTSELECT
 deinterlace => row.OUTPUTSELECT
+monochrome => pixel_adc.OUTPUTSELECT
+monochrome => pixel_adc.OUTPUTSELECT
+monochrome => pixel_adc.OUTPUTSELECT
+monochrome => pixel_adc.OUTPUTSELECT
+monochrome => pixel_adc.OUTPUTSELECT
+monochrome => process_pixel.IN1
 
 
 |top|altiobuf:inst16

@@ -1,5 +1,5 @@
 TimeQuest Timing Analyzer report for rgb2vga
-Mon Nov 03 23:33:39 2014
+Fri Nov 07 00:11:40 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -102,7 +102,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------+--------+--------------------------+
 ; SDC File Path ; Status ; Read at                  ;
 +---------------+--------+--------------------------+
-; rgb2vga.sdc   ; OK     ; Mon Nov 03 23:33:37 2014 ;
+; rgb2vga.sdc   ; OK     ; Fri Nov 07 00:11:38 2014 ;
 +---------------+--------+--------------------------+
 
 
@@ -162,15 +162,15 @@ No paths to report.
 +------------+-------------+-------+-------+-------+-------+
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
-; CLOCK_50   ; DRAM_CLK    ; 2.692 ;       ;       ; 2.812 ;
-; FP7        ; VGAB0       ; 8.183 ; 8.167 ; 8.700 ; 8.717 ;
-; FP7        ; VGAB1       ;       ; 7.697 ; 8.181 ;       ;
-; FP7        ; VGAG0       ; 8.133 ; 8.088 ; 8.648 ; 8.636 ;
-; FP7        ; VGAG1       ; 8.353 ; 8.293 ; 8.866 ; 8.838 ;
-; FP7        ; VGAG2       ;       ; 8.048 ; 8.587 ;       ;
-; FP7        ; VGAR0       ; 7.958 ; 7.937 ; 8.473 ; 8.486 ;
-; FP7        ; VGAR1       ; 8.035 ; 8.052 ; 8.550 ; 8.601 ;
-; FP7        ; VGAR2       ;       ; 8.095 ; 8.632 ;       ;
+; CLOCK_50   ; DRAM_CLK    ; 2.693 ;       ;       ; 2.814 ;
+; FP7        ; VGAB0       ; 8.301 ; 8.219 ; 8.834 ; 8.851 ;
+; FP7        ; VGAB1       ;       ; 7.793 ; 8.298 ;       ;
+; FP7        ; VGAG0       ; 8.374 ; 8.335 ; 8.932 ; 8.884 ;
+; FP7        ; VGAG1       ; 8.542 ; 8.481 ; 9.079 ; 9.117 ;
+; FP7        ; VGAG2       ;       ; 7.992 ; 8.523 ;       ;
+; FP7        ; VGAR0       ; 8.507 ; 8.443 ; 9.065 ; 8.992 ;
+; FP7        ; VGAR1       ; 8.513 ; 8.454 ; 9.071 ; 9.003 ;
+; FP7        ; VGAR2       ;       ; 7.597 ; 8.107 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -179,15 +179,15 @@ No paths to report.
 +------------+-------------+-------+-------+-------+-------+
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
-; CLOCK_50   ; DRAM_CLK    ; 2.243 ;       ;       ; 2.365 ;
-; FP7        ; VGAB0       ; 7.896 ; 7.880 ; 8.401 ; 8.416 ;
-; FP7        ; VGAB1       ;       ; 7.429 ; 7.904 ;       ;
-; FP7        ; VGAG0       ; 7.849 ; 7.805 ; 8.353 ; 8.340 ;
-; FP7        ; VGAG1       ; 8.060 ; 8.001 ; 8.561 ; 8.532 ;
-; FP7        ; VGAG2       ;       ; 7.769 ; 8.295 ;       ;
-; FP7        ; VGAR0       ; 7.683 ; 7.662 ; 8.186 ; 8.197 ;
-; FP7        ; VGAR1       ; 7.756 ; 7.772 ; 8.259 ; 8.307 ;
-; FP7        ; VGAR2       ;       ; 7.814 ; 8.338 ;       ;
+; CLOCK_50   ; DRAM_CLK    ; 2.245 ;       ;       ; 2.367 ;
+; FP7        ; VGAB0       ; 8.010 ; 7.930 ; 8.532 ; 8.547 ;
+; FP7        ; VGAB1       ;       ; 7.523 ; 8.016 ;       ;
+; FP7        ; VGAG0       ; 8.082 ; 8.043 ; 8.625 ; 8.577 ;
+; FP7        ; VGAG1       ; 8.242 ; 8.182 ; 8.767 ; 8.802 ;
+; FP7        ; VGAG2       ;       ; 7.716 ; 8.233 ;       ;
+; FP7        ; VGAR0       ; 8.211 ; 8.148 ; 8.755 ; 8.683 ;
+; FP7        ; VGAR1       ; 8.217 ; 8.158 ; 8.761 ; 8.693 ;
+; FP7        ; VGAR2       ;       ; 7.336 ; 7.834 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -238,15 +238,15 @@ No paths to report.
 +------------+-------------+-------+-------+-------+-------+
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
-; CLOCK_50   ; DRAM_CLK    ; 2.434 ;       ;       ; 2.576 ;
-; FP7        ; VGAB0       ; 7.266 ; 7.232 ; 7.672 ; 7.667 ;
-; FP7        ; VGAB1       ;       ; 6.804 ; 7.206 ;       ;
-; FP7        ; VGAG0       ; 7.219 ; 7.151 ; 7.624 ; 7.585 ;
-; FP7        ; VGAG1       ; 7.424 ; 7.332 ; 7.828 ; 7.766 ;
-; FP7        ; VGAG2       ;       ; 7.132 ; 7.605 ;       ;
-; FP7        ; VGAR0       ; 7.077 ; 7.022 ; 7.481 ; 7.456 ;
-; FP7        ; VGAR1       ; 7.151 ; 7.126 ; 7.557 ; 7.562 ;
-; FP7        ; VGAR2       ;       ; 7.173 ; 7.645 ;       ;
+; CLOCK_50   ; DRAM_CLK    ; 2.436 ;       ;       ; 2.578 ;
+; FP7        ; VGAB0       ; 7.368 ; 7.310 ; 7.787 ; 7.814 ;
+; FP7        ; VGAB1       ;       ; 6.873 ; 7.308 ;       ;
+; FP7        ; VGAG0       ; 7.447 ; 7.391 ; 7.888 ; 7.824 ;
+; FP7        ; VGAG1       ; 7.589 ; 7.510 ; 8.012 ; 8.018 ;
+; FP7        ; VGAG2       ;       ; 7.067 ; 7.541 ;       ;
+; FP7        ; VGAR0       ; 7.594 ; 7.496 ; 8.034 ; 7.928 ;
+; FP7        ; VGAR1       ; 7.600 ; 7.504 ; 8.040 ; 7.936 ;
+; FP7        ; VGAR2       ;       ; 6.719 ; 7.154 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -255,15 +255,15 @@ No paths to report.
 +------------+-------------+-------+-------+-------+-------+
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
-; CLOCK_50   ; DRAM_CLK    ; 2.024 ;       ;       ; 2.170 ;
-; FP7        ; VGAB0       ; 7.004 ; 6.970 ; 7.400 ; 7.394 ;
-; FP7        ; VGAB1       ;       ; 6.559 ; 6.953 ;       ;
-; FP7        ; VGAG0       ; 6.958 ; 6.893 ; 7.353 ; 7.316 ;
-; FP7        ; VGAG1       ; 7.155 ; 7.066 ; 7.550 ; 7.489 ;
-; FP7        ; VGAG2       ;       ; 6.877 ; 7.338 ;       ;
-; FP7        ; VGAR0       ; 6.824 ; 6.769 ; 7.219 ; 7.193 ;
-; FP7        ; VGAR1       ; 6.895 ; 6.870 ; 7.291 ; 7.295 ;
-; FP7        ; VGAR2       ;       ; 6.915 ; 7.377 ;       ;
+; CLOCK_50   ; DRAM_CLK    ; 2.026 ;       ;       ; 2.173 ;
+; FP7        ; VGAB0       ; 7.103 ; 7.046 ; 7.510 ; 7.535 ;
+; FP7        ; VGAB1       ;       ; 6.626 ; 7.051 ;       ;
+; FP7        ; VGAG0       ; 7.178 ; 7.124 ; 7.605 ; 7.545 ;
+; FP7        ; VGAG1       ; 7.316 ; 7.238 ; 7.726 ; 7.730 ;
+; FP7        ; VGAG2       ;       ; 6.814 ; 7.276 ;       ;
+; FP7        ; VGAR0       ; 7.321 ; 7.225 ; 7.749 ; 7.647 ;
+; FP7        ; VGAR1       ; 7.327 ; 7.233 ; 7.755 ; 7.655 ;
+; FP7        ; VGAR2       ;       ; 6.480 ; 6.906 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -308,15 +308,15 @@ No paths to report.
 +------------+-------------+-------+-------+-------+-------+
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
-; CLOCK_50   ; DRAM_CLK    ; 1.578 ;       ;       ; 2.019 ;
-; FP7        ; VGAB0       ; 4.741 ; 4.808 ; 5.404 ; 5.490 ;
-; FP7        ; VGAB1       ;       ; 4.550 ; 5.114 ;       ;
-; FP7        ; VGAG0       ; 4.682 ; 4.741 ; 5.344 ; 5.422 ;
-; FP7        ; VGAG1       ; 4.804 ; 4.880 ; 5.465 ; 5.560 ;
-; FP7        ; VGAG2       ;       ; 4.781 ; 5.315 ;       ;
-; FP7        ; VGAR0       ; 4.590 ; 4.663 ; 5.253 ; 5.345 ;
-; FP7        ; VGAR1       ; 4.653 ; 4.744 ; 5.316 ; 5.426 ;
-; FP7        ; VGAR2       ;       ; 4.809 ; 5.333 ;       ;
+; CLOCK_50   ; DRAM_CLK    ; 1.579 ;       ;       ; 2.020 ;
+; FP7        ; VGAB0       ; 4.809 ; 4.846 ; 5.487 ; 5.581 ;
+; FP7        ; VGAB1       ;       ; 4.605 ; 5.189 ;       ;
+; FP7        ; VGAG0       ; 4.850 ; 4.929 ; 5.539 ; 5.611 ;
+; FP7        ; VGAG1       ; 4.923 ; 4.973 ; 5.600 ; 5.707 ;
+; FP7        ; VGAG2       ;       ; 4.743 ; 5.300 ;       ;
+; FP7        ; VGAR0       ; 4.911 ; 5.012 ; 5.600 ; 5.694 ;
+; FP7        ; VGAR1       ; 4.917 ; 5.013 ; 5.607 ; 5.696 ;
+; FP7        ; VGAR2       ;       ; 4.505 ; 5.068 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -325,15 +325,15 @@ No paths to report.
 +------------+-------------+-------+-------+-------+-------+
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
-; CLOCK_50   ; DRAM_CLK    ; 1.305 ;       ;       ; 1.747 ;
-; FP7        ; VGAB0       ; 4.577 ; 4.641 ; 5.228 ; 5.311 ;
-; FP7        ; VGAB1       ;       ; 4.393 ; 4.950 ;       ;
-; FP7        ; VGAG0       ; 4.520 ; 4.576 ; 5.171 ; 5.246 ;
-; FP7        ; VGAG1       ; 4.637 ; 4.709 ; 5.287 ; 5.378 ;
-; FP7        ; VGAG2       ;       ; 4.618 ; 5.145 ;       ;
-; FP7        ; VGAR0       ; 4.435 ; 4.506 ; 5.086 ; 5.176 ;
-; FP7        ; VGAR1       ; 4.496 ; 4.584 ; 5.146 ; 5.253 ;
-; FP7        ; VGAR2       ;       ; 4.646 ; 5.163 ;       ;
+; CLOCK_50   ; DRAM_CLK    ; 1.307 ;       ;       ; 1.749 ;
+; FP7        ; VGAB0       ; 4.643 ; 4.678 ; 5.309 ; 5.398 ;
+; FP7        ; VGAB1       ;       ; 4.446 ; 5.021 ;       ;
+; FP7        ; VGAG0       ; 4.681 ; 4.759 ; 5.358 ; 5.429 ;
+; FP7        ; VGAG1       ; 4.752 ; 4.801 ; 5.416 ; 5.519 ;
+; FP7        ; VGAG2       ;       ; 4.582 ; 5.132 ;       ;
+; FP7        ; VGAR0       ; 4.743 ; 4.842 ; 5.421 ; 5.513 ;
+; FP7        ; VGAR1       ; 4.749 ; 4.843 ; 5.427 ; 5.514 ;
+; FP7        ; VGAR2       ;       ; 4.354 ; 4.908 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -358,15 +358,15 @@ No synchronizer chains to report.
 +------------+-------------+-------+-------+-------+-------+
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
-; CLOCK_50   ; DRAM_CLK    ; 2.692 ;       ;       ; 2.812 ;
-; FP7        ; VGAB0       ; 8.183 ; 8.167 ; 8.700 ; 8.717 ;
-; FP7        ; VGAB1       ;       ; 7.697 ; 8.181 ;       ;
-; FP7        ; VGAG0       ; 8.133 ; 8.088 ; 8.648 ; 8.636 ;
-; FP7        ; VGAG1       ; 8.353 ; 8.293 ; 8.866 ; 8.838 ;
-; FP7        ; VGAG2       ;       ; 8.048 ; 8.587 ;       ;
-; FP7        ; VGAR0       ; 7.958 ; 7.937 ; 8.473 ; 8.486 ;
-; FP7        ; VGAR1       ; 8.035 ; 8.052 ; 8.550 ; 8.601 ;
-; FP7        ; VGAR2       ;       ; 8.095 ; 8.632 ;       ;
+; CLOCK_50   ; DRAM_CLK    ; 2.693 ;       ;       ; 2.814 ;
+; FP7        ; VGAB0       ; 8.301 ; 8.219 ; 8.834 ; 8.851 ;
+; FP7        ; VGAB1       ;       ; 7.793 ; 8.298 ;       ;
+; FP7        ; VGAG0       ; 8.374 ; 8.335 ; 8.932 ; 8.884 ;
+; FP7        ; VGAG1       ; 8.542 ; 8.481 ; 9.079 ; 9.117 ;
+; FP7        ; VGAG2       ;       ; 7.992 ; 8.523 ;       ;
+; FP7        ; VGAR0       ; 8.507 ; 8.443 ; 9.065 ; 8.992 ;
+; FP7        ; VGAR1       ; 8.513 ; 8.454 ; 9.071 ; 9.003 ;
+; FP7        ; VGAR2       ;       ; 7.597 ; 8.107 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -375,15 +375,15 @@ No synchronizer chains to report.
 +------------+-------------+-------+-------+-------+-------+
 ; Input Port ; Output Port ; RR    ; RF    ; FR    ; FF    ;
 +------------+-------------+-------+-------+-------+-------+
-; CLOCK_50   ; DRAM_CLK    ; 1.305 ;       ;       ; 1.747 ;
-; FP7        ; VGAB0       ; 4.577 ; 4.641 ; 5.228 ; 5.311 ;
-; FP7        ; VGAB1       ;       ; 4.393 ; 4.950 ;       ;
-; FP7        ; VGAG0       ; 4.520 ; 4.576 ; 5.171 ; 5.246 ;
-; FP7        ; VGAG1       ; 4.637 ; 4.709 ; 5.287 ; 5.378 ;
-; FP7        ; VGAG2       ;       ; 4.618 ; 5.145 ;       ;
-; FP7        ; VGAR0       ; 4.435 ; 4.506 ; 5.086 ; 5.176 ;
-; FP7        ; VGAR1       ; 4.496 ; 4.584 ; 5.146 ; 5.253 ;
-; FP7        ; VGAR2       ;       ; 4.646 ; 5.163 ;       ;
+; CLOCK_50   ; DRAM_CLK    ; 1.307 ;       ;       ; 1.749 ;
+; FP7        ; VGAB0       ; 4.643 ; 4.678 ; 5.309 ; 5.398 ;
+; FP7        ; VGAB1       ;       ; 4.446 ; 5.021 ;       ;
+; FP7        ; VGAG0       ; 4.681 ; 4.759 ; 5.358 ; 5.429 ;
+; FP7        ; VGAG1       ; 4.752 ; 4.801 ; 5.416 ; 5.519 ;
+; FP7        ; VGAG2       ;       ; 4.582 ; 5.132 ;       ;
+; FP7        ; VGAR0       ; 4.743 ; 4.842 ; 5.421 ; 5.513 ;
+; FP7        ; VGAR1       ; 4.749 ; 4.843 ; 5.427 ; 5.514 ;
+; FP7        ; VGAR2       ;       ; 4.354 ; 4.908 ;       ;
 +------------+-------------+-------+-------+-------+-------+
 
 
@@ -454,6 +454,7 @@ No synchronizer chains to report.
 +-------------------------+--------------+-----------------+-----------------+
 ; Pin                     ; I/O Standard ; 10-90 Rise Time ; 90-10 Fall Time ;
 +-------------------------+--------------+-----------------+-----------------+
+; FP4                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH0                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH1                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; SWITCH2                 ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -488,7 +489,6 @@ No synchronizer chains to report.
 ; FP0                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; FP2                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; FP1                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
-; FP4                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; FP3                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; FP5                     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
 ; ~ALTERA_ASDO_DATA1~     ; 2.5 V        ; 2000 ps         ; 2000 ps         ;
@@ -707,9 +707,9 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 ; Property                        ; Setup ; Hold ;
 +---------------------------------+-------+------+
 ; Illegal Clocks                  ; 2     ; 2    ;
-; Unconstrained Clocks            ; 2     ; 2    ;
-; Unconstrained Input Ports       ; 30    ; 30   ;
-; Unconstrained Input Port Paths  ; 190   ; 190  ;
+; Unconstrained Clocks            ; 1     ; 1    ;
+; Unconstrained Input Ports       ; 29    ; 29   ;
+; Unconstrained Input Port Paths  ; 248   ; 248  ;
 ; Unconstrained Output Ports      ; 50    ; 50   ;
 ; Unconstrained Output Port Paths ; 186   ; 186  ;
 +---------------------------------+-------+------+
@@ -721,13 +721,13 @@ No dedicated SERDES Receiver circuitry present in device or used in design
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit TimeQuest Timing Analyzer
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Mon Nov 03 23:33:36 2014
+    Info: Processing started: Fri Nov 07 00:11:37 2014
 Info: Command: quartus_sta rgb2vga -c rgb2vga
 Info: qsta_default_script.tcl version: #1
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (21077): Low junction temperature is 0 degrees C
 Info (21077): High junction temperature is 85 degrees C
-Warning (335093): TimeQuest Timing Analyzer is analyzing 50 combinational loops as latches.
+Warning (335093): TimeQuest Timing Analyzer is analyzing 2 combinational loops as latches.
 Info (332104): Reading SDC File: 'rgb2vga.sdc'
 Info (332110): Deriving PLL clocks
     Info (332110): create_generated_clock -source {inst1|altpll_component|auto_generated|pll1|inclk[0]} -divide_by 55 -multiply_by 126 -duty_cycle 50.00 -name {inst1|altpll_component|auto_generated|pll1|clk[1]} {inst1|altpll_component|auto_generated|pll1|clk[1]}
@@ -738,7 +738,6 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: FP0 was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -760,7 +759,6 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: FP0 was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -778,7 +776,6 @@ Warning (332087): The master clock for this clock assignment could not be derive
 Warning (332087): The master clock for this clock assignment could not be derived.  Clock: inst1|altpll_component|auto_generated|pll1|clk[2] was not created.
     Warning (332035): No clocks found on or feeding the specified source node: inst1|altpll_component|auto_generated|pll1|inclk[0]
 Warning (332060): Node: CLOCK_50 was determined to be a clock but was found without an associated clock assignment.
-Warning (332060): Node: FP0 was determined to be a clock but was found without an associated clock assignment.
 Info (332154): The derive_clock_uncertainty command did not apply clock uncertainty to any clock-to-clock transfers.
 Warning (332056): PLL cross checking found inconsistent PLL clock settings:
     Warning (332056): Node: inst1|altpll_component|auto_generated|pll1|clk[1] was found missing 1 generated clock that corresponds to a base clock with a period of: 20.000
@@ -791,9 +788,9 @@ Info (332140): No Removal paths to report
 Info (332140): No Minimum Pulse Width paths to report
 Info (332102): Design is not fully constrained for setup requirements
 Info (332102): Design is not fully constrained for hold requirements
-Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 32 warnings
-    Info: Peak virtual memory: 490 megabytes
-    Info: Processing ended: Mon Nov 03 23:33:39 2014
+Info: Quartus II 64-Bit TimeQuest Timing Analyzer was successful. 0 errors, 29 warnings
+    Info: Peak virtual memory: 482 megabytes
+    Info: Processing ended: Fri Nov 07 00:11:40 2014
     Info: Elapsed time: 00:00:03
     Info: Total CPU time (on all processors): 00:00:03
 

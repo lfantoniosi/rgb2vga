@@ -210,6 +210,92 @@ begin
 		
 end f_adc;
 
+
+function f_avg(x: unsigned) return unsigned;
+
+function f_avg(x: unsigned) return unsigned is
+variable VALUE : unsigned (2 downto 0); 
+begin
+
+		case x is
+		
+			when "000000" => VALUE := "000";
+			when "000001" => VALUE := "000";
+			when "000010" => VALUE := "000";
+			when "000011" => VALUE := "001";
+			when "000100" => VALUE := "001";
+			when "000101" => VALUE := "010";
+			when "000110" => VALUE := "010";
+			when "000111" => VALUE := "010";
+
+			when "001000" => VALUE := "000";
+			when "001001" => VALUE := "001";
+			when "001010" => VALUE := "001";
+			when "001011" => VALUE := "001";
+			when "001100" => VALUE := "010";
+			when "001101" => VALUE := "010";
+			when "001110" => VALUE := "011";
+			when "001111" => VALUE := "011";
+
+			when "010000" => VALUE := "001";
+			when "010001" => VALUE := "001";
+			when "010010" => VALUE := "010";
+			when "010011" => VALUE := "010";
+			when "010100" => VALUE := "010";
+			when "010101" => VALUE := "011";
+			when "010110" => VALUE := "011";
+			when "010111" => VALUE := "100";
+
+			when "011000" => VALUE := "001";
+			when "011001" => VALUE := "010";
+			when "011010" => VALUE := "010";
+			when "011011" => VALUE := "011";
+			when "011100" => VALUE := "011";
+			when "011101" => VALUE := "011";
+			when "011110" => VALUE := "100";
+			when "011111" => VALUE := "100";
+
+			when "100000" => VALUE := "010";
+			when "100001" => VALUE := "010";
+			when "100010" => VALUE := "011";
+			when "100011" => VALUE := "011";
+			when "100100" => VALUE := "100";
+			when "100101" => VALUE := "100";
+			when "100110" => VALUE := "100";
+			when "100111" => VALUE := "101";
+
+			when "101000" => VALUE := "011";
+			when "101001" => VALUE := "011";
+			when "101010" => VALUE := "011";
+			when "101011" => VALUE := "100";
+			when "101100" => VALUE := "100";
+			when "101101" => VALUE := "101";
+			when "101110" => VALUE := "101";
+			when "101111" => VALUE := "101";
+
+			when "110000" => VALUE := "011";
+			when "110001" => VALUE := "100";
+			when "110010" => VALUE := "100";
+			when "110011" => VALUE := "100";
+			when "110100" => VALUE := "101";
+			when "110101" => VALUE := "101";
+			when "110110" => VALUE := "110";
+			when "110111" => VALUE := "110";
+			
+			when "111000" => VALUE := "100";
+			when "111001" => VALUE := "100";
+			when "111010" => VALUE := "101";
+			when "111011" => VALUE := "101";
+			when "111100" => VALUE := "101";
+			when "111101" => VALUE := "110";
+			when "111110" => VALUE := "110";
+			when "111111" => VALUE := "111";
+			
+		end case;
+		
+		return VALUE;
+end f_avg;
+
 begin
 
 channel_red: process(clock_pixel, dac_step) 
@@ -410,6 +496,8 @@ end process;
 process_pixel: process(dac_step, pixel_adc, hcount, hblank) 
 variable row, col: integer range 0 to 1024;
 variable pixel: unsigned(3 downto 0);
+variable a_pixel: unsigned(7 downto 0);
+variable p_pixel: unsigned(7 downto 0);
 begin
 	if (rising_edge(clock_pixel)) then
 		if (dac_step = "100") then
@@ -442,6 +530,8 @@ begin
 					when "100" => pixel(0) := '1';
 					when others => pixel(0) := '0';
 				end case;
+				
+				p_pixel := a_pixel;
 				
 				case (hcount(3)) is
 					when '0' =>
@@ -481,43 +571,45 @@ begin
 								when '0' => -- "00" 
 								-- decode colour by the last 4-bit pattern
 									case (pixel) is
-										when "0000" => pixel_out(15 downto 8) <= black;
-										when "0010" => pixel_out(15 downto 8) <= brown;
-										when "0001" => pixel_out(15 downto 8) <= magenta;
-										when "0011" => pixel_out(15 downto 8) <= orange;
-										when "1000" => pixel_out(15 downto 8) <= darkblue;
-										when "1010" => pixel_out(15 downto 8) <= darkgray;
-										when "1001" => pixel_out(15 downto 8) <= violet;
-										when "1011" => pixel_out(15 downto 8) <= pink;
-										when "0100" => pixel_out(15 downto 8) <= darkgreen;
-										when "0110" => pixel_out(15 downto 8) <= green;
-										when "0101" => pixel_out(15 downto 8) <= lightgray;
-										when "0111" => pixel_out(15 downto 8) <= yellow;			
-										when "1100" => pixel_out(15 downto 8) <= mediumblue;
-										when "1110" => pixel_out(15 downto 8) <= aqua;
-										when "1101" => pixel_out(15 downto 8) <= lightblue;
-										when "1111" => pixel_out(15 downto 8) <= white;
+										when "0000" => a_pixel := black;
+										when "0010" => a_pixel := brown;
+										when "0001" => a_pixel := magenta;
+										when "0011" => a_pixel := orange;
+										when "1000" => a_pixel := darkblue;
+										when "1010" => a_pixel := darkgray;
+										when "1001" => a_pixel := violet;
+										when "1011" => a_pixel := pink;
+										when "0100" => a_pixel := darkgreen;
+										when "0110" => a_pixel := green;
+										when "0101" => a_pixel := lightgray;
+										when "0111" => a_pixel := yellow;			
+										when "1100" => a_pixel := mediumblue;
+										when "1110" => a_pixel := aqua;
+										when "1101" => a_pixel := lightblue;
+										when "1111" => a_pixel := white;
 									end case;
 								when '1' => -- "10" 
 									case (pixel) is
-										when "0000" => pixel_out(15 downto 8) <= black;
-										when "1000" => pixel_out(15 downto 8) <= brown;
-										when "0100" => pixel_out(15 downto 8) <= magenta;
-										when "1100" => pixel_out(15 downto 8) <= orange;
-										when "0010" => pixel_out(15 downto 8) <= darkblue;
-										when "1010" => pixel_out(15 downto 8) <= darkgray;
-										when "0110" => pixel_out(15 downto 8) <= violet;
-										when "1110" => pixel_out(15 downto 8) <= pink;
-										when "0001" => pixel_out(15 downto 8) <= darkgreen;
-										when "1001" => pixel_out(15 downto 8) <= green;
-										when "0101" => pixel_out(15 downto 8) <= lightgray;
-										when "1101" => pixel_out(15 downto 8) <= yellow;			
-										when "0011" => pixel_out(15 downto 8) <= mediumblue;
-										when "1011" => pixel_out(15 downto 8) <= aqua;
-										when "0111" => pixel_out(15 downto 8) <= lightblue;
-										when "1111" => pixel_out(15 downto 8) <= white;
+										when "0000" => a_pixel := black;
+										when "1000" => a_pixel := brown;
+										when "0100" => a_pixel := magenta;
+										when "1100" => a_pixel := orange;
+										when "0010" => a_pixel := darkblue;
+										when "1010" => a_pixel := darkgray;
+										when "0110" => a_pixel := violet;
+										when "1110" => a_pixel := pink;
+										when "0001" => a_pixel := darkgreen;
+										when "1001" => a_pixel := green;
+										when "0101" => a_pixel := lightgray;
+										when "1101" => a_pixel := yellow;			
+										when "0011" => a_pixel := mediumblue;
+										when "1011" => a_pixel := aqua;
+										when "0111" => a_pixel := lightblue;
+										when "1111" => a_pixel := white;
 									end case;
 								end case;
+								--
+								pixel_out(15 downto 8) <= f_avg(a_pixel(7 downto 5)&p_pixel(7 downto 5)) & f_avg(a_pixel(4 downto 2)&p_pixel(4 downto 2)) & f_avg(a_pixel(1 downto 0)&'0'&p_pixel(1 downto 0)&'0')(2 downto 1);
 							when '1' =>
 								case (apple2) is
 									when '0' =>
@@ -528,7 +620,7 @@ begin
 										-- otherwize get digitized analog value
 								end case;
 						end case;
-					
+											
 					when '1' =>
 						-- odd rows
 						case (artifact_mode) is
@@ -537,43 +629,45 @@ begin
 								when '0' => -- "01" 
 									-- decode colour by the last 4-bit pattern
 									case (pixel) is
-										when "0000" => pixel_out(7 downto 0) <= black;
-										when "0100" => pixel_out(7 downto 0) <= brown;
-										when "0010" => pixel_out(7 downto 0) <= magenta;
-										when "0110" => pixel_out(7 downto 0) <= orange;
-										when "0001" => pixel_out(7 downto 0) <= darkblue;
-										when "0101" => pixel_out(7 downto 0) <= darkgray;
-										when "0011" => pixel_out(7 downto 0) <= violet;
-										when "0111" => pixel_out(7 downto 0) <= pink;
-										when "1000" => pixel_out(7 downto 0) <= darkgreen;
-										when "1100" => pixel_out(7 downto 0) <= green;
-										when "1010" => pixel_out(7 downto 0) <= lightgray;
-										when "1110" => pixel_out(7 downto 0) <= yellow;			
-										when "1001" => pixel_out(7 downto 0) <= mediumblue;
-										when "1101" => pixel_out(7 downto 0) <= aqua;
-										when "1011" => pixel_out(7 downto 0) <= lightblue;
-										when "1111" => pixel_out(7 downto 0) <= white;
+										when "0000" => a_pixel := black;
+										when "0100" => a_pixel := brown;
+										when "0010" => a_pixel := magenta;
+										when "0110" => a_pixel := orange;
+										when "0001" => a_pixel := darkblue;
+										when "0101" => a_pixel := darkgray;
+										when "0011" => a_pixel := violet;
+										when "0111" => a_pixel := pink;
+										when "1000" => a_pixel := darkgreen;
+										when "1100" => a_pixel := green;
+										when "1010" => a_pixel := lightgray;
+										when "1110" => a_pixel := yellow;			
+										when "1001" => a_pixel := mediumblue;
+										when "1101" => a_pixel := aqua;
+										when "1011" => a_pixel := lightblue;
+										when "1111" => a_pixel := white;
 									end case;										
 								when '1' => -- "11" 
 									case (pixel) is
-										when "0000" => pixel_out(7 downto 0) <= black;
-										when "0001" => pixel_out(7 downto 0) <= brown;
-										when "1000" => pixel_out(7 downto 0) <= magenta;
-										when "1001" => pixel_out(7 downto 0) <= orange;
-										when "0100" => pixel_out(7 downto 0) <= darkblue;
-										when "0101" => pixel_out(7 downto 0) <= darkgray;
-										when "1100" => pixel_out(7 downto 0) <= violet;
-										when "1101" => pixel_out(7 downto 0) <= pink;
-										when "0010" => pixel_out(7 downto 0) <= darkgreen;
-										when "0011" => pixel_out(7 downto 0) <= green;
-										when "1010" => pixel_out(7 downto 0) <= lightgray;
-										when "1011" => pixel_out(7 downto 0) <= yellow;			
-										when "0110" => pixel_out(7 downto 0) <= mediumblue;
-										when "0111" => pixel_out(7 downto 0) <= aqua;
-										when "1110" => pixel_out(7 downto 0) <= lightblue;
-										when "1111" => pixel_out(7 downto 0) <= white;
+										when "0000" => a_pixel := black;
+										when "0001" => a_pixel := brown;
+										when "1000" => a_pixel := magenta;
+										when "1001" => a_pixel := orange;
+										when "0100" => a_pixel := darkblue;
+										when "0101" => a_pixel := darkgray;
+										when "1100" => a_pixel := violet;
+										when "1101" => a_pixel := pink;
+										when "0010" => a_pixel := darkgreen;
+										when "0011" => a_pixel := green;
+										when "1010" => a_pixel := lightgray;
+										when "1011" => a_pixel := yellow;			
+										when "0110" => a_pixel := mediumblue;
+										when "0111" => a_pixel := aqua;
+										when "1110" => a_pixel := lightblue;
+										when "1111" => a_pixel := white;
 									end case;
 								end case;
+								--
+								pixel_out(7 downto 0) <= f_avg(a_pixel(7 downto 5)&p_pixel(7 downto 5)) & f_avg(a_pixel(4 downto 2)&p_pixel(4 downto 2)) & f_avg(a_pixel(1 downto 0)&'0'&p_pixel(1 downto 0)&'0')(2 downto 1);
 							
 							when '1' =>
 								case (apple2) is
@@ -584,7 +678,9 @@ begin
 										pixel_out(7 downto 0) <= pixel_adc;	
 										-- otherwize get digitized analog value
 								end case;
-						end case;									
+						end case;	
+
+						--
 				end case;
 			end if;
 		end if;

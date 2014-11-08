@@ -380,7 +380,33 @@ begin
 	end if;
 end process;
 
-process_pixel: process(dac_step, pixel_adc, hcount) 
+detect_artifact: process(hblank, hcount)
+begin
+	if (hblank = '0') then
+		artifact_mode <= '1';	
+	elsif (rising_edge(clock_pixel)) then
+		case (apple2) is
+			when '0' =>
+				if (hcount(13 downto 3) < front_porch - 50 and hsync = not sync_level) then		
+					if (pixel_adc /= 0) then
+						artifact_mode <= artifact;
+					end if;
+				end if;
+			
+			when '1' =>
+				if (hcount(13 downto 3) < front_porch and hsync = not sync_level) then		
+					-- out of active window. if coco2/coco3 check for white border to activate artifacting
+					if (pixel_adc(7 downto 2) = "111111") then
+						artifact_mode <= artifact;
+					end if;
+				end if;
+			
+		end case;
+		
+	end if;
+end process;
+
+process_pixel: process(dac_step, pixel_adc, hcount, hblank) 
 variable row, col: integer range 0 to 1024;
 variable pixel: unsigned(3 downto 0);
 begin
@@ -415,7 +441,6 @@ begin
 							when "110" => pixel(0) := '1';
 							when "101" => pixel(0) := '1';
 							when "100" => pixel(0) := '1';
-							when "011" => pixel(0) := '1';
 							when others => pixel(0) := '0';
 						end case;
 					when '1' =>
@@ -571,12 +596,13 @@ begin
 						end case;									
 				end case;
 	
-			else 
-				-- out of active window. if coco2/coco3 check for white border to activate artifacting
-				artifact_mode <= '1';
-				if (pixel_adc(7 downto 2) = "111111" or apple2 = '0') then
-					artifact_mode <= artifact;
-				end if;
+--			else 
+--				-- out of active window. if coco2/coco3 check for white border to activate artifacting
+--				if (hsync = not sync_level) then
+--					if (pixel_adc(7 downto 2) = "111111") then -- or apple2 = '0') then
+--						artifact_mode <= artifact;
+--					end if;
+--				end if;
 			end if;
 		end if;
 	end if;

@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Sat Nov 08 00:11:56 2014
+Sat Nov 08 01:56:51 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -56,13 +56,13 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Nov 08 00:11:56 2014      ;
+; Analysis & Synthesis Status        ; Successful - Sat Nov 08 01:56:51 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 753                                        ;
-;     Total combinational functions  ; 685                                        ;
+; Total logic elements               ; 758                                        ;
+;     Total combinational functions  ; 690                                        ;
 ;     Dedicated logic registers      ; 336                                        ;
 ; Total registers                    ; 336                                        ;
 ; Total pins                         ; 73                                         ;
@@ -206,16 +206,16 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                        ;
 +---------------------------------------------+------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 753                                                                          ;
+; Estimated Total logic elements              ; 758                                                                          ;
 ;                                             ;                                                                              ;
-; Total combinational functions               ; 685                                                                          ;
+; Total combinational functions               ; 690                                                                          ;
 ; Logic element usage by number of LUT inputs ;                                                                              ;
 ;     -- 4 input functions                    ; 306                                                                          ;
-;     -- 3 input functions                    ; 189                                                                          ;
-;     -- <=2 input functions                  ; 190                                                                          ;
+;     -- 3 input functions                    ; 196                                                                          ;
+;     -- <=2 input functions                  ; 188                                                                          ;
 ;                                             ;                                                                              ;
 ; Logic elements by mode                      ;                                                                              ;
-;     -- normal mode                          ; 540                                                                          ;
+;     -- normal mode                          ; 545                                                                          ;
 ;     -- arithmetic mode                      ; 145                                                                          ;
 ;                                             ;                                                                              ;
 ; Total registers                             ; 336                                                                          ;
@@ -230,8 +230,8 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;                                             ;                                                                              ;
 ; Maximum fan-out node                        ; pll:inst1|altpll:altpll_component|pll_altpll:auto_generated|wire_pll1_clk[0] ;
 ; Maximum fan-out                             ; 370                                                                          ;
-; Total fan-out                               ; 4057                                                                         ;
-; Average fan-out                             ; 3.34                                                                         ;
+; Total fan-out                               ; 4075                                                                         ;
+; Average fan-out                             ; 3.35                                                                         ;
 +---------------------------------------------+------------------------------------------------------------------------------+
 
 
@@ -240,14 +240,14 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                           ; Library Name ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-------------------------------------------------------------------------------+--------------+
-; |top                                                          ; 685 (1)           ; 336 (0)      ; 16384       ; 0            ; 0       ; 0         ; 73   ; 0            ; |top                                                                          ;              ;
+; |top                                                          ; 690 (1)           ; 336 (0)      ; 16384       ; 0            ; 0       ; 0         ; 73   ; 0            ; |top                                                                          ;              ;
 ;    |altiobuf:inst12|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
 ;    |altiobuf:inst13|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
 ;    |altiobuf:inst16|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16                                                          ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component    ;              ;
-;    |genlock:inst6|                                            ; 378 (378)         ; 118 (118)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst6                                                            ;              ;
+;    |genlock:inst6|                                            ; 383 (383)         ; 118 (118)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst6                                                            ;              ;
 ;    |pll:inst1|                                                ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1                                                                ;              ;
 ;       |altpll:altpll_component|                               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1|altpll:altpll_component                                        ;              ;
 ;          |pll_altpll:auto_generated|                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll:inst1|altpll:altpll_component|pll_altpll:auto_generated              ;              ;
@@ -408,7 +408,7 @@ Note: All latches listed above may not be present at the end of synthesis due to
 ; Total registers                              ; 336   ;
 ; Number of registers using Synchronous Clear  ; 30    ;
 ; Number of registers using Synchronous Load   ; 81    ;
-; Number of registers using Asynchronous Clear ; 31    ;
+; Number of registers using Asynchronous Clear ; 32    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
 ; Number of registers using Clock Enable       ; 227   ;
 ; Number of registers using Preset             ; 0     ;
@@ -420,9 +420,10 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; genlock:inst6|dac_step[0]              ; 9       ;
+; genlock:inst6|dac_step[0]              ; 8       ;
 ; genlock:inst6|top_border[5]            ; 2       ;
-; Total number of inverted registers = 2 ;         ;
+; genlock:inst6|artifact_mode            ; 17      ;
+; Total number of inverted registers = 3 ;         ;
 +----------------------------------------+---------+
 
 
@@ -431,19 +432,19 @@ Note: All latches listed above may not be present at the end of synthesis due to
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output       ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[8]      ;
-; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|sdram:inst|prevData[13]     ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[5]      ;
+; 4:1                ; 16 bits   ; 32 LEs        ; 16 LEs               ; 16 LEs                 ; Yes        ; |top|sdram:inst|prevData[4]      ;
 ; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|sdram:inst|colStoreNr[8]    ;
 ; 5:1                ; 9 bits    ; 27 LEs        ; 9 LEs                ; 18 LEs                 ; Yes        ; |top|sdram:inst|curCol[1]        ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |top|sdram:inst|pixelOut[10]     ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|sdram:inst|SdrBa1           ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[9]        ;
-; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[7]        ;
-; 12:1               ; 14 bits   ; 112 LEs       ; 14 LEs               ; 98 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[8]    ;
-; 12:1               ; 10 bits   ; 80 LEs        ; 20 LEs               ; 60 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[15]   ;
-; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[0] ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |top|vgaout:inst7|vga_pixel[5]   ;
-; 25:1               ; 6 bits    ; 96 LEs        ; 18 LEs               ; 78 LEs                 ; No         ; |top|sdram:inst|Selector6        ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |top|sdram:inst|pixelOut[15]     ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|sdram:inst|SdrBa0           ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[11]       ;
+; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[3]        ;
+; 12:1               ; 14 bits   ; 112 LEs       ; 14 LEs               ; 98 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[4]    ;
+; 12:1               ; 10 bits   ; 80 LEs        ; 20 LEs               ; 60 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[14]   ;
+; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[5] ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |top|vgaout:inst7|vga_pixel[0]   ;
+; 25:1               ; 6 bits    ; 96 LEs        ; 18 LEs               ; 78 LEs                 ; No         ; |top|sdram:inst|Selector8        ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------+
 
 
@@ -1041,7 +1042,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sat Nov 08 00:11:50 2014
+    Info: Processing started: Sat Nov 08 01:56:45 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file pll.vhd
@@ -1141,10 +1142,11 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/pll_
 Info (12128): Elaborating entity "pll_altpll" for hierarchy "pll:inst1|altpll:altpll_component|pll_altpll:auto_generated"
 Info (12128): Elaborating entity "genlock" for hierarchy "genlock:inst6"
 Warning (10492): VHDL Process Statement warning at genlock.vhd(387): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10492): VHDL Process Statement warning at genlock.vhd(587): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Warning (10631): VHDL Process Statement warning at genlock.vhd(673): inferring latch(es) for signal or variable "store_req", which holds its previous value in one or more paths through the process
-Warning (10492): VHDL Process Statement warning at genlock.vhd(687): signal "scale_down" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
-Info (10041): Inferred latch for "store_req" at genlock.vhd(673)
+Warning (10492): VHDL Process Statement warning at genlock.vhd(413): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(613): signal "clock_pixel" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at genlock.vhd(699): inferring latch(es) for signal or variable "store_req", which holds its previous value in one or more paths through the process
+Warning (10492): VHDL Process Statement warning at genlock.vhd(713): signal "scale_down" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Info (10041): Inferred latch for "store_req" at genlock.vhd(699)
 Info (12128): Elaborating entity "altiobuf" for hierarchy "altiobuf:inst16"
 Info (12128): Elaborating entity "altiobuf_iobuf_in_k0j" for hierarchy "altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component"
 Info (12128): Elaborating entity "vgaout" for hierarchy "vgaout:inst7"
@@ -1193,17 +1195,17 @@ Warning (21074): Design contains 4 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "SWITCH1"
     Warning (15610): No output dependent on input pin "SWITCH2"
     Warning (15610): No output dependent on input pin "SWITCH3"
-Info (21057): Implemented 893 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 898 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 21 input pins
     Info (21059): Implemented 36 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 787 logic cells
+    Info (21061): Implemented 792 logic cells
     Info (21064): Implemented 32 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 25 warnings
-    Info: Peak virtual memory: 516 megabytes
-    Info: Processing ended: Sat Nov 08 00:11:56 2014
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 26 warnings
+    Info: Peak virtual memory: 504 megabytes
+    Info: Processing ended: Sat Nov 08 01:56:51 2014
     Info: Elapsed time: 00:00:06
-    Info: Total CPU time (on all processors): 00:00:05
+    Info: Total CPU time (on all processors): 00:00:06
 
 

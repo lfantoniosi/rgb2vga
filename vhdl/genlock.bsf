@@ -103,8 +103,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 208)
 		(input)
-		(text "monochrome" (rect 0 0 53 12)(font "Arial" ))
-		(text "monochrome" (rect 21 203 74 215)(font "Arial" ))
+		(text "apple2" (rect 0 0 24 12)(font "Arial" ))
+		(text "apple2" (rect 21 203 45 215)(font "Arial" ))
 		(line (pt 0 208)(pt 16 208)(line_width 1))
 	)
 	(port

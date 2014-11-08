@@ -1537,7 +1537,7 @@ applicable agreement for further details.
 	(annotation_block (parameter)(rect 1704 -16 1924 110))
 )
 (symbol
-	(rect 1344 256 1568 496)
+	(rect 1344 248 1568 488)
 	(text "genlock" (rect 5 0 42 12)(font "Arial" ))
 	(text "inst6" (rect 8 224 31 236)(font "Arial" ))
 	(port
@@ -1620,8 +1620,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 208)
 		(input)
-		(text "monochrome" (rect 0 0 63 12)(font "Arial" ))
-		(text "monochrome" (rect 21 203 84 215)(font "Arial" ))
+		(text "apple2" (rect 0 0 31 12)(font "Arial" ))
+		(text "apple2" (rect 21 203 52 215)(font "Arial" ))
 		(line (pt 0 208)(pt 16 208))
 	)
 	(port
@@ -2057,29 +2057,6 @@ applicable agreement for further details.
 	(pt 520 568)
 )
 (connector
-	(text "PIXEL_OUT[15..0]" (rect 1632 272 1721 284)(font "Arial" ))
-	(pt 1568 288)
-	(pt 1728 288)
-	(bus)
-)
-(connector
-	(text "COL_STORE_NR[8..0]" (rect 1632 304 1745 316)(font "Arial" ))
-	(pt 1568 320)
-	(pt 1728 320)
-	(bus)
-)
-(connector
-	(text "ROW_STORE_REQ" (rect 1632 320 1731 332)(font "Arial" ))
-	(pt 1568 336)
-	(pt 1728 336)
-)
-(connector
-	(text "DAC_STEP[2..0]" (rect 1634 336 1716 348)(font "Arial" ))
-	(pt 1568 352)
-	(pt 1728 352)
-	(bus)
-)
-(connector
 	(text "DAC_STEP[0]" (rect 338 128 407 140)(font "Arial" ))
 	(pt 328 144)
 	(pt 456 144)
@@ -2155,64 +2132,6 @@ applicable agreement for further details.
 	(pt 320 496)
 )
 (connector
-	(text "CLOCK_PIXEL" (rect 1242 272 1315 284)(font "Arial" ))
-	(pt 1232 288)
-	(pt 1344 288)
-)
-(connector
-	(text "VSYNC" (rect 1242 288 1280 300)(font "Arial" ))
-	(pt 1232 304)
-	(pt 1344 304)
-)
-(connector
-	(text "HSYNC" (rect 1242 304 1282 316)(font "Arial" ))
-	(pt 1232 320)
-	(pt 1344 320)
-)
-(connector
-	(text "ARGB[2..0]" (rect 1242 320 1298 332)(font "Arial" ))
-	(pt 1232 336)
-	(pt 1344 336)
-	(bus)
-)
-(connector
-	(text "ROW_STORE_ACK" (rect 1240 336 1337 348)(font "Arial" ))
-	(pt 1232 352)
-	(pt 1344 352)
-)
-(connector
-	(text "ARTIFACT" (rect 1242 352 1295 364)(font "Arial" ))
-	(pt 1232 368)
-	(pt 1344 368)
-)
-(connector
-	(text "MODE" (rect 1242 368 1273 380)(font "Arial" ))
-	(pt 1232 384)
-	(pt 1344 384)
-)
-(connector
-	(text "SYNC_LEVEL" (rect 1242 384 1312 396)(font "Arial" ))
-	(pt 1232 400)
-	(pt 1344 400)
-)
-(connector
-	(text "MSX" (rect 1242 400 1263 412)(font "Arial" ))
-	(pt 1232 416)
-	(pt 1344 416)
-	(bus)
-)
-(connector
-	(text "SCALE_DOWN" (rect 1242 416 1318 428)(font "Arial" ))
-	(pt 1344 432)
-	(pt 1232 432)
-)
-(connector
-	(text "ROW_STORE_NR[9..0]" (rect 1632 288 1750 300)(font "Arial" ))
-	(pt 1568 304)
-	(pt 1728 304)
-	(bus)
-)
-(connector
 	(text "ROW_STORE_NR[9..0]" (rect 1336 600 1454 612)(font "Arial" ))
 	(pt 1448 616)
 	(pt 1336 616)
@@ -2223,11 +2142,6 @@ applicable agreement for further details.
 	(pt 1448 648)
 	(pt 1336 648)
 	(bus)
-)
-(connector
-	(text "DEINTERLACE" (rect 1242 432 1318 444)(font "Arial" ))
-	(pt 1344 448)
-	(pt 1232 448)
 )
 (connector
 	(text "DEINTERLACE" (rect 1850 336 1926 348)(font "Arial" ))
@@ -2256,12 +2170,98 @@ applicable agreement for further details.
 	(pt 384 488)
 )
 (connector
-	(text "MONOCHROME" (rect 354 808 435 820)(font "Arial" ))
-	(pt 344 824)
-	(pt 448 824)
+	(text "PIXEL_OUT[15..0]" (rect 1632 264 1721 276)(font "Arial" ))
+	(pt 1568 280)
+	(pt 1728 280)
+	(bus)
 )
 (connector
-	(text "MONOCHROME" (rect 1242 448 1323 460)(font "Arial" ))
-	(pt 1344 464)
-	(pt 1232 464)
+	(text "COL_STORE_NR[8..0]" (rect 1632 296 1745 308)(font "Arial" ))
+	(pt 1568 312)
+	(pt 1728 312)
+	(bus)
+)
+(connector
+	(text "ROW_STORE_REQ" (rect 1632 312 1731 324)(font "Arial" ))
+	(pt 1568 328)
+	(pt 1728 328)
+)
+(connector
+	(text "DAC_STEP[2..0]" (rect 1634 328 1716 340)(font "Arial" ))
+	(pt 1568 344)
+	(pt 1728 344)
+	(bus)
+)
+(connector
+	(text "CLOCK_PIXEL" (rect 1242 264 1315 276)(font "Arial" ))
+	(pt 1232 280)
+	(pt 1344 280)
+)
+(connector
+	(text "VSYNC" (rect 1242 280 1280 292)(font "Arial" ))
+	(pt 1232 296)
+	(pt 1344 296)
+)
+(connector
+	(text "HSYNC" (rect 1242 296 1282 308)(font "Arial" ))
+	(pt 1232 312)
+	(pt 1344 312)
+)
+(connector
+	(text "ARGB[2..0]" (rect 1242 312 1298 324)(font "Arial" ))
+	(pt 1232 328)
+	(pt 1344 328)
+	(bus)
+)
+(connector
+	(text "ROW_STORE_ACK" (rect 1240 328 1337 340)(font "Arial" ))
+	(pt 1232 344)
+	(pt 1344 344)
+)
+(connector
+	(text "ARTIFACT" (rect 1242 344 1295 356)(font "Arial" ))
+	(pt 1232 360)
+	(pt 1344 360)
+)
+(connector
+	(text "MODE" (rect 1242 360 1273 372)(font "Arial" ))
+	(pt 1232 376)
+	(pt 1344 376)
+)
+(connector
+	(text "SYNC_LEVEL" (rect 1242 376 1312 388)(font "Arial" ))
+	(pt 1232 392)
+	(pt 1344 392)
+)
+(connector
+	(text "MSX" (rect 1242 392 1263 404)(font "Arial" ))
+	(pt 1232 408)
+	(pt 1344 408)
+	(bus)
+)
+(connector
+	(text "SCALE_DOWN" (rect 1242 408 1318 420)(font "Arial" ))
+	(pt 1344 424)
+	(pt 1232 424)
+)
+(connector
+	(text "ROW_STORE_NR[9..0]" (rect 1632 280 1750 292)(font "Arial" ))
+	(pt 1568 296)
+	(pt 1728 296)
+	(bus)
+)
+(connector
+	(text "DEINTERLACE" (rect 1242 424 1318 436)(font "Arial" ))
+	(pt 1344 440)
+	(pt 1232 440)
+)
+(connector
+	(text "APPLE2" (rect 1242 440 1282 452)(font "Arial" ))
+	(pt 1344 456)
+	(pt 1232 456)
+)
+(connector
+	(text "APPLE2" (rect 354 808 394 820)(font "Arial" ))
+	(pt 344 824)
+	(pt 448 824)
 )

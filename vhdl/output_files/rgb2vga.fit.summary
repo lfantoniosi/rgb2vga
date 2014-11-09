@@ -1,14 +1,14 @@
-Fitter Status : Successful - Sat Nov 08 11:45:28 2014
+Fitter Status : Successful - Sun Nov 09 01:56:48 2014
 Quartus II 64-Bit Version : 13.0.0 Build 156 04/24/2013 SJ Web Edition
 Revision Name : rgb2vga
 Top-level Entity Name : top
 Family : Cyclone IV E
 Device : EP4CE22F17C6
 Timing Models : Final
-Total logic elements : 775 / 22,320 ( 3 % )
-    Total combinational functions : 745 / 22,320 ( 3 % )
-    Dedicated logic registers : 328 / 22,320 ( 1 % )
-Total registers : 328
+Total logic elements : 661 / 22,320 ( 3 % )
+    Total combinational functions : 627 / 22,320 ( 3 % )
+    Dedicated logic registers : 314 / 22,320 ( 1 % )
+Total registers : 314
 Total pins : 73 / 154 ( 47 % )
 Total virtual pins : 0
 Total memory bits : 16,384 / 608,256 ( 3 % )

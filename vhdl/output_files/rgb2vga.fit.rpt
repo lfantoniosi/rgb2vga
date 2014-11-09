@@ -1,5 +1,5 @@
 Fitter report for rgb2vga
-Sun Nov 09 01:56:48 2014
+Sun Nov 09 09:28:20 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -72,7 +72,7 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Fitter Summary                                                                  ;
 +------------------------------------+--------------------------------------------+
-; Fitter Status                      ; Successful - Sun Nov 09 01:56:48 2014      ;
+; Fitter Status                      ; Successful - Sun Nov 09 09:28:20 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
@@ -2778,12 +2778,12 @@ Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
 Info (334003): Started post-fitting delay annotation
 Info (334004): Delay annotation completed successfully
-Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:02
+Info (11218): Fitter post-fit operations ending: elapsed time is 00:00:01
 Warning (171167): Found invalid Fitter assignments. See the Ignored Assignments panel in the Fitter Compilation Report for more information.
 Info (144001): Generated suppressed messages file C:/altera/projects/rgb2vga/vhdl/output_files/rgb2vga.fit.smsg
 Info: Quartus II 64-Bit Fitter was successful. 0 errors, 15 warnings
     Info: Peak virtual memory: 712 megabytes
-    Info: Processing ended: Sun Nov 09 01:56:49 2014
+    Info: Processing ended: Sun Nov 09 09:28:20 2014
     Info: Elapsed time: 00:00:10
     Info: Total CPU time (on all processors): 00:00:10
 

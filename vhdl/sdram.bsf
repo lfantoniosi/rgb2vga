@@ -66,13 +66,6 @@ applicable agreement for further details.
 		(line (pt 0 112)(pt 16 112)(line_width 1))
 	)
 	(port
-		(pt 0 128)
-		(input)
-		(text "scale_down" (rect 0 0 46 12)(font "Arial" ))
-		(text "scale_down" (rect 21 123 67 135)(font "Arial" ))
-		(line (pt 0 128)(pt 16 128)(line_width 1))
-	)
-	(port
 		(pt 232 32)
 		(output)
 		(text "colStoreNr[8..0]" (rect 0 0 62 12)(font "Arial" ))

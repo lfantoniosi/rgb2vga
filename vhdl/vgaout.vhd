@@ -24,9 +24,9 @@ entity vgaout is
 			col_number	: out unsigned(8 downto 0); 
 			load_req	: out std_logic := '0';
 			load_ack  : in std_logic;
-			is_scanline	: in std_logic;
-			deinterlace	: in std_logic;
-			clock_pixel : in std_logic
+			
+			clock_pixel : in std_logic;
+			scanline	: in std_logic
 			
          );
 end vgaout;
@@ -35,7 +35,7 @@ architecture behavioral of vgaout is
 
 signal hcount												: unsigned(9 downto 0);
 signal vcount												: unsigned(9 downto 0);
-signal blank, videov, videoh, hsync, vsync, scanline		: std_ulogic;
+signal blank, videov, videoh, hsync, vsync		: std_ulogic;
 signal vga_pixel											: unsigned(7 downto 0);
 
 function f_scanline(color: unsigned) return unsigned;
@@ -105,11 +105,7 @@ begin
 	if (rising_edge(clock_vga)) then     
 	   hsync <= '1';				
 		
-		if (deinterlace = '0') then
-			row := to_integer(vcount(9 downto 0)) + 1;
-		else
-			row := to_integer(vcount(9 downto 1)) + 1;		
-		end if;
+		row := to_integer(vcount(9 downto 1)) + 1;		
 		
       if (hcount <= (hor_active_video + hor_front_porch + hor_sync_pulse - 1) and hcount >= (hor_active_video + hor_front_porch - 1)) then
  		  row_number <= to_unsigned(row, row_number'length);
@@ -134,7 +130,7 @@ begin
 	end if;
 end process;
 
-pixel: process(pixel_in, hcount, vcount, is_scanline)
+pixel: process(pixel_in, hcount, vcount)
 variable pixel: unsigned (7 downto 0);
 begin
 	if (hcount(0) = '0') then
@@ -143,7 +139,7 @@ begin
 		pixel := pixel_in(7 downto 0);
 	end if;
 
-	if (vcount(0) = '1' and is_scanline = '1') then
+	if (vcount(0) = '1' and scanline = '1') then
 		vga_pixel <= f_scanline(pixel(7 downto 5)) & f_scanline(pixel(4 downto 2)) & f_scanline('0'&pixel(1 downto 0))(1 downto 0);
 	else
 		vga_pixel <= pixel;

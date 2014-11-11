@@ -1,25 +1,18 @@
-|top
+|top_coco3
 DRAM_CLK <= CLOCK_PIXEL.DB_MAX_OUTPUT_PORT_TYPE
 CLOCK_50 => pll:inst1.inclk0
 DRAM_CKE <= sdram:inst.pMemCke
-VSYNC => genlock:inst6.vsync
-HSYNC => genlock:inst6.hsync
-FP5 => genlock:inst6.artifact
-FP4 => genlock:inst6.mode
-FP6 => genlock:inst6.sync_level
-FP1 => genlock:inst6.msx
-FP0 => genlock:inst6.scale_down
-FP0 => sdram:inst.scale_down
-FP2 => genlock:inst6.deinterlace
-FP2 => vgaout:inst7.deinterlace
-FP3 => genlock:inst6.apple2
+VSYNC => genlock_coco3:inst10.vsync
+HSYNC => genlock_coco3:inst10.hsync
+FP5 => genlock_coco3:inst10.artifact
+FP4 => genlock_coco3:inst10.mode
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
 DIFFG => altiobuf:inst12.datain[0]
 DIFFGn => altiobuf:inst12.datain_b[0]
 DIFFB => altiobuf:inst13.datain[0]
 DIFFBn => altiobuf:inst13.datain_b[0]
-FP7 => vgaout:inst7.is_scanline
+FP7 => vgaout:inst7.scanline
 DRAM_DQ[0] <> sdram:inst.pMemDat[0]
 DRAM_DQ[1] <> sdram:inst.pMemDat[1]
 DRAM_DQ[2] <> sdram:inst.pMemDat[2]
@@ -74,15 +67,20 @@ SWITCH0 => ~NO_FANOUT~
 SWITCH1 => ~NO_FANOUT~
 SWITCH2 => ~NO_FANOUT~
 SWITCH3 => ~NO_FANOUT~
+FP0 => ~NO_FANOUT~
+FP1 => ~NO_FANOUT~
+FP2 => ~NO_FANOUT~
+FP3 => ~NO_FANOUT~
+FP6 => ~NO_FANOUT~
 
 
-|top|pll:inst1
+|top_coco3|pll:inst1
 inclk0 => altpll:altpll_component.inclk[0]
 c1 <= altpll:altpll_component.clk[1]
 c2 <= altpll:altpll_component.clk[2]
 
 
-|top|pll:inst1|altpll:altpll_component
+|top_coco3|pll:inst1|altpll:altpll_component
 inclk[0] => pll_altpll:auto_generated.inclk[0]
 inclk[1] => pll_altpll:auto_generated.inclk[1]
 fbin => ~NO_FANOUT~
@@ -142,7 +140,7 @@ fref <= <GND>
 icdrclk <= <GND>
 
 
-|top|pll:inst1|altpll:altpll_component|pll_altpll:auto_generated
+|top_coco3|pll:inst1|altpll:altpll_component|pll_altpll:auto_generated
 clk[0] <= pll1.CLK
 clk[1] <= pll1.CLK1
 clk[2] <= pll1.CLK2
@@ -152,7 +150,7 @@ inclk[0] => pll1.CLK
 inclk[1] => pll1.CLK1
 
 
-|top|sdram:inst
+|top_coco3|sdram:inst
 clk => colStoreNr[0]~reg0.CLK
 clk => colStoreNr[1]~reg0.CLK
 clk => colStoreNr[2]~reg0.CLK
@@ -242,31 +240,6 @@ clk => SdrCmd[2].CLK
 clk => SdrCmd[3].CLK
 clk => rowLoadAck~reg0.CLK
 clk => rowStoreAck~reg0.CLK
-clk => prevData[0].CLK
-clk => prevData[1].CLK
-clk => prevData[2].CLK
-clk => prevData[3].CLK
-clk => prevData[4].CLK
-clk => prevData[5].CLK
-clk => prevData[6].CLK
-clk => prevData[7].CLK
-clk => prevData[8].CLK
-clk => prevData[9].CLK
-clk => prevData[10].CLK
-clk => prevData[11].CLK
-clk => prevData[12].CLK
-clk => prevData[13].CLK
-clk => prevData[14].CLK
-clk => prevData[15].CLK
-clk => curCol[0].CLK
-clk => curCol[1].CLK
-clk => curCol[2].CLK
-clk => curCol[3].CLK
-clk => curCol[4].CLK
-clk => curCol[5].CLK
-clk => curCol[6].CLK
-clk => curCol[7].CLK
-clk => curCol[8].CLK
 clk => SdrAddress[0].CLK
 clk => SdrAddress[1].CLK
 clk => SdrAddress[2].CLK
@@ -500,36 +473,9 @@ pMemDat[12] <> pMemDat[12]
 pMemDat[13] <> pMemDat[13]
 pMemDat[14] <> pMemDat[14]
 pMemDat[15] <> pMemDat[15]
-scale_down => curCol.OUTPUTSELECT
-scale_down => curCol.OUTPUTSELECT
-scale_down => curCol.OUTPUTSELECT
-scale_down => curCol.OUTPUTSELECT
-scale_down => curCol.OUTPUTSELECT
-scale_down => curCol.OUTPUTSELECT
-scale_down => curCol.OUTPUTSELECT
-scale_down => curCol.OUTPUTSELECT
-scale_down => curCol.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => pixelOut.OUTPUTSELECT
-scale_down => process_0.IN1
-scale_down => process_0.IN1
 
 
-|top|genlock:inst6
+|top_coco3|genlock_coco3:inst10
 clock_pixel => store_req~reg0.CLK
 clock_pixel => white[0].CLK
 clock_pixel => white[1].CLK
@@ -539,94 +485,14 @@ clock_pixel => white[4].CLK
 clock_pixel => white[5].CLK
 clock_pixel => white[6].CLK
 clock_pixel => white[7].CLK
-clock_pixel => lightblue[0].CLK
-clock_pixel => lightblue[1].CLK
-clock_pixel => lightblue[2].CLK
-clock_pixel => lightblue[3].CLK
-clock_pixel => lightblue[4].CLK
-clock_pixel => lightblue[5].CLK
-clock_pixel => lightblue[6].CLK
-clock_pixel => lightblue[7].CLK
-clock_pixel => aqua[0].CLK
-clock_pixel => aqua[1].CLK
-clock_pixel => aqua[2].CLK
-clock_pixel => aqua[3].CLK
-clock_pixel => aqua[4].CLK
-clock_pixel => aqua[5].CLK
-clock_pixel => aqua[6].CLK
-clock_pixel => aqua[7].CLK
-clock_pixel => mediumblue[0].CLK
-clock_pixel => mediumblue[1].CLK
-clock_pixel => mediumblue[2].CLK
-clock_pixel => mediumblue[3].CLK
-clock_pixel => mediumblue[4].CLK
-clock_pixel => mediumblue[5].CLK
-clock_pixel => mediumblue[6].CLK
-clock_pixel => mediumblue[7].CLK
-clock_pixel => yellow[0].CLK
-clock_pixel => yellow[1].CLK
-clock_pixel => yellow[2].CLK
-clock_pixel => yellow[3].CLK
-clock_pixel => yellow[4].CLK
-clock_pixel => yellow[5].CLK
-clock_pixel => yellow[6].CLK
-clock_pixel => yellow[7].CLK
-clock_pixel => lightgray[0].CLK
-clock_pixel => lightgray[1].CLK
-clock_pixel => lightgray[2].CLK
-clock_pixel => lightgray[3].CLK
-clock_pixel => lightgray[4].CLK
-clock_pixel => lightgray[5].CLK
-clock_pixel => lightgray[6].CLK
-clock_pixel => lightgray[7].CLK
-clock_pixel => green[0].CLK
-clock_pixel => green[1].CLK
-clock_pixel => green[2].CLK
-clock_pixel => green[3].CLK
-clock_pixel => green[4].CLK
-clock_pixel => green[5].CLK
-clock_pixel => green[6].CLK
-clock_pixel => green[7].CLK
-clock_pixel => darkgreen[0].CLK
-clock_pixel => darkgreen[1].CLK
-clock_pixel => darkgreen[2].CLK
-clock_pixel => darkgreen[3].CLK
-clock_pixel => darkgreen[4].CLK
-clock_pixel => darkgreen[5].CLK
-clock_pixel => darkgreen[6].CLK
-clock_pixel => darkgreen[7].CLK
-clock_pixel => pink[0].CLK
-clock_pixel => pink[1].CLK
-clock_pixel => pink[2].CLK
-clock_pixel => pink[3].CLK
-clock_pixel => pink[4].CLK
-clock_pixel => pink[5].CLK
-clock_pixel => pink[6].CLK
-clock_pixel => pink[7].CLK
-clock_pixel => violet[0].CLK
-clock_pixel => violet[1].CLK
-clock_pixel => violet[2].CLK
-clock_pixel => violet[3].CLK
-clock_pixel => violet[4].CLK
-clock_pixel => violet[5].CLK
-clock_pixel => violet[6].CLK
-clock_pixel => violet[7].CLK
-clock_pixel => darkgray[0].CLK
-clock_pixel => darkgray[1].CLK
-clock_pixel => darkgray[2].CLK
-clock_pixel => darkgray[3].CLK
-clock_pixel => darkgray[4].CLK
-clock_pixel => darkgray[5].CLK
-clock_pixel => darkgray[6].CLK
-clock_pixel => darkgray[7].CLK
-clock_pixel => darkblue[0].CLK
-clock_pixel => darkblue[1].CLK
-clock_pixel => darkblue[2].CLK
-clock_pixel => darkblue[3].CLK
-clock_pixel => darkblue[4].CLK
-clock_pixel => darkblue[5].CLK
-clock_pixel => darkblue[6].CLK
-clock_pixel => darkblue[7].CLK
+clock_pixel => blue[0].CLK
+clock_pixel => blue[1].CLK
+clock_pixel => blue[2].CLK
+clock_pixel => blue[3].CLK
+clock_pixel => blue[4].CLK
+clock_pixel => blue[5].CLK
+clock_pixel => blue[6].CLK
+clock_pixel => blue[7].CLK
 clock_pixel => orange[0].CLK
 clock_pixel => orange[1].CLK
 clock_pixel => orange[2].CLK
@@ -635,22 +501,6 @@ clock_pixel => orange[4].CLK
 clock_pixel => orange[5].CLK
 clock_pixel => orange[6].CLK
 clock_pixel => orange[7].CLK
-clock_pixel => magenta[0].CLK
-clock_pixel => magenta[1].CLK
-clock_pixel => magenta[2].CLK
-clock_pixel => magenta[3].CLK
-clock_pixel => magenta[4].CLK
-clock_pixel => magenta[5].CLK
-clock_pixel => magenta[6].CLK
-clock_pixel => magenta[7].CLK
-clock_pixel => brown[0].CLK
-clock_pixel => brown[1].CLK
-clock_pixel => brown[2].CLK
-clock_pixel => brown[3].CLK
-clock_pixel => brown[4].CLK
-clock_pixel => brown[5].CLK
-clock_pixel => brown[6].CLK
-clock_pixel => brown[7].CLK
 clock_pixel => black[0].CLK
 clock_pixel => black[1].CLK
 clock_pixel => black[2].CLK
@@ -706,7 +556,6 @@ clock_pixel => \process_pixel:pixel[0].CLK
 clock_pixel => \process_pixel:pixel[1].CLK
 clock_pixel => \process_pixel:pixel[2].CLK
 clock_pixel => artifact_mode.CLK
-clock_pixel => frame[0].CLK
 clock_pixel => vcount[0].CLK
 clock_pixel => vcount[1].CLK
 clock_pixel => vcount[2].CLK
@@ -801,9 +650,9 @@ clock_pixel => red_adc[3].CLK
 clock_pixel => red_adc[4].CLK
 clock_pixel => red_adc[5].CLK
 clock_pixel => red_adc[6].CLK
-vsync => vsync_lock.IN0
-hsync => hsync_lock.IN0
-hsync => detect_artifact.IN0
+vsync => vsync_lock.IN1
+hsync => hsync_lock.IN1
+hsync => detect_artifact.IN1
 adc_rgb[0] => Mux14.IN0
 adc_rgb[0] => Mux15.IN0
 adc_rgb[0] => Mux16.IN0
@@ -866,120 +715,55 @@ dac_step[0] <= dac_step[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 dac_step[1] <= dac_step[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 dac_step[2] <= dac_step[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 artifact => artifact_mode.DATAB
-artifact => artifact_mode.DATAB
-mode => brown.DATAB
-mode => magenta.DATAB
-mode => brown.DATAB
-mode => magenta.DATAB
-sync_level => hsync_lock.IN1
-sync_level => vsync_lock.IN1
-sync_level => detect_artifact.IN1
-msx => LessThan3.IN60
-msx => Add2.IN58
-msx => LessThan6.IN60
-msx => LessThan3.IN61
-msx => Add2.IN59
-msx => LessThan6.IN61
-msx => LessThan3.IN62
-msx => Add2.IN60
-msx => LessThan6.IN62
-msx => Add3.IN56
-msx => Add3.IN26
-msx => Add3.IN25
-msx => front_porch[6].OUTPUTSELECT
-msx => front_porch[4].OUTPUTSELECT
-msx => front_porch[3].OUTPUTSELECT
-msx => Add4.IN51
-msx => Add4.IN52
-msx => Add4.IN53
-scale_down => front_porch[6].DATAB
-scale_down => front_porch[4].DATAB
-scale_down => front_porch[3].DATAB
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-apple2 => artifact_mode.OUTPUTSELECT
-apple2 => brown.OUTPUTSELECT
-apple2 => brown.OUTPUTSELECT
-apple2 => magenta.OUTPUTSELECT
-apple2 => magenta.OUTPUTSELECT
-apple2 => aqua[6].DATAIN
-apple2 => lightgray[3].DATAIN
-apple2 => lightgray[6].DATAIN
-apple2 => green[6].DATAIN
-apple2 => darkgreen[3].DATAIN
-apple2 => darkgreen[6].DATAIN
-apple2 => violet[3].DATAIN
-apple2 => darkblue[3].DATAIN
-apple2 => darkblue[6].DATAIN
-apple2 => magenta[3].DATAIN
-apple2 => pixel_out.OUTPUTSELECT
-apple2 => pixel_out.OUTPUTSELECT
-apple2 => pixel_out.OUTPUTSELECT
-apple2 => pixel_out.OUTPUTSELECT
-apple2 => pixel_out.OUTPUTSELECT
-apple2 => pixel_out.OUTPUTSELECT
-apple2 => pixel_out.OUTPUTSELECT
-apple2 => pixel_out.OUTPUTSELECT
-apple2 => Mux29.IN6
-apple2 => Mux29.IN7
-apple2 => pixel_adc.OUTPUTSELECT
-apple2 => pixel_adc.OUTPUTSELECT
-apple2 => pixel_adc.OUTPUTSELECT
-apple2 => pixel_adc.OUTPUTSELECT
-apple2 => pixel_adc.OUTPUTSELECT
-apple2 => darkgreen[4].DATAIN
-apple2 => green[4].DATAIN
-apple2 => lightgray[4].DATAIN
-apple2 => yellow[4].DATAIN
-apple2 => aqua[4].DATAIN
-apple2 => lightblue[4].DATAIN
+mode => blue[2].DATAIN
+mode => blue[5].DATAIN
+mode => blue[7].DATAIN
+mode => orange[0].DATAIN
+mode => orange[1].DATAIN
+mode => blue[0].DATAIN
+mode => blue[1].DATAIN
+mode => orange[2].DATAIN
+mode => orange[5].DATAIN
+mode => orange[7].DATAIN
 
 
-|top|altiobuf:inst16
+|top_coco3|altiobuf:inst16
 datain[0] => altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.datain[0]
 datain_b[0] => altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.datain_b[0]
 dataout[0] <= altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.dataout[0]
 
 
-|top|altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component
+|top_coco3|altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component
 datain[0] => ibufa.DATA
 datain_b[0] => ibufa.NDATA
 dataout[0] <= ibufa.OUT
 
 
-|top|altiobuf:inst12
+|top_coco3|altiobuf:inst12
 datain[0] => altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.datain[0]
 datain_b[0] => altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.datain_b[0]
 dataout[0] <= altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.dataout[0]
 
 
-|top|altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component
+|top_coco3|altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component
 datain[0] => ibufa.DATA
 datain_b[0] => ibufa.NDATA
 dataout[0] <= ibufa.OUT
 
 
-|top|altiobuf:inst13
+|top_coco3|altiobuf:inst13
 datain[0] => altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.datain[0]
 datain_b[0] => altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.datain_b[0]
 dataout[0] <= altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component.dataout[0]
 
 
-|top|altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component
+|top_coco3|altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component
 datain[0] => ibufa.DATA
 datain_b[0] => ibufa.NDATA
 dataout[0] <= ibufa.OUT
 
 
-|top|vgaout:inst7
+|top_coco3|vgaout:inst7
 clock_vga => col_number[0]~reg0.CLK
 clock_vga => col_number[1]~reg0.CLK
 clock_vga => col_number[2]~reg0.CLK
@@ -1068,21 +852,11 @@ col_number[7] <= col_number[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 col_number[8] <= col_number[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 load_req <= load_req~reg0.DB_MAX_OUTPUT_PORT_TYPE
 load_ack => load_req~reg0.ACLR
-is_scanline => pixel.IN1
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
-deinterlace => row.OUTPUTSELECT
 clock_pixel => load_req~reg0.CLK
+scanline => pixel.IN1
 
 
-|top|ram:inst4
+|top_coco3|ram:inst4
 data[0] => altsyncram:altsyncram_component.data_a[0]
 data[1] => altsyncram:altsyncram_component.data_a[1]
 data[2] => altsyncram:altsyncram_component.data_a[2]
@@ -1138,7 +912,7 @@ q[14] <= altsyncram:altsyncram_component.q_b[14]
 q[15] <= altsyncram:altsyncram_component.q_b[15]
 
 
-|top|ram:inst4|altsyncram:altsyncram_component
+|top_coco3|ram:inst4|altsyncram:altsyncram_component
 wren_a => altsyncram_o8k1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -1242,7 +1016,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|top|ram:inst4|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated
+|top_coco3|ram:inst4|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR
@@ -1629,7 +1403,7 @@ wren_a => ram_block1a15.PORTAWE
 wren_a => ram_block1a15.ENA0
 
 
-|top|ram:inst2
+|top_coco3|ram:inst2
 data[0] => altsyncram:altsyncram_component.data_a[0]
 data[1] => altsyncram:altsyncram_component.data_a[1]
 data[2] => altsyncram:altsyncram_component.data_a[2]
@@ -1685,7 +1459,7 @@ q[14] <= altsyncram:altsyncram_component.q_b[14]
 q[15] <= altsyncram:altsyncram_component.q_b[15]
 
 
-|top|ram:inst2|altsyncram:altsyncram_component
+|top_coco3|ram:inst2|altsyncram:altsyncram_component
 wren_a => altsyncram_o8k1:auto_generated.wren_a
 rden_a => ~NO_FANOUT~
 wren_b => ~NO_FANOUT~
@@ -1789,7 +1563,7 @@ eccstatus[1] <= <GND>
 eccstatus[2] <= <GND>
 
 
-|top|ram:inst2|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated
+|top_coco3|ram:inst2|altsyncram:altsyncram_component|altsyncram_o8k1:auto_generated
 address_a[0] => ram_block1a0.PORTAADDR
 address_a[0] => ram_block1a1.PORTAADDR
 address_a[0] => ram_block1a2.PORTAADDR

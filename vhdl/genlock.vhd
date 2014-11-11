@@ -460,7 +460,7 @@ begin
 	end if;
 end process;
 
-detect_artifact: process(clock_pixel, hblank, hcount)
+detect_artifact: process(hblank, hcount)
 begin
 	if (hblank = '0') then
 		artifact_mode <= '1';	
@@ -477,7 +477,7 @@ begin
 			when '0' =>
 				if (hcount(13 downto 3) < front_porch - 50 and hsync = not sync_level) then
 					-- detect color burst
-					if (to_integer(pixel_adc) > 32) then
+					if (to_integer(pixel_adc) > 48) then
 						artifact_mode <= artifact;
 					end if;
 				end if;
@@ -487,7 +487,7 @@ begin
 	end if;
 end process;
 
-process_pixel: process(clock_pixel, dac_step, pixel_adc, hcount, hblank) 
+process_pixel: process(dac_step, pixel_adc, hcount, hblank) 
 variable row, col: integer range 0 to 1024;
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
@@ -693,9 +693,9 @@ begin
 	end if;
 end process;
 
-color_scheme: process(clock_pixel, apple2, mode)
+color_scheme: process(apple2, mode)
 begin
-	if (rising_edge(clock_pixel)) then
+	--if (rising_edge(clock_pixel)) then
 		case (apple2) is
 		when '1' => 
 			case (mode) is
@@ -754,21 +754,21 @@ begin
 				lightgray			<= "10010010"; -- lightgray
 				white					<= "11111111"; -- white									
 		end case;
-	end if;
+	--end if;
 end process;
 
-store_row: process(clock_pixel, hblank, store_ack)
+store_row: process(hblank, store_ack)
 begin	
 	if (store_ack = '1') then
 		store_req <= '0';
-	elsif (rising_edge(clock_pixel)) then	
-		if (hblank = '0') then
-			store_req <= '1';
-		end if;
+	end if;
+	
+	if (hblank = '0') then
+		store_req <= '1';
 	end if;
 end process;
 
-fporch: process(msx, scale_down)
+fporch: process(msx)
 begin
 	if (msx = '0') then
 		if (scale_down = '0') then

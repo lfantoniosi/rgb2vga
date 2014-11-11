@@ -47,23 +47,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 80)
 		(input)
-		(text "is_scanline" (rect 0 0 42 12)(font "Arial" ))
-		(text "is_scanline" (rect 21 75 63 87)(font "Arial" ))
+		(text "clock_pixel" (rect 0 0 42 12)(font "Arial" ))
+		(text "clock_pixel" (rect 21 75 63 87)(font "Arial" ))
 		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port
 		(pt 0 96)
 		(input)
-		(text "deinterlace" (rect 0 0 41 12)(font "Arial" ))
-		(text "deinterlace" (rect 21 91 62 103)(font "Arial" ))
+		(text "scanline" (rect 0 0 30 12)(font "Arial" ))
+		(text "scanline" (rect 21 91 51 103)(font "Arial" ))
 		(line (pt 0 96)(pt 16 96)(line_width 1))
-	)
-	(port
-		(pt 0 112)
-		(input)
-		(text "clock_pixel" (rect 0 0 42 12)(font "Arial" ))
-		(text "clock_pixel" (rect 21 107 63 119)(font "Arial" ))
-		(line (pt 0 112)(pt 16 112)(line_width 1))
 	)
 	(port
 		(pt 224 32)

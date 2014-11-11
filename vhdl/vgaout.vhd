@@ -25,7 +25,8 @@ entity vgaout is
 			load_req	: out std_logic := '0';
 			load_ack  : in std_logic;
 			is_scanline	: in std_logic;
-			deinterlace	: in std_logic
+			deinterlace	: in std_logic;
+			clock_pixel : in std_logic
 			
          );
 end vgaout;
@@ -133,7 +134,7 @@ begin
 	end if;
 end process;
 
-pixel: process(pixel_in, hcount)
+pixel: process(pixel_in, hcount, vcount, is_scanline)
 variable pixel: unsigned (7 downto 0);
 begin
 	if (hcount(0) = '0') then
@@ -152,14 +153,14 @@ begin
 end process;
 
 
-load_row: process(hsync, load_ack)
+load_row: process(clock_pixel, hsync, load_ack)
 begin
 	if (load_ack = '1') then
 		load_req <= '0';
-	end if;
-
-	if (hsync = '0') then -- and vcount(0) = '1') then
-		load_req <= '1';
+	elsif (rising_edge(clock_pixel)) then
+		if (hsync = '0') then
+			load_req <= '1';
+		end if;
 	end if;
 end process;
 

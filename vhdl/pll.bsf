@@ -45,7 +45,7 @@ applicable agreement for further details.
 	(drawing
 		(text "Cyclone IV E" (rect 196 152 447 315)(font "Arial" ))
 		(text "inclk0 frequency: 50.000 MHz" (rect 50 59 223 129)(font "Arial" ))
-		(text "Operation Mode: Normal" (rect 50 72 199 155)(font "Arial" ))
+		(text "Operation Mode: No Compensation" (rect 50 72 244 155)(font "Arial" ))
 		(text "Clk " (rect 51 93 116 197)(font "Arial" ))
 		(text "Ratio" (rect 92 93 204 197)(font "Arial" ))
 		(text "Ph (dg)" (rect 139 93 307 197)(font "Arial" ))

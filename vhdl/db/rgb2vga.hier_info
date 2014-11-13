@@ -1,18 +1,19 @@
 |top_coco3
 DRAM_CLK <= CLOCK_PIXEL.DB_MAX_OUTPUT_PORT_TYPE
-CLOCK_50 => pll:inst1.inclk0
+CLOCK_50 => pll_ntsc:inst6.inclk0
 DRAM_CKE <= sdram:inst.pMemCke
-VSYNC => genlock_coco3:inst10.vsync
-HSYNC => genlock_coco3:inst10.hsync
-FP5 => genlock_coco3:inst10.artifact
-FP4 => genlock_coco3:inst10.mode
+VSYNC => genlock_coco3:inst10.sw_vsync
+HSYNC => genlock_coco3:inst10.sw_hsync
+FP5 => genlock_coco3:inst10.sw_artifact
+FP4 => genlock_coco3:inst10.sw_mode
+FP6 => genlock_coco3:inst10.sw_sync_level
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
 DIFFG => altiobuf:inst12.datain[0]
 DIFFGn => altiobuf:inst12.datain_b[0]
 DIFFB => altiobuf:inst13.datain[0]
 DIFFBn => altiobuf:inst13.datain_b[0]
-FP7 => vgaout:inst7.scanline
+FP7 => vgaout:inst7.sw_scanline
 DRAM_DQ[0] <> sdram:inst.pMemDat[0]
 DRAM_DQ[1] <> sdram:inst.pMemDat[1]
 DRAM_DQ[2] <> sdram:inst.pMemDat[2]
@@ -71,18 +72,17 @@ FP0 => ~NO_FANOUT~
 FP1 => ~NO_FANOUT~
 FP2 => ~NO_FANOUT~
 FP3 => ~NO_FANOUT~
-FP6 => ~NO_FANOUT~
 
 
-|top_coco3|pll:inst1
+|top_coco3|pll_ntsc:inst6
 inclk0 => altpll:altpll_component.inclk[0]
+c0 <= altpll:altpll_component.clk[0]
 c1 <= altpll:altpll_component.clk[1]
-c2 <= altpll:altpll_component.clk[2]
 
 
-|top_coco3|pll:inst1|altpll:altpll_component
-inclk[0] => pll_altpll:auto_generated.inclk[0]
-inclk[1] => pll_altpll:auto_generated.inclk[1]
+|top_coco3|pll_ntsc:inst6|altpll:altpll_component
+inclk[0] => pll_ntsc_altpll:auto_generated.inclk[0]
+inclk[1] => pll_ntsc_altpll:auto_generated.inclk[1]
 fbin => ~NO_FANOUT~
 pllena => ~NO_FANOUT~
 clkswitch => ~NO_FANOUT~
@@ -140,7 +140,7 @@ fref <= <GND>
 icdrclk <= <GND>
 
 
-|top_coco3|pll:inst1|altpll:altpll_component|pll_altpll:auto_generated
+|top_coco3|pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll:auto_generated
 clk[0] <= pll1.CLK
 clk[1] <= pll1.CLK1
 clk[2] <= pll1.CLK2
@@ -476,6 +476,11 @@ pMemDat[15] <> pMemDat[15]
 
 
 |top_coco3|genlock_coco3:inst10
+clock_pixel => hsync.CLK
+clock_pixel => vsync.CLK
+clock_pixel => sync_level.CLK
+clock_pixel => artifact.CLK
+clock_pixel => mode.CLK
 clock_pixel => store_req~reg0.CLK
 clock_pixel => white[0].CLK
 clock_pixel => white[1].CLK
@@ -650,9 +655,8 @@ clock_pixel => red_adc[3].CLK
 clock_pixel => red_adc[4].CLK
 clock_pixel => red_adc[5].CLK
 clock_pixel => red_adc[6].CLK
-vsync => vsync_lock.IN1
-hsync => hsync_lock.IN1
-hsync => detect_artifact.IN1
+sw_vsync => vsync.DATAIN
+sw_hsync => hsync.DATAIN
 adc_rgb[0] => Mux14.IN0
 adc_rgb[0] => Mux15.IN0
 adc_rgb[0] => Mux16.IN0
@@ -714,17 +718,9 @@ store_ack => store_req~reg0.ACLR
 dac_step[0] <= dac_step[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 dac_step[1] <= dac_step[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 dac_step[2] <= dac_step[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
-artifact => artifact_mode.DATAB
-mode => blue[2].DATAIN
-mode => blue[5].DATAIN
-mode => blue[7].DATAIN
-mode => orange[0].DATAIN
-mode => orange[1].DATAIN
-mode => blue[0].DATAIN
-mode => blue[1].DATAIN
-mode => orange[2].DATAIN
-mode => orange[5].DATAIN
-mode => orange[7].DATAIN
+sw_artifact => artifact.DATAIN
+sw_mode => mode.DATAIN
+sw_sync_level => sync_level.DATAIN
 
 
 |top_coco3|altiobuf:inst16
@@ -764,6 +760,19 @@ dataout[0] <= ibufa.OUT
 
 
 |top_coco3|vgaout:inst7
+clock_vga => scanline.CLK
+clock_vga => videoh.CLK
+clock_vga => videov.CLK
+clock_vga => vga_out[0]~reg0.CLK
+clock_vga => vga_out[1]~reg0.CLK
+clock_vga => vga_out[2]~reg0.CLK
+clock_vga => vga_out[3]~reg0.CLK
+clock_vga => vga_out[4]~reg0.CLK
+clock_vga => vga_out[5]~reg0.CLK
+clock_vga => vga_out[6]~reg0.CLK
+clock_vga => vga_out[7]~reg0.CLK
+clock_vga => vga_out[8]~reg0.CLK
+clock_vga => vga_out[9]~reg0.CLK
 clock_vga => col_number[0]~reg0.CLK
 clock_vga => col_number[1]~reg0.CLK
 clock_vga => col_number[2]~reg0.CLK
@@ -805,32 +814,32 @@ clock_vga => vcount[6].CLK
 clock_vga => vcount[7].CLK
 clock_vga => vcount[8].CLK
 clock_vga => vcount[9].CLK
-vga_out[0] <= vsync.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[1] <= hsync.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[2] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[3] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[4] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[5] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[6] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[7] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[8] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-vga_out[9] <= RESULT.DB_MAX_OUTPUT_PORT_TYPE
-pixel_in[0] => \pixel:pixel[0].DATAA
-pixel_in[1] => \pixel:pixel[1].DATAA
-pixel_in[2] => \pixel:pixel[2].DATAA
-pixel_in[3] => \pixel:pixel[3].DATAA
-pixel_in[4] => \pixel:pixel[4].DATAA
-pixel_in[5] => \pixel:pixel[5].DATAA
-pixel_in[6] => \pixel:pixel[6].DATAA
-pixel_in[7] => \pixel:pixel[7].DATAA
-pixel_in[8] => \pixel:pixel[0].DATAB
-pixel_in[9] => \pixel:pixel[1].DATAB
-pixel_in[10] => \pixel:pixel[2].DATAB
-pixel_in[11] => \pixel:pixel[3].DATAB
-pixel_in[12] => \pixel:pixel[4].DATAB
-pixel_in[13] => \pixel:pixel[5].DATAB
-pixel_in[14] => \pixel:pixel[6].DATAB
-pixel_in[15] => \pixel:pixel[7].DATAB
+vga_out[0] <= vga_out[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[1] <= vga_out[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[2] <= vga_out[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[3] <= vga_out[3]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[4] <= vga_out[4]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[5] <= vga_out[5]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[6] <= vga_out[6]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[7] <= vga_out[7]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[8] <= vga_out[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+vga_out[9] <= vga_out[9]~reg0.DB_MAX_OUTPUT_PORT_TYPE
+pixel_in[0] => pixel.DATAA
+pixel_in[1] => pixel.DATAA
+pixel_in[2] => pixel.DATAA
+pixel_in[3] => pixel.DATAA
+pixel_in[4] => pixel.DATAA
+pixel_in[5] => pixel.DATAA
+pixel_in[6] => pixel.DATAA
+pixel_in[7] => pixel.DATAA
+pixel_in[8] => pixel.DATAB
+pixel_in[9] => pixel.DATAB
+pixel_in[10] => pixel.DATAB
+pixel_in[11] => pixel.DATAB
+pixel_in[12] => pixel.DATAB
+pixel_in[13] => pixel.DATAB
+pixel_in[14] => pixel.DATAB
+pixel_in[15] => pixel.DATAB
 row_number[0] <= row_number[0]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 row_number[1] <= row_number[1]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 row_number[2] <= row_number[2]~reg0.DB_MAX_OUTPUT_PORT_TYPE
@@ -853,7 +862,7 @@ col_number[8] <= col_number[8]~reg0.DB_MAX_OUTPUT_PORT_TYPE
 load_req <= load_req~reg0.DB_MAX_OUTPUT_PORT_TYPE
 load_ack => load_req~reg0.ACLR
 clock_pixel => load_req~reg0.CLK
-scanline => pixel.IN1
+sw_scanline => scanline.DATAIN
 
 
 |top_coco3|ram:inst4

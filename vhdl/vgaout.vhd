@@ -26,7 +26,7 @@ entity vgaout is
 			load_ack  : in std_logic;
 			
 			clock_pixel : in std_logic;
-			scanline	: in std_logic
+			sw_scanline	: in std_logic
 			
          );
 end vgaout;
@@ -35,8 +35,9 @@ architecture behavioral of vgaout is
 
 signal hcount												: unsigned(9 downto 0);
 signal vcount												: unsigned(9 downto 0);
-signal blank, videov, videoh, hsync, vsync		: std_ulogic;
-signal vga_pixel											: unsigned(7 downto 0);
+signal videov, videoh, hsync, vsync					: std_logic;
+signal scanline											: std_logic;
+--signal vga_pixel											: unsigned(7 downto 0);
 
 function f_scanline(color: unsigned) return unsigned;
 
@@ -130,22 +131,32 @@ begin
 	end if;
 end process;
 
-pixel: process(pixel_in, hcount, vcount)
+pixel: process(clock_vga, pixel_in, hcount, vcount)
 variable pixel: unsigned (7 downto 0);
+variable blank: std_logic;
+variable vga_pixel: unsigned(7 downto 0);
 begin
-	if (hcount(0) = '0') then
-		pixel := pixel_in(15 downto 8);
-	else
-		pixel := pixel_in(7 downto 0);
-	end if;
+	if (rising_edge(clock_vga)) then
 
-	if (vcount(0) = '1' and scanline = '1') then
-		vga_pixel <= f_scanline(pixel(7 downto 5)) & f_scanline(pixel(4 downto 2)) & f_scanline('0'&pixel(1 downto 0))(1 downto 0);
-	else
-		vga_pixel <= pixel;
+		case (hcount(0)) is
+			when '0' => pixel := pixel_in(15 downto 8);
+			when '1' => pixel := pixel_in(7 downto 0);
+		end case;
+
+		case (vcount(0)) is
+			when '0' => vga_pixel := pixel;
+			when '1' => 
+				case (scanline) is
+					when '0' => vga_pixel := f_scanline(pixel(7 downto 5)) & f_scanline(pixel(4 downto 2)) & f_scanline('0'&pixel(1 downto 0))(1 downto 0);
+					when '1' => vga_pixel := pixel;
+				end case;
+		end case;
+		
+		blank := videoh and videov;		
+		vga_out(9 downto 2) <= vga_pixel(7 downto 0) and blank&blank&blank&blank&blank&blank&blank&blank;			
+		vga_out(1 downto 0)	<= hsync & vsync;		
+		
 	end if;
-	
-	
 end process;
 
 
@@ -161,26 +172,32 @@ begin
 end process;
 
 
-process (vcount)
+process (clock_vga, vcount)
 begin
-   videov <= '1'; 
-   if vcount > vert_active_video-1 or vcount < 2 then
-		videov <= '0';
+	if (rising_edge(clock_vga)) then
+		videov <= '1'; 
+		if vcount > vert_active_video-1 or vcount < 2 then
+			videov <= '0';
+		end if;	
    end if;
 end process;
 
-process (hcount)
+
+process (clock_vga, hcount)
 begin
-   videoh <= '1';
-   if hcount > hor_active_video-1 then
-		videoh <= '0';
-   end if;
+	if (rising_edge(clock_vga)) then
+		videoh <= '1';
+		if hcount > hor_active_video-1 then
+			videoh <= '0';
+		end if;
+	end if;
 end process;
 
-	blank <= videoh and videov;
-	
-	vga_out(9 downto 2) <= vga_pixel(7 downto 0) and blank&blank&blank&blank&blank&blank&blank&blank;	
-	
-	vga_out(1 downto 0)	<= hsync & vsync;
+switches: process(clock_vga)
+begin
+	if (rising_edge(clock_vga)) then
+		scanline <= sw_scanline;
+	end if;
+end process;
 
 end behavioral;

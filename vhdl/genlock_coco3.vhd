@@ -4,13 +4,13 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity genlock_coco3 is
 	generic(
-		front_porch : integer := 182;
-		sync_level	: std_logic := '1'
+		front_porch : integer := 182
+		--sync_level	: std_logic := '1'
 	);
 	
     port(clock_pixel : in std_logic;
-			vsync  		: in std_logic; -- digital vsync
-			hsync	 		: in std_logic; -- digital hsync
+			sw_vsync  		: in std_logic; -- digital vsync
+			sw_hsync	 		: in std_logic; -- digital hsync
 			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
 			
 			pixel_out	: buffer unsigned(15 downto 0);
@@ -18,9 +18,10 @@ entity genlock_coco3 is
 			col_number	: buffer unsigned(8 downto 0); 
 			store_req	: out std_logic := '0';
 			store_ack 	: in std_logic;
-			dac_step		: buffer unsigned(2 downto 0);			
-			artifact		: in std_logic;
-			mode 			: in std_logic
+			dac_step			: buffer unsigned(2 downto 0);			
+			sw_artifact		: in std_logic;
+			sw_mode 			: in std_logic;
+			sw_sync_level	: in std_logic
          );
 			
 end genlock_coco3;
@@ -37,6 +38,13 @@ signal blue_adc: unsigned(6 downto 0);
 
 signal pixel_adc: unsigned(7 downto 0);
 signal artifact_mode: std_logic;
+
+signal artifact: std_logic;
+signal mode: std_logic;
+signal sync_level: std_logic;
+signal vsync: std_logic;
+signal hsync: std_logic;
+
 
 signal pixel_in: unsigned (15 downto 0);
 
@@ -61,7 +69,7 @@ begin
 			when "0011111" => VALUE := "101";
 			when "0111111" => VALUE := "110";
 			when "1111111" => VALUE := "111";
-
+			
 			when "0000010" => VALUE := "001";
 			
 			when "0000100" => VALUE := "000";
@@ -124,7 +132,7 @@ begin
 			when "0111101" => VALUE := "101";
 			when "0111110" => VALUE := "101";
 			
-			when "1000000" => VALUE := "000";
+			when "1000000" => VALUE := "001";
 			when "1000001" => VALUE := "010";
 			when "1000010" => VALUE := "010";
 			when "1000011" => VALUE := "011";
@@ -156,7 +164,7 @@ begin
 			when "1011101" => VALUE := "101";
 			when "1011110" => VALUE := "101";
 			when "1011111" => VALUE := "110";
-			when "1100000" => VALUE := "000";
+			when "1100000" => VALUE := "010";
 			when "1100001" => VALUE := "011";
 			when "1100010" => VALUE := "011";
 			when "1100011" => VALUE := "100";
@@ -301,7 +309,7 @@ begin
 				when "111" => 
 					red_adc(6) <= adc_rgb(2);
 				when "000" =>
-					red_adc(0) <= adc_rgb(2);--null;
+					red_adc(0) <= adc_rgb(2);
 			end case;
 	end if;
 end process;
@@ -325,7 +333,7 @@ begin
 				when "111" => 
 					green_adc(6) <= adc_rgb(1);
 				when "000" =>			
-					green_adc(0) <= adc_rgb(1);--null;							
+					green_adc(0) <= adc_rgb(1);					
 			end case;
 	end if;
 end process;
@@ -357,33 +365,38 @@ end process;
 digitizeR: process(clock_pixel, red_adc)
 begin
 	if (rising_edge(clock_pixel)) then
-		pixel_adc(7 downto 5) <= f_adc(red_adc);
+		if (dac_step = "100") then
+			pixel_adc(7 downto 5) <= f_adc(red_adc);
+		end if;
 	end if;
 end process;
 
 digitizeG: process(clock_pixel, green_adc)
 begin
 	if (rising_edge(clock_pixel)) then
-		pixel_adc(4 downto 2) <= f_adc(green_adc);		
+		if (dac_step = "100") then
+			pixel_adc(4 downto 2) <= f_adc(green_adc);		
+		end if;
 	end if;
 end process;
 
 digitizeB: process(clock_pixel, blue_adc)
 begin
 	if (rising_edge(clock_pixel)) then
-		pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);					
+		if (dac_step = "100") then
+			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);					
+		end if;
 	end if;
 end process;
 
-hsync_lock: process(clock_pixel)
+hsync_lock: process(clock_pixel, hsync)
 variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then
 		hblank <= '1'; 
 		if (hsync = sync_level and hcount(13 downto 3) >= 909) then
 			hblank <= '0'; 
-		end if;		
-		
+		end if;				
 	end if;
 end process;
 
@@ -393,14 +406,12 @@ begin
 		hcount <= (others => '0');
 		dac_step <= "000";
 	elsif (rising_edge(clock_pixel)) then
-
 		hcount <= hcount + 1;
-		dac_step <= hcount(2 downto 0);					
-		
+		dac_step <= hcount(2 downto 0);		
 	end if;
 end process;
 
-vsync_lock: process(clock_pixel)
+vsync_lock: process(clock_pixel, vsync)
 variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then		
@@ -412,12 +423,9 @@ begin
 				top_border <= 48;
 			else
 				top_border <= 16;
-			end if;
-		
+			end if;		
 			vblank <= '0';
-			
-		end if;		
-						
+		end if;								
 	end if;	
 
 end process;
@@ -438,7 +446,7 @@ begin
 	if (hblank = '0') then
 		artifact_mode <= '1';	
 	elsif (rising_edge(clock_pixel)) then
-		if (hcount(13 downto 3) < front_porch and hsync = not sync_level) then		
+		if (hcount(13 downto 3) < front_porch) then -- and hsync = not sync_level) then		
 			-- out of active window. if coco2/coco3 check for white border to activate artifacting
 			if (pixel_adc(7 downto 2) = "111111") then
 				artifact_mode <= artifact;
@@ -630,5 +638,15 @@ begin
 	
 end process;
 
+switches: process(clock_pixel)
+begin
+	if (rising_edge(clock_pixel)) then
+		mode <= sw_mode;
+		artifact <= sw_artifact;
+		sync_level <= sw_sync_level;
+		vsync <= sw_vsync;
+		hsync <= sw_hsync;
+	end if;
+end process;
 
 end behavioral;

@@ -1,7 +1,7 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="rgb2vga">
-		<CBX_INST_ENTRY INSTANCE_NAME="|top_coco3|pll:inst1|altpll:altpll_component" CBX_FILE_NAME="pll_altpll.v"/>
+		<CBX_INST_ENTRY INSTANCE_NAME="|top_coco3|pll_ntsc:inst6|altpll:altpll_component" CBX_FILE_NAME="pll_ntsc_altpll.v"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|top_coco3|ram:inst2|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_o8k1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|top_coco3|ram:inst4|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_o8k1.tdf"/>
 	</PROJECT>

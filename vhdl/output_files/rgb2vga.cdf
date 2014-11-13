@@ -4,7 +4,7 @@ JedecChain;
 	DefaultMfr(6E);
 
 	P ActionCode(Cfg)
-		Device PartName(EP4CE22F17) Path("C:/altera/projects/rgb2vga/vhdl/output_files/") File("rgb2vga.sof") MfrSpec(OpMask(1));
+		Device PartName(EP4CE22F17) Path("C:/altera/projects/vhdl/output_files/") File("rgb2vga.sof") MfrSpec(OpMask(1));
 
 ChainEnd;
 

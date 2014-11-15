@@ -1,4 +1,4 @@
-//altpll bandwidth_type="AUTO" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" clk0_divide_by=25000000 clk0_duty_cycle=50 clk0_multiply_by=57272727 clk0_phase_shift="0" clk1_divide_by=125 clk1_duty_cycle=50 clk1_multiply_by=63 clk1_phase_shift="0" compensate_clock="CLK0" device_family="Cyclone IV E" inclk0_input_frequency=20000 intended_device_family="Cyclone IV E" lpm_hint="CBX_MODULE_PREFIX=pll_ntsc" operation_mode="normal" pll_type="AUTO" port_clk0="PORT_USED" port_clk1="PORT_USED" port_clk2="PORT_UNUSED" port_clk3="PORT_UNUSED" port_clk4="PORT_UNUSED" port_clk5="PORT_UNUSED" port_extclk0="PORT_UNUSED" port_extclk1="PORT_UNUSED" port_extclk2="PORT_UNUSED" port_extclk3="PORT_UNUSED" port_inclk1="PORT_UNUSED" port_phasecounterselect="PORT_UNUSED" port_phasedone="PORT_UNUSED" port_scandata="PORT_UNUSED" port_scandataout="PORT_UNUSED" width_clock=5 clk inclk CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
+//altpll bandwidth_type="AUTO" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" clk0_divide_by=25000000 clk0_duty_cycle=50 clk0_multiply_by=57272727 clk0_phase_shift="0" compensate_clock="CLK0" device_family="Cyclone IV E" inclk0_input_frequency=20000 intended_device_family="Cyclone IV E" lpm_hint="CBX_MODULE_PREFIX=pll_ntsc" operation_mode="normal" pll_type="AUTO" port_clk0="PORT_USED" port_clk1="PORT_UNUSED" port_clk2="PORT_UNUSED" port_clk3="PORT_UNUSED" port_clk4="PORT_UNUSED" port_clk5="PORT_UNUSED" port_extclk0="PORT_UNUSED" port_extclk1="PORT_UNUSED" port_extclk2="PORT_UNUSED" port_extclk3="PORT_UNUSED" port_inclk1="PORT_UNUSED" port_phasecounterselect="PORT_UNUSED" port_phasedone="PORT_UNUSED" port_scandata="PORT_UNUSED" port_scandataout="PORT_UNUSED" width_clock=5 clk inclk CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
 //VERSION_BEGIN 13.0 cbx_altclkbuf 2013:04:24:18:08:47:SJ cbx_altiobuf_bidir 2013:04:24:18:08:47:SJ cbx_altiobuf_in 2013:04:24:18:08:47:SJ cbx_altiobuf_out 2013:04:24:18:08:47:SJ cbx_altpll 2013:04:24:18:08:47:SJ cbx_cycloneii 2013:04:24:18:08:47:SJ cbx_lpm_add_sub 2013:04:24:18:08:47:SJ cbx_lpm_compare 2013:04:24:18:08:47:SJ cbx_lpm_counter 2013:04:24:18:08:47:SJ cbx_lpm_decode 2013:04:24:18:08:47:SJ cbx_lpm_mux 2013:04:24:18:08:47:SJ cbx_mgl 2013:04:24:18:11:10:SJ cbx_stratix 2013:04:24:18:08:47:SJ cbx_stratixii 2013:04:24:18:08:47:SJ cbx_stratixiii 2013:04:24:18:08:47:SJ cbx_stratixv 2013:04:24:18:08:47:SJ cbx_util_mgl 2013:04:24:18:08:47:SJ  VERSION_END
 //CBXI_INSTANCE_NAME="top_coco3_pll_ntsc_inst6_altpll_altpll_component"
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
@@ -81,10 +81,6 @@ module  pll_ntsc_altpll
 		pll1.clk0_duty_cycle = 50,
 		pll1.clk0_multiply_by = 57272727,
 		pll1.clk0_phase_shift = "0",
-		pll1.clk1_divide_by = 125,
-		pll1.clk1_duty_cycle = 50,
-		pll1.clk1_multiply_by = 63,
-		pll1.clk1_phase_shift = "0",
 		pll1.compensate_clock = "clk0",
 		pll1.inclk0_input_frequency = 20000,
 		pll1.operation_mode = "normal",

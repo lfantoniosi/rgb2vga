@@ -1,5 +1,5 @@
 PLL_Name	pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll:auto_generated|pll1
-PLLJITTER	NA
+PLLJITTER	35
 PLLSPEmax	84
 PLLSPEmin	-53
 

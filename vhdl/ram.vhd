@@ -42,11 +42,10 @@ USE altera_mf.all;
 ENTITY ram IS
 	PORT
 	(
-		data		: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+		clock		: IN STD_LOGIC  := '1';
+		data		: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
 		rdaddress		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
-		rdclock		: IN STD_LOGIC ;
-		wraddress		: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
-		wrclock		: IN STD_LOGIC  := '1';
+		wraddress		: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
 		wren		: IN STD_LOGIC  := '0';
 		q		: OUT STD_LOGIC_VECTOR (15 DOWNTO 0)
 	);
@@ -74,6 +73,7 @@ ARCHITECTURE SYN OF ram IS
 		outdata_aclr_b		: STRING;
 		outdata_reg_b		: STRING;
 		power_up_uninitialized		: STRING;
+		read_during_write_mode_mixed_ports		: STRING;
 		widthad_a		: NATURAL;
 		widthad_b		: NATURAL;
 		width_a		: NATURAL;
@@ -81,13 +81,12 @@ ARCHITECTURE SYN OF ram IS
 		width_byteena_a		: NATURAL
 	);
 	PORT (
-			address_a	: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
+			address_a	: IN STD_LOGIC_VECTOR (9 DOWNTO 0);
 			clock0	: IN STD_LOGIC ;
-			data_a	: IN STD_LOGIC_VECTOR (15 DOWNTO 0);
+			data_a	: IN STD_LOGIC_VECTOR (7 DOWNTO 0);
 			q_b	: OUT STD_LOGIC_VECTOR (15 DOWNTO 0);
 			wren_a	: IN STD_LOGIC ;
-			address_b	: IN STD_LOGIC_VECTOR (8 DOWNTO 0);
-			clock1	: IN STD_LOGIC 
+			address_b	: IN STD_LOGIC_VECTOR (8 DOWNTO 0)
 	);
 	END COMPONENT;
 
@@ -97,31 +96,31 @@ BEGIN
 	altsyncram_component : altsyncram
 	GENERIC MAP (
 		address_aclr_b => "NONE",
-		address_reg_b => "CLOCK1",
+		address_reg_b => "CLOCK0",
 		clock_enable_input_a => "BYPASS",
 		clock_enable_input_b => "BYPASS",
 		clock_enable_output_b => "BYPASS",
 		intended_device_family => "Cyclone IV E",
 		lpm_type => "altsyncram",
-		numwords_a => 512,
+		numwords_a => 1024,
 		numwords_b => 512,
 		operation_mode => "DUAL_PORT",
 		outdata_aclr_b => "NONE",
 		outdata_reg_b => "UNREGISTERED",
 		power_up_uninitialized => "FALSE",
-		widthad_a => 9,
+		read_during_write_mode_mixed_ports => "OLD_DATA",
+		widthad_a => 10,
 		widthad_b => 9,
-		width_a => 16,
+		width_a => 8,
 		width_b => 16,
 		width_byteena_a => 1
 	)
 	PORT MAP (
 		address_a => wraddress,
-		clock0 => wrclock,
+		clock0 => clock,
 		data_a => data,
 		wren_a => wren,
 		address_b => rdaddress,
-		clock1 => rdclock,
 		q_b => sub_wire0
 	);
 
@@ -150,7 +149,7 @@ END SYN;
 -- Retrieval info: PRIVATE: CLRrren NUMERIC "0"
 -- Retrieval info: PRIVATE: CLRwraddress NUMERIC "0"
 -- Retrieval info: PRIVATE: CLRwren NUMERIC "0"
--- Retrieval info: PRIVATE: Clock NUMERIC "1"
+-- Retrieval info: PRIVATE: Clock NUMERIC "0"
 -- Retrieval info: PRIVATE: Clock_A NUMERIC "0"
 -- Retrieval info: PRIVATE: Clock_B NUMERIC "0"
 -- Retrieval info: PRIVATE: IMPLEMENT_IN_LES NUMERIC "0"
@@ -169,7 +168,7 @@ END SYN;
 -- Retrieval info: PRIVATE: OUTDATA_ACLR_B NUMERIC "0"
 -- Retrieval info: PRIVATE: OUTDATA_REG_B NUMERIC "0"
 -- Retrieval info: PRIVATE: RAM_BLOCK_TYPE NUMERIC "0"
--- Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_MIXED_PORTS NUMERIC "2"
+-- Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_MIXED_PORTS NUMERIC "1"
 -- Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_PORT_A NUMERIC "3"
 -- Retrieval info: PRIVATE: READ_DURING_WRITE_MODE_PORT_B NUMERIC "3"
 -- Retrieval info: PRIVATE: REGdata NUMERIC "1"
@@ -181,10 +180,10 @@ END SYN;
 -- Retrieval info: PRIVATE: SYNTH_WRAPPER_GEN_POSTFIX STRING "0"
 -- Retrieval info: PRIVATE: USE_DIFF_CLKEN NUMERIC "0"
 -- Retrieval info: PRIVATE: UseDPRAM NUMERIC "1"
--- Retrieval info: PRIVATE: VarWidth NUMERIC "0"
--- Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "16"
+-- Retrieval info: PRIVATE: VarWidth NUMERIC "1"
+-- Retrieval info: PRIVATE: WIDTH_READ_A NUMERIC "8"
 -- Retrieval info: PRIVATE: WIDTH_READ_B NUMERIC "16"
--- Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "16"
+-- Retrieval info: PRIVATE: WIDTH_WRITE_A NUMERIC "8"
 -- Retrieval info: PRIVATE: WIDTH_WRITE_B NUMERIC "16"
 -- Retrieval info: PRIVATE: WRADDR_ACLR_B NUMERIC "0"
 -- Retrieval info: PRIVATE: WRADDR_REG_B NUMERIC "0"
@@ -193,40 +192,39 @@ END SYN;
 -- Retrieval info: PRIVATE: rden NUMERIC "0"
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 -- Retrieval info: CONSTANT: ADDRESS_ACLR_B STRING "NONE"
--- Retrieval info: CONSTANT: ADDRESS_REG_B STRING "CLOCK1"
+-- Retrieval info: CONSTANT: ADDRESS_REG_B STRING "CLOCK0"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_A STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_INPUT_B STRING "BYPASS"
 -- Retrieval info: CONSTANT: CLOCK_ENABLE_OUTPUT_B STRING "BYPASS"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altsyncram"
--- Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "512"
+-- Retrieval info: CONSTANT: NUMWORDS_A NUMERIC "1024"
 -- Retrieval info: CONSTANT: NUMWORDS_B NUMERIC "512"
 -- Retrieval info: CONSTANT: OPERATION_MODE STRING "DUAL_PORT"
 -- Retrieval info: CONSTANT: OUTDATA_ACLR_B STRING "NONE"
 -- Retrieval info: CONSTANT: OUTDATA_REG_B STRING "UNREGISTERED"
 -- Retrieval info: CONSTANT: POWER_UP_UNINITIALIZED STRING "FALSE"
--- Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "9"
+-- Retrieval info: CONSTANT: READ_DURING_WRITE_MODE_MIXED_PORTS STRING "OLD_DATA"
+-- Retrieval info: CONSTANT: WIDTHAD_A NUMERIC "10"
 -- Retrieval info: CONSTANT: WIDTHAD_B NUMERIC "9"
--- Retrieval info: CONSTANT: WIDTH_A NUMERIC "16"
+-- Retrieval info: CONSTANT: WIDTH_A NUMERIC "8"
 -- Retrieval info: CONSTANT: WIDTH_B NUMERIC "16"
 -- Retrieval info: CONSTANT: WIDTH_BYTEENA_A NUMERIC "1"
--- Retrieval info: USED_PORT: data 0 0 16 0 INPUT NODEFVAL "data[15..0]"
+-- Retrieval info: USED_PORT: clock 0 0 0 0 INPUT VCC "clock"
+-- Retrieval info: USED_PORT: data 0 0 8 0 INPUT NODEFVAL "data[7..0]"
 -- Retrieval info: USED_PORT: q 0 0 16 0 OUTPUT NODEFVAL "q[15..0]"
 -- Retrieval info: USED_PORT: rdaddress 0 0 9 0 INPUT NODEFVAL "rdaddress[8..0]"
--- Retrieval info: USED_PORT: rdclock 0 0 0 0 INPUT NODEFVAL "rdclock"
--- Retrieval info: USED_PORT: wraddress 0 0 9 0 INPUT NODEFVAL "wraddress[8..0]"
--- Retrieval info: USED_PORT: wrclock 0 0 0 0 INPUT VCC "wrclock"
+-- Retrieval info: USED_PORT: wraddress 0 0 10 0 INPUT NODEFVAL "wraddress[9..0]"
 -- Retrieval info: USED_PORT: wren 0 0 0 0 INPUT GND "wren"
--- Retrieval info: CONNECT: @address_a 0 0 9 0 wraddress 0 0 9 0
+-- Retrieval info: CONNECT: @address_a 0 0 10 0 wraddress 0 0 10 0
 -- Retrieval info: CONNECT: @address_b 0 0 9 0 rdaddress 0 0 9 0
--- Retrieval info: CONNECT: @clock0 0 0 0 0 wrclock 0 0 0 0
--- Retrieval info: CONNECT: @clock1 0 0 0 0 rdclock 0 0 0 0
--- Retrieval info: CONNECT: @data_a 0 0 16 0 data 0 0 16 0
+-- Retrieval info: CONNECT: @clock0 0 0 0 0 clock 0 0 0 0
+-- Retrieval info: CONNECT: @data_a 0 0 8 0 data 0 0 8 0
 -- Retrieval info: CONNECT: @wren_a 0 0 0 0 wren 0 0 0 0
 -- Retrieval info: CONNECT: q 0 0 16 0 @q_b 0 0 16 0
 -- Retrieval info: GEN_FILE: TYPE_NORMAL ram.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL ram.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL ram.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL ram.bsf TRUE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL ram.bsf TRUE FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL ram_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: altera_mf

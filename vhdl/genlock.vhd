@@ -3,27 +3,28 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity genlock is
+	generic(
+		front_porch : integer := 182
+	);
 	
     port(clock_pixel : in std_logic;
-			vsync  		: in std_logic; -- digital vsync
-			hsync	 		: in std_logic; -- digital hsync
+			sw_vsync  		: in std_logic; -- digital vsync
+			sw_hsync	 		: in std_logic; -- digital hsync
 			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
 			
-			pixel_out	: buffer unsigned(15 downto 0);
+			pixel_out	: buffer unsigned(7 downto 0);
 			row_number	: out unsigned(9 downto 0); 
-			col_number	: buffer unsigned(8 downto 0); 
+			col_number	: buffer unsigned(9 downto 0); 
 			store_req	: out std_logic := '0';
 			store_ack 	: in std_logic;
-			dac_step		: buffer unsigned(2 downto 0);			
-			artifact		: in std_logic;
-			mode 			: in std_logic;
-			sync_level	: in std_logic;
-			msx		   : in std_logic;
-			scale_down	: in std_logic;
-			deinterlace	: in std_logic;
-			apple2		: in std_logic
-									
+			dac_step			: buffer unsigned(2 downto 0);			
+			sw_artifact		: in std_logic;
+			sw_mode 			: in std_logic;
+			sw_sync_level	: in std_logic;
+			sw_deinterlace	: in std_logic;
+			sw_apple2		: in std_logic
          );
+			
 end genlock;
 
 architecture behavioral of genlock is
@@ -31,7 +32,6 @@ architecture behavioral of genlock is
 signal vblank, hblank							: std_ulogic;
 signal hcount, vcount							: unsigned(13 downto 0) := to_unsigned(1024, 14);
 signal top_border									: integer := 32;
-signal front_porch								: integer := 182;
 
 signal red_adc: unsigned(6 downto 0);
 signal green_adc: unsigned(6 downto 0);
@@ -40,9 +40,16 @@ signal blue_adc: unsigned(6 downto 0);
 signal pixel_adc: unsigned(7 downto 0);
 signal artifact_mode: std_logic;
 
-signal pixel_in: unsigned (15 downto 0);
-signal artifact_pixel: unsigned (15 downto 0);
+signal artifact: std_logic;
+signal mode: std_logic;
+signal sync_level: std_logic;
+signal vsync: std_logic;
+signal hsync: std_logic;
+signal apple2: std_logic;
+signal deinterlace: std_logic;
 signal frame: unsigned(0 downto 0);
+
+signal pixel_in: unsigned (15 downto 0);
 
 signal black:		unsigned(7 downto 0);
 signal brown:	unsigned(7 downto 0);
@@ -77,7 +84,7 @@ begin
 			when "0011111" => VALUE := "101";
 			when "0111111" => VALUE := "110";
 			when "1111111" => VALUE := "111";
-
+			
 			when "0000010" => VALUE := "001";
 			
 			when "0000100" => VALUE := "000";
@@ -140,7 +147,7 @@ begin
 			when "0111101" => VALUE := "101";
 			when "0111110" => VALUE := "101";
 			
-			when "1000000" => VALUE := "000";
+			when "1000000" => VALUE := "001";
 			when "1000001" => VALUE := "010";
 			when "1000010" => VALUE := "010";
 			when "1000011" => VALUE := "011";
@@ -172,7 +179,7 @@ begin
 			when "1011101" => VALUE := "101";
 			when "1011110" => VALUE := "101";
 			when "1011111" => VALUE := "110";
-			when "1100000" => VALUE := "000";
+			when "1100000" => VALUE := "010";
 			when "1100001" => VALUE := "011";
 			when "1100010" => VALUE := "011";
 			when "1100011" => VALUE := "100";
@@ -317,7 +324,7 @@ begin
 				when "111" => 
 					red_adc(6) <= adc_rgb(2);
 				when "000" =>
-					red_adc(0) <= adc_rgb(2);--null;
+					red_adc(0) <= adc_rgb(2);
 			end case;
 	end if;
 end process;
@@ -341,7 +348,7 @@ begin
 				when "111" => 
 					green_adc(6) <= adc_rgb(1);
 				when "000" =>			
-					green_adc(0) <= adc_rgb(1);--null;							
+					green_adc(0) <= adc_rgb(1);					
 			end case;
 	end if;
 end process;
@@ -365,49 +372,48 @@ begin
 				when "111" => 
 					blue_adc(6) <= adc_rgb(0);
 				when "000" =>	
-					blue_adc(0) <= adc_rgb(0);--null;
+					blue_adc(0) <= adc_rgb(0);
 			end case;			
 	end if;
 end process;
 
-digitizeR: process(clock_pixel, red_adc)
+digitizeR: process(clock_pixel, dac_step, red_adc)
 begin
 	if (rising_edge(clock_pixel)) then
-		if (apple2 = '0') then
-			pixel_adc(7 downto 5) <= f_adc(green_adc);
-		else
+		if (dac_step = "100") then
 			pixel_adc(7 downto 5) <= f_adc(red_adc);
 		end if;
 	end if;
 end process;
 
-digitizeG: process(clock_pixel, green_adc)
+digitizeG: process(clock_pixel, dac_step, green_adc)
 begin
 	if (rising_edge(clock_pixel)) then
-			pixel_adc(4 downto 2) <= f_adc(green_adc);		
-	end if;
-end process;
-
-digitizeB: process(clock_pixel, blue_adc)
-begin
-	if (rising_edge(clock_pixel)) then
-		if (apple2 = '0') then
-			pixel_adc(1 downto 0) <= f_adc(green_adc)(2 downto 1);
-		else
-			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);					
+		if (dac_step = "100") then
+			pixel_adc(4 downto 2) <= f_adc(green_adc);
 		end if;
 	end if;
 end process;
 
-hsync_lock: process(clock_pixel)
+
+digitizeB: process(clock_pixel, dac_step, blue_adc)
+begin
+	if (rising_edge(clock_pixel)) then
+		if (dac_step = "100") then
+			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
+		end if;
+	end if;
+end process;
+
+
+hsync_lock: process(clock_pixel, hsync)
 variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then
 		hblank <= '1'; 
 		if (hsync = sync_level and hcount(13 downto 3) >= 909) then
 			hblank <= '0'; 
-		end if;		
-		
+		end if;				
 	end if;
 end process;
 
@@ -417,14 +423,12 @@ begin
 		hcount <= (others => '0');
 		dac_step <= "000";
 	elsif (rising_edge(clock_pixel)) then
-
 		hcount <= hcount + 1;
-		dac_step <= hcount(2 downto 0);					
-		
+		dac_step <= hcount(2 downto 0);		
 	end if;
 end process;
 
-vsync_lock: process(clock_pixel)
+vsync_lock: process(clock_pixel, vsync)
 variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then		
@@ -436,12 +440,9 @@ begin
 				top_border <= 48;
 			else
 				top_border <= 16;
-			end if;
-		
+			end if;		
 			vblank <= '0';
-			
-		end if;		
-						
+		end if;								
 	end if;	
 
 end process;
@@ -460,7 +461,7 @@ begin
 	end if;
 end process;
 
-detect_artifact: process(hblank, hcount)
+detect_artifact: process(clock_pixel, hblank, hcount)
 begin
 	if (hblank = '0') then
 		artifact_mode <= '1';	
@@ -477,7 +478,7 @@ begin
 			when '0' =>
 				if (hcount(13 downto 3) < front_porch - 50 and hsync = not sync_level) then
 					-- detect color burst
-					if (to_integer(pixel_adc) > 48) then
+					if (to_integer(pixel_adc) > 32) then
 						artifact_mode <= artifact;
 					end if;
 				end if;
@@ -487,7 +488,7 @@ begin
 	end if;
 end process;
 
-process_pixel: process(dac_step, pixel_adc, hcount, hblank) 
+process_pixel: process(clock_pixel, pixel_adc) --, dac_step, hcount) 
 variable row, col: integer range 0 to 1024;
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
@@ -500,7 +501,6 @@ begin
 				-- user active window
 				
 				col := to_integer(hcount(13 downto 3)) - front_porch;		
-				row := to_integer(vcount) - top_border;
 				
 				case (deinterlace) is
 					when '0' =>
@@ -509,12 +509,13 @@ begin
 						row := row + row + to_integer(frame);
 					when '1' =>
 						row := to_integer(vcount) - top_border;					
-				end case;
+				end case;				
 				
 				row_number <= to_unsigned(row, row_number'length);
-				col_number <= to_unsigned(col, 10)(9 downto 1);				
+				col_number <= to_unsigned(col, 10)(9 downto 0);				
 				-- buffer column/row
 				
+			
 				pixel(3 downto 1) := pixel(2 downto 0);
 				-- pixel shifting for apple2/coco3 artifact
 				case (pixel_adc(7 downto 5)) is
@@ -532,7 +533,7 @@ begin
 							when '0' => pixel(0) := '1';
 						end case;
 					when others => pixel(0) := '0';
-				end case;
+				end case;				
 				
 				p_pixel := a_pixel;
 				
@@ -543,14 +544,15 @@ begin
 							when '1' =>
 								case (apple2) is
 									when '0' =>
-										pixel_out(15 downto 8) <= pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);	
+										pixel_out(7 downto 0) <= pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);	
 										-- if monocrhome work with digital pixels
 									when '1' =>
-										pixel_out(15 downto 8) <= pixel_adc;	
+										pixel_out(7 downto 0) <= pixel_adc;	
 										-- otherwize get digitized analog value
-								end case;
+								end case;																
 								
 							when '0' =>
+								
 								--	APPLE ][ NTSC ARTIFACT COLOUR TABLE					
 								--	|00|11|00|11|00|11   hcount(4)
 								--	|01|01|01|01|01|01   hcount(3)
@@ -570,7 +572,7 @@ begin
 								--	|01|10|01|10|01|10 - mediumblue
 								--	|01|11|01|11|01|11 - aqua
 								--	|11|10|11|10|11|10 - lightblue 
-								--	|11|11|11|11|11|11 - white
+								--	|11|11|11|11|11|11 - white								
 								
 								--	COCO2/COCO3 PMODE4 NTSC ARTIFACT COLOUR TABLE					
 								--	|00|11|00|11|00|11   hcount(4)
@@ -578,8 +580,9 @@ begin
 								--	+------------------+------
 								--	|00|00|00|00|00|00 - black					
 								--	|00|11|00|11|00|11 - medium blue
-								--	|11|00|11|00|11|00 - green
+								--	|11|00|11|00|11|00 - orange
 								--	|11|11|11|11|11|11 - white
+								
 								case (hcount(4)) is
 									when '0' => -- "00" 
 									-- decode colour by the last 4-bit pattern
@@ -595,11 +598,11 @@ begin
 											when "0100" => a_pixel := darkgreen;
 											when "0110" => a_pixel := green;
 											when "0101" => a_pixel := lightgray;
-											when "0111" => a_pixel := yellow;			
+											when "0111" => a_pixel := yellow;				
 											when "1100" => a_pixel := mediumblue;
 											when "1110" => a_pixel := aqua;
 											when "1101" => a_pixel := lightblue;
-											when "1111" => a_pixel := white;
+											when "1111" => a_pixel := white;      
 										end case;
 									when '1' => -- "10" 
 										case (pixel) is
@@ -614,15 +617,15 @@ begin
 											when "0001" => a_pixel := darkgreen;
 											when "1001" => a_pixel := green;
 											when "0101" => a_pixel := lightgray;
-											when "1101" => a_pixel := yellow;			
+											when "1101" => a_pixel := yellow;				
 											when "0011" => a_pixel := mediumblue;
 											when "1011" => a_pixel := aqua;
 											when "0111" => a_pixel := lightblue;
-											when "1111" => a_pixel := white;
+											when "1111" => a_pixel := white;      
 										end case;
 								end case;
 								--
-								pixel_out(15 downto 8) <= f_avg(a_pixel(7 downto 5)&p_pixel(7 downto 5)) & f_avg(a_pixel(4 downto 2)&p_pixel(4 downto 2)) & f_avg(a_pixel(1 downto 0)&'0'&p_pixel(1 downto 0)&'0')(2 downto 1);
+								pixel_out(7 downto 0)  <= f_avg(a_pixel(7 downto 5)&p_pixel(7 downto 5)) & f_avg(a_pixel(4 downto 2)&p_pixel(4 downto 2)) & f_avg(a_pixel(1 downto 0)&'0'&p_pixel(1 downto 0)&'0')(2 downto 1);
 
 						end case;
 											
@@ -633,11 +636,11 @@ begin
 								case (apple2) is
 									when '0' =>
 										pixel_out(7 downto 0) <= pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);	
-										-- if apple2 work with digital pixels
+										-- if monocrhome work with digital pixels
 									when '1' =>
 										pixel_out(7 downto 0) <= pixel_adc;	
 										-- otherwize get digitized analog value
-								end case;
+								end case;								
 								
 							when '0' =>
 								case (hcount(4)) is
@@ -655,11 +658,11 @@ begin
 											when "1000" => a_pixel := darkgreen;
 											when "1100" => a_pixel := green;
 											when "1010" => a_pixel := lightgray;
-											when "1110" => a_pixel := yellow;			
+											when "1110" => a_pixel := yellow;					
 											when "1001" => a_pixel := mediumblue;
 											when "1101" => a_pixel := aqua;
 											when "1011" => a_pixel := lightblue;
-											when "1111" => a_pixel := white;
+											when "1111" => a_pixel := white;      
 										end case;										
 									when '1' => -- "11" 
 										case (pixel) is
@@ -678,7 +681,7 @@ begin
 											when "0110" => a_pixel := mediumblue;
 											when "0111" => a_pixel := aqua;
 											when "1110" => a_pixel := lightblue;
-											when "1111" => a_pixel := white;
+											when "1111" => a_pixel := white;      
 										end case;
 								end case;
 								--
@@ -693,9 +696,9 @@ begin
 	end if;
 end process;
 
-color_scheme: process(apple2, mode)
+color_scheme: process(clock_pixel, apple2, mode)
 begin
-	--if (rising_edge(clock_pixel)) then
+	if (rising_edge(clock_pixel)) then
 		case (apple2) is
 		when '1' => 
 			case (mode) is
@@ -754,30 +757,31 @@ begin
 				lightgray			<= "10010010"; -- lightgray
 				white					<= "11111111"; -- white									
 		end case;
-	--end if;
+	end if;
 end process;
 
-store_row: process(hblank, store_ack)
+store_row: process(clock_pixel, hblank, store_ack)
 begin	
 	if (store_ack = '1') then
 		store_req <= '0';
+	elsif (rising_edge(clock_pixel)) then
+		if (hblank = '0') then
+			store_req <= '1';
+		end if;
 	end if;
 	
-	if (hblank = '0') then
-		store_req <= '1';
-	end if;
 end process;
 
-fporch: process(msx)
+switches: process(clock_pixel)
 begin
-	if (msx = '0') then
-		if (scale_down = '0') then
-			front_porch <= 152;
-		else
-			front_porch <= 192;
-		end if;
-	else
-		front_porch <= 182;
+	if (rising_edge(clock_pixel)) then
+		mode <= sw_mode;
+		artifact <= sw_artifact;
+		sync_level <= sw_sync_level;
+		vsync <= sw_vsync;
+		hsync <= sw_hsync;
+		deinterlace <= sw_deinterlace;
+		apple2 <= sw_apple2;
 	end if;
 end process;
 

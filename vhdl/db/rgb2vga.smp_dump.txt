@@ -1,5 +1,5 @@
 
-State Machine - |top_coco3|sdram:inst|SdrRoutine
+State Machine - |top|sdram:inst|SdrRoutine
 Name SdrRoutine.SdrRoutine_StoreRow SdrRoutine.SdrRoutine_LoadRow SdrRoutine.SdrRoutine_RefreshAll SdrRoutine.SdrRoutine_Idle SdrRoutine.SdrRoutine_Init SdrRoutine.SdrRoutine_Null 
 SdrRoutine.SdrRoutine_Null 0 0 0 0 0 0 
 SdrRoutine.SdrRoutine_Init 0 0 0 0 1 1 

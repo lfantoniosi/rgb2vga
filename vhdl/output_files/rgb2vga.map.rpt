@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Fri Nov 14 23:22:15 2014
+Sat Nov 15 11:05:19 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -20,7 +20,7 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
  12. General Register Statistics
  13. Inverted Register Statistics
  14. Multiplexer Restructuring Statistics (Restructuring Performed)
- 15. Source assignments for ram2:inst1|altsyncram:altsyncram_component|altsyncram_hao1:auto_generated
+ 15. Source assignments for ram2:inst1|altsyncram:altsyncram_component|altsyncram_0ak1:auto_generated
  16. Source assignments for ram:inst4|altsyncram:altsyncram_component|altsyncram_q6o1:auto_generated
  17. Parameter Settings for User Entity Instance: pll_ntsc:inst6|altpll:altpll_component
  18. Parameter Settings for User Entity Instance: genlock:inst2
@@ -56,15 +56,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Fri Nov 14 23:22:15 2014      ;
+; Analysis & Synthesis Status        ; Successful - Sat Nov 15 11:05:19 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 648                                        ;
+; Total logic elements               ; 647                                        ;
 ;     Total combinational functions  ; 542                                        ;
-;     Dedicated logic registers      ; 328                                        ;
-; Total registers                    ; 328                                        ;
+;     Dedicated logic registers      ; 329                                        ;
+; Total registers                    ; 329                                        ;
 ; Total pins                         ; 69                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 16,384                                     ;
@@ -189,7 +189,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; stratix_pll.inc                  ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/stratix_pll.inc       ;         ;
 ; stratixii_pll.inc                ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/stratixii_pll.inc     ;         ;
 ; cycloneii_pll.inc                ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/cycloneii_pll.inc     ;         ;
-; db/pll_ntsc_altpll.v             ; yes             ; Auto-Generated Megafunction        ; C:/altera/projects/rgb2vga/vhdl/db/pll_ntsc_altpll.v                 ;         ;
+; db/pll_ntsc_altpll1.v            ; yes             ; Auto-Generated Megafunction        ; C:/altera/projects/rgb2vga/vhdl/db/pll_ntsc_altpll1.v                ;         ;
 ; altsyncram.tdf                   ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/altsyncram.tdf        ;         ;
 ; stratix_ram_block.inc            ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/stratix_ram_block.inc ;         ;
 ; lpm_mux.inc                      ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/lpm_mux.inc           ;         ;
@@ -198,43 +198,43 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ; altrom.inc                       ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/altrom.inc            ;         ;
 ; altram.inc                       ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/altram.inc            ;         ;
 ; altdpram.inc                     ; yes             ; Megafunction                       ; c:/altera/13.0/quartus/libraries/megafunctions/altdpram.inc          ;         ;
-; db/altsyncram_hao1.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/altera/projects/rgb2vga/vhdl/db/altsyncram_hao1.tdf               ;         ;
+; db/altsyncram_0ak1.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/altera/projects/rgb2vga/vhdl/db/altsyncram_0ak1.tdf               ;         ;
 ; db/altsyncram_q6o1.tdf           ; yes             ; Auto-Generated Megafunction        ; C:/altera/projects/rgb2vga/vhdl/db/altsyncram_q6o1.tdf               ;         ;
 +----------------------------------+-----------------+------------------------------------+----------------------------------------------------------------------+---------+
 
 
-+--------------------------------------------------------------------------------------------------------------------------------------+
-; Analysis & Synthesis Resource Usage Summary                                                                                          ;
-+---------------------------------------------+----------------------------------------------------------------------------------------+
-; Resource                                    ; Usage                                                                                  ;
-+---------------------------------------------+----------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 648                                                                                    ;
-;                                             ;                                                                                        ;
-; Total combinational functions               ; 542                                                                                    ;
-; Logic element usage by number of LUT inputs ;                                                                                        ;
-;     -- 4 input functions                    ; 254                                                                                    ;
-;     -- 3 input functions                    ; 110                                                                                    ;
-;     -- <=2 input functions                  ; 178                                                                                    ;
-;                                             ;                                                                                        ;
-; Logic elements by mode                      ;                                                                                        ;
-;     -- normal mode                          ; 410                                                                                    ;
-;     -- arithmetic mode                      ; 132                                                                                    ;
-;                                             ;                                                                                        ;
-; Total registers                             ; 328                                                                                    ;
-;     -- Dedicated logic registers            ; 328                                                                                    ;
-;     -- I/O registers                        ; 0                                                                                      ;
-;                                             ;                                                                                        ;
-; I/O pins                                    ; 69                                                                                     ;
-; Total memory bits                           ; 16384                                                                                  ;
-; Embedded Multiplier 9-bit elements          ; 0                                                                                      ;
-; Total PLLs                                  ; 1                                                                                      ;
-;     -- PLLs                                 ; 1                                                                                      ;
-;                                             ;                                                                                        ;
-; Maximum fan-out node                        ; pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 346                                                                                    ;
-; Total fan-out                               ; 3221                                                                                   ;
-; Average fan-out                             ; 3.10                                                                                   ;
-+---------------------------------------------+----------------------------------------------------------------------------------------+
++---------------------------------------------------------------------------------------------------------------------------------------+
+; Analysis & Synthesis Resource Usage Summary                                                                                           ;
++---------------------------------------------+-----------------------------------------------------------------------------------------+
+; Resource                                    ; Usage                                                                                   ;
++---------------------------------------------+-----------------------------------------------------------------------------------------+
+; Estimated Total logic elements              ; 647                                                                                     ;
+;                                             ;                                                                                         ;
+; Total combinational functions               ; 542                                                                                     ;
+; Logic element usage by number of LUT inputs ;                                                                                         ;
+;     -- 4 input functions                    ; 251                                                                                     ;
+;     -- 3 input functions                    ; 109                                                                                     ;
+;     -- <=2 input functions                  ; 182                                                                                     ;
+;                                             ;                                                                                         ;
+; Logic elements by mode                      ;                                                                                         ;
+;     -- normal mode                          ; 405                                                                                     ;
+;     -- arithmetic mode                      ; 137                                                                                     ;
+;                                             ;                                                                                         ;
+; Total registers                             ; 329                                                                                     ;
+;     -- Dedicated logic registers            ; 329                                                                                     ;
+;     -- I/O registers                        ; 0                                                                                       ;
+;                                             ;                                                                                         ;
+; I/O pins                                    ; 69                                                                                      ;
+; Total memory bits                           ; 16384                                                                                   ;
+; Embedded Multiplier 9-bit elements          ; 0                                                                                       ;
+; Total PLLs                                  ; 1                                                                                       ;
+;     -- PLLs                                 ; 1                                                                                       ;
+;                                             ;                                                                                         ;
+; Maximum fan-out node                        ; pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll1:auto_generated|wire_pll1_clk[0] ;
+; Maximum fan-out                             ; 347                                                                                     ;
+; Total fan-out                               ; 3202                                                                                    ;
+; Average fan-out                             ; 3.08                                                                                    ;
++---------------------------------------------+-----------------------------------------------------------------------------------------+
 
 
 +---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------+
@@ -242,25 +242,25 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                            ; Library Name ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
-; |top                                                          ; 542 (1)           ; 328 (0)      ; 16384       ; 0            ; 0       ; 0         ; 69   ; 0            ; |top                                                                           ;              ;
+; |top                                                          ; 542 (1)           ; 329 (0)      ; 16384       ; 0            ; 0       ; 0         ; 69   ; 0            ; |top                                                                           ;              ;
 ;    |altiobuf:inst12|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12                                                           ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component     ;              ;
 ;    |altiobuf:inst13|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13                                                           ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component     ;              ;
 ;    |altiobuf:inst16|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16                                                           ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component     ;              ;
-;    |genlock:inst2|                                            ; 301 (301)         ; 116 (116)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst2                                                             ;              ;
+;    |genlock:inst2|                                            ; 304 (304)         ; 116 (116)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst2                                                             ;              ;
 ;    |pll_ntsc:inst6|                                           ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll_ntsc:inst6                                                            ;              ;
 ;       |altpll:altpll_component|                               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll_ntsc:inst6|altpll:altpll_component                                    ;              ;
-;          |pll_ntsc_altpll:auto_generated|                     ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll:auto_generated     ;              ;
+;          |pll_ntsc_altpll1:auto_generated|                    ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll1:auto_generated    ;              ;
 ;    |ram2:inst1|                                               ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram2:inst1                                                                ;              ;
 ;       |altsyncram:altsyncram_component|                       ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram2:inst1|altsyncram:altsyncram_component                                ;              ;
-;          |altsyncram_hao1:auto_generated|                     ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram2:inst1|altsyncram:altsyncram_component|altsyncram_hao1:auto_generated ;              ;
+;          |altsyncram_0ak1:auto_generated|                     ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram2:inst1|altsyncram:altsyncram_component|altsyncram_0ak1:auto_generated ;              ;
 ;    |ram:inst4|                                                ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4                                                                 ;              ;
 ;       |altsyncram:altsyncram_component|                       ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4|altsyncram:altsyncram_component                                 ;              ;
 ;          |altsyncram_q6o1:auto_generated|                     ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4|altsyncram:altsyncram_component|altsyncram_q6o1:auto_generated  ;              ;
-;    |sdram:inst|                                               ; 164 (164)         ; 152 (152)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|sdram:inst                                                                ;              ;
-;    |vgaout:inst7|                                             ; 76 (76)           ; 60 (60)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|vgaout:inst7                                                              ;              ;
+;    |sdram:inst|                                               ; 161 (161)         ; 152 (152)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|sdram:inst                                                                ;              ;
+;    |vgaout:inst7|                                             ; 76 (76)           ; 61 (61)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|vgaout:inst7                                                              ;              ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -270,7 +270,7 @@ Note: For table entries with two numbers listed, the numbers in parentheses indi
 +--------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
 ; Name                                                                                 ; Type ; Mode             ; Port A Depth ; Port A Width ; Port B Depth ; Port B Width ; Size ; MIF  ;
 +--------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
-; ram2:inst1|altsyncram:altsyncram_component|altsyncram_hao1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 512          ; 16           ; 1024         ; 8            ; 8192 ; None ;
+; ram2:inst1|altsyncram:altsyncram_component|altsyncram_0ak1:auto_generated|ALTSYNCRAM ; AUTO ; Simple Dual Port ; 512          ; 16           ; 1024         ; 8            ; 8192 ; None ;
 ; ram:inst4|altsyncram:altsyncram_component|altsyncram_q6o1:auto_generated|ALTSYNCRAM  ; AUTO ; Simple Dual Port ; 1024         ; 8            ; 512          ; 16           ; 8192 ; None ;
 +--------------------------------------------------------------------------------------+------+------------------+--------------+--------------+--------------+--------------+------+------+
 
@@ -304,96 +304,97 @@ Encoding Type:  One-Hot
 +----------------------------------+--------------------------------+-------------------------------+----------------------------------+----------------------------+----------------------------+----------------------------+
 
 
-+--------------------------------------------------------------------------------------+
-; Registers Removed During Synthesis                                                   ;
-+---------------------------------------------+----------------------------------------+
-; Register name                               ; Reason for Removal                     ;
-+---------------------------------------------+----------------------------------------+
-; genlock:inst2|top_border[0]                 ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|black[0..7]                   ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|brown[6]                      ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|brown[4]                      ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|brown[3]                      ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|magenta[6]                    ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|magenta[4]                    ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|orange[6]                     ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|orange[4]                     ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|orange[3]                     ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|darkblue[4]                   ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|darkgray[6]                   ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|darkgray[4]                   ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|darkgray[3]                   ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|violet[6]                     ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|violet[4]                     ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|pink[6]                       ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|pink[4]                       ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|pink[3]                       ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|green[3]                      ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|yellow[3,6]                   ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|mediumblue[6]                 ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|mediumblue[4]                 ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|mediumblue[3]                 ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|aqua[3]                       ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|lightblue[3,6]                ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|white[0..7]                   ; Stuck at VCC due to stuck port data_in ;
-; genlock:inst2|top_border[1..3,6..31]        ; Stuck at GND due to stuck port data_in ;
-; sdram:inst|SdrCmd[3]                        ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|brown[2,5]                    ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|magenta[1]                    ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|darkblue[0]                   ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|darkgray[2,5,7]               ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|darkgreen[0,1]                ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|green[5,7]                    ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|lightgray[0]                  ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|aqua[7]                       ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|brown[0]                      ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|magenta[2,5]                  ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|orange[0,1]                   ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|darkblue[2,5,7]               ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|darkgray[1]                   ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|violet[2]                     ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|darkgreen[2,5,7]              ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|green[0,1]                    ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|lightgray[2,5]                ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|yellow[0,1]                   ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|mediumblue[2,5,7]             ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|aqua[0]                       ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|lightblue[2,7]                ; Merged with genlock:inst2|brown[1]     ;
-; genlock:inst2|darkgray[0]                   ; Merged with genlock:inst2|magenta[7]   ;
-; genlock:inst2|violet[5,7]                   ; Merged with genlock:inst2|magenta[7]   ;
-; genlock:inst2|pink[0,1]                     ; Merged with genlock:inst2|magenta[7]   ;
-; genlock:inst2|lightgray[7]                  ; Merged with genlock:inst2|magenta[7]   ;
-; genlock:inst2|aqua[1]                       ; Merged with genlock:inst2|magenta[7]   ;
-; genlock:inst2|lightblue[5]                  ; Merged with genlock:inst2|magenta[7]   ;
-; genlock:inst2|aqua[6]                       ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|lightgray[3,6]                ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|green[6]                      ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|darkgreen[3,6]                ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|violet[3]                     ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|darkblue[3,6]                 ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|darkgreen[4]                  ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|green[4]                      ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|lightgray[4]                  ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|yellow[4]                     ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|aqua[4]                       ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|lightblue[4]                  ; Merged with genlock:inst2|magenta[3]   ;
-; genlock:inst2|orange[2,5,7]                 ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|darkblue[1]                   ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|violet[0,1]                   ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|pink[2,5,7]                   ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|green[2]                      ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|lightgray[1]                  ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|yellow[2,5,7]                 ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|mediumblue[0,1]               ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|aqua[2,5]                     ; Merged with genlock:inst2|magenta[0]   ;
-; genlock:inst2|lightblue[0,1]                ; Merged with genlock:inst2|magenta[0]   ;
-; vgaout:inst7|deinterlace                    ; Merged with genlock:inst2|deinterlace  ;
-; sdram:inst|SdrUdq                           ; Merged with sdram:inst|SdrLdq          ;
-; sdram:inst|SdrRoutine.SdrRoutine_RefreshAll ; Stuck at GND due to stuck port data_in ;
-; genlock:inst2|magenta[7]                    ; Merged with genlock:inst2|brown[7]     ;
-; genlock:inst2|magenta[0]                    ; Merged with genlock:inst2|brown[1]     ;
-; Total Number of Removed Registers = 159     ;                                        ;
-+---------------------------------------------+----------------------------------------+
++---------------------------------------------------------------------------------------+
+; Registers Removed During Synthesis                                                    ;
++---------------------------------------------+-----------------------------------------+
+; Register name                               ; Reason for Removal                      ;
++---------------------------------------------+-----------------------------------------+
+; genlock:inst2|orange[6]                     ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|top_border[0]                 ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|orange[4]                     ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|orange[3]                     ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|darkblue[4]                   ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|darkgray[6]                   ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|darkgray[4]                   ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|darkgray[3]                   ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|violet[6]                     ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|violet[4]                     ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|pink[6]                       ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|pink[4]                       ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|pink[3]                       ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|green[3]                      ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|yellow[3,6]                   ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|mediumblue[6]                 ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|mediumblue[4]                 ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|mediumblue[3]                 ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|aqua[3]                       ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|lightblue[3,6]                ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|white[0..7]                   ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|magenta[4]                    ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|magenta[6]                    ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|brown[3]                      ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|brown[4]                      ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|brown[6]                      ; Stuck at VCC due to stuck port data_in  ;
+; genlock:inst2|black[0..7]                   ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|top_border[2,6..31]           ; Stuck at GND due to stuck port data_in  ;
+; sdram:inst|SdrCmd[3]                        ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|orange[0,1]                   ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|darkblue[2,5,7]               ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|darkgray[1]                   ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|violet[2]                     ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|darkgreen[2,5,7]              ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|green[0,1]                    ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|lightgray[2,5]                ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|yellow[0,1]                   ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|mediumblue[2,5,7]             ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|aqua[0]                       ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|lightblue[2,7]                ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|magenta[5]                    ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|brown[0,1]                    ; Merged with genlock:inst2|magenta[2]    ;
+; genlock:inst2|darkblue[0]                   ; Merged with genlock:inst2|magenta[1]    ;
+; genlock:inst2|darkgray[2,5,7]               ; Merged with genlock:inst2|magenta[1]    ;
+; genlock:inst2|darkgreen[0,1]                ; Merged with genlock:inst2|magenta[1]    ;
+; genlock:inst2|green[5,7]                    ; Merged with genlock:inst2|magenta[1]    ;
+; genlock:inst2|lightgray[0]                  ; Merged with genlock:inst2|magenta[1]    ;
+; genlock:inst2|aqua[7]                       ; Merged with genlock:inst2|magenta[1]    ;
+; genlock:inst2|brown[2,5,7]                  ; Merged with genlock:inst2|magenta[1]    ;
+; genlock:inst2|orange[2,5,7]                 ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|darkblue[1]                   ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|violet[0,1]                   ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|pink[2,5,7]                   ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|green[2]                      ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|lightgray[1]                  ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|yellow[2,5,7]                 ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|mediumblue[0,1]               ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|aqua[2,5]                     ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|lightblue[0,1]                ; Merged with genlock:inst2|magenta[0]    ;
+; genlock:inst2|aqua[6]                       ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|lightgray[3,6]                ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|green[6]                      ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|darkgreen[3,6]                ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|violet[3]                     ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|darkblue[3]                   ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|magenta[3]                    ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|darkgreen[4]                  ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|green[4]                      ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|lightgray[4]                  ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|yellow[4]                     ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|aqua[4]                       ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|lightblue[4]                  ; Merged with genlock:inst2|darkblue[6]   ;
+; genlock:inst2|violet[5,7]                   ; Merged with genlock:inst2|darkgray[0]   ;
+; genlock:inst2|pink[0,1]                     ; Merged with genlock:inst2|darkgray[0]   ;
+; genlock:inst2|lightgray[7]                  ; Merged with genlock:inst2|darkgray[0]   ;
+; genlock:inst2|aqua[1]                       ; Merged with genlock:inst2|darkgray[0]   ;
+; genlock:inst2|lightblue[5]                  ; Merged with genlock:inst2|darkgray[0]   ;
+; genlock:inst2|magenta[7]                    ; Merged with genlock:inst2|darkgray[0]   ;
+; genlock:inst2|top_border[3]                 ; Merged with genlock:inst2|top_border[1] ;
+; genlock:inst2|top_border[5]                 ; Merged with genlock:inst2|top_border[4] ;
+; sdram:inst|SdrUdq                           ; Merged with sdram:inst|SdrLdq           ;
+; sdram:inst|SdrRoutine.SdrRoutine_RefreshAll ; Stuck at GND due to stuck port data_in  ;
+; genlock:inst2|darkgray[0]                   ; Merged with genlock:inst2|magenta[1]    ;
+; genlock:inst2|magenta[0]                    ; Merged with genlock:inst2|magenta[2]    ;
+; Total Number of Removed Registers = 158     ;                                         ;
++---------------------------------------------+-----------------------------------------+
 
 
 +------------------------------------------------------+
@@ -401,8 +402,8 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 328   ;
-; Number of registers using Synchronous Clear  ; 26    ;
+; Total registers                              ; 329   ;
+; Number of registers using Synchronous Clear  ; 12    ;
 ; Number of registers using Synchronous Load   ; 60    ;
 ; Number of registers using Asynchronous Clear ; 34    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
@@ -416,9 +417,8 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; genlock:inst2|top_border[5]            ; 3       ;
 ; genlock:inst2|artifact_mode            ; 14      ;
-; Total number of inverted registers = 2 ;         ;
+; Total number of inverted registers = 1 ;         ;
 +----------------------------------------+---------+
 
 
@@ -428,7 +428,7 @@ Encoding Type:  One-Hot
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                   ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+----------------------------------------------+
 ; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[9]                  ;
-; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|genlock:inst2|\process_pixel:a_pixel[4] ;
+; 4:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|genlock:inst2|\process_pixel:a_pixel[5] ;
 ; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|sdram:inst|colStoreNr[7]                ;
 ; 4:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; Yes        ; |top|genlock:inst2|pixel_out[7]              ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|sdram:inst|SdrBa0                       ;
@@ -444,7 +444,7 @@ Encoding Type:  One-Hot
 
 
 +--------------------------------------------------------------------------------------------------+
-; Source assignments for ram2:inst1|altsyncram:altsyncram_component|altsyncram_hao1:auto_generated ;
+; Source assignments for ram2:inst1|altsyncram:altsyncram_component|altsyncram_0ak1:auto_generated ;
 +---------------------------------+--------------------+------+------------------------------------+
 ; Assignment                      ; Value              ; From ; To                                 ;
 +---------------------------------+--------------------+------+------------------------------------+
@@ -502,8 +502,8 @@ Encoding Type:  One-Hot
 ; CLK4_MULTIPLY_BY              ; 1                          ; Untyped                ;
 ; CLK3_MULTIPLY_BY              ; 1                          ; Untyped                ;
 ; CLK2_MULTIPLY_BY              ; 1                          ; Untyped                ;
-; CLK1_MULTIPLY_BY              ; 1                          ; Untyped                ;
-; CLK0_MULTIPLY_BY              ; 57272727                   ; Signed Integer         ;
+; CLK1_MULTIPLY_BY              ; 63                         ; Signed Integer         ;
+; CLK0_MULTIPLY_BY              ; 22909091                   ; Signed Integer         ;
 ; CLK9_DIVIDE_BY                ; 0                          ; Untyped                ;
 ; CLK8_DIVIDE_BY                ; 0                          ; Untyped                ;
 ; CLK7_DIVIDE_BY                ; 0                          ; Untyped                ;
@@ -512,8 +512,8 @@ Encoding Type:  One-Hot
 ; CLK4_DIVIDE_BY                ; 1                          ; Untyped                ;
 ; CLK3_DIVIDE_BY                ; 1                          ; Untyped                ;
 ; CLK2_DIVIDE_BY                ; 1                          ; Untyped                ;
-; CLK1_DIVIDE_BY                ; 1                          ; Untyped                ;
-; CLK0_DIVIDE_BY                ; 25000000                   ; Signed Integer         ;
+; CLK1_DIVIDE_BY                ; 125                        ; Signed Integer         ;
+; CLK0_DIVIDE_BY                ; 10000000                   ; Signed Integer         ;
 ; CLK9_PHASE_SHIFT              ; 0                          ; Untyped                ;
 ; CLK8_PHASE_SHIFT              ; 0                          ; Untyped                ;
 ; CLK7_PHASE_SHIFT              ; 0                          ; Untyped                ;
@@ -538,7 +538,7 @@ Encoding Type:  One-Hot
 ; CLK4_DUTY_CYCLE               ; 50                         ; Untyped                ;
 ; CLK3_DUTY_CYCLE               ; 50                         ; Untyped                ;
 ; CLK2_DUTY_CYCLE               ; 50                         ; Untyped                ;
-; CLK1_DUTY_CYCLE               ; 50                         ; Untyped                ;
+; CLK1_DUTY_CYCLE               ; 50                         ; Signed Integer         ;
 ; CLK0_DUTY_CYCLE               ; 50                         ; Signed Integer         ;
 ; CLK9_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
 ; CLK8_USE_EVEN_COUNTER_MODE    ; OFF                        ; Untyped                ;
@@ -768,7 +768,7 @@ Encoding Type:  One-Hot
 ; PORT_CLKBAD0                  ; PORT_UNUSED                ; Untyped                ;
 ; PORT_CLKBAD1                  ; PORT_UNUSED                ; Untyped                ;
 ; PORT_CLK0                     ; PORT_USED                  ; Untyped                ;
-; PORT_CLK1                     ; PORT_UNUSED                ; Untyped                ;
+; PORT_CLK1                     ; PORT_USED                  ; Untyped                ;
 ; PORT_CLK2                     ; PORT_UNUSED                ; Untyped                ;
 ; PORT_CLK3                     ; PORT_UNUSED                ; Untyped                ;
 ; PORT_CLK4                     ; PORT_UNUSED                ; Untyped                ;
@@ -818,7 +818,7 @@ Encoding Type:  One-Hot
 ; C7_TEST_SOURCE                ; 5                          ; Untyped                ;
 ; C8_TEST_SOURCE                ; 5                          ; Untyped                ;
 ; C9_TEST_SOURCE                ; 5                          ; Untyped                ;
-; CBXI_PARAMETER                ; pll_ntsc_altpll            ; Untyped                ;
+; CBXI_PARAMETER                ; pll_ntsc_altpll1           ; Untyped                ;
 ; VCO_FREQUENCY_CONTROL         ; AUTO                       ; Untyped                ;
 ; VCO_PHASE_SHIFT_STEP          ; 0                          ; Untyped                ;
 ; WIDTH_CLOCK                   ; 5                          ; Signed Integer         ;
@@ -840,7 +840,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+-------+-----------------------------------+
 ; Parameter Name ; Value ; Type                              ;
 +----------------+-------+-----------------------------------+
-; front_porch    ; 150   ; Signed Integer                    ;
+; front_porch    ; 181   ; Signed Integer                    ;
 +----------------+-------+-----------------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -850,10 +850,10 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------+-------+-------------------------------+
 ; Parameter Name    ; Value ; Type                          ;
 +-------------------+-------+-------------------------------+
-; hor_active_video  ; 728   ; Signed Integer                ;
-; hor_front_porch   ; 18    ; Signed Integer                ;
-; hor_sync_pulse    ; 109   ; Signed Integer                ;
-; hor_back_porch    ; 54    ; Signed Integer                ;
+; hor_active_video  ; 640   ; Signed Integer                ;
+; hor_front_porch   ; 16    ; Signed Integer                ;
+; hor_sync_pulse    ; 96    ; Signed Integer                ;
+; hor_back_porch    ; 48    ; Signed Integer                ;
 ; vert_active_video ; 480   ; Signed Integer                ;
 ; vert_front_porch  ; 10    ; Signed Integer                ;
 ; vert_sync_pulse   ; 2     ; Signed Integer                ;
@@ -889,7 +889,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; INDATA_REG_B                       ; CLOCK1               ; Untyped                     ;
 ; WRCONTROL_WRADDRESS_REG_B          ; CLOCK1               ; Untyped                     ;
 ; RDCONTROL_REG_B                    ; CLOCK1               ; Untyped                     ;
-; ADDRESS_REG_B                      ; CLOCK0               ; Untyped                     ;
+; ADDRESS_REG_B                      ; CLOCK1               ; Untyped                     ;
 ; OUTDATA_REG_B                      ; UNREGISTERED         ; Untyped                     ;
 ; BYTEENA_REG_B                      ; CLOCK1               ; Untyped                     ;
 ; INDATA_ACLR_B                      ; NONE                 ; Untyped                     ;
@@ -918,7 +918,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; ECC_PIPELINE_STAGE_ENABLED         ; FALSE                ; Untyped                     ;
 ; WIDTH_ECCSTATUS                    ; 3                    ; Untyped                     ;
 ; DEVICE_FAMILY                      ; Cyclone IV E         ; Untyped                     ;
-; CBXI_PARAMETER                     ; altsyncram_hao1      ; Untyped                     ;
+; CBXI_PARAMETER                     ; altsyncram_0ak1      ; Untyped                     ;
 +------------------------------------+----------------------+-----------------------------+
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
@@ -1014,7 +1014,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 ;     -- OUTDATA_REG_A                      ; UNREGISTERED                               ;
 ;     -- WIDTH_B                            ; 8                                          ;
 ;     -- NUMWORDS_B                         ; 1024                                       ;
-;     -- ADDRESS_REG_B                      ; CLOCK0                                     ;
+;     -- ADDRESS_REG_B                      ; CLOCK1                                     ;
 ;     -- OUTDATA_REG_B                      ; UNREGISTERED                               ;
 ;     -- RAM_BLOCK_TYPE                     ; AUTO                                       ;
 ;     -- READ_DURING_WRITE_MODE_MIXED_PORTS ; DONT_CARE                                  ;
@@ -1047,7 +1047,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Fri Nov 14 23:22:09 2014
+    Info: Processing started: Sat Nov 15 11:05:14 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.bdf
@@ -1078,15 +1078,20 @@ Info (12021): Found 2 design units, including 1 entities, in source file genlock
 Info (12127): Elaborating entity "top" for the top level hierarchy
 Warning (275009): Pin "FP0" not connected
 Warning (275009): Pin "FP1" not connected
+Info (12128): Elaborating entity "sdram" for hierarchy "sdram:inst"
 Info (12128): Elaborating entity "pll_ntsc" for hierarchy "pll_ntsc:inst6"
 Info (12128): Elaborating entity "altpll" for hierarchy "pll_ntsc:inst6|altpll:altpll_component"
 Info (12130): Elaborated megafunction instantiation "pll_ntsc:inst6|altpll:altpll_component"
 Info (12133): Instantiated megafunction "pll_ntsc:inst6|altpll:altpll_component" with the following parameter:
     Info (12134): Parameter "bandwidth_type" = "AUTO"
-    Info (12134): Parameter "clk0_divide_by" = "25000000"
+    Info (12134): Parameter "clk0_divide_by" = "10000000"
     Info (12134): Parameter "clk0_duty_cycle" = "50"
-    Info (12134): Parameter "clk0_multiply_by" = "57272727"
+    Info (12134): Parameter "clk0_multiply_by" = "22909091"
     Info (12134): Parameter "clk0_phase_shift" = "0"
+    Info (12134): Parameter "clk1_divide_by" = "125"
+    Info (12134): Parameter "clk1_duty_cycle" = "50"
+    Info (12134): Parameter "clk1_multiply_by" = "63"
+    Info (12134): Parameter "clk1_phase_shift" = "0"
     Info (12134): Parameter "compensate_clock" = "CLK0"
     Info (12134): Parameter "inclk0_input_frequency" = "20000"
     Info (12134): Parameter "intended_device_family" = "Cyclone IV E"
@@ -1120,7 +1125,7 @@ Info (12133): Instantiated megafunction "pll_ntsc:inst6|altpll:altpll_component"
     Info (12134): Parameter "port_scanread" = "PORT_UNUSED"
     Info (12134): Parameter "port_scanwrite" = "PORT_UNUSED"
     Info (12134): Parameter "port_clk0" = "PORT_USED"
-    Info (12134): Parameter "port_clk1" = "PORT_UNUSED"
+    Info (12134): Parameter "port_clk1" = "PORT_USED"
     Info (12134): Parameter "port_clk2" = "PORT_UNUSED"
     Info (12134): Parameter "port_clk3" = "PORT_UNUSED"
     Info (12134): Parameter "port_clk4" = "PORT_UNUSED"
@@ -1136,10 +1141,9 @@ Info (12133): Instantiated megafunction "pll_ntsc:inst6|altpll:altpll_component"
     Info (12134): Parameter "port_extclk2" = "PORT_UNUSED"
     Info (12134): Parameter "port_extclk3" = "PORT_UNUSED"
     Info (12134): Parameter "width_clock" = "5"
-Info (12021): Found 1 design units, including 1 entities, in source file db/pll_ntsc_altpll.v
-    Info (12023): Found entity 1: pll_ntsc_altpll
-Info (12128): Elaborating entity "pll_ntsc_altpll" for hierarchy "pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll:auto_generated"
-Info (12128): Elaborating entity "sdram" for hierarchy "sdram:inst"
+Info (12021): Found 1 design units, including 1 entities, in source file db/pll_ntsc_altpll1.v
+    Info (12023): Found entity 1: pll_ntsc_altpll1
+Info (12128): Elaborating entity "pll_ntsc_altpll1" for hierarchy "pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll1:auto_generated"
 Info (12128): Elaborating entity "genlock" for hierarchy "genlock:inst2"
 Info (12128): Elaborating entity "altiobuf" for hierarchy "altiobuf:inst16"
 Info (12128): Elaborating entity "altiobuf_iobuf_in_k0j" for hierarchy "altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component"
@@ -1149,7 +1153,7 @@ Info (12128): Elaborating entity "altsyncram" for hierarchy "ram2:inst1|altsyncr
 Info (12130): Elaborated megafunction instantiation "ram2:inst1|altsyncram:altsyncram_component"
 Info (12133): Instantiated megafunction "ram2:inst1|altsyncram:altsyncram_component" with the following parameter:
     Info (12134): Parameter "address_aclr_b" = "NONE"
-    Info (12134): Parameter "address_reg_b" = "CLOCK0"
+    Info (12134): Parameter "address_reg_b" = "CLOCK1"
     Info (12134): Parameter "clock_enable_input_a" = "BYPASS"
     Info (12134): Parameter "clock_enable_input_b" = "BYPASS"
     Info (12134): Parameter "clock_enable_output_b" = "BYPASS"
@@ -1161,15 +1165,14 @@ Info (12133): Instantiated megafunction "ram2:inst1|altsyncram:altsyncram_compon
     Info (12134): Parameter "outdata_aclr_b" = "NONE"
     Info (12134): Parameter "outdata_reg_b" = "UNREGISTERED"
     Info (12134): Parameter "power_up_uninitialized" = "FALSE"
-    Info (12134): Parameter "read_during_write_mode_mixed_ports" = "DONT_CARE"
     Info (12134): Parameter "widthad_a" = "9"
     Info (12134): Parameter "widthad_b" = "10"
     Info (12134): Parameter "width_a" = "16"
     Info (12134): Parameter "width_b" = "8"
     Info (12134): Parameter "width_byteena_a" = "1"
-Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_hao1.tdf
-    Info (12023): Found entity 1: altsyncram_hao1
-Info (12128): Elaborating entity "altsyncram_hao1" for hierarchy "ram2:inst1|altsyncram:altsyncram_component|altsyncram_hao1:auto_generated"
+Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_0ak1.tdf
+    Info (12023): Found entity 1: altsyncram_0ak1
+Info (12128): Elaborating entity "altsyncram_0ak1" for hierarchy "ram2:inst1|altsyncram:altsyncram_component|altsyncram_0ak1:auto_generated"
 Info (12128): Elaborating entity "ram" for hierarchy "ram:inst4"
 Info (12128): Elaborating entity "altsyncram" for hierarchy "ram:inst4|altsyncram:altsyncram_component"
 Info (12130): Elaborated megafunction instantiation "ram:inst4|altsyncram:altsyncram_component"
@@ -1218,9 +1221,9 @@ Info (21057): Implemented 768 device resources after synthesis - the final resou
     Info (21064): Implemented 16 RAM segments
     Info (21065): Implemented 1 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 12 warnings
-    Info: Peak virtual memory: 513 megabytes
-    Info: Processing ended: Fri Nov 14 23:22:15 2014
-    Info: Elapsed time: 00:00:06
+    Info: Peak virtual memory: 509 megabytes
+    Info: Processing ended: Sat Nov 15 11:05:19 2014
+    Info: Elapsed time: 00:00:05
     Info: Total CPU time (on all processors): 00:00:05
 
 

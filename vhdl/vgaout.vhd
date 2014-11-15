@@ -26,7 +26,9 @@ entity vgaout is
 			load_ack  : in std_logic;
 
 			sw_scanline	: in std_logic;
-			sw_deinterlace	: in std_logic
+			sw_deinterlace	: in std_logic;
+			
+			clock_ntsc : std_logic
 			
          );
 end vgaout;
@@ -38,6 +40,7 @@ signal vcount												: unsigned(9 downto 0);
 signal videov, videoh, hsync, vsync					: std_logic;
 signal scanline											: std_logic;
 signal deinterlace										: std_logic;
+
 
 function f_scanline(color: unsigned) return unsigned;
 
@@ -69,11 +72,11 @@ vcounter: process (clock_vga, hcount, vcount)
 begin
 	if(rising_edge(clock_vga)) then
 
-		if hcount(13 downto 2) = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1) then
+		if hcount = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1) then
 			vcount <= vcount + 1;
 		end if;
 		
-      if vcount = (vert_active_video + vert_front_porch + vert_sync_pulse + vert_back_porch - 1) and hcount(13 downto 2) = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1) then 
+      if vcount = (vert_active_video + vert_front_porch + vert_sync_pulse + vert_back_porch - 1) and hcount = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1) then 
 			vcount <= (others => '0');
 		end if;
 		
@@ -94,7 +97,7 @@ hcounter: process (clock_vga, hcount)
 begin
 	if (rising_edge(clock_vga)) then				
 		hcount <= hcount + 1;
-      if hcount(13 downto 2) = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1)	then 
+      if hcount = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1)	then 
         hcount <= (others => '0');
 		end if;	
 	end if;
@@ -113,22 +116,17 @@ begin
 			row := to_integer(vcount(9 downto 1)) + 1;		
 		end if;		
 		
-      if (hcount(13 downto 2) <= (hor_active_video + hor_front_porch + hor_sync_pulse - 1) and hcount(13 downto 2) >= (hor_active_video + hor_front_porch - 1)) then
+      if (hcount <= (hor_active_video + hor_front_porch + hor_sync_pulse - 1) and hcount >= (hor_active_video + hor_front_porch - 1)) then
  		  row_number <= to_unsigned(row, row_number'length);
         hsync <= '0';
       end if;
 	end if;		
 end process;
 
-pixel_out: process (clock_vga, hcount)
-variable col: integer range 0 to 1024;
+pixel_out: process (clock_ntsc, hcount, vcount)
 begin
-	if (rising_edge(clock_vga)) then
-		--if (hcount(13 downto 2) < hor_active_video and vcount < vert_active_video) then		
-			col_number <= hcount(11 downto 2);
-		--else
-		--	col_number <= (others => '0');
-		--end if;
+	if (rising_edge(clock_ntsc)) then	
+		col_number <= hcount(9 downto 0);		
 	end if;
 end process;
 
@@ -155,11 +153,11 @@ begin
 end process;
 
 
-load_row: process(clock_vga, load_ack)
+load_row: process(clock_ntsc, load_ack)
 begin
 	if (load_ack = '1') then
 		load_req <= '0';
-	elsif (rising_edge(clock_vga)) then
+	elsif (rising_edge(clock_ntsc)) then
 		if (hsync = '0') then
 			load_req <= '1';
 		end if;
@@ -182,7 +180,7 @@ process (clock_vga, hcount)
 begin
 	if (rising_edge(clock_vga)) then
 		videoh <= '1';
-		if hcount(13 downto 2) > hor_active_video-1 then
+		if hcount > hor_active_video-1 then
 			videoh <= '0';
 		end if;
 	end if;
@@ -195,5 +193,6 @@ begin
 		deinterlace <= sw_deinterlace;
 	end if;
 end process;
+
 
 end behavioral;

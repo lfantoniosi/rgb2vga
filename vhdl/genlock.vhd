@@ -68,6 +68,7 @@ signal aqua:		unsigned(7 downto 0);
 signal lightblue:		unsigned(7 downto 0);
 signal white:		unsigned(7 downto 0);
 
+
 function f_adc(adc: unsigned) return unsigned;
 
 function f_adc(adc: unsigned) return unsigned is
@@ -437,7 +438,7 @@ begin
 		if (vsync = sync_level and vcount > 261) then
 		
 			if (vcount > 270) then
-				top_border <= 48;
+				top_border <= 42;
 			else
 				top_border <= 16;
 			end if;		
@@ -488,14 +489,14 @@ begin
 	end if;
 end process;
 
-process_pixel: process(clock_pixel, pixel_adc) --, dac_step, hcount) 
+process_pixel: process(clock_pixel) --pixel_adc) --, dac_step, hcount) 
 variable row, col: integer range 0 to 1024;
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 begin
 	if (rising_edge(clock_pixel)) then
-		if (dac_step = "100") then
+		--if (dat_step = "100") then
 			-- digitize in the middle of the pixel
 			if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 730+front_porch and vcount >= top_border and vcount < 312) then		
 				-- user active window
@@ -693,7 +694,7 @@ begin
 				end case;
 			end if;
 		end if;
-	end if;
+--	end if;
 end process;
 
 color_scheme: process(clock_pixel, apple2, mode)

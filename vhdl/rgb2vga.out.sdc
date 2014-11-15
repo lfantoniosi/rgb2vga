@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.0.0 Build 156 04/24/2013 SJ Web Edition"
 
-## DATE    "Fri Nov 14 23:18:50 2014"
+## DATE    "Sat Nov 15 10:30:40 2014"
 
 ##
 ## DEVICE  "EP4CE22F17C6"
@@ -45,7 +45,8 @@ create_clock -name {CLOCK_50} -period 20.000 -waveform { 0.000 10.000 } [get_por
 # Create Generated Clock
 #**************************************************************
 
-create_generated_clock -name {inst6|altpll_component|auto_generated|pll1|clk[0]} -source [get_pins {inst6|altpll_component|auto_generated|pll1|inclk[0]}] -duty_cycle 50.000 -multiply_by 55 -divide_by 24 -master_clock {CLOCK_50} [get_pins {inst6|altpll_component|auto_generated|pll1|clk[0]}] 
+create_generated_clock -name {inst6|altpll_component|auto_generated|pll1|clk[0]} -source [get_pins {inst6|altpll_component|auto_generated|pll1|inclk[0]}] -duty_cycle 50.000 -multiply_by 126 -divide_by 55 -master_clock {CLOCK_50} [get_pins {inst6|altpll_component|auto_generated|pll1|clk[0]}] 
+create_generated_clock -name {inst6|altpll_component|auto_generated|pll1|clk[1]} -source [get_pins {inst6|altpll_component|auto_generated|pll1|inclk[0]}] -duty_cycle 50.000 -multiply_by 63 -divide_by 125 -master_clock {CLOCK_50} [get_pins {inst6|altpll_component|auto_generated|pll1|clk[1]}] 
 
 
 #**************************************************************
@@ -58,14 +59,18 @@ create_generated_clock -name {inst6|altpll_component|auto_generated|pll1|clk[0]}
 # Set Clock Uncertainty
 #**************************************************************
 
-set_clock_uncertainty -rise_from [get_clocks {CLOCK_50}] -rise_to [get_clocks {CLOCK_50}]  0.020  
-set_clock_uncertainty -rise_from [get_clocks {CLOCK_50}] -fall_to [get_clocks {CLOCK_50}]  0.020  
-set_clock_uncertainty -fall_from [get_clocks {CLOCK_50}] -rise_to [get_clocks {CLOCK_50}]  0.020  
-set_clock_uncertainty -fall_from [get_clocks {CLOCK_50}] -fall_to [get_clocks {CLOCK_50}]  0.020  
 set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
 set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
 set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
 set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {CLOCK_50}] -rise_to [get_clocks {CLOCK_50}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {CLOCK_50}] -fall_to [get_clocks {CLOCK_50}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {CLOCK_50}] -rise_to [get_clocks {CLOCK_50}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {CLOCK_50}] -fall_to [get_clocks {CLOCK_50}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
 
 
 #**************************************************************
@@ -84,6 +89,7 @@ set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_genera
 # Set Clock Groups
 #**************************************************************
 
+set_clock_groups -asynchronous -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] 
 
 
 #**************************************************************

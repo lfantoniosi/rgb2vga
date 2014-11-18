@@ -3,9 +3,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity genlock is
-	--generic(
-	--	front_porch : integer := 182
-	--);
 	
     port(clock_pixel : in std_logic;
 			vsync  		: in std_logic; -- digital vsync
@@ -22,7 +19,8 @@ entity genlock is
 			sw_mode 			: in std_logic;
 			sw_sync_level	: in std_logic;
 			sw_deinterlace	: in std_logic;
-			sw_apple2		: in std_logic
+			sw_apple2		: in std_logic;
+			sw_shrink		: in std_logic
          );
 			
 end genlock;
@@ -46,6 +44,7 @@ signal mode: std_logic;
 signal sync_level: std_logic;
 signal apple2: std_logic;
 signal deinterlace: std_logic;
+signal shrink: std_logic;
 
 signal frame: unsigned(0 downto 0);
 
@@ -523,16 +522,6 @@ begin
 					when "111" => pixel(0) := '1';
 					when "110" => pixel(0) := '1';
 					when "101" => pixel(0) := '1';
-					--when "100" => 
-					--	case (apple2) is
-					--		when '1' => pixel(0) := '0';
-					--		when '0' => pixel(0) := '1';
-					--	end case;
-					--when "011" => 
-					--	case (apple2) is
-					--		when '1' => pixel(0) := '0';
-					--		when '0' => pixel(0) := '1';
-					--	end case;
 					when others => pixel(0) := '0';
 				end case;				
 				
@@ -782,15 +771,21 @@ begin
 		sync_level <= sw_sync_level;
 		deinterlace <= sw_deinterlace;
 		apple2 <= sw_apple2;
-		
-		if (apple2 = '0') then
+		shrink <= sw_shrink;		
+	end if;	
+end process;
+
+mode_change: process(clock_pixel)
+begin
+	if (rising_edge(clock_pixel)) then
+		if (shrink = '0') then
+			front_porch <= 144;
+		elsif (apple2 = '0') then
 			front_porch <= 202;
 		else
 			front_porch <= 182;
 		end if;
-		
 	end if;
-	
 end process;
 
 end behavioral;

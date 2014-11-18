@@ -1,6 +1,7 @@
 <?xml version="1.0" ?>
 <LOG_ROOT>
 	<PROJECT NAME="rgb2vga">
+		<CBX_INST_ENTRY INSTANCE_NAME="|top|clock_mux:inst2|LPM_MUX:LPM_MUX_component" CBX_FILE_NAME="mux_i7e.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|top|pll_ntsc:inst6|altpll:altpll_component" CBX_FILE_NAME="pll_ntsc_altpll1.v"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|top|ram2:inst1|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_0ak1.tdf"/>
 		<CBX_INST_ENTRY INSTANCE_NAME="|top|ram:inst4|altsyncram:altsyncram_component" CBX_FILE_NAME="altsyncram_q6o1.tdf"/>

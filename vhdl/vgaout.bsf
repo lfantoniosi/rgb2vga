@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 248 160)
+	(rect 16 16 248 192)
 	(text "vgaout" (rect 5 0 32 12)(font "Arial" ))
-	(text "inst" (rect 8 128 20 140)(font "Arial" ))
+	(text "inst" (rect 8 160 20 172)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -61,9 +61,16 @@ applicable agreement for further details.
 	(port
 		(pt 0 112)
 		(input)
-		(text "clock_ntsc" (rect 0 0 42 12)(font "Arial" ))
-		(text "clock_ntsc" (rect 21 107 63 119)(font "Arial" ))
+		(text "clock_pixel" (rect 0 0 42 12)(font "Arial" ))
+		(text "clock_pixel" (rect 21 107 63 119)(font "Arial" ))
 		(line (pt 0 112)(pt 16 112)(line_width 1))
+	)
+	(port
+		(pt 0 128)
+		(input)
+		(text "sw_shrink" (rect 0 0 40 12)(font "Arial" ))
+		(text "sw_shrink" (rect 21 123 61 135)(font "Arial" ))
+		(line (pt 0 128)(pt 16 128)(line_width 1))
 	)
 	(port
 		(pt 232 32)
@@ -93,48 +100,7 @@ applicable agreement for further details.
 		(text "load_req" (rect 177 75 211 87)(font "Arial" ))
 		(line (pt 232 80)(pt 216 80)(line_width 1))
 	)
-	(parameter
-		"hor_active_video"
-		"640"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"hor_front_porch"
-		"16"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"hor_sync_pulse"
-		"96"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"hor_back_porch"
-		"48"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"vert_active_video"
-		"480"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"vert_front_porch"
-		"10"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"vert_sync_pulse"
-		"2"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(parameter
-		"vert_back_porch"
-		"33"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 216 128)(line_width 1))
+		(rectangle (rect 16 16 216 160)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 248 -64 348 16))
 )

@@ -3,19 +3,6 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity vgaout is
-	generic(
-		hor_active_video			: integer := 640;
-		hor_front_porch			: integer := 16;
-		hor_sync_pulse				: integer := 96;
-		hor_back_porch				: integer := 48;
-
-		vert_active_video			: integer := 480;
-		vert_front_porch			: integer := 10;
-		vert_sync_pulse			: integer := 2;
-		vert_back_porch			: integer := 33
-		
-	);
-
     port(clock_vga  : in std_logic;
          vga_out	  : out unsigned(9 downto 0); -- r, g, b, hsync, vsync
 								
@@ -26,9 +13,11 @@ entity vgaout is
 			load_ack  : in std_logic;
 
 			sw_scanline	: in std_logic;
-			sw_deinterlace	: in std_logic;
+			sw_deinterlace	: in std_logic;			
 			
-			clock_ntsc : std_logic
+			clock_pixel : std_logic;
+			
+			sw_shrink	: in std_logic
 			
          );
 end vgaout;
@@ -40,30 +29,18 @@ signal vcount												: unsigned(9 downto 0);
 signal videov, videoh, hsync, vsync					: std_logic;
 signal scanline											: std_logic;
 signal deinterlace										: std_logic;
+signal shrink												: std_logic;
 
+signal hor_active_video			: integer := 640;
+signal hor_front_porch			: integer := 16;
+signal hor_sync_pulse			: integer := 96;
+signal hor_back_porch			: integer := 48;
 
-function f_scanline(color: unsigned) return unsigned;
+signal vert_active_video		: integer := 480;
+signal vert_front_porch			: integer := 10;
+signal vert_sync_pulse			: integer := 2;
+signal vert_back_porch			: integer := 33;
 
-function f_scanline(color: unsigned) return unsigned is
-variable VALUE : unsigned (2 downto 0); 
-begin
-
-		case color is
-
-			when "000" => VALUE := "000";
-			when "001" => VALUE := "000";
-			when "010" => VALUE := "001";
-			when "011" => VALUE := "001";
-			when "100" => VALUE := "010";
-			when "101" => VALUE := "010";
-			when "110" => VALUE := "011";
-			when "111" => VALUE := "011";
-			
-		end case;
-
-		return VALUE;
-		
-end f_scanline;		
 		
 begin
 
@@ -123,9 +100,9 @@ begin
 	end if;		
 end process;
 
-pixel_out: process (clock_ntsc, hcount, vcount)
+pixel_out: process (clock_pixel, hcount, vcount)
 begin
-	if (rising_edge(clock_ntsc)) then	
+	if (rising_edge(clock_pixel)) then	
 		col_number <= hcount(9 downto 0);		
 	end if;
 end process;
@@ -135,12 +112,12 @@ variable blank: std_logic;
 variable vga_pixel: unsigned(7 downto 0);
 begin
 	if (rising_edge(clock_vga)) then
-
-		case (vcount(0)) is
-			when '0' => vga_pixel := pixel_in;
-			when '1' => 
-				case (scanline) is
-					when '0' => vga_pixel := f_scanline(pixel_in(7 downto 5)) & f_scanline(pixel_in(4 downto 2)) & f_scanline('0'&pixel_in(1 downto 0))(1 downto 0);
+		
+		case (scanline) is
+			when '1' =>	vga_pixel := pixel_in;
+			when '0' =>
+				case (vcount(0)) is
+					when '0' => vga_pixel := '0'&pixel_in(7 downto 6) & '0'&pixel_in(4 downto 3) & '0'&pixel_in(1);
 					when '1' => vga_pixel := pixel_in;
 				end case;
 		end case;
@@ -153,11 +130,11 @@ begin
 end process;
 
 
-load_row: process(clock_ntsc, load_ack)
+load_row: process(clock_pixel, load_ack)
 begin
 	if (load_ack = '1') then
 		load_req <= '0';
-	elsif (rising_edge(clock_ntsc)) then
+	elsif (rising_edge(clock_pixel)) then
 		if (hsync = '0') then
 			load_req <= '1';
 		end if;
@@ -169,7 +146,7 @@ process (clock_vga, vcount)
 begin
 	if (rising_edge(clock_vga)) then
 		videov <= '1'; 
-		if vcount > vert_active_video-1 or vcount < 2 then
+		if vcount > vert_active_video-1 then 
 			videov <= '0';
 		end if;	
    end if;
@@ -191,8 +168,26 @@ begin
 	if (rising_edge(clock_vga)) then
 		scanline <= sw_scanline;
 		deinterlace <= sw_deinterlace;
+		shrink <= sw_shrink;
 	end if;
 end process;
 
+change_mode: process(clock_vga)
+begin
+	if (rising_edge(clock_vga)) then
+		case (shrink) is
+			when '1' =>
+				hor_active_video		<= 640;
+				hor_front_porch		<= 16;
+				hor_sync_pulse			<= 96;
+				hor_back_porch			<= 48;
+			when '0' =>
+				hor_active_video		<= 729;
+				hor_front_porch		<= 18;
+				hor_sync_pulse			<= 111;
+				hor_back_porch			<= 52;
+		end case;
+	end if;
+end process;
 
 end behavioral;

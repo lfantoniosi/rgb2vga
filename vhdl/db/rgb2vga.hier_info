@@ -9,6 +9,9 @@ FP6 => genlock:inst8.sw_sync_level
 FP2 => genlock:inst8.sw_deinterlace
 FP2 => vgaout:inst7.sw_deinterlace
 FP3 => genlock:inst8.sw_apple2
+FP0 => genlock:inst8.sw_shrink
+FP0 => clock_mux:inst2.sel
+FP0 => vgaout:inst7.sw_shrink
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
 DIFFG => altiobuf:inst12.datain[0]
@@ -67,7 +70,6 @@ DRAM_BA[0] <= sdram:inst.pMemBa0
 DRAM_BA[1] <= sdram:inst.pMemBa1
 DRAM_DQM[0] <= sdram:inst.pMemLdq
 DRAM_DQM[1] <= sdram:inst.pMemUdq
-FP0 => ~NO_FANOUT~
 FP1 => ~NO_FANOUT~
 
 
@@ -400,6 +402,7 @@ pMemDat[15] <> pMemDat[15]
 inclk0 => altpll:altpll_component.inclk[0]
 c0 <= altpll:altpll_component.clk[0]
 c1 <= altpll:altpll_component.clk[1]
+c2 <= altpll:altpll_component.clk[2]
 
 
 |top|pll_ntsc:inst6|altpll:altpll_component
@@ -505,6 +508,7 @@ clock_pixel => front_porch[28].CLK
 clock_pixel => front_porch[29].CLK
 clock_pixel => front_porch[30].CLK
 clock_pixel => front_porch[31].CLK
+clock_pixel => shrink.CLK
 clock_pixel => apple2.CLK
 clock_pixel => deinterlace.CLK
 clock_pixel => sync_level.CLK
@@ -836,6 +840,7 @@ sw_mode => mode.DATAIN
 sw_sync_level => sync_level.DATAIN
 sw_deinterlace => deinterlace.DATAIN
 sw_apple2 => apple2.DATAIN
+sw_shrink => shrink.DATAIN
 
 
 |top|altiobuf:inst16
@@ -875,6 +880,135 @@ dataout[0] <= ibufa.OUT
 
 
 |top|vgaout:inst7
+clock_vga => hor_back_porch[0].CLK
+clock_vga => hor_back_porch[1].CLK
+clock_vga => hor_back_porch[2].CLK
+clock_vga => hor_back_porch[3].CLK
+clock_vga => hor_back_porch[4].CLK
+clock_vga => hor_back_porch[5].CLK
+clock_vga => hor_back_porch[6].CLK
+clock_vga => hor_back_porch[7].CLK
+clock_vga => hor_back_porch[8].CLK
+clock_vga => hor_back_porch[9].CLK
+clock_vga => hor_back_porch[10].CLK
+clock_vga => hor_back_porch[11].CLK
+clock_vga => hor_back_porch[12].CLK
+clock_vga => hor_back_porch[13].CLK
+clock_vga => hor_back_porch[14].CLK
+clock_vga => hor_back_porch[15].CLK
+clock_vga => hor_back_porch[16].CLK
+clock_vga => hor_back_porch[17].CLK
+clock_vga => hor_back_porch[18].CLK
+clock_vga => hor_back_porch[19].CLK
+clock_vga => hor_back_porch[20].CLK
+clock_vga => hor_back_porch[21].CLK
+clock_vga => hor_back_porch[22].CLK
+clock_vga => hor_back_porch[23].CLK
+clock_vga => hor_back_porch[24].CLK
+clock_vga => hor_back_porch[25].CLK
+clock_vga => hor_back_porch[26].CLK
+clock_vga => hor_back_porch[27].CLK
+clock_vga => hor_back_porch[28].CLK
+clock_vga => hor_back_porch[29].CLK
+clock_vga => hor_back_porch[30].CLK
+clock_vga => hor_back_porch[31].CLK
+clock_vga => hor_sync_pulse[0].CLK
+clock_vga => hor_sync_pulse[1].CLK
+clock_vga => hor_sync_pulse[2].CLK
+clock_vga => hor_sync_pulse[3].CLK
+clock_vga => hor_sync_pulse[4].CLK
+clock_vga => hor_sync_pulse[5].CLK
+clock_vga => hor_sync_pulse[6].CLK
+clock_vga => hor_sync_pulse[7].CLK
+clock_vga => hor_sync_pulse[8].CLK
+clock_vga => hor_sync_pulse[9].CLK
+clock_vga => hor_sync_pulse[10].CLK
+clock_vga => hor_sync_pulse[11].CLK
+clock_vga => hor_sync_pulse[12].CLK
+clock_vga => hor_sync_pulse[13].CLK
+clock_vga => hor_sync_pulse[14].CLK
+clock_vga => hor_sync_pulse[15].CLK
+clock_vga => hor_sync_pulse[16].CLK
+clock_vga => hor_sync_pulse[17].CLK
+clock_vga => hor_sync_pulse[18].CLK
+clock_vga => hor_sync_pulse[19].CLK
+clock_vga => hor_sync_pulse[20].CLK
+clock_vga => hor_sync_pulse[21].CLK
+clock_vga => hor_sync_pulse[22].CLK
+clock_vga => hor_sync_pulse[23].CLK
+clock_vga => hor_sync_pulse[24].CLK
+clock_vga => hor_sync_pulse[25].CLK
+clock_vga => hor_sync_pulse[26].CLK
+clock_vga => hor_sync_pulse[27].CLK
+clock_vga => hor_sync_pulse[28].CLK
+clock_vga => hor_sync_pulse[29].CLK
+clock_vga => hor_sync_pulse[30].CLK
+clock_vga => hor_sync_pulse[31].CLK
+clock_vga => hor_front_porch[0].CLK
+clock_vga => hor_front_porch[1].CLK
+clock_vga => hor_front_porch[2].CLK
+clock_vga => hor_front_porch[3].CLK
+clock_vga => hor_front_porch[4].CLK
+clock_vga => hor_front_porch[5].CLK
+clock_vga => hor_front_porch[6].CLK
+clock_vga => hor_front_porch[7].CLK
+clock_vga => hor_front_porch[8].CLK
+clock_vga => hor_front_porch[9].CLK
+clock_vga => hor_front_porch[10].CLK
+clock_vga => hor_front_porch[11].CLK
+clock_vga => hor_front_porch[12].CLK
+clock_vga => hor_front_porch[13].CLK
+clock_vga => hor_front_porch[14].CLK
+clock_vga => hor_front_porch[15].CLK
+clock_vga => hor_front_porch[16].CLK
+clock_vga => hor_front_porch[17].CLK
+clock_vga => hor_front_porch[18].CLK
+clock_vga => hor_front_porch[19].CLK
+clock_vga => hor_front_porch[20].CLK
+clock_vga => hor_front_porch[21].CLK
+clock_vga => hor_front_porch[22].CLK
+clock_vga => hor_front_porch[23].CLK
+clock_vga => hor_front_porch[24].CLK
+clock_vga => hor_front_porch[25].CLK
+clock_vga => hor_front_porch[26].CLK
+clock_vga => hor_front_porch[27].CLK
+clock_vga => hor_front_porch[28].CLK
+clock_vga => hor_front_porch[29].CLK
+clock_vga => hor_front_porch[30].CLK
+clock_vga => hor_front_porch[31].CLK
+clock_vga => hor_active_video[0].CLK
+clock_vga => hor_active_video[1].CLK
+clock_vga => hor_active_video[2].CLK
+clock_vga => hor_active_video[3].CLK
+clock_vga => hor_active_video[4].CLK
+clock_vga => hor_active_video[5].CLK
+clock_vga => hor_active_video[6].CLK
+clock_vga => hor_active_video[7].CLK
+clock_vga => hor_active_video[8].CLK
+clock_vga => hor_active_video[9].CLK
+clock_vga => hor_active_video[10].CLK
+clock_vga => hor_active_video[11].CLK
+clock_vga => hor_active_video[12].CLK
+clock_vga => hor_active_video[13].CLK
+clock_vga => hor_active_video[14].CLK
+clock_vga => hor_active_video[15].CLK
+clock_vga => hor_active_video[16].CLK
+clock_vga => hor_active_video[17].CLK
+clock_vga => hor_active_video[18].CLK
+clock_vga => hor_active_video[19].CLK
+clock_vga => hor_active_video[20].CLK
+clock_vga => hor_active_video[21].CLK
+clock_vga => hor_active_video[22].CLK
+clock_vga => hor_active_video[23].CLK
+clock_vga => hor_active_video[24].CLK
+clock_vga => hor_active_video[25].CLK
+clock_vga => hor_active_video[26].CLK
+clock_vga => hor_active_video[27].CLK
+clock_vga => hor_active_video[28].CLK
+clock_vga => hor_active_video[29].CLK
+clock_vga => hor_active_video[30].CLK
+clock_vga => hor_active_video[31].CLK
+clock_vga => shrink.CLK
 clock_vga => deinterlace.CLK
 clock_vga => scanline.CLK
 clock_vga => videoh.CLK
@@ -980,17 +1114,43 @@ load_req <= load_req~reg0.DB_MAX_OUTPUT_PORT_TYPE
 load_ack => load_req~reg0.ACLR
 sw_scanline => scanline.DATAIN
 sw_deinterlace => deinterlace.DATAIN
-clock_ntsc => load_req~reg0.CLK
-clock_ntsc => col_number[0]~reg0.CLK
-clock_ntsc => col_number[1]~reg0.CLK
-clock_ntsc => col_number[2]~reg0.CLK
-clock_ntsc => col_number[3]~reg0.CLK
-clock_ntsc => col_number[4]~reg0.CLK
-clock_ntsc => col_number[5]~reg0.CLK
-clock_ntsc => col_number[6]~reg0.CLK
-clock_ntsc => col_number[7]~reg0.CLK
-clock_ntsc => col_number[8]~reg0.CLK
-clock_ntsc => col_number[9]~reg0.CLK
+clock_pixel => load_req~reg0.CLK
+clock_pixel => col_number[0]~reg0.CLK
+clock_pixel => col_number[1]~reg0.CLK
+clock_pixel => col_number[2]~reg0.CLK
+clock_pixel => col_number[3]~reg0.CLK
+clock_pixel => col_number[4]~reg0.CLK
+clock_pixel => col_number[5]~reg0.CLK
+clock_pixel => col_number[6]~reg0.CLK
+clock_pixel => col_number[7]~reg0.CLK
+clock_pixel => col_number[8]~reg0.CLK
+clock_pixel => col_number[9]~reg0.CLK
+sw_shrink => shrink.DATAIN
+
+
+|top|clock_mux:inst2
+data0 => LPM_MUX:LPM_MUX_component.DATA[0][0]
+data1 => LPM_MUX:LPM_MUX_component.DATA[1][0]
+sel => LPM_MUX:LPM_MUX_component.SEL[0]
+result <= LPM_MUX:LPM_MUX_component.RESULT[0]
+
+
+|top|clock_mux:inst2|LPM_MUX:LPM_MUX_component
+data[0][0] => mux_i7e:auto_generated.data[0]
+data[1][0] => mux_i7e:auto_generated.data[1]
+sel[0] => mux_i7e:auto_generated.sel[0]
+clock => ~NO_FANOUT~
+aclr => ~NO_FANOUT~
+clken => ~NO_FANOUT~
+result[0] <= mux_i7e:auto_generated.result[0]
+
+
+|top|clock_mux:inst2|LPM_MUX:LPM_MUX_component|mux_i7e:auto_generated
+data[0] => result_node[0].IN1
+data[1] => result_node[0].IN1
+result[0] <= result_node[0].DB_MAX_OUTPUT_PORT_TYPE
+sel[0] => result_node[0].IN0
+sel[0] => _.IN0
 
 
 |top|ram2:inst1

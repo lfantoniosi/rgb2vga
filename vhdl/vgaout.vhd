@@ -3,6 +3,19 @@ use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
 entity vgaout is
+	generic(
+		hor_active_video		: integer := 640;
+		hor_front_porch		: integer := 16;
+		hor_sync_pulse			: integer := 96;
+		hor_back_porch			: integer := 48;
+
+		vert_active_video		: integer := 480;
+		vert_front_porch		: integer := 10;
+		vert_sync_pulse		: integer := 2;
+		vert_back_porch		: integer := 33		
+		
+	);
+	
     port(clock_vga  : in std_logic;
          vga_out	  : out unsigned(9 downto 0); -- r, g, b, hsync, vsync
 								
@@ -15,9 +28,7 @@ entity vgaout is
 			sw_scanline	: in std_logic;
 			sw_deinterlace	: in std_logic;			
 			
-			clock_pixel : std_logic;
-			
-			sw_shrink	: in std_logic
+			clock_pixel : std_logic
 			
          );
 end vgaout;
@@ -31,15 +42,6 @@ signal scanline											: std_logic;
 signal deinterlace										: std_logic;
 signal shrink												: std_logic;
 
-signal hor_active_video			: integer := 640;
-signal hor_front_porch			: integer := 16;
-signal hor_sync_pulse			: integer := 96;
-signal hor_back_porch			: integer := 48;
-
-signal vert_active_video		: integer := 480;
-signal vert_front_porch			: integer := 10;
-signal vert_sync_pulse			: integer := 2;
-signal vert_back_porch			: integer := 33;
 
 		
 begin
@@ -107,11 +109,11 @@ begin
 	end if;
 end process;
 
-pixel: process(clock_vga, pixel_in, hcount, vcount)
+pixel: process(hcount, vcount)
 variable blank: std_logic;
 variable vga_pixel: unsigned(7 downto 0);
 begin
-	if (rising_edge(clock_vga)) then
+--	if (rising_edge(clock_vga)) then
 		
 		case (scanline) is
 			when '1' =>	vga_pixel := pixel_in;
@@ -126,7 +128,7 @@ begin
 		vga_out(9 downto 2) <= vga_pixel(7 downto 0) and blank&blank&blank&blank&blank&blank&blank&blank;			
 		vga_out(1 downto 0) <= hsync & vsync;		
 		
-	end if;
+--	end if;
 end process;
 
 
@@ -168,25 +170,6 @@ begin
 	if (rising_edge(clock_vga)) then
 		scanline <= sw_scanline;
 		deinterlace <= sw_deinterlace;
-		shrink <= sw_shrink;
-	end if;
-end process;
-
-change_mode: process(clock_vga)
-begin
-	if (rising_edge(clock_vga)) then
-		case (shrink) is
-			when '1' =>
-				hor_active_video		<= 640;
-				hor_front_porch		<= 16;
-				hor_sync_pulse			<= 96;
-				hor_back_porch			<= 48;
-			when '0' =>
-				hor_active_video		<= 729;
-				hor_front_porch		<= 18;
-				hor_sync_pulse			<= 111;
-				hor_back_porch			<= 52;
-		end case;
 	end if;
 end process;
 

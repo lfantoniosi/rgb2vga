@@ -67,6 +67,10 @@ signal aqua:		unsigned(7 downto 0);
 signal lightblue:		unsigned(7 downto 0);
 signal white:		unsigned(7 downto 0);
 
+signal column: integer range 0 to 1024;
+signal decimator: unsigned(2 downto 0);
+
+
 
 function f_adc(adc: unsigned) return unsigned;
 
@@ -87,11 +91,11 @@ begin
 			
 			when "0000010" => VALUE := "001";
 			
-			when "0000100" => VALUE := "000";
+			when "0000100" => VALUE := "001";
 			when "0000101" => VALUE := "010";
 			when "0000110" => VALUE := "010";
 			
-			when "0001000" => VALUE := "000";
+			when "0001000" => VALUE := "001";
 			when "0001001" => VALUE := "010";
 			when "0001010" => VALUE := "010";
 			when "0001011" => VALUE := "011";
@@ -99,7 +103,7 @@ begin
 			when "0001101" => VALUE := "011";
 			when "0001110" => VALUE := "011";
 			
-			when "0010000" => VALUE := "000";
+			when "0010000" => VALUE := "001";
 			when "0010001" => VALUE := "010";
 			when "0010010" => VALUE := "010";
 			when "0010011" => VALUE := "011";
@@ -115,7 +119,7 @@ begin
 			when "0011101" => VALUE := "100";
 			when "0011110" => VALUE := "100";
 			
-			when "0100000" => VALUE := "000";
+			when "0100000" => VALUE := "001";
 			when "0100001" => VALUE := "010";
 			when "0100010" => VALUE := "010";
 			when "0100011" => VALUE := "011";
@@ -422,9 +426,24 @@ begin
 	if (hblank = '0' or vblank = '0') then
 		hcount <= (others => '0');
 		dac_step <= "000";
+		decimator <= "000";
+		column <= 0;
 	elsif (rising_edge(clock_pixel)) then
 		hcount <= hcount + 1;
 		dac_step <= hcount(2 downto 0);		
+		
+		if (hcount(2 downto 0) = "111") then
+			decimator <= decimator + 1;			
+			case (shrink) is
+				when '0' =>
+					if (decimator /= "111") then
+						column <= column + 1;
+					end if;
+				when '1' =>
+					column <= column + 1;
+			end case;
+		end if;
+		
 	end if;
 end process;
 
@@ -468,7 +487,7 @@ begin
 	elsif (rising_edge(clock_pixel)) then
 		case (apple2) is
 			when '1' =>
-				if (hcount(13 downto 3) < front_porch and hsync = not sync_level) then		
+				if (column < front_porch and hsync = not sync_level) then		
 					-- out of active window. if coco2/coco3 check for white border to activate artifacting
 					if (pixel_adc(7 downto 2) = "111111") then
 						artifact_mode <= artifact;
@@ -493,14 +512,17 @@ variable row, col: integer range 0 to 1024;
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
+variable c_pixel: unsigned(7 downto 0);
+variable b_pixel: unsigned(7 downto 0);
 begin
 	if (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "100") then
 			-- digitize in the middle of the pixel
-			if (hcount(13 downto 3) >= front_porch and hcount(13 downto 3) < 730+front_porch and vcount >= top_border and vcount < 312) then		
+			if (column >= front_porch and column < 900 and vcount >= top_border and vcount < 312) then		
 				-- user active window
 				
-				col := to_integer(hcount(13 downto 3)) - front_porch;		
+				--col := to_integer(hcount(13 downto 3)) - front_porch;		
+				col := column - front_porch;
 				
 				case (deinterlace) is
 					when '0' =>
@@ -512,7 +534,7 @@ begin
 				end case;				
 				
 				row_number <= to_unsigned(row, row_number'length);
-				col_number <= to_unsigned(col, 10)(9 downto 0);				
+				col_number <= to_unsigned(col, col_number'length);				
 				-- buffer column/row
 				
 			
@@ -524,8 +546,9 @@ begin
 					when "101" => pixel(0) := '1';
 					when others => pixel(0) := '0';
 				end case;				
-				
-				p_pixel := a_pixel;
+
+				b_pixel := c_pixel;
+				p_pixel := a_pixel;														
 				
 				case (hcount(3)) is
 					when '0' =>
@@ -534,15 +557,14 @@ begin
 							when '1' =>
 								case (apple2) is
 									when '0' =>
-										pixel_out(7 downto 0) <= pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);	
+										c_pixel := pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);	
 										-- if monocrhome work with digital pixels
 									when '1' =>
-										pixel_out(7 downto 0) <= pixel_adc;	
+										c_pixel := pixel_adc;	
 										-- otherwize get digitized analog value
 								end case;																
 								
 							when '0' =>
-								
 								--	APPLE ][ NTSC ARTIFACT COLOUR TABLE					
 								--	|00|11|00|11|00|11   hcount(4)
 								--	|01|01|01|01|01|01   hcount(3)
@@ -613,11 +635,9 @@ begin
 											when "1011" => a_pixel := lightblue;
 											when "1111" => a_pixel := white;      
 										end case;
-								end case;
-								
+								end case;								
 								--
-								pixel_out(7 downto 0)  <= f_avg(a_pixel(7 downto 5)&p_pixel(7 downto 5)) & f_avg(a_pixel(4 downto 2)&p_pixel(4 downto 2)) & f_avg(a_pixel(1 downto 0)&'0'&p_pixel(1 downto 0)&'0')(2 downto 1);								
-								
+								c_pixel  := f_avg(a_pixel(7 downto 5)&p_pixel(7 downto 5)) & f_avg(a_pixel(4 downto 2)&p_pixel(4 downto 2)) & f_avg(a_pixel(1 downto 0)&'0'&p_pixel(1 downto 0)&'0')(2 downto 1);								
 						end case;
 											
 					when '1' =>
@@ -626,10 +646,10 @@ begin
 							when '1' =>
 								case (apple2) is
 									when '0' =>
-										pixel_out(7 downto 0) <= pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);	
+										c_pixel := pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);	
 										-- if monocrhome work with digital pixels
 									when '1' =>
-										pixel_out(7 downto 0) <= pixel_adc;	
+										c_pixel := pixel_adc;	
 										-- otherwize get digitized analog value
 								end case;								
 								
@@ -676,12 +696,25 @@ begin
 										end case;
 								end case;
 								--
-								pixel_out(7 downto 0) <= f_avg(a_pixel(7 downto 5)&p_pixel(7 downto 5)) & f_avg(a_pixel(4 downto 2)&p_pixel(4 downto 2)) & f_avg(a_pixel(1 downto 0)&'0'&p_pixel(1 downto 0)&'0')(2 downto 1);
-
+								c_pixel := f_avg(a_pixel(7 downto 5)&p_pixel(7 downto 5)) & f_avg(a_pixel(4 downto 2)&p_pixel(4 downto 2)) & f_avg(a_pixel(1 downto 0)&'0'&p_pixel(1 downto 0)&'0')(2 downto 1);
 							end case;	
-
 						--
 				end case;
+			
+				case (shrink) is				
+					when '0' =>
+						if (decimator = "000" and artifact_mode = '1') then
+							pixel_out(7 downto 5) <= to_unsigned(to_integer(c_pixel(7 downto 5)) + to_integer(b_pixel(7 downto 5)), 4)(3 downto 1);
+							pixel_out(4 downto 2) <= to_unsigned(to_integer(c_pixel(4 downto 2)) + to_integer(b_pixel(4 downto 2)), 4)(3 downto 1);
+							pixel_out(1 downto 0) <= to_unsigned(to_integer(c_pixel(1 downto 0)) + to_integer(b_pixel(1 downto 0)), 3)(2 downto 1);
+						else
+							pixel_out <= c_pixel;
+						end if;
+						
+					when '1' =>
+						pixel_out <= c_pixel;
+				end case;
+				
 			end if;
 		end if;
 	end if;
@@ -771,21 +804,31 @@ begin
 		sync_level <= sw_sync_level;
 		deinterlace <= sw_deinterlace;
 		apple2 <= sw_apple2;
-		shrink <= sw_shrink;		
+		shrink <= sw_shrink;	
 	end if;	
 end process;
 
 mode_change: process(clock_pixel)
 begin
 	if (rising_edge(clock_pixel)) then
+--		if (shrink = '0') then
+--			front_porch <= 144;
+--		elsif (apple2 = '0') then
+--			front_porch <= 202;
+--		else
+--			front_porch <= 184;
+--		end if;
+
 		if (shrink = '0') then
-			front_porch <= 144;
+			front_porch <= 128;
 		elsif (apple2 = '0') then
 			front_porch <= 202;
 		else
-			front_porch <= 182;
+			front_porch <= 184;
 		end if;
+		
 	end if;
+	
 end process;
 
 end behavioral;

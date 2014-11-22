@@ -5,6 +5,7 @@ derive_pll_clocks
 derive_clock_uncertainty
 
 set_clock_groups -asynchronous -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]
+set_clock_groups -asynchronous -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]
 
 set_input_delay -clock { inst6|altpll_component|auto_generated|pll1|clk[0] } 2 [get_ports {* newt reset}]
 set_output_delay -clock { inst6|altpll_component|auto_generated|pll1|clk[0] } 2 [get_ports {D* yvalid follow}]

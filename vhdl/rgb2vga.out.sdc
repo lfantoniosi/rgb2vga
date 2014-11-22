@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.0.0 Build 156 04/24/2013 SJ Web Edition"
 
-## DATE    "Fri Nov 21 00:17:50 2014"
+## DATE    "Fri Nov 21 21:59:57 2014"
 
 ##
 ## DEVICE  "EP4CE22F17C6"
@@ -174,13 +174,15 @@ set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_gen
 # Set Clock Groups
 #**************************************************************
 
-set_clock_groups -asynchronous -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]
-set_clock_groups -asynchronous -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]
+set_clock_groups -asynchronous -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] 
+set_clock_groups -asynchronous -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -group [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] 
 
 
 #**************************************************************
 # Set False Path
 #**************************************************************
+
+set_false_path -from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -to [get_keepers {DRAM_CLK}]
 
 
 #**************************************************************

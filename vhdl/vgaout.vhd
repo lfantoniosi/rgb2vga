@@ -28,7 +28,8 @@ entity vgaout is
 			sw_scanline	: in std_logic;
 			sw_deinterlace	: in std_logic;			
 			
-			clock_pixel : std_logic
+			clock_pixel : std_logic;
+			sw_video_active : std_logic
 			
          );
 end vgaout;
@@ -41,7 +42,8 @@ signal videov, videoh, hsync, vsync					: std_logic;
 signal scanline											: std_logic;
 signal deinterlace										: std_logic;
 signal shrink												: std_logic;
-
+signal video_active										: std_logic;
+signal animate												: unsigned(9 downto 0);
 
 		
 begin
@@ -68,6 +70,7 @@ begin
 		vsync <= '1';
 		if (vcount <= (vert_active_video + vert_front_porch + vert_sync_pulse - 1) and vcount >= (vert_active_video + vert_front_porch - 1)) then
 			vsync <= '0';
+			animate <= animate + 1;
 		end if;
 	end if;
 end process;
@@ -114,18 +117,20 @@ variable blank: std_logic;
 variable vga_pixel: unsigned(7 downto 0);
 begin
 --	if (rising_edge(clock_vga)) then
-		
-		case (scanline) is
-			when '1' =>	vga_pixel := pixel_in;
-			when '0' =>
-				case (vcount(0)) is
-					when '0' => vga_pixel := '0'&pixel_in(7 downto 6) & '0'&pixel_in(4 downto 3) & '0'&pixel_in(1);
-					when '1' => vga_pixel := pixel_in;
-				end case;
-		end case;
-		
+
 		blank := videoh and videov;		
-		vga_out(9 downto 2) <= vga_pixel(7 downto 0) and blank&blank&blank&blank&blank&blank&blank&blank;			
+		
+		if (video_active = '0') then
+			vga_pixel := pixel_in;
+		else
+			vga_pixel := not(vcount(8 downto 1) xor hcount(8 downto 1));
+		end if;
+				
+		if (scanline = '0' and vcount(0) = '0') then
+			vga_pixel := '0'&vga_pixel(7 downto 6) & '0'&vga_pixel(4 downto 3) & '0'&vga_pixel(1);
+		end if;		
+
+		vga_out(9 downto 2) <= vga_pixel and blank&blank&blank&blank&blank&blank&blank&blank;
 		vga_out(1 downto 0) <= hsync & vsync;		
 		
 --	end if;
@@ -148,7 +153,7 @@ process (clock_vga, vcount)
 begin
 	if (rising_edge(clock_vga)) then
 		videov <= '1'; 
-		if vcount > vert_active_video-1 then 
+		if vcount > vert_active_video-1 or vcount < 1 then 
 			videov <= '0';
 		end if;	
    end if;
@@ -170,6 +175,7 @@ begin
 	if (rising_edge(clock_vga)) then
 		scanline <= sw_scanline;
 		deinterlace <= sw_deinterlace;
+		video_active <= sw_video_active;
 	end if;
 end process;
 

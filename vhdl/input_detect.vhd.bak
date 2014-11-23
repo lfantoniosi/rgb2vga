@@ -1,0 +1,28 @@
+library IEEE;
+use IEEE.STD_LOGIC_1164.ALL;
+use IEEE.NUMERIC_STD.ALL;
+
+entity input_detect is
+	
+    port(clock_pixel : in std_logic;
+			vsync  		: in std_logic; -- digital vsync
+			hsync	 		: in std_logic; -- digital hsync
+			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
+			
+			pixel_out	: out unsigned(7 downto 0);
+			row_number	: out unsigned(9 downto 0); 
+			col_number	: out unsigned(9 downto 0); 
+			store_req	: out std_logic := '0';
+			store_ack 	: in std_logic;
+			dac_step			: out unsigned(2 downto 0);			
+			sw_artifact		: in std_logic;
+			sw_mode 			: in std_logic;
+			sw_sync_level	: in std_logic;
+			sw_deinterlace	: in std_logic;
+			sw_apple2		: in std_logic;
+			sw_shrink		: in std_logic
+);
+			
+end genlock;
+
+architecture behavioral of genlock is

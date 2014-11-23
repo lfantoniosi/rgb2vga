@@ -237,7 +237,8 @@ begin
 				when "110" => 
 					red_adc(6) <= adc_rgb(2);
 				when "111" => 
-					red_adc(6) <= adc_rgb(2);
+					--red_adc(6) <= adc_rgb(2);
+					null;
 				when "000" =>
 					red_adc(0) <= adc_rgb(2);
 			end case;
@@ -261,7 +262,8 @@ begin
 				when "110" => 
 					green_adc(6) <= adc_rgb(1);
 				when "111" => 
-					green_adc(6) <= adc_rgb(1);
+					--green_adc(6) <= adc_rgb(1);
+					null;
 				when "000" =>			
 					green_adc(0) <= adc_rgb(1);					
 			end case;
@@ -285,7 +287,8 @@ begin
 				when "110" => 
 					blue_adc(6) <= adc_rgb(0);
 				when "111" => 
-					blue_adc(6) <= adc_rgb(0);
+					--blue_adc(6) <= adc_rgb(0);
+					null;
 				when "000" =>	
 					blue_adc(0) <= adc_rgb(0);
 			end case;			
@@ -336,12 +339,10 @@ hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
 		hcount <= (others => '0');
-		dac_step <= "000";
 		decimator <= "000";
 		column <= 0;
 	elsif (rising_edge(clock_pixel)) then
 		hcount <= hcount + 1;
-		dac_step <= hcount(2 downto 0);		
 		
 		if (hcount(2 downto 0) = "111") then
 			decimator <= decimator + 1;			
@@ -357,6 +358,14 @@ begin
 		
 	end if;
 end process;
+
+dac_out: process(clock_pixel)
+begin	
+	if (rising_edge(clock_pixel)) then		
+		dac_step <= hcount(2 downto 0); 
+	end if;	
+end process;
+
 
 vsync_lock: process(clock_pixel, vsync)
 variable sync: std_logic;

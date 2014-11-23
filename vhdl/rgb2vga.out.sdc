@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.0.0 Build 156 04/24/2013 SJ Web Edition"
 
-## DATE    "Fri Nov 21 21:59:57 2014"
+## DATE    "Sat Nov 22 16:35:44 2014"
 
 ##
 ## DEVICE  "EP4CE22F17C6"
@@ -61,23 +61,26 @@ create_generated_clock -name {inst6|altpll_component|auto_generated|pll1|clk[1]}
 
 set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
 set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
 set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
 set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
+set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
 set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
 set_clock_uncertainty -rise_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
+set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  0.020  
 set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -rise_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
 set_clock_uncertainty -fall_from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -fall_to [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  0.020  
-set_clock_uncertainty -rise_from [get_clocks {CLOCK_50}] -rise_to [get_clocks {CLOCK_50}]  0.020  
-set_clock_uncertainty -rise_from [get_clocks {CLOCK_50}] -fall_to [get_clocks {CLOCK_50}]  0.020  
-set_clock_uncertainty -fall_from [get_clocks {CLOCK_50}] -rise_to [get_clocks {CLOCK_50}]  0.020  
-set_clock_uncertainty -fall_from [get_clocks {CLOCK_50}] -fall_to [get_clocks {CLOCK_50}]  0.020  
 
 
 #**************************************************************
 # Set Input Delay
 #**************************************************************
 
-set_input_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {CLOCK_50}]
 set_input_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFB}]
 set_input_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFBn}]
 set_input_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFG}]
@@ -158,16 +161,16 @@ set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_gen
 set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_DQ[15]}]
 set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_RAS_N}]
 set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_WE_N}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAB0}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAB1}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAG0}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAG1}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAG2}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAHS}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAR0}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAR1}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAR2}]
-set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAVS}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAB0}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAB1}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAG0}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAG1}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAG2}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAHS}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAR0}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAR1}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAR2}]
+set_output_delay -add_delay  -clock [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VGAVS}]
 
 
 #**************************************************************
@@ -183,6 +186,9 @@ set_clock_groups -asynchronous -group [get_clocks {inst6|altpll_component|auto_g
 #**************************************************************
 
 set_false_path -from [get_clocks {inst6|altpll_component|auto_generated|pll1|clk[0]}] -to [get_keepers {DRAM_CLK}]
+set_false_path -from [get_keepers {genlock:inst8|hcount[0]}] -to [get_keepers {D0}]
+set_false_path -from [get_keepers {genlock:inst8|hcount[1]}] -to [get_keepers {D1}]
+set_false_path -from [get_keepers {genlock:inst8|hcount[2]}] -to [get_keepers {D2}]
 
 
 #**************************************************************

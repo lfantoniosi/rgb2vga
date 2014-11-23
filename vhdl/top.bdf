@@ -1514,35 +1514,35 @@ applicable agreement for further details.
 		(pt 232 32)
 		(output)
 		(text "pixel_out[7..0]" (rect 0 0 69 12)(font "Arial" ))
-		(text "pixel_out[7..0]" (rect 153 27 211 39)(font "Arial" ))
+		(text "pixel_out[7..0]" (rect 153 27 222 39)(font "Arial" ))
 		(line (pt 232 32)(pt 216 32)(line_width 3))
 	)
 	(port
 		(pt 232 48)
 		(output)
 		(text "row_number[9..0]" (rect 0 0 84 12)(font "Arial" ))
-		(text "row_number[9..0]" (rect 140 43 211 55)(font "Arial" ))
+		(text "row_number[9..0]" (rect 140 43 224 55)(font "Arial" ))
 		(line (pt 232 48)(pt 216 48)(line_width 3))
 	)
 	(port
 		(pt 232 64)
 		(output)
 		(text "col_number[9..0]" (rect 0 0 82 12)(font "Arial" ))
-		(text "col_number[9..0]" (rect 142 59 211 71)(font "Arial" ))
+		(text "col_number[9..0]" (rect 142 59 224 71)(font "Arial" ))
 		(line (pt 232 64)(pt 216 64)(line_width 3))
 	)
 	(port
 		(pt 232 80)
 		(output)
 		(text "store_req" (rect 0 0 46 12)(font "Arial" ))
-		(text "store_req" (rect 173 75 211 87)(font "Arial" ))
+		(text "store_req" (rect 173 75 219 87)(font "Arial" ))
 		(line (pt 232 80)(pt 216 80))
 	)
 	(port
 		(pt 232 96)
 		(output)
 		(text "dac_step[2..0]" (rect 0 0 70 12)(font "Arial" ))
-		(text "dac_step[2..0]" (rect 152 91 211 103)(font "Arial" ))
+		(text "dac_step[2..0]" (rect 152 91 222 103)(font "Arial" ))
 		(line (pt 232 96)(pt 216 96)(line_width 3))
 	)
 	(drawing
@@ -1967,36 +1967,6 @@ applicable agreement for further details.
 	(pt 456 416)
 )
 (connector
-	(text "MODE" (rect 274 480 305 492)(font "Arial" ))
-	(pt 272 496)
-	(pt 368 496)
-)
-(connector
-	(text "ARTIFACT" (rect 274 496 327 508)(font "Arial" ))
-	(pt 272 512)
-	(pt 368 512)
-)
-(connector
-	(text "SCANLINE" (rect 274 528 329 540)(font "Arial" ))
-	(pt 272 544)
-	(pt 368 544)
-)
-(connector
-	(text "SYNC_LEVEL" (rect 274 512 344 524)(font "Arial" ))
-	(pt 272 528)
-	(pt 368 528)
-)
-(connector
-	(text "APPLE2" (rect 282 464 322 476)(font "Arial" ))
-	(pt 272 480)
-	(pt 368 480)
-)
-(connector
-	(text "DEINTERLACE" (rect 282 448 358 460)(font "Arial" ))
-	(pt 272 464)
-	(pt 368 464)
-)
-(connector
 	(text "CLOCK_PIXEL" (rect 1850 352 1923 364)(font "Arial" ))
 	(pt 1928 368)
 	(pt 1840 368)
@@ -2082,11 +2052,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "SHRINK" (rect 282 416 324 428)(font "Arial" ))
-	(pt 272 432)
-	(pt 368 432)
-)
-(connector
 	(text "SHRINK" (rect 1250 424 1292 436)(font "Arial" ))
 	(pt 1352 440)
 	(pt 1240 440)
@@ -2102,7 +2067,42 @@ applicable agreement for further details.
 	(pt 1728 664)
 )
 (connector
-	(text "EXTRA" (rect 282 432 317 444)(font "Arial" ))
+	(text "SHRINK" (rect 274 528 316 540)(font "Arial" ))
+	(pt 272 544)
+	(pt 368 544)
+)
+(connector
+	(text "SYNC_LEVEL" (rect 274 432 344 444)(font "Arial" ))
 	(pt 272 448)
 	(pt 368 448)
+)
+(connector
+	(text "EXTRA" (rect 274 512 309 524)(font "Arial" ))
+	(pt 272 528)
+	(pt 368 528)
+)
+(connector
+	(text "ARTIFACT" (rect 274 448 327 460)(font "Arial" ))
+	(pt 272 464)
+	(pt 368 464)
+)
+(connector
+	(text "DEINTERLACE" (rect 274 496 350 508)(font "Arial" ))
+	(pt 272 512)
+	(pt 368 512)
+)
+(connector
+	(text "MODE" (rect 274 464 305 476)(font "Arial" ))
+	(pt 272 480)
+	(pt 368 480)
+)
+(connector
+	(text "APPLE2" (rect 274 480 314 492)(font "Arial" ))
+	(pt 272 496)
+	(pt 368 496)
+)
+(connector
+	(text "SCANLINE" (rect 282 416 337 428)(font "Arial" ))
+	(pt 272 432)
+	(pt 368 432)
 )

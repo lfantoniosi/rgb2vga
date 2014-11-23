@@ -4,20 +4,20 @@ CLOCK_50 => pll_ntsc:inst6.inclk0
 DRAM_CKE <= sdram:inst.pMemCke
 VSYNC => genlock:inst8.vsync
 HSYNC => genlock:inst8.hsync
-FP5 => genlock:inst8.sw_artifact
-FP4 => genlock:inst8.sw_mode
-FP6 => genlock:inst8.sw_sync_level
-FP2 => genlock:inst8.sw_deinterlace
-FP2 => vgaout:inst7.sw_deinterlace
-FP3 => genlock:inst8.sw_apple2
-FP0 => genlock:inst8.sw_shrink
+FP2 => genlock:inst8.sw_artifact
+FP3 => genlock:inst8.sw_mode
+FP1 => genlock:inst8.sw_sync_level
+FP5 => genlock:inst8.sw_deinterlace
+FP5 => vgaout:inst7.sw_deinterlace
+FP4 => genlock:inst8.sw_apple2
+FP7 => genlock:inst8.sw_shrink
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
 DIFFG => altiobuf:inst12.datain[0]
 DIFFGn => altiobuf:inst12.datain_b[0]
 DIFFB => altiobuf:inst13.datain[0]
 DIFFBn => altiobuf:inst13.datain_b[0]
-FP7 => vgaout:inst7.sw_scanline
+FP0 => vgaout:inst7.sw_scanline
 DRAM_DQ[0] <> sdram:inst.pMemDat[0]
 DRAM_DQ[1] <> sdram:inst.pMemDat[1]
 DRAM_DQ[2] <> sdram:inst.pMemDat[2]
@@ -68,7 +68,7 @@ DRAM_BA[0] <= sdram:inst.pMemBa0
 DRAM_BA[1] <= sdram:inst.pMemBa1
 DRAM_DQM[0] <= sdram:inst.pMemLdq
 DRAM_DQM[1] <= sdram:inst.pMemUdq
-FP1 => ~NO_FANOUT~
+FP6 => ~NO_FANOUT~
 
 
 |top|pll_ntsc:inst6
@@ -736,6 +736,9 @@ clock_pixel => top_border[29].CLK
 clock_pixel => top_border[30].CLK
 clock_pixel => top_border[31].CLK
 clock_pixel => vblank.CLK
+clock_pixel => dac_step[0]~reg0.CLK
+clock_pixel => dac_step[1]~reg0.CLK
+clock_pixel => dac_step[2]~reg0.CLK
 clock_pixel => column[0].CLK
 clock_pixel => column[1].CLK
 clock_pixel => column[2].CLK
@@ -750,9 +753,6 @@ clock_pixel => column[10].CLK
 clock_pixel => decimator[0].CLK
 clock_pixel => decimator[1].CLK
 clock_pixel => decimator[2].CLK
-clock_pixel => dac_step[0]~reg0.CLK
-clock_pixel => dac_step[1]~reg0.CLK
-clock_pixel => dac_step[2]~reg0.CLK
 clock_pixel => hcount[0].CLK
 clock_pixel => hcount[1].CLK
 clock_pixel => hcount[2].CLK

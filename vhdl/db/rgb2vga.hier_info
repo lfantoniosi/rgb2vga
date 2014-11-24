@@ -5,11 +5,11 @@ DRAM_CKE <= sdram:inst.pMemCke
 VSYNC => genlock:inst8.vsync
 HSYNC => genlock:inst8.hsync
 HSYNC => input_detect:inst2.hsync
-FP2 => genlock:inst8.sw_artifact
-FP3 => genlock:inst8.sw_mode
-FP5 => genlock:inst8.sw_deinterlace
-FP5 => vgaout:inst7.sw_deinterlace
-FP4 => genlock:inst8.sw_apple2
+FP1 => genlock:inst8.sw_artifact
+FP2 => genlock:inst8.sw_mode
+FP4 => genlock:inst8.sw_deinterlace
+FP4 => vgaout:inst7.sw_deinterlace
+FP3 => genlock:inst8.sw_apple2
 FP7 => genlock:inst8.sw_shrink
 DIFFR => altiobuf:inst16.datain[0]
 DIFFRn => altiobuf:inst16.datain_b[0]
@@ -68,7 +68,7 @@ DRAM_BA[0] <= sdram:inst.pMemBa0
 DRAM_BA[1] <= sdram:inst.pMemBa1
 DRAM_DQM[0] <= sdram:inst.pMemLdq
 DRAM_DQM[1] <= sdram:inst.pMemUdq
-FP1 => ~NO_FANOUT~
+FP5 => ~NO_FANOUT~
 FP6 => ~NO_FANOUT~
 
 

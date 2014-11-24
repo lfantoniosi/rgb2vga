@@ -417,7 +417,7 @@ begin
 			when '0' =>
 				if (hcount(13 downto 3) < front_porch - 50 and hsync = not sync_level) then
 					-- detect color burst
-					if (to_integer(pixel_adc(4 downto 2)) > 3) then
+					if (to_integer(pixel_adc(4 downto 2)) > 0) then
 						artifact_mode <= artifact;
 					end if;
 				end if;
@@ -465,6 +465,8 @@ begin
 					when "111" => pixel(0) := '1';
 					when "110" => pixel(0) := '1';
 					when "101" => pixel(0) := '1';
+					--when "100" => pixel(0) := '1';
+					--when "011" => pixel(0) := '1';
 					when others => pixel(0) := '0';
 				end case;				
 
@@ -520,39 +522,40 @@ begin
 									-- decode colour by the last 4-bit pattern
 										case (pixel) is
 											when "0000" => a_pixel := black;
-											when "0001" => a_pixel := brown;
-											when "1000" => a_pixel := magenta;
-											when "1001" => a_pixel := orange;
-											when "0100" => a_pixel := darkblue;
-											when "0101" => a_pixel := darkgray;
-											when "1100" => a_pixel := violet;
-											when "1101" => a_pixel := pink;
-											when "0010" => a_pixel := darkgreen;
-											when "0011" => a_pixel := green;
-											when "1010" => a_pixel := lightgray;
-											when "1011" => a_pixel := yellow;				
-											when "0110" => a_pixel := mediumblue;
-											when "0111" => a_pixel := aqua;
-											when "1110" => a_pixel := lightblue;
+											when "0010" => a_pixel := brown;
+											when "0001" => a_pixel := magenta;
+											when "0011" => a_pixel := orange;
+											when "1000" => a_pixel := darkblue;
+											when "1010" => a_pixel := darkgray;
+											when "1001" => a_pixel := violet;
+											when "1011" => a_pixel := pink;
+											when "0100" => a_pixel := darkgreen;
+											when "0110" => a_pixel := green;
+											when "0101" => a_pixel := lightgray;
+											when "0111" => a_pixel := yellow;				
+											when "1100" => a_pixel := mediumblue;
+											when "1110" => a_pixel := aqua;
+											when "1101" => a_pixel := lightblue;
 											when "1111" => a_pixel := white;      
+											
 										end case;
 									when '1' => -- "10" 
 										case (pixel) is
 											when "0000" => a_pixel := black;
-											when "0100" => a_pixel := brown;
-											when "0010" => a_pixel := magenta;
-											when "0110" => a_pixel := orange;
-											when "0001" => a_pixel := darkblue;
-											when "0101" => a_pixel := darkgray;
-											when "0011" => a_pixel := violet;
-											when "0111" => a_pixel := pink;
-											when "1000" => a_pixel := darkgreen;
-											when "1100" => a_pixel := green;
-											when "1010" => a_pixel := lightgray;
-											when "1110" => a_pixel := yellow;				
-											when "1001" => a_pixel := mediumblue;
-											when "1101" => a_pixel := aqua;
-											when "1011" => a_pixel := lightblue;
+											when "1000" => a_pixel := brown;
+											when "0100" => a_pixel := magenta;
+											when "1100" => a_pixel := orange;
+											when "0010" => a_pixel := darkblue;
+											when "1010" => a_pixel := darkgray;
+											when "0110" => a_pixel := violet;
+											when "1110" => a_pixel := pink;
+											when "0001" => a_pixel := darkgreen;
+											when "1001" => a_pixel := green;
+											when "0101" => a_pixel := lightgray;
+											when "1101" => a_pixel := yellow;				
+											when "0011" => a_pixel := mediumblue;
+											when "1011" => a_pixel := aqua;
+											when "0111" => a_pixel := lightblue;
 											when "1111" => a_pixel := white;      
 										end case;
 								end case;								
@@ -581,39 +584,39 @@ begin
 										-- decode colour by the last 4-bit pattern
 										case (pixel) is
 											when "0000" => a_pixel := black;
-											when "0010" => a_pixel := brown;
-											when "0001" => a_pixel := magenta;
-											when "0011" => a_pixel := orange;
-											when "1000" => a_pixel := darkblue;
-											when "1010" => a_pixel := darkgray;
-											when "1001" => a_pixel := violet;
-											when "1011" => a_pixel := pink;
-											when "0100" => a_pixel := darkgreen;
-											when "0110" => a_pixel := green;
-											when "0101" => a_pixel := lightgray;
-											when "0111" => a_pixel := yellow;					
-											when "1100" => a_pixel := mediumblue;
-											when "1110" => a_pixel := aqua;
-											when "1101" => a_pixel := lightblue;
+											when "0100" => a_pixel := brown;
+											when "0010" => a_pixel := magenta;
+											when "0110" => a_pixel := orange;
+											when "0001" => a_pixel := darkblue;
+											when "0101" => a_pixel := darkgray;
+											when "0011" => a_pixel := violet;
+											when "0111" => a_pixel := pink;
+											when "1000" => a_pixel := darkgreen;
+											when "1100" => a_pixel := green;
+											when "1010" => a_pixel := lightgray;
+											when "1110" => a_pixel := yellow;					
+											when "1001" => a_pixel := mediumblue;
+											when "1101" => a_pixel := aqua;
+											when "1011" => a_pixel := lightblue;
 											when "1111" => a_pixel := white;      
 										end case;										
 									when '1' => -- "11" 
 										case (pixel) is
 											when "0000" => a_pixel := black;
-											when "1000" => a_pixel := brown;
-											when "0100" => a_pixel := magenta;
-											when "1100" => a_pixel := orange;
-											when "0010" => a_pixel := darkblue;
-											when "1010" => a_pixel := darkgray;
-											when "0110" => a_pixel := violet;
-											when "1110" => a_pixel := pink;
-											when "0001" => a_pixel := darkgreen;
-											when "1001" => a_pixel := green;
-											when "0101" => a_pixel := lightgray;
-											when "1101" => a_pixel := yellow;			
-											when "0011" => a_pixel := mediumblue;
-											when "1011" => a_pixel := aqua;
-											when "0111" => a_pixel := lightblue;
+											when "0001" => a_pixel := brown;
+											when "1000" => a_pixel := magenta;
+											when "1001" => a_pixel := orange;
+											when "0100" => a_pixel := darkblue;
+											when "0101" => a_pixel := darkgray;
+											when "1100" => a_pixel := violet;
+											when "1101" => a_pixel := pink;
+											when "0010" => a_pixel := darkgreen;
+											when "0011" => a_pixel := green;
+											when "1010" => a_pixel := lightgray;
+											when "1011" => a_pixel := yellow;			
+											when "0110" => a_pixel := mediumblue;
+											when "0111" => a_pixel := aqua;
+											when "1110" => a_pixel := lightblue;
 											when "1111" => a_pixel := white;      
 										end case;
 								end case;

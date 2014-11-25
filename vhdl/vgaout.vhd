@@ -112,7 +112,7 @@ begin
 	end if;
 end process;
 
-pixel: process(hcount, vcount)
+pixel: process(hcount, vcount, videoh, videov, video_active, pixel_in, scanline, hsync, vsync)
 variable blank: std_logic;
 variable vga_pixel: unsigned(7 downto 0);
 begin

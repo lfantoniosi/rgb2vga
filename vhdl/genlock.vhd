@@ -337,7 +337,7 @@ end process;
 
 hraster: process (clock_pixel, hblank, vblank)
 begin
-	if (hblank = '0' or vblank = '0') then
+	if (hblank = '0') then -- or vblank = '0') then
 		hcount <= (others => '0');
 		decimator <= "000";
 		column <= 0;
@@ -417,7 +417,7 @@ begin
 			when '0' =>
 				if (hcount(13 downto 3) < front_porch - 50 and hsync = not sync_level) then
 					-- detect color burst
-					if (to_integer(pixel_adc(4 downto 2)) > 0) then
+					if (to_integer(pixel_adc(4 downto 2)) > 4) then
 						artifact_mode <= artifact;
 					end if;
 				end if;
@@ -463,10 +463,8 @@ begin
 				-- pixel shifting for apple2/coco3 artifact
 				case (pixel_adc(4 downto 2)) is
 					when "111" => pixel(0) := '1';
-					when "110" => pixel(0) := '1';
-					when "101" => pixel(0) := '1';
-					--when "100" => pixel(0) := '1';
-					--when "011" => pixel(0) := '1';
+					when "110" => pixel(0) := apple2;
+					when "101" => pixel(0) := apple2;
 					when others => pixel(0) := '0';
 				end case;				
 

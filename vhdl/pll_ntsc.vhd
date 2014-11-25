@@ -149,7 +149,7 @@ BEGIN
 		clk1_duty_cycle => 50,
 		clk1_multiply_by => 63,
 		clk1_phase_shift => "0",
-		compensate_clock => "CLK0",
+		compensate_clock => "CLK1",
 		inclk0_input_frequency => 20000,
 		intended_device_family => "Cyclone IV E",
 		lpm_hint => "CBX_MODULE_PREFIX=pll_ntsc",
@@ -224,7 +224,7 @@ END SYN;
 -- Retrieval info: PRIVATE: CNX_NO_COMPENSATE_RADIO STRING "0"
 -- Retrieval info: PRIVATE: CREATE_CLKBAD_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CREATE_INCLK1_CHECK STRING "0"
--- Retrieval info: PRIVATE: CUR_DEDICATED_CLK STRING "c0"
+-- Retrieval info: PRIVATE: CUR_DEDICATED_CLK STRING "c1"
 -- Retrieval info: PRIVATE: CUR_FBIN_CLK STRING "c0"
 -- Retrieval info: PRIVATE: DEVICE_SPEED_GRADE STRING "6"
 -- Retrieval info: PRIVATE: DIV_FACTOR0 NUMERIC "24"
@@ -315,7 +315,7 @@ END SYN;
 -- Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
 -- Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "63"
 -- Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
--- Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
+-- Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK1"
 -- Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "20000"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"

@@ -72,7 +72,6 @@ ARCHITECTURE SYN OF pll_ntsc IS
 		clk1_duty_cycle		: NATURAL;
 		clk1_multiply_by		: NATURAL;
 		clk1_phase_shift		: STRING;
-		compensate_clock		: STRING;
 		inclk0_input_frequency		: NATURAL;
 		intended_device_family		: STRING;
 		lpm_hint		: STRING;
@@ -140,21 +139,20 @@ BEGIN
 
 	altpll_component : altpll
 	GENERIC MAP (
-		bandwidth_type => "AUTO",
-		clk0_divide_by => 10000000,
+		bandwidth_type => "HIGH",
+		clk0_divide_by => 55,
 		clk0_duty_cycle => 50,
-		clk0_multiply_by => 22909091,
+		clk0_multiply_by => 126,
 		clk0_phase_shift => "0",
 		clk1_divide_by => 125,
 		clk1_duty_cycle => 50,
 		clk1_multiply_by => 63,
-		clk1_phase_shift => "0",
-		compensate_clock => "CLK1",
+		clk1_phase_shift => "19841",
 		inclk0_input_frequency => 20000,
 		intended_device_family => "Cyclone IV E",
 		lpm_hint => "CBX_MODULE_PREFIX=pll_ntsc",
 		lpm_type => "altpll",
-		operation_mode => "NORMAL",
+		operation_mode => "NO_COMPENSATION",
 		pll_type => "AUTO",
 		port_activeclock => "PORT_UNUSED",
 		port_areset => "PORT_UNUSED",
@@ -215,19 +213,19 @@ END SYN;
 -- Retrieval info: PRIVATE: BANDWIDTH STRING "1.000"
 -- Retrieval info: PRIVATE: BANDWIDTH_FEATURE_ENABLED STRING "1"
 -- Retrieval info: PRIVATE: BANDWIDTH_FREQ_UNIT STRING "MHz"
--- Retrieval info: PRIVATE: BANDWIDTH_PRESET STRING "Low"
--- Retrieval info: PRIVATE: BANDWIDTH_USE_AUTO STRING "1"
--- Retrieval info: PRIVATE: BANDWIDTH_USE_PRESET STRING "0"
+-- Retrieval info: PRIVATE: BANDWIDTH_PRESET STRING "High"
+-- Retrieval info: PRIVATE: BANDWIDTH_USE_AUTO STRING "0"
+-- Retrieval info: PRIVATE: BANDWIDTH_USE_PRESET STRING "1"
 -- Retrieval info: PRIVATE: CLKBAD_SWITCHOVER_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CLKLOSS_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CLKSWITCH_CHECK STRING "0"
--- Retrieval info: PRIVATE: CNX_NO_COMPENSATE_RADIO STRING "0"
+-- Retrieval info: PRIVATE: CNX_NO_COMPENSATE_RADIO STRING "1"
 -- Retrieval info: PRIVATE: CREATE_CLKBAD_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CREATE_INCLK1_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CUR_DEDICATED_CLK STRING "c1"
 -- Retrieval info: PRIVATE: CUR_FBIN_CLK STRING "c0"
 -- Retrieval info: PRIVATE: DEVICE_SPEED_GRADE STRING "6"
--- Retrieval info: PRIVATE: DIV_FACTOR0 NUMERIC "24"
+-- Retrieval info: PRIVATE: DIV_FACTOR0 NUMERIC "55"
 -- Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "1"
 -- Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 -- Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
@@ -257,22 +255,22 @@ END SYN;
 -- Retrieval info: PRIVATE: MIG_DEVICE_SPEED_GRADE STRING "Any"
 -- Retrieval info: PRIVATE: MIRROR_CLK0 STRING "0"
 -- Retrieval info: PRIVATE: MIRROR_CLK1 STRING "0"
--- Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "55"
+-- Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "126"
 -- Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "1"
--- Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
+-- Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "0"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "114.54545500"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "25.20000000"
--- Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "1"
+-- Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "0"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_MODE1 STRING "1"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT0 STRING "MHz"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT1 STRING "MHz"
 -- Retrieval info: PRIVATE: PHASE_RECONFIG_FEATURE_ENABLED STRING "1"
 -- Retrieval info: PRIVATE: PHASE_RECONFIG_INPUTS_CHECK STRING "0"
 -- Retrieval info: PRIVATE: PHASE_SHIFT0 STRING "0.00000000"
--- Retrieval info: PRIVATE: PHASE_SHIFT1 STRING "0.00000000"
+-- Retrieval info: PRIVATE: PHASE_SHIFT1 STRING "180.00000000"
 -- Retrieval info: PRIVATE: PHASE_SHIFT_STEP_ENABLED_CHECK STRING "0"
 -- Retrieval info: PRIVATE: PHASE_SHIFT_UNIT0 STRING "deg"
--- Retrieval info: PRIVATE: PHASE_SHIFT_UNIT1 STRING "ps"
+-- Retrieval info: PRIVATE: PHASE_SHIFT_UNIT1 STRING "deg"
 -- Retrieval info: PRIVATE: PLL_ADVANCED_PARAM_CHECK STRING "0"
 -- Retrieval info: PRIVATE: PLL_ARESET_CHECK STRING "0"
 -- Retrieval info: PRIVATE: PLL_AUTOPLL_CHECK NUMERIC "1"
@@ -286,7 +284,7 @@ END SYN;
 -- Retrieval info: PRIVATE: RECONFIG_FILE STRING "pll_ntsc.mif"
 -- Retrieval info: PRIVATE: SACN_INPUTS_CHECK STRING "0"
 -- Retrieval info: PRIVATE: SCAN_FEATURE_ENABLED STRING "1"
--- Retrieval info: PRIVATE: SELF_RESET_LOCK_LOSS STRING "0"
+-- Retrieval info: PRIVATE: SELF_RESET_LOCK_LOSS STRING "1"
 -- Retrieval info: PRIVATE: SHORT_SCAN_RADIO STRING "0"
 -- Retrieval info: PRIVATE: SPREAD_FEATURE_ENABLED STRING "0"
 -- Retrieval info: PRIVATE: SPREAD_FREQ STRING "50.000"
@@ -306,20 +304,19 @@ END SYN;
 -- Retrieval info: PRIVATE: USE_MIL_SPEED_GRADE NUMERIC "0"
 -- Retrieval info: PRIVATE: ZERO_DELAY_RADIO STRING "0"
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
--- Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "AUTO"
--- Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "10000000"
+-- Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "HIGH"
+-- Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "55"
 -- Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "22909091"
+-- Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "126"
 -- Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
 -- Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "125"
 -- Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
 -- Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "63"
--- Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
--- Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK1"
+-- Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "19841"
 -- Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "20000"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"
--- Retrieval info: CONSTANT: OPERATION_MODE STRING "NORMAL"
+-- Retrieval info: CONSTANT: OPERATION_MODE STRING "NO_COMPENSATION"
 -- Retrieval info: CONSTANT: PLL_TYPE STRING "AUTO"
 -- Retrieval info: CONSTANT: PORT_ACTIVECLOCK STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_ARESET STRING "PORT_UNUSED"

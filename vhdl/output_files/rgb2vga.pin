@@ -69,106 +69,106 @@ CHIP  "rgb2vga"  ASSIGNED TO AN: EP4CE22F17C6
 Pin Name/Usage               : Location  : Dir.   : I/O Standard      : Voltage : I/O Bank  : User Assignment
 -------------------------------------------------------------------------------------------------------------
 VCCIO8                       : A1        : power  :                   : 2.5V    : 8         :                
-GND*                         : A2        :        :                   :         : 8         :                
+RESERVED_INPUT               : A2        :        :                   :         : 8         :                
 D0                           : A3        : output : 2.5 V             :         : 8         : Y              
-GND*                         : A4        :        :                   :         : 8         :                
+RESERVED_INPUT               : A4        :        :                   :         : 8         :                
 FP0                          : A5        : input  : 2.5 V             :         : 8         : Y              
-GND*                         : A6        :        :                   :         : 8         :                
+RESERVED_INPUT               : A6        :        :                   :         : 8         :                
 FP3                          : A7        : input  : 2.5 V             :         : 8         : Y              
 HSYNC                        : A8        : input  : 2.5 V             :         : 8         : Y              
 GND+                         : A9        :        :                   :         : 7         :                
-GND*                         : A10       :        :                   :         : 7         :                
-GND*                         : A11       :        :                   :         : 7         :                
+RESERVED_INPUT               : A10       :        :                   :         : 7         :                
+RESERVED_INPUT               : A11       :        :                   :         : 7         :                
 DIFFBn                       : A12       : input  : Bus LVDS          :         : 7         : Y              
-GND*                         : A13       :        :                   :         : 7         :                
-GND*                         : A14       :        :                   :         : 7         :                
-GND*                         : A15       :        :                   :         : 7         :                
+RESERVED_INPUT               : A13       :        :                   :         : 7         :                
+RESERVED_INPUT               : A14       :        :                   :         : 7         :                
+RESERVED_INPUT               : A15       :        :                   :         : 7         :                
 VCCIO7                       : A16       : power  :                   : 2.5V    : 7         :                
-GND*                         : B1        :        :                   :         : 1         :                
+RESERVED_INPUT               : B1        :        :                   :         : 1         :                
 GND                          : B2        : gnd    :                   :         :           :                
-GND*                         : B3        :        :                   :         : 8         :                
-GND*                         : B4        :        :                   :         : 8         :                
-GND*                         : B5        :        :                   :         : 8         :                
+RESERVED_INPUT               : B3        :        :                   :         : 8         :                
+RESERVED_INPUT               : B4        :        :                   :         : 8         :                
+RESERVED_INPUT               : B5        :        :                   :         : 8         :                
 FP1                          : B6        : input  : 2.5 V             :         : 8         : Y              
 FP2                          : B7        : input  : 2.5 V             :         : 8         : Y              
 VSYNC                        : B8        : input  : 2.5 V             :         : 8         : Y              
 GND+                         : B9        :        :                   :         : 7         :                
-GND*                         : B10       :        :                   :         : 7         :                
-GND*                         : B11       :        :                   :         : 7         :                
+RESERVED_INPUT               : B10       :        :                   :         : 7         :                
+RESERVED_INPUT               : B11       :        :                   :         : 7         :                
 DIFFB                        : B12       : input  : Bus LVDS          :         : 7         : Y              
-GND*                         : B13       :        :                   :         : 7         :                
-GND*                         : B14       :        :                   :         : 7         :                
+RESERVED_INPUT               : B13       :        :                   :         : 7         :                
+RESERVED_INPUT               : B14       :        :                   :         : 7         :                
 GND                          : B15       : gnd    :                   :         :           :                
-GND*                         : B16       :        :                   :         : 6         :                
+RESERVED_INPUT               : B16       :        :                   :         : 6         :                
 ~ALTERA_ASDO_DATA1~ / RESERVED_INPUT_WITH_WEAK_PULLUP : C1        : input  : 2.5 V             :         : 1         : N              
 DRAM_WE_N                    : C2        : output : 2.5 V             :         : 1         : Y              
 D1                           : C3        : output : 2.5 V             :         : 8         : Y              
 VCCIO8                       : C4        : power  :                   : 2.5V    : 8         :                
 GND                          : C5        : gnd    :                   :         :           :                
-GND*                         : C6        :        :                   :         : 8         :                
+RESERVED_INPUT               : C6        :        :                   :         : 8         :                
 VCCIO8                       : C7        : power  :                   : 2.5V    : 8         :                
 FP4                          : C8        : input  : 2.5 V             :         : 8         : Y              
 DIFFRn                       : C9        : input  : Bus LVDS          :         : 7         : Y              
 VCCIO7                       : C10       : power  :                   : 2.5V    : 7         :                
-GND*                         : C11       :        :                   :         : 7         :                
+RESERVED_INPUT               : C11       :        :                   :         : 7         :                
 GND                          : C12       : gnd    :                   :         :           :                
 VCCIO7                       : C13       : power  :                   : 2.5V    : 7         :                
-GND*                         : C14       :        :                   :         : 7         :                
-GND*                         : C15       :        :                   :         : 6         :                
-GND*                         : C16       :        :                   :         : 6         :                
-GND*                         : D1        :        :                   :         : 1         :                
+RESERVED_INPUT               : C14       :        :                   :         : 7         :                
+RESERVED_INPUT               : C15       :        :                   :         : 6         :                
+RESERVED_INPUT               : C16       :        :                   :         : 6         :                
+RESERVED_INPUT               : D1        :        :                   :         : 1         :                
 ~ALTERA_FLASH_nCE_nCSO~ / RESERVED_INPUT_WITH_WEAK_PULLUP : D2        : input  : 2.5 V             :         : 1         : N              
 D2                           : D3        : output : 2.5 V             :         : 8         : Y              
 VCCD_PLL3                    : D4        : power  :                   : 1.2V    :           :                
-GND*                         : D5        :        :                   :         : 8         :                
-GND*                         : D6        :        :                   :         : 8         :                
+RESERVED_INPUT               : D5        :        :                   :         : 8         :                
+RESERVED_INPUT               : D6        :        :                   :         : 8         :                
 GND                          : D7        : gnd    :                   :         :           :                
-GND*                         : D8        :        :                   :         : 8         :                
+RESERVED_INPUT               : D8        :        :                   :         : 8         :                
 DIFFR                        : D9        : input  : Bus LVDS          :         : 7         : Y              
 GND                          : D10       : gnd    :                   :         :           :                
 DIFFGn                       : D11       : input  : Bus LVDS          :         : 7         : Y              
 DIFFG                        : D12       : input  : Bus LVDS          :         : 7         : Y              
 VCCD_PLL2                    : D13       : power  :                   : 1.2V    :           :                
-GND*                         : D14       :        :                   :         : 7         :                
-GND*                         : D15       :        :                   :         : 6         :                
-GND*                         : D16       :        :                   :         : 6         :                
+RESERVED_INPUT               : D14       :        :                   :         : 7         :                
+RESERVED_INPUT               : D15       :        :                   :         : 6         :                
+RESERVED_INPUT               : D16       :        :                   :         : 6         :                
 GND+                         : E1        :        :                   :         : 1         :                
 GND                          : E2        : gnd    :                   :         :           :                
 VCCIO1                       : E3        : power  :                   : 2.5V    : 1         :                
 GND                          : E4        : gnd    :                   :         :           :                
 GNDA3                        : E5        : gnd    :                   :         :           :                
-GND*                         : E6        :        :                   :         : 8         :                
+RESERVED_INPUT               : E6        :        :                   :         : 8         :                
 FP5                          : E7        : input  : 2.5 V             :         : 8         : Y              
 FP6                          : E8        : input  : 2.5 V             :         : 8         : Y              
-GND*                         : E9        :        :                   :         : 7         :                
-GND*                         : E10       :        :                   :         : 7         :                
-GND*                         : E11       :        :                   :         : 7         :                
+RESERVED_INPUT               : E9        :        :                   :         : 7         :                
+RESERVED_INPUT               : E10       :        :                   :         : 7         :                
+RESERVED_INPUT               : E11       :        :                   :         : 7         :                
 GNDA2                        : E12       : gnd    :                   :         :           :                
 GND                          : E13       : gnd    :                   :         :           :                
 VCCIO6                       : E14       : power  :                   : 2.5V    : 6         :                
 GND+                         : E15       :        :                   :         : 6         :                
 GND+                         : E16       :        :                   :         : 6         :                
-GND*                         : F1        :        :                   :         : 1         :                
-GND*                         : F2        :        :                   :         : 1         :                
-GND*                         : F3        :        :                   :         : 1         :                
+RESERVED_INPUT               : F1        :        :                   :         : 1         :                
+RESERVED_INPUT               : F2        :        :                   :         : 1         :                
+RESERVED_INPUT               : F3        :        :                   :         : 1         :                
 nSTATUS                      : F4        :        :                   :         : 1         :                
 VCCA3                        : F5        : power  :                   : 2.5V    :           :                
 GND                          : F6        : gnd    :                   :         :           :                
 VCCINT                       : F7        : power  :                   : 1.2V    :           :                
-GND*                         : F8        :        :                   :         : 8         :                
+RESERVED_INPUT               : F8        :        :                   :         : 8         :                
 FP7                          : F9        : input  : 2.5 V             :         : 7         : Y              
 GND                          : F10       : gnd    :                   :         :           :                
 VCCINT                       : F11       : power  :                   : 1.2V    :           :                
 VCCA2                        : F12       : power  :                   : 2.5V    :           :                
-GND*                         : F13       :        :                   :         : 6         :                
-GND*                         : F14       :        :                   :         : 6         :                
-GND*                         : F15       :        :                   :         : 6         :                
+RESERVED_INPUT               : F13       :        :                   :         : 6         :                
+RESERVED_INPUT               : F14       :        :                   :         : 6         :                
+RESERVED_INPUT               : F15       :        :                   :         : 6         :                
 ~ALTERA_nCEO~ / RESERVED_OUTPUT_OPEN_DRAIN : F16       : output : 2.5 V             :         : 6         : N              
 DRAM_DQ[1]                   : G1        : bidir  : 2.5 V             :         : 1         : Y              
 DRAM_DQ[0]                   : G2        : bidir  : 2.5 V             :         : 1         : Y              
 VCCIO1                       : G3        : power  :                   : 2.5V    : 1         :                
 GND                          : G4        : gnd    :                   :         :           :                
-GND*                         : G5        :        :                   :         : 1         :                
+RESERVED_INPUT               : G5        :        :                   :         : 1         :                
 VCCINT                       : G6        : power  :                   : 1.2V    :           :                
 VCCINT                       : G7        : power  :                   : 1.2V    :           :                
 VCCINT                       : G8        : power  :                   : 1.2V    :           :                
@@ -178,9 +178,9 @@ GND                          : G11       : gnd    :                   :         
 MSEL2                        : G12       :        :                   :         : 6         :                
 GND                          : G13       : gnd    :                   :         :           :                
 VCCIO6                       : G14       : power  :                   : 2.5V    : 6         :                
-GND*                         : G15       :        :                   :         : 6         :                
-GND*                         : G16       :        :                   :         : 6         :                
-~ALTERA_DCLK~                : H1        : output : 2.5 V             :         : 1         : N              
+RESERVED_INPUT               : G15       :        :                   :         : 6         :                
+RESERVED_INPUT               : G16       :        :                   :         : 6         :                
+~ALTERA_DCLK~ / RESERVED_INPUT_WITH_WEAK_PULLUP : H1        : input  : 2.5 V             :         : 1         : N              
 ~ALTERA_DATA0~ / RESERVED_INPUT_WITH_WEAK_PULLUP : H2        : input  : 2.5 V             :         : 1         : N              
 TCK                          : H3        : input  :                   :         : 1         :                
 TDI                          : H4        : input  :                   :         : 1         :                
@@ -208,10 +208,10 @@ GND                          : J9        : gnd    :                   :         
 GND                          : J10       : gnd    :                   :         :           :                
 GND                          : J11       : gnd    :                   :         :           :                
 VCCINT                       : J12       : power  :                   : 1.2V    :           :                
-GND*                         : J13       :        :                   :         : 5         :                
-GND*                         : J14       :        :                   :         : 5         :                
-GND*                         : J15       :        :                   :         : 5         :                
-GND*                         : J16       :        :                   :         : 5         :                
+RESERVED_INPUT               : J13       :        :                   :         : 5         :                
+RESERVED_INPUT               : J14       :        :                   :         : 5         :                
+RESERVED_INPUT               : J15       :        :                   :         : 5         :                
+RESERVED_INPUT               : J16       :        :                   :         : 5         :                
 DRAM_DQ[15]                  : K1        : bidir  : 2.5 V             :         : 2         : Y              
 DRAM_DQ[4]                   : K2        : bidir  : 2.5 V             :         : 2         : Y              
 VCCIO2                       : K3        : power  :                   : 2.5V    : 2         :                
@@ -226,11 +226,11 @@ VCCINT                       : K11       : power  :                   : 1.2V    
 GND                          : K12       : gnd    :                   :         :           :                
 GND                          : K13       : gnd    :                   :         :           :                
 VCCIO5                       : K14       : power  :                   : 2.5V    : 5         :                
-GND*                         : K15       :        :                   :         : 5         :                
+RESERVED_INPUT               : K15       :        :                   :         : 5         :                
 VGAG2                        : K16       : output : 2.5 V             :         : 5         : Y              
 DRAM_CAS_N                   : L1        : output : 2.5 V             :         : 2         : Y              
 DRAM_RAS_N                   : L2        : output : 2.5 V             :         : 2         : Y              
-GND*                         : L3        :        :                   :         : 2         :                
+RESERVED_INPUT               : L3        :        :                   :         : 2         :                
 DRAM_ADDR[12]                : L4        : output : 2.5 V             :         : 2         : Y              
 VCCA1                        : L5        : power  :                   : 2.5V    :           :                
 VCCINT                       : L6        : power  :                   : 1.2V    :           :                
@@ -240,10 +240,10 @@ GND                          : L9        : gnd    :                   :         
 GND                          : L10       : gnd    :                   :         :           :                
 GND                          : L11       : gnd    :                   :         :           :                
 VCCA4                        : L12       : power  :                   : 2.5V    :           :                
-GND*                         : L13       :        :                   :         : 5         :                
-GND*                         : L14       :        :                   :         : 5         :                
+RESERVED_INPUT               : L13       :        :                   :         : 5         :                
+RESERVED_INPUT               : L14       :        :                   :         : 5         :                
 VGAR0                        : L15       : output : 2.5 V             :         : 5         : Y              
-GND*                         : L16       :        :                   :         : 5         :                
+RESERVED_INPUT               : L16       :        :                   :         : 5         :                
 GND+                         : M1        :        :                   :         : 2         :                
 GND+                         : M2        :        :                   :         : 2         :                
 VCCIO2                       : M3        : power  :                   : 2.5V    : 2         :                
@@ -253,7 +253,7 @@ DRAM_BA[1]                   : M6        : output : 2.5 V             :         
 DRAM_BA[0]                   : M7        : output : 2.5 V             :         : 3         : Y              
 DRAM_ADDR[3]                 : M8        : output : 2.5 V             :         : 3         : Y              
 VCCINT                       : M9        : power  :                   : 1.2V    :           :                
-GND*                         : M10       :        :                   :         : 4         :                
+RESERVED_INPUT               : M10       :        :                   :         : 4         :                
 VCCINT                       : M11       : power  :                   : 1.2V    :           :                
 GNDA4                        : M12       : gnd    :                   :         :           :                
 GND                          : M13       : gnd    :                   :         :           :                
@@ -268,13 +268,13 @@ DRAM_ADDR[1]                 : N5        : output : 2.5 V             :         
 DRAM_ADDR[2]                 : N6        : output : 2.5 V             :         : 3         : Y              
 GND                          : N7        : gnd    :                   :         :           :                
 DRAM_ADDR[6]                 : N8        : output : 2.5 V             :         : 3         : Y              
-GND*                         : N9        :        :                   :         : 4         :                
+RESERVED_INPUT               : N9        :        :                   :         : 4         :                
 GND                          : N10       : gnd    :                   :         :           :                
 VGAG1                        : N11       : output : 2.5 V             :         : 4         : Y              
-GND*                         : N12       :        :                   :         : 4         :                
+RESERVED_INPUT               : N12       :        :                   :         : 4         :                
 VCCD_PLL4                    : N13       : power  :                   : 1.2V    :           :                
-GND*                         : N14       :        :                   :         : 5         :                
-GND*                         : N15       :        :                   :         : 5         :                
+RESERVED_INPUT               : N14       :        :                   :         : 5         :                
+RESERVED_INPUT               : N15       :        :                   :         : 5         :                
 VGAR2                        : N16       : output : 2.5 V             :         : 5         : Y              
 DRAM_ADDR[9]                 : P1        : output : 2.5 V             :         : 2         : Y              
 DRAM_ADDR[0]                 : P2        : output : 2.5 V             :         : 2         : Y              
@@ -286,11 +286,11 @@ VCCIO3                       : P7        : power  :                   : 2.5V    
 DRAM_ADDR[4]                 : P8        : output : 2.5 V             :         : 3         : Y              
 VGAG0                        : P9        : output : 2.5 V             :         : 4         : Y              
 VCCIO4                       : P10       : power  :                   : 2.5V    : 4         :                
-GND*                         : P11       :        :                   :         : 4         :                
+RESERVED_INPUT               : P11       :        :                   :         : 4         :                
 GND                          : P12       : gnd    :                   :         :           :                
 VCCIO4                       : P13       : power  :                   : 2.5V    : 4         :                
-GND*                         : P14       :        :                   :         : 4         :                
-GND*                         : P15       :        :                   :         : 5         :                
+RESERVED_INPUT               : P14       :        :                   :         : 4         :                
+RESERVED_INPUT               : P15       :        :                   :         : 5         :                
 VGAR1                        : P16       : output : 2.5 V             :         : 5         : Y              
 DRAM_ADDR[8]                 : R1        : output : 2.5 V             :         : 2         : Y              
 GND                          : R2        : gnd    :                   :         :           :                
@@ -303,11 +303,11 @@ CLOCK_50                     : R8        : input  : 2.5 V             :         
 GND+                         : R9        :        :                   :         : 4         :                
 VGAB1                        : R10       : output : 2.5 V             :         : 4         : Y              
 VGAB0                        : R11       : output : 2.5 V             :         : 4         : Y              
-GND*                         : R12       :        :                   :         : 4         :                
-GND*                         : R13       :        :                   :         : 4         :                
-GND*                         : R14       :        :                   :         : 4         :                
+RESERVED_INPUT               : R12       :        :                   :         : 4         :                
+RESERVED_INPUT               : R13       :        :                   :         : 4         :                
+RESERVED_INPUT               : R14       :        :                   :         : 4         :                
 GND                          : R15       : gnd    :                   :         :           :                
-GND*                         : R16       :        :                   :         : 5         :                
+RESERVED_INPUT               : R16       :        :                   :         : 5         :                
 VCCIO3                       : T1        : power  :                   : 2.5V    : 3         :                
 DRAM_DQ[9]                   : T2        : bidir  : 2.5 V             :         : 3         : Y              
 DRAM_DQ[10]                  : T3        : bidir  : 2.5 V             :         : 3         : Y              
@@ -317,10 +317,10 @@ DRAM_ADDR[7]                 : T6        : output : 2.5 V             :         
 DRAM_ADDR[5]                 : T7        : output : 2.5 V             :         : 3         : Y              
 GND+                         : T8        :        :                   :         : 3         :                
 GND+                         : T9        :        :                   :         : 4         :                
-GND*                         : T10       :        :                   :         : 4         :                
+RESERVED_INPUT               : T10       :        :                   :         : 4         :                
 VGAHS                        : T11       : output : 2.5 V             :         : 4         : Y              
 VGAVS                        : T12       : output : 2.5 V             :         : 4         : Y              
-GND*                         : T13       :        :                   :         : 4         :                
-GND*                         : T14       :        :                   :         : 4         :                
-GND*                         : T15       :        :                   :         : 4         :                
+RESERVED_INPUT               : T13       :        :                   :         : 4         :                
+RESERVED_INPUT               : T14       :        :                   :         : 4         :                
+RESERVED_INPUT               : T15       :        :                   :         : 4         :                
 VCCIO4                       : T16       : power  :                   : 2.5V    : 4         :                

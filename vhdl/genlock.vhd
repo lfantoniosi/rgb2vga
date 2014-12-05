@@ -224,6 +224,8 @@ channel_red: process(clock_pixel, hcount)
 begin
 	if (rising_edge(clock_pixel)) then 
 			case hcount(2 downto 0) is		
+				when "000" =>
+					red_adc(0) <= adc_rgb(2);
 				when "001" => 
 					red_adc(1) <= adc_rgb(2);
 				when "010" => 
@@ -235,12 +237,9 @@ begin
 				when "101" => 
 					red_adc(5) <= adc_rgb(2);
 				when "110" => 
-					red_adc(6) <= adc_rgb(2);
+					red_adc(6) <= adc_rgb(2);					
 				when "111" => 
-					--red_adc(6) <= adc_rgb(2);
-					null;
-				when "000" =>
-					red_adc(0) <= adc_rgb(2);
+					red_adc(6) <= red_adc(6) or adc_rgb(2);					
 			end case;
 	end if;
 end process;
@@ -249,6 +248,8 @@ channel_green: process(clock_pixel, hcount)
 begin
 	if (rising_edge(clock_pixel)) then 
 			case hcount(2 downto 0) is		
+				when "000" =>			
+					green_adc(0) <= adc_rgb(1);					
 				when "001" => 
 					green_adc(1) <= adc_rgb(1);
 				when "010" => 
@@ -260,12 +261,9 @@ begin
 				when "101" => 
 					green_adc(5) <= adc_rgb(1);
 				when "110" => 
-					green_adc(6) <= adc_rgb(1);
+					green_adc(6) <= adc_rgb(1);					
 				when "111" => 
-					--green_adc(6) <= adc_rgb(1);
-					null;
-				when "000" =>			
-					green_adc(0) <= adc_rgb(1);					
+					green_adc(6) <= green_adc(6) or adc_rgb(1);					
 			end case;
 	end if;
 end process;
@@ -274,28 +272,28 @@ channel_blue: process(clock_pixel, hcount)
 begin
 	if (rising_edge(clock_pixel)) then 	
 			case hcount(2 downto 0) is		
-				when "001" => 
-					blue_adc(1) <= adc_rgb(0);
-				when "010" => 
-					blue_adc(2) <= adc_rgb(0);
-				when "011" => 
-					blue_adc(3) <= adc_rgb(0);
-				when "100" => 
-					blue_adc(4) <= adc_rgb(0);
-				when "101" => 
-					blue_adc(5) <= adc_rgb(0);
-				when "110" => 
-					blue_adc(6) <= adc_rgb(0);
-				when "111" => 
-					--blue_adc(6) <= adc_rgb(0);
-					null;
 				when "000" =>	
 					blue_adc(0) <= adc_rgb(0);
+					blue_adc(1) <= adc_rgb(0);
+				when "001" => 
+					blue_adc(2) <= adc_rgb(0);
+				when "010" => 
+					blue_adc(3) <= adc_rgb(0);
+				when "011" => 
+					blue_adc(4) <= adc_rgb(0);
+				when "100" => 
+					blue_adc(5) <= adc_rgb(0);
+				when "101" => 
+					blue_adc(6) <= adc_rgb(0);
+				when "110" => 
+					blue_adc(6) <= blue_adc(6) or adc_rgb(0);
+				when "111" => 
+					blue_adc(6) <= blue_adc(6) or adc_rgb(0);
 			end case;			
 	end if;
 end process;
 
-digitizeR: process(clock_pixel, hcount) --, red_adc)
+digitizeR: process(clock_pixel, hcount, red_adc)
 begin
 	if (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "100") then
@@ -304,7 +302,7 @@ begin
 	end if;
 end process;
 
-digitizeG: process(clock_pixel, hcount) --, green_adc)
+digitizeG: process(clock_pixel, hcount, green_adc)
 begin
 	if (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "100") then
@@ -314,7 +312,7 @@ begin
 end process;
 
 
-digitizeB: process(clock_pixel, hcount) --, blue_adc)
+digitizeB: process(clock_pixel, hcount, blue_adc)
 begin
 	if (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "100") then
@@ -324,26 +322,23 @@ begin
 end process;
 
 
+
 hsync_lock: process(clock_pixel, hsync)
 variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then
-		hblank <= '1'; 
-		if (hsync = sync_level and hcount(13 downto 3) >= 909) then
-			hblank <= '0'; 
-		end if;				
+		hblank <= hsync;
 	end if;
 end process;
 
 hraster: process (clock_pixel, hblank, vblank)
 begin
-	if (hblank = '0') then -- or vblank = '0') then
+	if (hblank = '0' or vblank = '0') then
 		hcount <= (others => '0');
 		decimator <= "000";
 		column <= 0;
 	elsif (rising_edge(clock_pixel)) then
-		hcount <= hcount + 1;
-		
+	
 		if (hcount(2 downto 0) = "111") then
 			decimator <= decimator + 1;			
 			case (shrink) is
@@ -355,11 +350,13 @@ begin
 					column <= column + 1;
 			end case;
 		end if;
-		
+
+		hcount <= hcount + 1;
+				
 	end if;
 end process;
 
-dac_out: process(clock_pixel)
+dac_out: process(clock_pixel, hcount)
 begin	
 	if (rising_edge(clock_pixel)) then		
 		dac_step <= hcount(2 downto 0); 
@@ -477,10 +474,10 @@ begin
 						case (artifact_mode) is
 							when '1' =>
 								case (apple2) is
-									when '0' =>
-										c_pixel := pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);
 									when '1' =>
 										c_pixel := pixel_adc;	
+									when '0' =>
+										c_pixel := pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);
 										-- otherwise get digitized analog value
 								end case;																
 								
@@ -569,10 +566,10 @@ begin
 						case (artifact_mode) is
 							when '1' =>
 								case (apple2) is
-									when '0' =>
-										c_pixel := pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);										
 									when '1' =>
 										c_pixel := pixel_adc;	
+									when '0' =>
+										c_pixel := pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);										
 										-- otherwise get digitized analog value
 								end case;								
 								
@@ -743,7 +740,7 @@ begin
 		elsif (apple2 = '0') then
 			front_porch <= 202;
 		else
-			front_porch <= 184;
+			front_porch <= 183;
 		end if;
 		
 	end if;

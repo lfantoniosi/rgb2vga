@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 208 96)
+	(rect 16 16 216 128)
 	(text "input_detect" (rect 5 0 52 12)(font "Arial" ))
-	(text "inst" (rect 8 64 20 76)(font "Arial" ))
+	(text "inst" (rect 8 96 20 108)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -38,20 +38,27 @@ applicable agreement for further details.
 		(line (pt 0 48)(pt 16 48)(line_width 1))
 	)
 	(port
-		(pt 192 32)
+		(pt 200 32)
 		(output)
 		(text "sync_level" (rect 0 0 43 12)(font "Arial" ))
-		(text "sync_level" (rect 128 27 171 39)(font "Arial" ))
-		(line (pt 192 32)(pt 176 32)(line_width 1))
+		(text "sync_level" (rect 136 27 179 39)(font "Arial" ))
+		(line (pt 200 32)(pt 184 32)(line_width 1))
 	)
 	(port
-		(pt 192 48)
+		(pt 200 48)
 		(output)
 		(text "video_active" (rect 0 0 50 12)(font "Arial" ))
-		(text "video_active" (rect 121 43 171 55)(font "Arial" ))
-		(line (pt 192 48)(pt 176 48)(line_width 1))
+		(text "video_active" (rect 129 43 179 55)(font "Arial" ))
+		(line (pt 200 48)(pt 184 48)(line_width 1))
+	)
+	(port
+		(pt 200 64)
+		(output)
+		(text "hsync_stable" (rect 0 0 53 12)(font "Arial" ))
+		(text "hsync_stable" (rect 126 59 179 71)(font "Arial" ))
+		(line (pt 200 64)(pt 184 64)(line_width 1))
 	)
 	(drawing
-		(rectangle (rect 16 16 176 64)(line_width 1))
+		(rectangle (rect 16 16 184 96)(line_width 1))
 	)
 )

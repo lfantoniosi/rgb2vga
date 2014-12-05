@@ -6,8 +6,9 @@ entity input_detect is
 	
     port(clock_pixel : in std_logic;
 			hsync	 		: in std_logic; -- digital hsync
-			sync_level	: out std_logic;
-			video_active : out std_logic
+			sync_level	: buffer std_logic;
+			video_active : out std_logic;
+			hsync_stable : out std_logic
 );
 			
 end input_detect;
@@ -25,11 +26,13 @@ variable peak: integer range 0 to 1024 * 8;
 begin
 	if (rising_edge(clock_pixel)) then
 		
+		hsync_stable <= '1';
+		
 		if (hsync /= sync) then
 			peak := peak + 1;
 		end if;
 		
-		if (hsync /= sync and peak > 5* 8) then
+		if (hsync /= sync and peak > 7) then
 		
 			if (sync_down > sync_high) then
 				sync_level <= '1';
@@ -48,6 +51,10 @@ begin
 			hcount := 0;
 
 			peak := 0;
+			
+			if (hsync = sync_level) then
+				hsync_stable <= '0';
+			end if;
 		
 		else
 		

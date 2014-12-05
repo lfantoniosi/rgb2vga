@@ -128,7 +128,7 @@ set_location_assignment PIN_E8 -to FP6
 set_location_assignment PIN_F9 -to FP7
 set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
 set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
-set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS OUTPUT DRIVING GROUND"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
@@ -154,10 +154,41 @@ set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP4
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP5
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP6
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP7
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D0
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D1
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D2
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D2
 set_location_assignment PLL_4 -to "pll_ntsc:inst6"
 set_global_assignment -name QIP_FILE clock_mux.qip
 set_global_assignment -name VHDL_FILE input_detect.vhd
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFB
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFBn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFG
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFGn
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFR
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFRn
+set_global_assignment -name TIMEQUEST_MULTICORNER_ANALYSIS ON
+set_global_assignment -name SMART_RECOMPILE ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_COMBO_LOGIC ON
+set_global_assignment -name PHYSICAL_SYNTHESIS_REGISTER_RETIMING ON
+set_global_assignment -name RESERVE_DCLK_AFTER_CONFIGURATION "COMPILER CONFIGURED"
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAB0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAB1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAG0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAG1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAG2
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAHS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR2
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAVS
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VSYNC
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to HSYNC
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP2
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP3
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP4
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP5
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP6
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP7
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

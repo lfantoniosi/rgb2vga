@@ -112,11 +112,11 @@ begin
 	end if;
 end process;
 
-pixel: process(hcount, vcount, videoh, videov, video_active, pixel_in, scanline, hsync, vsync)
+pixel: process(clock_vga, hcount, vcount, videoh, videov, video_active, pixel_in, scanline, hsync, vsync)
 variable blank: std_logic;
 variable vga_pixel: unsigned(7 downto 0);
 begin
---	if (rising_edge(clock_vga)) then
+	if (rising_edge(clock_vga)) then
 
 		blank := videoh and videov;		
 		
@@ -133,20 +133,20 @@ begin
 		vga_out(9 downto 2) <= vga_pixel and blank&blank&blank&blank&blank&blank&blank&blank;
 		vga_out(1 downto 0) <= hsync & vsync;		
 		
---	end if;
+	end if;
 end process;
 
 
-load_row: process(clock_pixel, load_ack)
+load_row: process(clock_pixel, load_ack, hsync)
 begin
 	if (load_ack = '1') then
 		load_req <= '0';
-	end if;
---	elsif (rising_edge(clock_pixel)) then
+	--end if;
+	elsif (rising_edge(clock_pixel)) then
 		if (hsync = '0') then
 			load_req <= '1';
 		end if;
---	end if;
+	end if;
 end process;
 
 

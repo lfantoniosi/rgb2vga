@@ -14,20 +14,19 @@ entity genlock is
 			col_number	: out unsigned(9 downto 0); 
 			store_req	: out std_logic := '0';
 			store_ack 	: in std_logic;
-			dac_step			: out unsigned(2 downto 0);			
 			sw_artifact		: in std_logic;
 			sw_mode 			: in std_logic;
 			sw_sync_level	: in std_logic;
 			sw_deinterlace	: in std_logic;
 			sw_apple2		: in std_logic;
-			sw_shrink		: in std_logic
+			sw_shrink		: in std_logic;
+			dac_step			: out unsigned(2 downto 0)
 );
 			
 end genlock;
 
 architecture behavioral of genlock is
 
---signal vblank, hblank							: std_ulogic;
 signal hcount, vcount							: unsigned(13 downto 0) := to_unsigned(1024, 14);
 signal top_border									: integer := 32;
 signal front_porch								: integer := 181;
@@ -274,21 +273,20 @@ begin
 			case hcount(2 downto 0) is		
 				when "000" =>	
 					blue_adc(0) <= adc_rgb(0);					
-					blue_adc(1) <= adc_rgb(0);
 				when "001" => 
-					blue_adc(2) <= adc_rgb(0);
+					blue_adc(1) <= adc_rgb(0);
 				when "010" => 
-					blue_adc(3) <= adc_rgb(0);
+					blue_adc(2) <= adc_rgb(0);
 				when "011" => 
-					blue_adc(3) <= blue_adc(3) or adc_rgb(0);
+					blue_adc(3) <= adc_rgb(0);
 				when "100" => 
-					blue_adc(4) <= adc_rgb(0);
+					blue_adc(3) <= blue_adc(3) or adc_rgb(0);
 				when "101" => 
-					blue_adc(5) <= adc_rgb(0);
+					blue_adc(4) <= adc_rgb(0);
 				when "110" => 
-					blue_adc(6) <= adc_rgb(0);
+					blue_adc(5) <= adc_rgb(0);
 				when "111" => 
-					null;					
+					blue_adc(6) <= adc_rgb(0);
 			end case;			
 	end if;
 end process;
@@ -322,15 +320,6 @@ begin
 end process;
 
 
-
---hsync_lock: process(clock_pixel, hsync)
---variable sync: std_logic;
---begin	
---	if (rising_edge(clock_pixel)) then
---		hblank <= hsync;
---	end if;
---end process;
-
 hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
@@ -356,13 +345,10 @@ begin
 	end if;
 end process;
 
-dac_out: process(clock_pixel, hcount)
-begin	
-	if (rising_edge(clock_pixel)) then		
-		dac_step <= hcount(2 downto 0); 
-	end if;	
+dac: process(clock_pixel)
+begin
+	dac_step <= hcount(2 downto 0);
 end process;
-
 
 vsync_lock: process(clock_pixel, vblank)
 variable sync: std_logic;
@@ -735,9 +721,10 @@ begin
 		elsif (apple2 = '0') then
 			front_porch <= 202;
 		else
-			front_porch <= 181;
+			front_porch <= 183;
 		end if;		
 	end if;	
 end process;
+
 
 end behavioral;

@@ -6,9 +6,12 @@ entity input_detect is
 	
     port(clock_pixel : in std_logic;
 			hsync	 		: in std_logic; -- digital hsync
+			vsync	 		: in std_logic; -- digital vsync
 			sync_level	: buffer std_logic;
 			video_active : out std_logic;
-			hsync_stable : out std_logic
+			
+			hblank : out std_logic;
+			vblank : out std_logic
 );
 			
 end input_detect;
@@ -18,21 +21,23 @@ architecture behavioral of input_detect is
 begin
 
 process(clock_pixel)
-variable sync : std_logic;
+variable horsync : std_logic;
 variable hcount : integer range 0 to 1024 * 8;
 variable sync_high : integer range 0 to 1024 * 8;
 variable sync_down : integer range 0 to 1024 * 8;
-variable peak: integer range 0 to 1024 * 8;
+variable hpeak: integer range 0 to 1024 * 8;
+
+variable versync : std_logic;
+variable vpeak: integer range 0 to 1024 * 8;
+
 begin
 	if (rising_edge(clock_pixel)) then
 		
-		hsync_stable <= '1';
-		
-		if (hsync /= sync) then
-			peak := peak + 1;
+		hblank <= '1';		
+		if (hsync /= horsync) then
+			hpeak := hpeak + 1;
 		end if;
-		
-		if (hsync /= sync and peak > 7) then
+		if (hsync /= horsync and hpeak > 7) then
 		
 			if (sync_down > sync_high) then
 				sync_level <= '1';
@@ -40,20 +45,20 @@ begin
 				sync_level <= '0';
 			end if;		
 		
-			sync := hsync;
+			horsync := hsync;
 						
 			if (hsync = '0') then
-				sync_down := peak;
+				sync_down := hpeak;
 			else
-				sync_high := peak;
+				sync_high := hpeak;
 			end if;
 			
 			hcount := 0;
 
-			peak := 0;
+			hpeak := 0;
 			
 			if (hsync = sync_level) then
-				hsync_stable <= '0';
+				hblank <= '0';
 			end if;
 		
 		else
@@ -71,6 +76,18 @@ begin
 				sync_high := sync_high + 1;
 			end if;
 					
+		end if;
+
+		vblank <= '1';
+		if (vsync /= versync) then
+			vpeak := vpeak + 1;
+		end if;
+		if (vsync /= versync and vpeak > 7) then
+			versync := hsync;
+			vpeak := 0;
+			if (vsync = sync_level) then
+				vblank <= '0';
+			end if;		
 		end if;
 		
 	end if;

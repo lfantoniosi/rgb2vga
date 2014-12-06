@@ -5,8 +5,8 @@ use IEEE.NUMERIC_STD.ALL;
 entity genlock is
 	
     port(clock_pixel : in std_logic;
-			vsync  		: in std_logic; -- digital vsync
-			hsync	 		: in std_logic; -- digital hsync
+			vblank  		: in std_logic; -- digital vsync
+			hblank 		: in std_logic; -- digital hsync
 			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
 			
 			pixel_out	: out unsigned(7 downto 0);
@@ -27,7 +27,7 @@ end genlock;
 
 architecture behavioral of genlock is
 
-signal vblank, hblank							: std_ulogic;
+--signal vblank, hblank							: std_ulogic;
 signal hcount, vcount							: unsigned(13 downto 0) := to_unsigned(1024, 14);
 signal top_border									: integer := 32;
 signal front_porch								: integer := 181;
@@ -227,19 +227,19 @@ begin
 				when "000" =>
 					red_adc(0) <= adc_rgb(2);
 				when "001" => 
-					red_adc(1) <= adc_rgb(2);
+					red_adc(1) <= red_adc(2);
 				when "010" => 
 					red_adc(2) <= adc_rgb(2);
 				when "011" => 
 					red_adc(3) <= adc_rgb(2);
 				when "100" => 
-					red_adc(4) <= adc_rgb(2);
+					red_adc(3) <= red_adc(3) or adc_rgb(2);
 				when "101" => 
-					red_adc(5) <= adc_rgb(2);
+					red_adc(4) <= adc_rgb(2);
 				when "110" => 
-					red_adc(6) <= adc_rgb(2);					
+					red_adc(5) <= adc_rgb(2);					
 				when "111" => 
-					red_adc(6) <= red_adc(6) or adc_rgb(2);					
+					red_adc(6) <= adc_rgb(2);
 			end case;
 	end if;
 end process;
@@ -257,13 +257,13 @@ begin
 				when "011" => 
 					green_adc(3) <= adc_rgb(1);
 				when "100" => 
-					green_adc(4) <= adc_rgb(1);
+					green_adc(3) <= green_adc(3) or adc_rgb(1);
 				when "101" => 
-					green_adc(5) <= adc_rgb(1);
+					green_adc(4) <= adc_rgb(1);
 				when "110" => 
-					green_adc(6) <= adc_rgb(1);					
+					green_adc(5) <= adc_rgb(1);					
 				when "111" => 
-					green_adc(6) <= green_adc(6) or adc_rgb(1);					
+					green_adc(6) <= adc_rgb(1);					
 			end case;
 	end if;
 end process;
@@ -273,22 +273,22 @@ begin
 	if (rising_edge(clock_pixel)) then 	
 			case hcount(2 downto 0) is		
 				when "000" =>	
-					blue_adc(0) <= adc_rgb(0);
+					blue_adc(0) <= adc_rgb(0);					
 					blue_adc(1) <= adc_rgb(0);
 				when "001" => 
 					blue_adc(2) <= adc_rgb(0);
 				when "010" => 
 					blue_adc(3) <= adc_rgb(0);
 				when "011" => 
-					blue_adc(4) <= adc_rgb(0);
+					blue_adc(3) <= blue_adc(3) or adc_rgb(0);
 				when "100" => 
-					blue_adc(5) <= adc_rgb(0);
+					blue_adc(4) <= adc_rgb(0);
 				when "101" => 
-					blue_adc(6) <= adc_rgb(0);
+					blue_adc(5) <= adc_rgb(0);
 				when "110" => 
-					blue_adc(6) <= blue_adc(6) or adc_rgb(0);
+					blue_adc(6) <= adc_rgb(0);
 				when "111" => 
-					blue_adc(6) <= blue_adc(6) or adc_rgb(0);
+					null;					
 			end case;			
 	end if;
 end process;
@@ -323,13 +323,13 @@ end process;
 
 
 
-hsync_lock: process(clock_pixel, hsync)
-variable sync: std_logic;
-begin	
-	if (rising_edge(clock_pixel)) then
-		hblank <= hsync;
-	end if;
-end process;
+--hsync_lock: process(clock_pixel, hsync)
+--variable sync: std_logic;
+--begin	
+--	if (rising_edge(clock_pixel)) then
+--		hblank <= hsync;
+--	end if;
+--end process;
 
 hraster: process (clock_pixel, hblank, vblank)
 begin
@@ -364,20 +364,20 @@ begin
 end process;
 
 
-vsync_lock: process(clock_pixel, vsync)
+vsync_lock: process(clock_pixel, vblank)
 variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then		
 
-		vblank <= '1'; 					
-		if (vsync = sync_level and vcount > 261) then
+		--vblank <= '1'; 					
+		if (vblank = '0') then
 		
 			if (vcount > 270) then
 				top_border <= 42;
 			else
 				top_border <= 16;
 			end if;		
-			vblank <= '0';
+			--vblank <= '0';
 		end if;								
 	end if;	
 
@@ -404,7 +404,7 @@ begin
 	elsif (rising_edge(clock_pixel)) then
 		case (apple2) is
 			when '1' =>
-				if (column < front_porch and hsync = not sync_level) then		
+				if (column < front_porch) then		
 					-- out of active window. if coco2/coco3 check for white border to activate artifacting
 					if (pixel_adc(7 downto 2) = "111111") then
 						artifact_mode <= artifact;
@@ -412,7 +412,7 @@ begin
 				end if;
 
 			when '0' =>
-				if (hcount(13 downto 3) < front_porch - 50 and hsync = not sync_level) then
+				if (hcount(13 downto 3) < front_porch - 50) then
 					-- detect color burst
 					if (to_integer(pixel_adc(4 downto 2)) > 4) then
 						artifact_mode <= artifact;
@@ -433,15 +433,12 @@ variable c_pixel: unsigned(7 downto 0);
 variable b_pixel: unsigned(7 downto 0);
 begin
 	if (rising_edge(clock_pixel)) then
+	
 		if (hcount(2 downto 0) = "100") then
-		
 			-- digitize in the middle of the pixel
 			if (column >= front_porch and column < 900 and vcount >= top_border and vcount < 312) then		
 				-- user active window
-				
-				--col := to_integer(hcount(13 downto 3)) - front_porch;		
 				col := column - front_porch;
-				
 				case (deinterlace) is
 					when '0' =>
 						-- for deinterlace extend the image. frame = odd/even fields
@@ -453,15 +450,14 @@ begin
 				
 				row_number <= to_unsigned(row, row_number'length);
 				col_number <= to_unsigned(col, col_number'length);				
-				-- buffer column/row
-				
-			
+		
 				pixel(3 downto 1) := pixel(2 downto 0);
 				-- pixel shifting for apple2/coco3 artifact
 				case (pixel_adc(4 downto 2)) is
 					when "111" => pixel(0) := '1';
 					when "110" => pixel(0) := apple2;
 					when "101" => pixel(0) := apple2;
+					when "100" => pixel(0) := apple2;
 					when others => pixel(0) := '0';
 				end case;				
 
@@ -637,7 +633,6 @@ begin
 					when '1' =>
 						pixel_out <= c_pixel;
 				end case;
-				
 			end if;
 		end if;
 	end if;
@@ -740,11 +735,9 @@ begin
 		elsif (apple2 = '0') then
 			front_porch <= 202;
 		else
-			front_porch <= 183;
-		end if;
-		
-	end if;
-	
+			front_porch <= 181;
+		end if;		
+	end if;	
 end process;
 
 end behavioral;

@@ -141,11 +141,12 @@ load_row: process(clock_pixel, load_ack)
 begin
 	if (load_ack = '1') then
 		load_req <= '0';
-	elsif (rising_edge(clock_pixel)) then
+	end if;
+--	elsif (rising_edge(clock_pixel)) then
 		if (hsync = '0') then
 			load_req <= '1';
 		end if;
-	end if;
+--	end if;
 end process;
 
 

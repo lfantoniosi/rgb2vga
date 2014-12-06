@@ -154,9 +154,9 @@ set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP4
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP5
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP6
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP7
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D0
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D1
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to D2
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D2
 set_location_assignment PLL_4 -to "pll_ntsc:inst6"
 set_global_assignment -name QIP_FILE clock_mux.qip
 set_global_assignment -name VHDL_FILE input_detect.vhd
@@ -181,8 +181,8 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR0
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR1
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR2
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAVS
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VSYNC
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to HSYNC
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to VSYNC
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to HSYNC
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP0
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP1
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP2

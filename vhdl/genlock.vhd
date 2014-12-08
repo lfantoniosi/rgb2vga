@@ -5,7 +5,7 @@ use IEEE.NUMERIC_STD.ALL;
 entity genlock is
 	
     port(clock_pixel : in std_logic;
-			vblank  		: in std_logic; -- digital vsync
+			vsync  		: in std_logic; -- digital vsync
 			hblank 		: in std_logic; -- digital hsync
 			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
 			
@@ -27,7 +27,9 @@ end genlock;
 
 architecture behavioral of genlock is
 
-signal hcount, vcount							: unsigned(13 downto 0) := to_unsigned(1024, 14);
+signal vblank: 	std_logic;
+
+signal hcount, vcount							: unsigned(13 downto 0);
 signal top_border									: integer := 32;
 signal front_porch								: integer := 181;
 
@@ -219,9 +221,9 @@ end f_adc;
 
 begin
 
-channel_red: process(clock_pixel, hcount) 
+channel_red: process(adc_rgb) --clock_pixel, hcount) 
 begin
-	if (rising_edge(clock_pixel)) then 
+--	if (rising_edge(clock_pixel)) then 
 			case hcount(2 downto 0) is		
 				when "000" =>
 					red_adc(0) <= adc_rgb(2);
@@ -240,12 +242,12 @@ begin
 				when "111" => 
 					red_adc(6) <= adc_rgb(2);
 			end case;
-	end if;
+--	end if;
 end process;
 
-channel_green: process(clock_pixel, hcount) 
+channel_green: process(adc_rgb) --clock_pixel, hcount) 
 begin
-	if (rising_edge(clock_pixel)) then 
+--	if (rising_edge(clock_pixel)) then 
 			case hcount(2 downto 0) is		
 				when "000" =>			
 					green_adc(0) <= adc_rgb(1);					
@@ -264,21 +266,21 @@ begin
 				when "111" => 
 					green_adc(6) <= adc_rgb(1);					
 			end case;
-	end if;
+--	end if;
 end process;
 
-channel_blue: process(clock_pixel, hcount)
+channel_blue: process(adc_rgb) --clock_pixel, hcount)
 begin
-	if (rising_edge(clock_pixel)) then 	
+--	if (rising_edge(clock_pixel)) then 	
 			case hcount(2 downto 0) is		
 				when "000" =>	
 					blue_adc(0) <= adc_rgb(0);					
 				when "001" => 
-					blue_adc(1) <= adc_rgb(0);
+					blue_adc(1) <= adc_rgb(0);					
 				when "010" => 
-					blue_adc(2) <= adc_rgb(0);
+					blue_adc(2) <= adc_rgb(0);					
 				when "011" => 
-					blue_adc(3) <= adc_rgb(0);
+					blue_adc(3) <= adc_rgb(0);					
 				when "100" => 
 					blue_adc(3) <= blue_adc(3) or adc_rgb(0);
 				when "101" => 
@@ -288,35 +290,35 @@ begin
 				when "111" => 
 					blue_adc(6) <= adc_rgb(0);
 			end case;			
-	end if;
+--	end if;
 end process;
 
 digitizeR: process(clock_pixel, hcount, red_adc)
 begin
-	if (rising_edge(clock_pixel)) then
+--	if (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "100") then
 			pixel_adc(7 downto 5) <= f_adc(red_adc);
 		end if;
-	end if;
+--	end if;
 end process;
 
 digitizeG: process(clock_pixel, hcount, green_adc)
 begin
-	if (rising_edge(clock_pixel)) then
+--	if (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "100") then
 			pixel_adc(4 downto 2) <= f_adc(green_adc);
 		end if;
-	end if;
+--	end if;
 end process;
 
 
 digitizeB: process(clock_pixel, hcount, blue_adc)
 begin
-	if (rising_edge(clock_pixel)) then
+--	if (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "100") then
 			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
 		end if;
-	end if;
+--	end if;
 end process;
 
 
@@ -343,31 +345,54 @@ begin
 		hcount <= hcount + 1;
 				
 	end if;
+	
 end process;
 
-dac: process(clock_pixel)
-begin
-	dac_step <= hcount(2 downto 0);
-end process;
+--dac: process(hcount)
+--begin
+	--if(rising_edge(clock_pixel)) then
+--		dac_step <= hcount(2 downto 0);
+	--end if;
+--end process;
 
-vsync_lock: process(clock_pixel, vblank)
+
+vsync_lock: process(clock_pixel, vsync)
 variable sync: std_logic;
 begin	
 	if (rising_edge(clock_pixel)) then		
 
-		--vblank <= '1'; 					
-		if (vblank = '0') then
+		vblank <= '1'; 					
+		if (vsync = sync_level and vcount > 261) then
 		
 			if (vcount > 270) then
 				top_border <= 42;
 			else
 				top_border <= 16;
 			end if;		
-			--vblank <= '0';
+			vblank <= '0';
 		end if;								
 	end if;	
 
 end process;
+
+--vsync_lock: process(clock_pixel, vblank)
+--variable sync: std_logic;
+--begin	
+--	if (rising_edge(clock_pixel)) then		
+--
+--		--vblank <= '1'; 					
+--		if (vblank = '0') then
+--		
+--			if (vcount > 270) then
+--				top_border <= 42;
+--			else
+--				top_border <= 16;
+--			end if;		
+--			--vblank <= '0';
+--		end if;								
+--	end if;	
+--
+--end process;
 
 vraster: process (clock_pixel, vblank)
 begin
@@ -410,7 +435,7 @@ begin
 	end if;
 end process;
 
-process_pixel: process(clock_pixel) 
+process_pixel: process(clock_pixel, hcount) 
 variable row, col: integer range 0 to 1024;
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
@@ -721,10 +746,11 @@ begin
 		elsif (apple2 = '0') then
 			front_porch <= 202;
 		else
-			front_porch <= 183;
+			front_porch <= 182;
 		end if;		
 	end if;	
 end process;
 
-
+	dac_step <= hcount(2 downto 0);
+	
 end behavioral;

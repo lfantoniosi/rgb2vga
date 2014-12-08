@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Sat Dec 06 12:56:58 2014
+Mon Dec 08 01:17:02 2014
 Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
 
 
@@ -16,8 +16,8 @@ Quartus II 64-Bit Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
   8. Analysis & Synthesis RAM Summary
   9. Analysis & Synthesis IP Cores Summary
  10. State Machine - |top|sdram:inst|SdrRoutine
- 11. Registers Removed During Synthesis
- 12. Removed Registers Triggering Further Register Optimizations
+ 11. User-Specified and Inferred Latches
+ 12. Registers Removed During Synthesis
  13. General Register Statistics
  14. Inverted Register Statistics
  15. Physical Synthesis Netlist Optimizations
@@ -57,15 +57,15 @@ applicable agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Dec 06 12:56:58 2014      ;
+; Analysis & Synthesis Status        ; Successful - Mon Dec 08 01:17:02 2014      ;
 ; Quartus II 64-Bit Version          ; 13.0.0 Build 156 04/24/2013 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; top                                        ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 833                                        ;
-;     Total combinational functions  ; 734                                        ;
-;     Dedicated logic registers      ; 411                                        ;
-; Total registers                    ; 411                                        ;
+; Total logic elements               ; 836                                        ;
+;     Total combinational functions  ; 749                                        ;
+;     Dedicated logic registers      ; 385                                        ;
+; Total registers                    ; 385                                        ;
 ; Total pins                         ; 69                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 16,384                                     ;
@@ -210,20 +210,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+-----------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                   ;
 +---------------------------------------------+-----------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 833                                                                                     ;
+; Estimated Total logic elements              ; 836                                                                                     ;
 ;                                             ;                                                                                         ;
-; Total combinational functions               ; 734                                                                                     ;
+; Total combinational functions               ; 749                                                                                     ;
 ; Logic element usage by number of LUT inputs ;                                                                                         ;
-;     -- 4 input functions                    ; 322                                                                                     ;
-;     -- 3 input functions                    ; 157                                                                                     ;
-;     -- <=2 input functions                  ; 255                                                                                     ;
+;     -- 4 input functions                    ; 270                                                                                     ;
+;     -- 3 input functions                    ; 205                                                                                     ;
+;     -- <=2 input functions                  ; 274                                                                                     ;
 ;                                             ;                                                                                         ;
 ; Logic elements by mode                      ;                                                                                         ;
-;     -- normal mode                          ; 508                                                                                     ;
-;     -- arithmetic mode                      ; 226                                                                                     ;
+;     -- normal mode                          ; 526                                                                                     ;
+;     -- arithmetic mode                      ; 223                                                                                     ;
 ;                                             ;                                                                                         ;
-; Total registers                             ; 411                                                                                     ;
-;     -- Dedicated logic registers            ; 411                                                                                     ;
+; Total registers                             ; 385                                                                                     ;
+;     -- Dedicated logic registers            ; 385                                                                                     ;
 ;     -- I/O registers                        ; 0                                                                                       ;
 ;                                             ;                                                                                         ;
 ; I/O pins                                    ; 69                                                                                      ;
@@ -233,9 +233,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- PLLs                                 ; 1                                                                                       ;
 ;                                             ;                                                                                         ;
 ; Maximum fan-out node                        ; pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll1:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 429                                                                                     ;
-; Total fan-out                               ; 4003                                                                                    ;
-; Average fan-out                             ; 3.05                                                                                    ;
+; Maximum fan-out                             ; 403                                                                                     ;
+; Total fan-out                               ; 3910                                                                                    ;
+; Average fan-out                             ; 3.00                                                                                    ;
 +---------------------------------------------+-----------------------------------------------------------------------------------------+
 
 
@@ -244,15 +244,15 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                            ; Library Name ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
-; |top                                                          ; 734 (1)           ; 411 (0)      ; 16384       ; 0            ; 0       ; 0         ; 69   ; 0            ; |top                                                                           ;              ;
+; |top                                                          ; 749 (1)           ; 385 (0)      ; 16384       ; 0            ; 0       ; 0         ; 69   ; 0            ; |top                                                                           ;              ;
 ;    |altiobuf:inst12|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12                                                           ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst12|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component     ;              ;
 ;    |altiobuf:inst13|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13                                                           ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst13|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component     ;              ;
 ;    |altiobuf:inst16|                                          ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16                                                           ;              ;
 ;       |altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component     ;              ;
-;    |genlock:inst8|                                            ; 328 (328)         ; 134 (134)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst8                                                             ;              ;
-;    |input_detect:inst2|                                       ; 163 (163)         ; 63 (63)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|input_detect:inst2                                                        ;              ;
+;    |genlock:inst8|                                            ; 368 (368)         ; 113 (113)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|genlock:inst8                                                             ;              ;
+;    |input_detect:inst2|                                       ; 137 (137)         ; 58 (58)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|input_detect:inst2                                                        ;              ;
 ;    |pll_ntsc:inst6|                                           ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll_ntsc:inst6                                                            ;              ;
 ;       |altpll:altpll_component|                               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll_ntsc:inst6|altpll:altpll_component                                    ;              ;
 ;          |pll_ntsc_altpll1:auto_generated|                    ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll1:auto_generated    ;              ;
@@ -262,7 +262,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;    |ram:inst4|                                                ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4                                                                 ;              ;
 ;       |altsyncram:altsyncram_component|                       ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4|altsyncram:altsyncram_component                                 ;              ;
 ;          |altsyncram_q6o1:auto_generated|                     ; 0 (0)             ; 0 (0)        ; 8192        ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|ram:inst4|altsyncram:altsyncram_component|altsyncram_q6o1:auto_generated  ;              ;
-;    |sdram:inst|                                               ; 163 (163)         ; 152 (152)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|sdram:inst                                                                ;              ;
+;    |sdram:inst|                                               ; 164 (164)         ; 152 (152)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|sdram:inst                                                                ;              ;
 ;    |vgaout:inst7|                                             ; 79 (79)           ; 62 (62)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |top|vgaout:inst7                                                              ;              ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+--------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
@@ -305,6 +305,45 @@ Encoding Type:  One-Hot
 ; SdrRoutine.SdrRoutine_LoadRow    ; 0                              ; 1                             ; 0                                ; 0                          ; 0                          ; 1                          ;
 ; SdrRoutine.SdrRoutine_StoreRow   ; 1                              ; 0                             ; 0                                ; 0                          ; 0                          ; 1                          ;
 +----------------------------------+--------------------------------+-------------------------------+----------------------------------+----------------------------+----------------------------+----------------------------+
+
+
++----------------------------------------------------------------------------------------------------+
+; User-Specified and Inferred Latches                                                                ;
++-----------------------------------------------------+---------------------+------------------------+
+; Latch Name                                          ; Latch Enable Signal ; Free of Timing Hazards ;
++-----------------------------------------------------+---------------------+------------------------+
+; genlock:inst8|pixel_adc[4]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|pixel_adc[2]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|pixel_adc[3]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|pixel_adc[7]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|pixel_adc[6]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|pixel_adc[5]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|pixel_adc[1]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|pixel_adc[0]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|green_adc[0]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|green_adc[1]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|green_adc[2]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|green_adc[3]                          ; genlock:inst8|Mux48 ; yes                    ;
+; genlock:inst8|green_adc[5]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|green_adc[4]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|green_adc[6]                          ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|red_adc[0]                            ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|red_adc[1]                            ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|red_adc[2]                            ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|red_adc[3]                            ; genlock:inst8|Mux48 ; yes                    ;
+; genlock:inst8|red_adc[5]                            ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|red_adc[4]                            ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|red_adc[6]                            ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|blue_adc[0]                           ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|blue_adc[1]                           ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|blue_adc[2]                           ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|blue_adc[3]                           ; genlock:inst8|Mux48 ; yes                    ;
+; genlock:inst8|blue_adc[5]                           ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|blue_adc[4]                           ; genlock:inst8|Mux42 ; yes                    ;
+; genlock:inst8|blue_adc[6]                           ; genlock:inst8|Mux42 ; yes                    ;
+; Number of user-specified and inferred latches = 29  ;                     ;                        ;
++-----------------------------------------------------+---------------------+------------------------+
+Note: All latches listed above may not be present at the end of synthesis due to various synthesis optimizations.
 
 
 +----------------------------------------------------------------------------------------+
@@ -394,31 +433,16 @@ Encoding Type:  One-Hot
 ; genlock:inst8|aqua[2,5]                     ; Merged with genlock:inst8|magenta[0]     ;
 ; genlock:inst8|lightblue[0,1]                ; Merged with genlock:inst8|magenta[0]     ;
 ; genlock:inst8|front_porch[3]                ; Merged with genlock:inst8|front_porch[6] ;
-; genlock:inst8|front_porch[0,2,4]            ; Merged with genlock:inst8|front_porch[5] ;
+; genlock:inst8|front_porch[2,4]              ; Merged with genlock:inst8|front_porch[5] ;
 ; genlock:inst8|top_border[3]                 ; Merged with genlock:inst8|top_border[1]  ;
 ; genlock:inst8|top_border[5]                 ; Merged with genlock:inst8|top_border[4]  ;
 ; sdram:inst|SdrUdq                           ; Merged with sdram:inst|SdrLdq            ;
-; input_detect:inst2|\vertical:vpeak[12,13]   ; Stuck at GND due to stuck port data_in   ;
 ; input_detect:inst2|\horizontal:hpeak[12,13] ; Stuck at GND due to stuck port data_in   ;
 ; sdram:inst|SdrRoutine.SdrRoutine_RefreshAll ; Stuck at GND due to stuck port data_in   ;
 ; genlock:inst8|magenta[7]                    ; Merged with genlock:inst8|brown[7]       ;
 ; genlock:inst8|brown[1]                      ; Merged with genlock:inst8|magenta[0]     ;
-; input_detect:inst2|\vertical:vpeak[3..11]   ; Stuck at GND due to stuck port data_in   ;
-; Total Number of Removed Registers = 200     ;                                          ;
+; Total Number of Removed Registers = 188     ;                                          ;
 +---------------------------------------------+------------------------------------------+
-
-
-+-----------------------------------------------------------------------------------------------------------------------------------------------------+
-; Removed Registers Triggering Further Register Optimizations                                                                                         ;
-+----------------------------------------+---------------------------+--------------------------------------------------------------------------------+
-; Register name                          ; Reason for Removal        ; Registers Removed due to This Register                                         ;
-+----------------------------------------+---------------------------+--------------------------------------------------------------------------------+
-; input_detect:inst2|\vertical:vpeak[13] ; Stuck at GND              ; input_detect:inst2|\vertical:vpeak[4], input_detect:inst2|\vertical:vpeak[3],  ;
-;                                        ; due to stuck port data_in ; input_detect:inst2|\vertical:vpeak[5], input_detect:inst2|\vertical:vpeak[6],  ;
-;                                        ;                           ; input_detect:inst2|\vertical:vpeak[7], input_detect:inst2|\vertical:vpeak[8],  ;
-;                                        ;                           ; input_detect:inst2|\vertical:vpeak[9], input_detect:inst2|\vertical:vpeak[10], ;
-;                                        ;                           ; input_detect:inst2|\vertical:vpeak[11]                                         ;
-+----------------------------------------+---------------------------+--------------------------------------------------------------------------------+
 
 
 +------------------------------------------------------+
@@ -426,12 +450,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 411   ;
+; Total registers                              ; 385   ;
 ; Number of registers using Synchronous Clear  ; 17    ;
-; Number of registers using Synchronous Load   ; 59    ;
+; Number of registers using Synchronous Load   ; 65    ;
 ; Number of registers using Asynchronous Clear ; 45    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 276   ;
+; Number of registers using Clock Enable       ; 248   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -441,91 +465,131 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; genlock:inst8|front_porch[5]           ; 11      ;
-; genlock:inst8|artifact_mode            ; 18      ;
-; Total number of inverted registers = 2 ;         ;
+; genlock:inst8|front_porch[0]           ; 3       ;
+; genlock:inst8|front_porch[5]           ; 9       ;
+; genlock:inst8|artifact_mode            ; 17      ;
+; Total number of inverted registers = 3 ;         ;
 +----------------------------------------+---------+
 
 
-+-----------------------------------------------------------------------------------------------+
-; Physical Synthesis Netlist Optimizations                                                      ;
-+------------------------------------------------------+------------------+---------------------+
-; Node                                                 ; Action           ; Reason              ;
-+------------------------------------------------------+------------------+---------------------+
-; genlock:inst8|Add6~0                                 ; Modified         ; Timing optimization ;
-; genlock:inst8|Add6~1                                 ; Modified         ; Timing optimization ;
-; genlock:inst8|row~7                                  ; Modified         ; Timing optimization ;
-; genlock:inst8|row~8                                  ; Modified         ; Timing optimization ;
-; input_detect:inst2|Add0~1                            ; Modified         ; Timing optimization ;
-; input_detect:inst2|Add1~1                            ; Modified         ; Timing optimization ;
-; input_detect:inst2|Add2~1                            ; Modified         ; Timing optimization ;
-; input_detect:inst2|Add3~1                            ; Modified         ; Timing optimization ;
-; input_detect:inst2|Add4~1                            ; Modified         ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[0]_OTERM1   ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[0]~0        ; Modified         ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[1]_OTERM3   ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[2]_OTERM5   ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[3]_OTERM7   ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[4]_OTERM9   ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[5]_OTERM11  ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[6]_OTERM13  ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[7]_OTERM15  ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[8]_OTERM17  ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[9]_OTERM19  ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[10]_OTERM21 ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|\horizontal:sync_high[11]_OTERM23 ; Retimed Register ; Timing optimization ;
-; input_detect:inst2|hcount~39                         ; Modified         ; Timing optimization ;
-; input_detect:inst2|sync_down~14                      ; Modified         ; Timing optimization ;
-; input_detect:inst2|vpeak~8                           ; Modified         ; Timing optimization ;
-; sdram:inst|Add0~0                                    ; Modified         ; Timing optimization ;
-; sdram:inst|SdrAdr[3]_OTERM25                         ; Retimed Register ; Timing optimization ;
-; sdram:inst|SdrAdr[3]~3                               ; Deleted          ; Timing optimization ;
-; sdram:inst|SdrAdr[6]_OTERM27                         ; Retimed Register ; Timing optimization ;
-; sdram:inst|SdrAdr[6]~2                               ; Deleted          ; Timing optimization ;
-; sdram:inst|SdrAdr[7]_OTERM29                         ; Retimed Register ; Timing optimization ;
-; sdram:inst|SdrAdr[7]~1                               ; Deleted          ; Timing optimization ;
-; sdram:inst|SdrAdr[8]_OTERM31                         ; Retimed Register ; Timing optimization ;
-; sdram:inst|SdrAdr[8]~0                               ; Deleted          ; Timing optimization ;
-; sdram:inst|Selector7~9                               ; Modified         ; Timing optimization ;
-; vgaout:inst7|Add1~0                                  ; Modified         ; Timing optimization ;
-; vgaout:inst7|RESULT~12                               ; Deleted          ; Timing optimization ;
-; vgaout:inst7|RESULT~13                               ; Deleted          ; Timing optimization ;
-; vgaout:inst7|RESULT~14                               ; Deleted          ; Timing optimization ;
-; vgaout:inst7|RESULT~15                               ; Deleted          ; Timing optimization ;
-; vgaout:inst7|RESULT~16                               ; Deleted          ; Timing optimization ;
-; vgaout:inst7|vcount[0]~3                             ; Modified         ; Timing optimization ;
-; vgaout:inst7|vga_out[2]~4                            ; Modified         ; Timing optimization ;
-; vgaout:inst7|vga_out[4]~2                            ; Modified         ; Timing optimization ;
-; vgaout:inst7|vga_out[5]~3                            ; Modified         ; Timing optimization ;
-; vgaout:inst7|vga_out[7]~0                            ; Modified         ; Timing optimization ;
-; vgaout:inst7|vga_out[8]~1                            ; Modified         ; Timing optimization ;
-+------------------------------------------------------+------------------+---------------------+
++------------------------------------------------------------------------------------------+
+; Physical Synthesis Netlist Optimizations                                                 ;
++-------------------------------------------------+------------------+---------------------+
+; Node                                            ; Action           ; Reason              ;
++-------------------------------------------------+------------------+---------------------+
+; genlock:inst8|Add6~0                            ; Modified         ; Timing optimization ;
+; genlock:inst8|Add6~1                            ; Modified         ; Timing optimization ;
+; genlock:inst8|Add8~23                           ; Deleted          ; Timing optimization ;
+; genlock:inst8|Add8~27                           ; Deleted          ; Timing optimization ;
+; genlock:inst8|Add8~28                           ; Modified         ; Timing optimization ;
+; genlock:inst8|Add8~28_RESYN60_BDD61             ; Created          ; Timing optimization ;
+; genlock:inst8|Add8~28_RESYN62_BDD63             ; Created          ; Timing optimization ;
+; genlock:inst8|Add8~53                           ; Deleted          ; Timing optimization ;
+; genlock:inst8|Add8~54                           ; Modified         ; Timing optimization ;
+; genlock:inst8|Add8~54_RESYN72_BDD73             ; Created          ; Timing optimization ;
+; genlock:inst8|Add8~54_RESYN74_BDD75             ; Created          ; Timing optimization ;
+; genlock:inst8|Add9~17                           ; Deleted          ; Timing optimization ;
+; genlock:inst8|Add9~18                           ; Modified         ; Timing optimization ;
+; genlock:inst8|Add9~18_RESYN64_BDD65             ; Created          ; Timing optimization ;
+; genlock:inst8|Add9~18_RESYN66_BDD67             ; Created          ; Timing optimization ;
+; genlock:inst8|Add9~18_RESYN68_BDD69             ; Created          ; Timing optimization ;
+; genlock:inst8|Add9~18_RESYN70_BDD71             ; Created          ; Timing optimization ;
+; genlock:inst8|Mux3~4                            ; Modified         ; Timing optimization ;
+; genlock:inst8|Mux35~16                          ; Deleted          ; Timing optimization ;
+; genlock:inst8|Mux35~25                          ; Deleted          ; Timing optimization ;
+; genlock:inst8|Mux35~26                          ; Deleted          ; Timing optimization ;
+; genlock:inst8|Mux35~27                          ; Deleted          ; Timing optimization ;
+; genlock:inst8|Mux35~28                          ; Deleted          ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[5]         ; Deleted          ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[5]_OTERM57 ; Retimed Register ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[5]_OTERM59 ; Retimed Register ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[6]         ; Deleted          ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[6]_OTERM53 ; Retimed Register ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[6]_OTERM55 ; Retimed Register ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[7]         ; Deleted          ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[7]_OTERM47 ; Retimed Register ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[7]_OTERM49 ; Retimed Register ; Timing optimization ;
+; genlock:inst8|\process_pixel:c_pixel[7]_OTERM51 ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[2]                      ; Deleted          ; Timing optimization ;
+; genlock:inst8|pixel_out[2]_OTERM1               ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[2]_OTERM21_OTERM43      ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[2]_OTERM21_OTERM45      ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[2]_OTERM23              ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[3]                      ; Deleted          ; Timing optimization ;
+; genlock:inst8|pixel_out[3]_OTERM13              ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[3]_OTERM33_OTERM41      ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[4]                      ; Deleted          ; Timing optimization ;
+; genlock:inst8|pixel_out[4]_OTERM11              ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[5]                      ; Deleted          ; Timing optimization ;
+; genlock:inst8|pixel_out[5]_OTERM19              ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[5]_OTERM29_OTERM37      ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[5]_OTERM29_OTERM39      ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[6]                      ; Deleted          ; Timing optimization ;
+; genlock:inst8|pixel_out[6]_OTERM17              ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[6]_OTERM27_OTERM35      ; Retimed Register ; Timing optimization ;
+; genlock:inst8|pixel_out[7]                      ; Deleted          ; Timing optimization ;
+; genlock:inst8|pixel_out[7]_OTERM15              ; Retimed Register ; Timing optimization ;
+; genlock:inst8|row~7                             ; Modified         ; Timing optimization ;
+; genlock:inst8|row~8                             ; Modified         ; Timing optimization ;
+; input_detect:inst2|Add0~1                       ; Modified         ; Timing optimization ;
+; input_detect:inst2|Add1~1                       ; Modified         ; Timing optimization ;
+; input_detect:inst2|Add2~1                       ; Modified         ; Timing optimization ;
+; input_detect:inst2|\horizontal:sync_high[0]~0   ; Modified         ; Timing optimization ;
+; input_detect:inst2|hcount~13                    ; Modified         ; Timing optimization ;
+; input_detect:inst2|sync_down~13                 ; Modified         ; Timing optimization ;
+; sdram:inst|Add0~0                               ; Modified         ; Timing optimization ;
+; sdram:inst|SdrAdr[3]_OTERM3                     ; Retimed Register ; Timing optimization ;
+; sdram:inst|SdrAdr[3]~3                          ; Deleted          ; Timing optimization ;
+; sdram:inst|SdrAdr[6]_OTERM5                     ; Retimed Register ; Timing optimization ;
+; sdram:inst|SdrAdr[6]~2                          ; Deleted          ; Timing optimization ;
+; sdram:inst|SdrAdr[7]_OTERM7                     ; Retimed Register ; Timing optimization ;
+; sdram:inst|SdrAdr[7]~1                          ; Deleted          ; Timing optimization ;
+; sdram:inst|SdrAdr[8]_OTERM9                     ; Retimed Register ; Timing optimization ;
+; sdram:inst|SdrAdr[8]~0                          ; Deleted          ; Timing optimization ;
+; sdram:inst|Selector3~10                         ; Modified         ; Timing optimization ;
+; vgaout:inst7|Add1~0                             ; Modified         ; Timing optimization ;
+; vgaout:inst7|RESULT~12                          ; Deleted          ; Timing optimization ;
+; vgaout:inst7|RESULT~13                          ; Deleted          ; Timing optimization ;
+; vgaout:inst7|RESULT~14                          ; Deleted          ; Timing optimization ;
+; vgaout:inst7|RESULT~15                          ; Deleted          ; Timing optimization ;
+; vgaout:inst7|RESULT~16                          ; Deleted          ; Timing optimization ;
+; vgaout:inst7|vcount[0]~3                        ; Modified         ; Timing optimization ;
+; vgaout:inst7|vga_out[2]~4                       ; Modified         ; Timing optimization ;
+; vgaout:inst7|vga_out[4]~2                       ; Modified         ; Timing optimization ;
+; vgaout:inst7|vga_out[5]~3                       ; Modified         ; Timing optimization ;
+; vgaout:inst7|vga_out[7]~0                       ; Modified         ; Timing optimization ;
+; vgaout:inst7|vga_out[8]~1                       ; Modified         ; Timing optimization ;
++-------------------------------------------------+------------------+---------------------+
 
 
-+-----------------------------------------------------------------------------------------------------------------------------------------------------------------+
-; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                  ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
-; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                        ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
-; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |top|input_detect:inst2|\vertical:vpeak[2]        ;
-; 4:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |top|input_detect:inst2|\horizontal:sync_high[3]  ;
-; 4:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |top|input_detect:inst2|\horizontal:sync_down[13] ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[8]                       ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|genlock:inst8|pixel_out[7]                   ;
-; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |top|genlock:inst8|column[2]                      ;
-; 8:1                ; 3 bits    ; 15 LEs        ; 3 LEs                ; 12 LEs                 ; Yes        ; |top|genlock:inst8|blue_adc[3]                    ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|sdram:inst|colStoreNr[4]                     ;
-; 4:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |top|input_detect:inst2|\horizontal:hcount[8]     ;
-; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|sdram:inst|SdrBa1                            ;
-; 8:1                ; 4 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[11]                        ;
-; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[7]                         ;
-; 12:1               ; 14 bits   ; 112 LEs       ; 14 LEs               ; 98 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[7]                     ;
-; 12:1               ; 10 bits   ; 80 LEs        ; 20 LEs               ; 60 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[17]                    ;
-; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[0]                  ;
-; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|genlock:inst8|c_pixel                        ;
-; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |top|vgaout:inst7|vga_pixel                       ;
-; 25:1               ; 6 bits    ; 96 LEs        ; 18 LEs               ; 78 LEs                 ; No         ; |top|sdram:inst|Selector7                         ;
-+--------------------+-----------+---------------+----------------------+------------------------+------------+---------------------------------------------------+
++----------------------------------------------------------------------------------------------------------------------------------------------------------------+
+; Multiplexer Restructuring Statistics (Restructuring Performed)                                                                                                 ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                       ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
+; 4:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |top|input_detect:inst2|\horizontal:sync_high[4] ;
+; 4:1                ; 14 bits   ; 28 LEs        ; 14 LEs               ; 14 LEs                 ; Yes        ; |top|input_detect:inst2|\horizontal:sync_down[4] ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |top|vgaout:inst7|vcount[0]                      ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |top|genlock:inst8|pixel_out[6]                  ;
+; 3:1                ; 11 bits   ; 22 LEs        ; 0 LEs                ; 22 LEs                 ; Yes        ; |top|genlock:inst8|column[6]                     ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 9 LEs                ; 9 LEs                  ; Yes        ; |top|sdram:inst|colStoreNr[4]                    ;
+; 4:1                ; 13 bits   ; 26 LEs        ; 13 LEs               ; 13 LEs                 ; Yes        ; |top|input_detect:inst2|\horizontal:hcount[0]    ;
+; 5:1                ; 2 bits    ; 6 LEs         ; 2 LEs                ; 4 LEs                  ; Yes        ; |top|sdram:inst|SdrBa0                           ;
+; 8:1                ; 4 bits    ; 20 LEs        ; 8 LEs                ; 12 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[9]                        ;
+; 8:1                ; 9 bits    ; 45 LEs        ; 18 LEs               ; 27 LEs                 ; Yes        ; |top|sdram:inst|SdrAdr[7]                        ;
+; 12:1               ; 14 bits   ; 112 LEs       ; 14 LEs               ; 98 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[22]                   ;
+; 12:1               ; 10 bits   ; 80 LEs        ; 20 LEs               ; 60 LEs                 ; Yes        ; |top|sdram:inst|SdrAddress[14]                   ;
+; 21:1               ; 12 bits   ; 168 LEs       ; 12 LEs               ; 156 LEs                ; Yes        ; |top|sdram:inst|SdrRoutineSeq[0]                 ;
+; 3:1                ; 8 bits    ; 16 LEs        ; 16 LEs               ; 0 LEs                  ; No         ; |top|genlock:inst8|c_pixel                       ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 6 LEs                ; 0 LEs                  ; No         ; |top|vgaout:inst7|vga_pixel                      ;
+; 1:1                ; 3 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; No         ; |top|genlock:inst8|Mux61                         ;
+; 1:1                ; 3 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; No         ; |top|genlock:inst8|Mux51                         ;
+; 1:1                ; 3 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; No         ; |top|genlock:inst8|Mux49                         ;
+; 1:1                ; 3 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; No         ; |top|genlock:inst8|Mux45                         ;
+; 1:1                ; 3 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; No         ; |top|genlock:inst8|Mux43                         ;
+; 1:1                ; 3 bits    ; 0 LEs         ; 0 LEs                ; 0 LEs                  ; No         ; |top|genlock:inst8|Mux62                         ;
+; 25:1               ; 6 bits    ; 96 LEs        ; 18 LEs               ; 78 LEs                 ; No         ; |top|sdram:inst|Selector3                        ;
++--------------------+-----------+---------------+----------------------+------------------------+------------+--------------------------------------------------+
 
 
 +--------------------------------------------------------------------------------------------------+
@@ -551,11 +615,11 @@ Encoding Type:  One-Hot
 +-------------------------------+----------------------------+------------------------+
 ; Parameter Name                ; Value                      ; Type                   ;
 +-------------------------------+----------------------------+------------------------+
-; OPERATION_MODE                ; NO_COMPENSATION            ; Untyped                ;
+; OPERATION_MODE                ; NORMAL                     ; Untyped                ;
 ; PLL_TYPE                      ; AUTO                       ; Untyped                ;
 ; LPM_HINT                      ; CBX_MODULE_PREFIX=pll_ntsc ; Untyped                ;
 ; QUALIFY_CONF_DONE             ; OFF                        ; Untyped                ;
-; COMPENSATE_CLOCK              ; CLK0                       ; Untyped                ;
+; COMPENSATE_CLOCK              ; CLK1                       ; Untyped                ;
 ; SCAN_CHAIN                    ; LONG                       ; Untyped                ;
 ; PRIMARY_CLOCK                 ; INCLK0                     ; Untyped                ;
 ; INCLK0_INPUT_FREQUENCY        ; 20000                      ; Signed Integer         ;
@@ -574,7 +638,7 @@ Encoding Type:  One-Hot
 ; SWITCH_OVER_TYPE              ; AUTO                       ; Untyped                ;
 ; FEEDBACK_SOURCE               ; EXTCLK0                    ; Untyped                ;
 ; BANDWIDTH                     ; 0                          ; Untyped                ;
-; BANDWIDTH_TYPE                ; HIGH                       ; Untyped                ;
+; BANDWIDTH_TYPE                ; AUTO                       ; Untyped                ;
 ; SPREAD_FREQUENCY              ; 0                          ; Untyped                ;
 ; DOWN_SPREAD                   ; 0                          ; Untyped                ;
 ; SELF_RESET_ON_GATED_LOSS_LOCK ; OFF                        ; Untyped                ;
@@ -608,7 +672,7 @@ Encoding Type:  One-Hot
 ; CLK3_PHASE_SHIFT              ; 0                          ; Untyped                ;
 ; CLK2_PHASE_SHIFT              ; 0                          ; Untyped                ;
 ; CLK1_PHASE_SHIFT              ; 19841                      ; Untyped                ;
-; CLK0_PHASE_SHIFT              ; 0                          ; Untyped                ;
+; CLK0_PHASE_SHIFT              ; 4365                       ; Untyped                ;
 ; CLK5_TIME_DELAY               ; 0                          ; Untyped                ;
 ; CLK4_TIME_DELAY               ; 0                          ; Untyped                ;
 ; CLK3_TIME_DELAY               ; 0                          ; Untyped                ;
@@ -1066,7 +1130,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +-------------------------------+----------------------------------------+
 ; Number of entity instances    ; 1                                      ;
 ; Entity Instance               ; pll_ntsc:inst6|altpll:altpll_component ;
-;     -- OPERATION_MODE         ; NO_COMPENSATION                        ;
+;     -- OPERATION_MODE         ; NORMAL                                 ;
 ;     -- PLL_TYPE               ; AUTO                                   ;
 ;     -- PRIMARY_CLOCK          ; INCLK0                                 ;
 ;     -- INCLK0_INPUT_FREQUENCY ; 20000                                  ;
@@ -1112,7 +1176,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 +----------------+--------------+
 ; Partition Name ; Elapsed Time ;
 +----------------+--------------+
-; Top            ; 00:00:04     ;
+; Top            ; 00:00:05     ;
 +----------------+--------------+
 
 
@@ -1122,7 +1186,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 13.0.0 Build 156 04/24/2013 SJ Web Edition
-    Info: Processing started: Sat Dec 06 12:56:50 2014
+    Info: Processing started: Mon Dec 08 01:16:53 2014
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 1 design units, including 1 entities, in source file top.bdf
@@ -1164,20 +1228,21 @@ Info (12128): Elaborating entity "pll_ntsc" for hierarchy "pll_ntsc:inst6"
 Info (12128): Elaborating entity "altpll" for hierarchy "pll_ntsc:inst6|altpll:altpll_component"
 Info (12130): Elaborated megafunction instantiation "pll_ntsc:inst6|altpll:altpll_component"
 Info (12133): Instantiated megafunction "pll_ntsc:inst6|altpll:altpll_component" with the following parameter:
-    Info (12134): Parameter "bandwidth_type" = "HIGH"
+    Info (12134): Parameter "bandwidth_type" = "AUTO"
     Info (12134): Parameter "clk0_divide_by" = "55"
     Info (12134): Parameter "clk0_duty_cycle" = "50"
     Info (12134): Parameter "clk0_multiply_by" = "126"
-    Info (12134): Parameter "clk0_phase_shift" = "0"
+    Info (12134): Parameter "clk0_phase_shift" = "4365"
     Info (12134): Parameter "clk1_divide_by" = "125"
     Info (12134): Parameter "clk1_duty_cycle" = "50"
     Info (12134): Parameter "clk1_multiply_by" = "63"
     Info (12134): Parameter "clk1_phase_shift" = "19841"
+    Info (12134): Parameter "compensate_clock" = "CLK1"
     Info (12134): Parameter "inclk0_input_frequency" = "20000"
     Info (12134): Parameter "intended_device_family" = "Cyclone IV E"
     Info (12134): Parameter "lpm_hint" = "CBX_MODULE_PREFIX=pll_ntsc"
     Info (12134): Parameter "lpm_type" = "altpll"
-    Info (12134): Parameter "operation_mode" = "NO_COMPENSATION"
+    Info (12134): Parameter "operation_mode" = "NORMAL"
     Info (12134): Parameter "pll_type" = "AUTO"
     Info (12134): Parameter "port_activeclock" = "PORT_UNUSED"
     Info (12134): Parameter "port_areset" = "PORT_UNUSED"
@@ -1225,10 +1290,49 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/pll_
     Info (12023): Found entity 1: pll_ntsc_altpll1
 Info (12128): Elaborating entity "pll_ntsc_altpll1" for hierarchy "pll_ntsc:inst6|altpll:altpll_component|pll_ntsc_altpll1:auto_generated"
 Info (12128): Elaborating entity "genlock" for hierarchy "genlock:inst8"
-Warning (10036): Verilog HDL or VHDL warning at genlock.vhd(43): object "sync_level" assigned a value but never read
-Warning (10492): VHDL Process Statement warning at genlock.vhd(350): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(227): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(231): signal "red_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(237): signal "red_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at genlock.vhd(224): inferring latch(es) for signal or variable "red_adc", which holds its previous value in one or more paths through the process
+Warning (10492): VHDL Process Statement warning at genlock.vhd(251): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(261): signal "green_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at genlock.vhd(248): inferring latch(es) for signal or variable "green_adc", which holds its previous value in one or more paths through the process
+Warning (10492): VHDL Process Statement warning at genlock.vhd(275): signal "hcount" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10492): VHDL Process Statement warning at genlock.vhd(285): signal "blue_adc" is read inside the Process Statement but isn't in the Process Statement's sensitivity list
+Warning (10631): VHDL Process Statement warning at genlock.vhd(272): inferring latch(es) for signal or variable "blue_adc", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(296): inferring latch(es) for signal or variable "pixel_adc", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(305): inferring latch(es) for signal or variable "pixel_adc", which holds its previous value in one or more paths through the process
+Warning (10631): VHDL Process Statement warning at genlock.vhd(315): inferring latch(es) for signal or variable "pixel_adc", which holds its previous value in one or more paths through the process
+Info (10041): Inferred latch for "pixel_adc[0]" at genlock.vhd(315)
+Info (10041): Inferred latch for "pixel_adc[1]" at genlock.vhd(315)
+Info (10041): Inferred latch for "pixel_adc[2]" at genlock.vhd(305)
+Info (10041): Inferred latch for "pixel_adc[3]" at genlock.vhd(305)
+Info (10041): Inferred latch for "pixel_adc[4]" at genlock.vhd(305)
+Info (10041): Inferred latch for "pixel_adc[5]" at genlock.vhd(296)
+Info (10041): Inferred latch for "pixel_adc[6]" at genlock.vhd(296)
+Info (10041): Inferred latch for "pixel_adc[7]" at genlock.vhd(296)
+Info (10041): Inferred latch for "blue_adc[0]" at genlock.vhd(272)
+Info (10041): Inferred latch for "blue_adc[1]" at genlock.vhd(272)
+Info (10041): Inferred latch for "blue_adc[2]" at genlock.vhd(272)
+Info (10041): Inferred latch for "blue_adc[3]" at genlock.vhd(272)
+Info (10041): Inferred latch for "blue_adc[4]" at genlock.vhd(272)
+Info (10041): Inferred latch for "blue_adc[5]" at genlock.vhd(272)
+Info (10041): Inferred latch for "blue_adc[6]" at genlock.vhd(272)
+Info (10041): Inferred latch for "green_adc[0]" at genlock.vhd(248)
+Info (10041): Inferred latch for "green_adc[1]" at genlock.vhd(248)
+Info (10041): Inferred latch for "green_adc[2]" at genlock.vhd(248)
+Info (10041): Inferred latch for "green_adc[3]" at genlock.vhd(248)
+Info (10041): Inferred latch for "green_adc[4]" at genlock.vhd(248)
+Info (10041): Inferred latch for "green_adc[5]" at genlock.vhd(248)
+Info (10041): Inferred latch for "green_adc[6]" at genlock.vhd(248)
+Info (10041): Inferred latch for "red_adc[0]" at genlock.vhd(224)
+Info (10041): Inferred latch for "red_adc[1]" at genlock.vhd(224)
+Info (10041): Inferred latch for "red_adc[2]" at genlock.vhd(224)
+Info (10041): Inferred latch for "red_adc[3]" at genlock.vhd(224)
+Info (10041): Inferred latch for "red_adc[4]" at genlock.vhd(224)
+Info (10041): Inferred latch for "red_adc[5]" at genlock.vhd(224)
+Info (10041): Inferred latch for "red_adc[6]" at genlock.vhd(224)
 Info (12128): Elaborating entity "input_detect" for hierarchy "input_detect:inst2"
-Warning (10036): Verilog HDL or VHDL warning at input_detect.vhd(23): object "hblank" assigned a value but never read
 Info (12128): Elaborating entity "altiobuf" for hierarchy "altiobuf:inst16"
 Info (12128): Elaborating entity "altiobuf_iobuf_in_k0j" for hierarchy "altiobuf:inst16|altiobuf_iobuf_in_k0j:altiobuf_iobuf_in_k0j_component"
 Info (12128): Elaborating entity "vgaout" for hierarchy "vgaout:inst7"
@@ -1283,20 +1387,22 @@ Info (12133): Instantiated megafunction "ram:inst4|altsyncram:altsyncram_compone
 Info (12021): Found 1 design units, including 1 entities, in source file db/altsyncram_q6o1.tdf
     Info (12023): Found entity 1: altsyncram_q6o1
 Info (12128): Elaborating entity "altsyncram_q6o1" for hierarchy "ram:inst4|altsyncram:altsyncram_component|altsyncram_q6o1:auto_generated"
+Warning (13012): Latch genlock:inst8|green_adc[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal genlock:inst8|hcount[2]
+Warning (13012): Latch genlock:inst8|red_adc[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal genlock:inst8|hcount[2]
+Warning (13012): Latch genlock:inst8|blue_adc[3] has unsafe behavior
+    Warning (13013): Ports D and ENA on the latch are fed by the same signal genlock:inst8|hcount[2]
 Info (13000): Registers with preset signals will power-up high
 Info (13003): DEV_CLRn pin will set, and not reset, register with preset signal due to NOT Gate Push-Back
 Warning (13024): Output pins are stuck at VCC or GND
     Warning (13410): Pin "DRAM_CKE" is stuck at VCC
     Warning (13410): Pin "DRAM_CS_N" is stuck at GND
-Critical Warning (18061): Ignored Power-Up Level option on the following registers
-    Critical Warning (18010): Register genlock:inst8|vcount[10] will power up to Low
-    Critical Warning (18010): Register genlock:inst8|hcount[10] will power up to Low
 Info (286030): Timing-Driven Synthesis is running
 Info (128000): Starting physical synthesis optimizations for speed
+Warning (335093): TimeQuest Timing Analyzer is analyzing 29 combinational loops as latches.
 Info (332104): Reading SDC File: 'rgb2vga.out.sdc'
-Warning (332056): PLL cross checking found inconsistent PLL clock settings:
-    Warning (332056): Clock: inst6|altpll_component|auto_generated|pll1|clk[1] was found on node: inst6|altpll_component|auto_generated|pll1|clk[1] with settings that do not match the following PLL specifications:
-        Warning (332056): -phase (expected: 180.00, found: 0.00)
+Warning (332060): Node: genlock:inst8|hcount[0] was determined to be a clock but was found without an associated clock assignment.
 Info (332129): Detected timing requirements -- optimizing circuit to achieve only the specified requirements
 Info (332111): Found 3 clocks
     Info (332111):   Period   Clock Name
@@ -1305,26 +1411,26 @@ Info (332111): Found 3 clocks
     Info (332111):    8.730 inst6|altpll_component|auto_generated|pll1|clk[0]
     Info (332111):   39.682 inst6|altpll_component|auto_generated|pll1|clk[1]
 Info (128002): Starting physical synthesis algorithm register retiming
-Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 0 ps
+Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 1416 ps
 Info (128002): Starting physical synthesis algorithm combinational resynthesis using boolean division
-Info (128003): Physical synthesis algorithm combinational resynthesis using boolean division complete: estimated slack improvement of 0 ps
-Info (128001): Physical synthesis optimizations for speed complete: elapsed time is 00:00:01
+Info (128003): Physical synthesis algorithm combinational resynthesis using boolean division complete: estimated slack improvement of 33 ps
+Info (128001): Physical synthesis optimizations for speed complete: elapsed time is 00:00:02
 Info (16010): Generating hard_block partition "hard_block:auto_generated_inst"
     Info (16011): Adding 1 node(s), including 0 DDIO, 1 PLL, 0 transceiver and 0 LCELL
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "FP5"
     Warning (15610): No output dependent on input pin "FP6"
-Info (21057): Implemented 963 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 976 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 17 input pins
     Info (21059): Implemented 36 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 877 logic cells
+    Info (21061): Implemented 890 logic cells
     Info (21064): Implemented 16 RAM segments
     Info (21065): Implemented 1 PLLs
-Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 18 warnings
+Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 30 warnings
     Info: Peak virtual memory: 514 megabytes
-    Info: Processing ended: Sat Dec 06 12:56:58 2014
-    Info: Elapsed time: 00:00:08
-    Info: Total CPU time (on all processors): 00:00:07
+    Info: Processing ended: Mon Dec 08 01:17:02 2014
+    Info: Elapsed time: 00:00:09
+    Info: Total CPU time (on all processors): 00:00:08
 
 

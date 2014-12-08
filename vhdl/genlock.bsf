@@ -33,8 +33,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "vblank" (rect 0 0 25 12)(font "Arial" ))
-		(text "vblank" (rect 21 43 46 55)(font "Arial" ))
+		(text "vsync" (rect 0 0 25 12)(font "Arial" ))
+		(text "vsync" (rect 21 43 46 55)(font "Arial" ))
 		(line (pt 0 48)(pt 16 48)(line_width 1))
 	)
 	(port

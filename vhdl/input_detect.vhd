@@ -20,7 +20,7 @@ begin
 
 horizontal: process(clock_pixel)
 variable horsync : std_logic;
-variable hcount : integer range 0 to 1024 * 8;
+variable hcount : integer range 0 to 262 * 1024 * 8;
 variable sync_high : integer range 0 to 1024 * 8;
 variable sync_down : integer range 0 to 1024 * 8;
 variable hpeak: integer range 0 to 1024 * 8;
@@ -60,7 +60,7 @@ begin
 		else
 		
 			video_active <= '0';
-			if (hcount < 1024 * 8) then			
+			if (hcount < 262 * 1024 * 8) then			
 				hcount := hcount + 1;
 			else
 				video_active <= '1';

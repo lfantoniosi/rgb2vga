@@ -28,7 +28,7 @@ entity vgaout is
 			sw_scanline	: in std_logic;
 			sw_deinterlace	: in std_logic;			
 			
-			clock_pixel : std_logic;
+			clock_dram: std_logic;
 			sw_video_active : std_logic
 			
          );
@@ -98,6 +98,8 @@ begin
 			row := to_integer(vcount(9 downto 1)) + 1;		
 		end if;		
 		
+		--row_number <= to_unsigned(row, row_number'length);
+		
       if (hcount <= (hor_active_video + hor_front_porch + hor_sync_pulse - 1) and hcount >= (hor_active_video + hor_front_porch - 1)) then
  		  row_number <= to_unsigned(row, row_number'length);
         hsync <= '0';
@@ -105,9 +107,20 @@ begin
 	end if;		
 end process;
 
-pixel_out: process (clock_pixel, hcount, vcount)
+load_row: process(clock_dram, load_ack, hsync)
 begin
-	if (rising_edge(clock_pixel)) then	
+	if (load_ack = '1') then
+		load_req <= '0';
+	elsif (rising_edge(clock_dram)) then
+		if (hsync = '0') then
+			load_req <= '1';
+		end if;
+	end if;
+end process;
+
+pixel_out: process (clock_dram, hcount, vcount)
+begin
+	if (rising_edge(clock_dram)) then	
 		col_number <= hcount(9 downto 0);		
 	end if;
 end process;
@@ -135,20 +148,6 @@ begin
 		
 	end if;
 end process;
-
-
-load_row: process(clock_pixel, load_ack, hsync)
-begin
-	if (load_ack = '1') then
-		load_req <= '0';
-	--end if;
-	elsif (rising_edge(clock_pixel)) then
-		if (hsync = '0') then
-			load_req <= '1';
-		end if;
-	end if;
-end process;
-
 
 process (clock_vga, vcount)
 begin

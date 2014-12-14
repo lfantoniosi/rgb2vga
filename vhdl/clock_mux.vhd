@@ -111,6 +111,6 @@ END SYN;
 -- Retrieval info: GEN_FILE: TYPE_NORMAL clock_mux.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL clock_mux.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL clock_mux.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL clock_mux.bsf TRUE FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL clock_mux.bsf TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL clock_mux_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: lpm

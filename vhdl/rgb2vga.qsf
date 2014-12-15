@@ -190,8 +190,6 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP4
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP5
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP6
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP7
-set_global_assignment -name QIP_FILE pll.qip
-set_global_assignment -name QIP_FILE pll2.qip
 set_location_assignment PLL_4 -to "pll_pal:inst6"
 set_location_assignment PLL_3 -to "pll_ntsc:inst10"
 set_global_assignment -name QIP_FILE pll_dram.qip

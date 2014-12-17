@@ -39,10 +39,10 @@ architecture behavioral of vgaout is
 signal hcount												: unsigned(13 downto 0);
 signal vcount												: unsigned(9 downto 0);
 signal videov, videoh, hsync, vsync					: std_logic;
-signal scanline											: std_logic;
-signal deinterlace										: std_logic;
+--signal scanline											: std_logic;
+--signal deinterlace										: std_logic;
 signal shrink												: std_logic;
-signal video_active										: std_logic;
+--signal video_active										: std_logic;
 signal animate												: unsigned(9 downto 0);
 
 		
@@ -92,7 +92,7 @@ begin
 	if (rising_edge(clock_vga)) then     
 	   hsync <= '1';				
 		
-		if (deinterlace = '0') then
+		if (sw_deinterlace = '0') then
 			row := to_integer(vcount(9 downto 0)) + 1;
 		else
 			row := to_integer(vcount(9 downto 1)) + 1;		
@@ -125,7 +125,7 @@ begin
 	end if;
 end process;
 
-pixel: process(clock_vga, hcount, vcount, videoh, videov, video_active, pixel_in, scanline, hsync, vsync)
+pixel: process(clock_vga, hcount, vcount, videoh, videov, pixel_in, hsync, vsync)
 variable blank: std_logic;
 variable vga_pixel: unsigned(7 downto 0);
 begin
@@ -133,13 +133,13 @@ begin
 
 		blank := videoh and videov;		
 		
-		if (video_active = '0') then
+		if (sw_video_active = '0') then
 			vga_pixel := pixel_in;
 		else
 			vga_pixel := not(vcount(8 downto 1) xor hcount(8 downto 1));
 		end if;
 				
-		if (scanline = '0' and vcount(0) = '0') then
+		if (sw_scanline = '0' and vcount(0) = '0') then
 			vga_pixel := '0'&vga_pixel(7 downto 6) & '0'&vga_pixel(4 downto 3) & '0'&vga_pixel(1);
 		end if;		
 
@@ -170,13 +170,13 @@ begin
 	end if;
 end process;
 
-switches: process(clock_vga)
-begin
-	if (rising_edge(clock_vga)) then
-		scanline <= sw_scanline;
-		deinterlace <= sw_deinterlace;
-		video_active <= sw_video_active;
-	end if;
-end process;
+--switches: process(clock_vga)
+--begin
+--	if (rising_edge(clock_vga)) then
+--		scanline <= sw_scanline;
+--		deinterlace <= sw_deinterlace;
+--		video_active <= sw_video_active;
+--	end if;
+--end process;
 
 end behavioral;

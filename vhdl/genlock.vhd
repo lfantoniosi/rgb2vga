@@ -225,13 +225,14 @@ end f_adc;
 
 begin
 
-channel_red: process(adc_rgb, hcount)
+channel_red: process(clock_pixel, hcount, adc_rgb(2))
 begin
+if (rising_edge(clock_pixel)) then
 	case hcount(2 downto 0) is		
 		when "000" =>
 			red_adc(0) <= adc_rgb(2);
 		when "001" => 
-			red_adc(1) <= red_adc(2);
+			red_adc(1) <= adc_rgb(2);
 		when "010" => 
 			red_adc(2) <= adc_rgb(2);
 		when "011" => 
@@ -242,13 +243,15 @@ begin
 			red_adc(5) <= adc_rgb(2);
 		when "110" => 
 			red_adc(6) <= adc_rgb(2);					
-		when "111" => 
-			red_adc(6) <= adc_rgb(2);
+		when "111" =>
+			null;
 	end case;
+end if;	
 end process;
 
-channel_green: process(adc_rgb, hcount)
+channel_green: process(clock_pixel, hcount, adc_rgb(1))
 begin
+if (rising_edge(clock_pixel)) then
 	case hcount(2 downto 0) is		
 		when "000" =>			
 			green_adc(0) <= adc_rgb(1);					
@@ -257,20 +260,22 @@ begin
 		when "010" => 
 			green_adc(2) <= adc_rgb(1);
 		when "011" => 
-			green_adc(3) <= adc_rgb(1);
+			green_adc(3) <= adc_rgb(1);					
 		when "100" => 
 			green_adc(4) <= adc_rgb(1);
 		when "101" => 
 			green_adc(5) <= adc_rgb(1);
 		when "110" => 
 			green_adc(6) <= adc_rgb(1);					
-		when "111" => 
-			green_adc(6) <= adc_rgb(1);					
+		when "111" =>
+			null;
 	end case;
+end if;
 end process;
 
-channel_blue: process(adc_rgb, hcount)
+channel_blue: process(clock_pixel, hcount, adc_rgb(0))
 begin
+if (rising_edge(clock_pixel)) then
 	case hcount(2 downto 0) is		
 		when "000" =>	
 			blue_adc(0) <= adc_rgb(0);					
@@ -279,7 +284,7 @@ begin
 		when "010" => 
 			blue_adc(2) <= adc_rgb(0);					
 		when "011" => 
-			blue_adc(3) <= adc_rgb(0);					
+			blue_adc(3) <= adc_rgb(0);
 		when "100" => 
 			blue_adc(4) <= adc_rgb(0);
 		when "101" => 
@@ -287,32 +292,38 @@ begin
 		when "110" => 
 			blue_adc(6) <= adc_rgb(0);
 		when "111" => 
-			blue_adc(6) <= adc_rgb(0);
+			null;
 	end case;			
+end if;	
 end process;
 
-digitizeR: process(hcount, red_adc)
+digitizeR: process(clock_pixel, hcount, red_adc)
 begin
-		if (hcount(2 downto 0) = "100") then
-			pixel_adc(7 downto 5) <= f_adc(red_adc);
-		end if;
+	if (rising_edge(clock_pixel)) then
+		pixel_adc(7 downto 5) <= f_adc(red_adc);
+	end if;
 end process;
 
-digitizeG: process(hcount, green_adc)
+digitizeG: process(clock_pixel, hcount, green_adc) 
 begin
-		if (hcount(2 downto 0) = "100") then
-			pixel_adc(4 downto 2) <= f_adc(green_adc);
-		end if;
+	if (rising_edge(clock_pixel)) then
+		pixel_adc(4 downto 2) <= f_adc(green_adc);
+	end if;
 end process;
 
-
-digitizeB: process(hcount, blue_adc)
+digitizeB: process(clock_pixel, hcount, blue_adc) 
 begin
-		if (hcount(2 downto 0) = "100") then
-			pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
-		end if;
+	if (rising_edge(clock_pixel)) then
+		pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
+	end if;
 end process;
 
+dac: process(clock_pixel, hcount)
+begin
+	if (rising_edge(clock_pixel)) then
+		dac_step <= hcount(2 downto 0);
+	end if;
+end process;
 
 hraster: process (clock_pixel, hblank, vblank)
 begin
@@ -345,11 +356,6 @@ begin
 				
 	end if;
 	
-end process;
-
-dac: process(hcount)
-begin
-	dac_step <= hcount(2 downto 0);
 end process;
 
 vsync_lock: process(clock_pixel, vsync)
@@ -716,11 +722,14 @@ begin
 		elsif (clock_sw = '0') then
 			front_porch <= 202;
 		else
-			front_porch <= 180;
+			front_porch <= 182;
 		end if;		
 	end if;	
 end process;
 
-	--dac_step <= hcount(2 downto 0);
+--	dac_step <= hcount(2 downto 0);
+--	pixel_adc(7 downto 5) <= f_adc(red_adc);
+--	pixel_adc(4 downto 2) <= f_adc(green_adc);
+--	pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
 	
 end behavioral;

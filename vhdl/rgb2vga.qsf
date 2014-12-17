@@ -128,21 +128,11 @@ set_location_assignment PIN_E8 -to FP6
 set_location_assignment PIN_F9 -to FP7
 set_global_assignment -name USE_CONFIGURATION_DEVICE OFF
 set_global_assignment -name CRC_ERROR_OPEN_DRAIN OFF
-set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS INPUT TRI-STATED"
+set_global_assignment -name RESERVE_ALL_UNUSED_PINS_WEAK_PULLUP "AS OUTPUT DRIVING GROUND"
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_NEAR_END_VMEAS "HALF VCCIO" -fall
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -rise
 set_global_assignment -name OUTPUT_IO_TIMING_FAR_END_VMEAS "HALF SIGNAL SWING" -fall
-set_global_assignment -name BDF_FILE top.bdf
-set_global_assignment -name SDC_FILE rgb2vga.out.sdc
-set_global_assignment -name VHDL_FILE vgaout.vhd
-set_global_assignment -name VHDL_FILE ram.vhd
-set_global_assignment -name VHDL_FILE sdram.vhd
-set_global_assignment -name QIP_FILE altiobuf.qip
-set_global_assignment -name QIP_FILE pll_ntsc.qip
-set_global_assignment -name QIP_FILE ram2.qip
-set_global_assignment -name QIP_FILE ram.qip
-set_global_assignment -name VHDL_FILE genlock.vhd
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
@@ -157,8 +147,6 @@ set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP7
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D0
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D1
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D2
-set_global_assignment -name QIP_FILE clock_mux.qip
-set_global_assignment -name VHDL_FILE input_detect.vhd
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFB
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFBn
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MAXIMUM CURRENT" -to DIFFG
@@ -190,8 +178,27 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP4
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP5
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP6
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP7
-set_location_assignment PLL_4 -to "pll_pal:inst6"
-set_location_assignment PLL_3 -to "pll_ntsc:inst10"
+set_global_assignment -name QIP_FILE pll_pal.qip
+set_global_assignment -name BDF_FILE top.bdf
+set_global_assignment -name SDC_FILE rgb2vga.out.sdc
+set_global_assignment -name VHDL_FILE vgaout.vhd
+set_global_assignment -name VHDL_FILE ram.vhd
+set_global_assignment -name VHDL_FILE sdram.vhd
+set_global_assignment -name QIP_FILE altiobuf.qip
+set_global_assignment -name QIP_FILE pll_ntsc.qip
+set_global_assignment -name QIP_FILE ram2.qip
+set_global_assignment -name QIP_FILE ram.qip
+set_global_assignment -name VHDL_FILE genlock.vhd
+set_global_assignment -name QIP_FILE clock_mux.qip
+set_global_assignment -name VHDL_FILE input_detect.vhd
 set_global_assignment -name QIP_FILE pll_dram.qip
-set_location_assignment PLL_2 -to "pll_dram:inst14"
+set_global_assignment -name OUTPUT_IO_TIMING_ENDPOINT "NEAR END"
+set_global_assignment -name OPTIMIZE_HOLD_TIMING "ALL PATHS"
+set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING ON
+set_global_assignment -name OPTIMIZE_POWER_DURING_FITTING "NORMAL COMPILATION"
+set_global_assignment -name FITTER_EFFORT "AUTO FIT"
+set_location_assignment PLL_2 -to "pll_pal:pll_pal"
+set_location_assignment PLL_1 -to "pll_ntsc:pll_ntsc"
+set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
+set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

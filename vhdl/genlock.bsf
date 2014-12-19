@@ -142,13 +142,6 @@ applicable agreement for further details.
 		(text "store_req" (rect 173 75 211 87)(font "Arial" ))
 		(line (pt 232 80)(pt 216 80)(line_width 1))
 	)
-	(port
-		(pt 232 96)
-		(output)
-		(text "dac_step[2..0]" (rect 0 0 56 12)(font "Arial" ))
-		(text "dac_step[2..0]" (rect 155 91 211 103)(font "Arial" ))
-		(line (pt 232 96)(pt 216 96)(line_width 3))
-	)
 	(drawing
 		(rectangle (rect 16 16 216 256)(line_width 1))
 	)

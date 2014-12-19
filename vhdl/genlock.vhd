@@ -1,4 +1,4 @@
-library IEEE;
+    library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
@@ -21,8 +21,8 @@ entity genlock is
 			sw_apple2		: in std_logic;
 			sw_shrink		: in std_logic;
 			sw_clock_sw		: in std_logic;
-			dac_step			: out unsigned(2 downto 0);
-			clock_dram		: in std_logic
+			clock_dram		: in std_logic;
+			sw_enable		: in std_logic
 );
 			
 end genlock;
@@ -50,6 +50,7 @@ signal deinterlace: std_logic;
 signal shrink: 	std_logic;
 signal clock_sw: 	std_logic;
 signal avg_pixel: std_logic;
+signal enable:		std_logic;
 
 signal frame: 		unsigned(0 downto 0);
 
@@ -225,7 +226,7 @@ end f_adc;
 
 begin
 
-channel_red: process(clock_pixel, hcount, adc_rgb(2))
+channel_red: process(clock_pixel, hcount)
 begin
 if (rising_edge(clock_pixel)) then
 	case hcount(2 downto 0) is		
@@ -240,16 +241,16 @@ if (rising_edge(clock_pixel)) then
 		when "100" => 
 			red_adc(4) <= adc_rgb(2);
 		when "101" => 
-			red_adc(5) <= adc_rgb(2);
+			red_adc(4) <= adc_rgb(2) or red_adc(4);
 		when "110" => 
-			red_adc(6) <= adc_rgb(2);					
+			red_adc(5) <= adc_rgb(2);					
 		when "111" =>
-			null;
+			red_adc(6) <= adc_rgb(2);					
 	end case;
 end if;	
 end process;
 
-channel_green: process(clock_pixel, hcount, adc_rgb(1))
+channel_green: process(clock_pixel, hcount)
 begin
 if (rising_edge(clock_pixel)) then
 	case hcount(2 downto 0) is		
@@ -264,16 +265,16 @@ if (rising_edge(clock_pixel)) then
 		when "100" => 
 			green_adc(4) <= adc_rgb(1);
 		when "101" => 
-			green_adc(5) <= adc_rgb(1);
+			green_adc(4) <= adc_rgb(1) or green_adc(4);
 		when "110" => 
-			green_adc(6) <= adc_rgb(1);					
+			green_adc(5) <= adc_rgb(1);					
 		when "111" =>
-			null;
+			green_adc(6) <= adc_rgb(1);					
 	end case;
 end if;
 end process;
 
-channel_blue: process(clock_pixel, hcount, adc_rgb(0))
+channel_blue: process(clock_pixel, hcount)
 begin
 if (rising_edge(clock_pixel)) then
 	case hcount(2 downto 0) is		
@@ -288,51 +289,31 @@ if (rising_edge(clock_pixel)) then
 		when "100" => 
 			blue_adc(4) <= adc_rgb(0);
 		when "101" => 
-			blue_adc(5) <= adc_rgb(0);
+			blue_adc(4) <= adc_rgb(0) or blue_adc(4);
 		when "110" => 
-			blue_adc(6) <= adc_rgb(0);
+			blue_adc(5) <= adc_rgb(0);
 		when "111" => 
-			null;
+			blue_adc(6) <= adc_rgb(0);
 	end case;			
 end if;	
-end process;
-
-digitizeR: process(clock_pixel, hcount, red_adc)
-begin
-	if (rising_edge(clock_pixel)) then
-		pixel_adc(7 downto 5) <= f_adc(red_adc);
-	end if;
-end process;
-
-digitizeG: process(clock_pixel, hcount, green_adc) 
-begin
-	if (rising_edge(clock_pixel)) then
-		pixel_adc(4 downto 2) <= f_adc(green_adc);
-	end if;
-end process;
-
-digitizeB: process(clock_pixel, hcount, blue_adc) 
-begin
-	if (rising_edge(clock_pixel)) then
-		pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
-	end if;
-end process;
-
-dac: process(clock_pixel, hcount)
-begin
-	if (rising_edge(clock_pixel)) then
-		dac_step <= hcount(2 downto 0);
-	end if;
 end process;
 
 hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
 		hcount <= (others => '0');
+	elsif (rising_edge(clock_pixel)) then
+		hcount <= hcount + 1;
+	end if;
+end process;
+
+col_counter: process(clock_pixel, hcount, hblank, vblank)
+begin
+	if (hblank = '0' or vblank = '0') then
 		decimator <= "000";
 		column <= 0;
 	elsif (rising_edge(clock_pixel)) then
-	
+
 		if (hcount(2 downto 0) = "111") then
 	
 			if (shrink = '1') then
@@ -351,12 +332,11 @@ begin
 			decimator <= decimator + 1;			
 
 		end if;
-
-		hcount <= hcount + 1;
-				
-	end if;
+		
+	end if;	
 	
 end process;
+		
 
 vsync_lock: process(clock_pixel, vsync)
 variable sync: std_logic;
@@ -689,13 +669,12 @@ end process;
 store_row: process(clock_dram, hblank, store_ack)
 begin	
 	if (store_ack = '1') then
-		store_req <= '0';
+			store_req <= '0';
 	elsif (rising_edge(clock_dram)) then
 		if (hblank = '0') then
 			store_req <= '1';
 		end if;
-	end if;
-	
+	end if;	
 end process;
 
 switches: process(clock_pixel)
@@ -708,6 +687,7 @@ begin
 		apple2 <= sw_apple2;
 		shrink <= sw_shrink;
 		clock_sw <= sw_clock_sw;
+		enable <= sw_enable;
 	end if;	
 end process;
 
@@ -727,9 +707,8 @@ begin
 	end if;	
 end process;
 
---	dac_step <= hcount(2 downto 0);
---	pixel_adc(7 downto 5) <= f_adc(red_adc);
---	pixel_adc(4 downto 2) <= f_adc(green_adc);
---	pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
+	pixel_adc(7 downto 5) <= f_adc(red_adc);
+	pixel_adc(4 downto 2) <= f_adc(green_adc);
+	pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
 	
 end behavioral;

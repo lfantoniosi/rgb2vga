@@ -138,7 +138,16 @@ begin
 		else
 			vga_pixel := not(vcount(8 downto 1) xor hcount(8 downto 1));
 		end if;
-				
+									
+		if (vga_pixel(7 downto 2) = "000000") then -- pure blue		
+			case (vga_pixel(1 downto 0)) is
+				when "00" => vga_pixel(1 downto 0) := "00";
+				when "01" => vga_pixel(1 downto 0) := "01";
+				when "10" => vga_pixel(1 downto 0) := "01";
+				when "11" => vga_pixel(1 downto 0) := "11";				
+			end case;
+		end if;		
+
 		if (sw_scanline = '0' and vcount(0) = '0') then
 			vga_pixel := '0'&vga_pixel(7 downto 6) & '0'&vga_pixel(4 downto 3) & '0'&vga_pixel(1);
 		end if;		

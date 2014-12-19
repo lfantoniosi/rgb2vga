@@ -191,7 +191,6 @@ set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name VHDL_FILE genlock.vhd
 set_global_assignment -name QIP_FILE clock_mux.qip
 set_global_assignment -name VHDL_FILE input_detect.vhd
-set_global_assignment -name QIP_FILE pll_dram.qip
 set_global_assignment -name OUTPUT_IO_TIMING_ENDPOINT "NEAR END"
 set_global_assignment -name OPTIMIZE_HOLD_TIMING "ALL PATHS"
 set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING ON
@@ -201,4 +200,7 @@ set_location_assignment PLL_2 -to "pll_pal:pll_pal"
 set_location_assignment PLL_1 -to "pll_ntsc:pll_ntsc"
 set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_global_assignment -name QIP_FILE dac_counter.qip
+set_global_assignment -name QIP_FILE hcount.qip
+set_global_assignment -name QIP_FILE gen_mux.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

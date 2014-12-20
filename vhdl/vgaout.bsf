@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 256 192)
+	(rect 16 16 240 192)
 	(text "vgaout" (rect 5 0 32 12)(font "Arial" ))
 	(text "inst" (rect 8 160 20 172)(font "Arial" ))
 	(port
@@ -47,15 +47,15 @@ applicable agreement for further details.
 	(port
 		(pt 0 80)
 		(input)
-		(text "sw_scanline" (rect 0 0 47 12)(font "Arial" ))
-		(text "sw_scanline" (rect 21 75 68 87)(font "Arial" ))
+		(text "scanline" (rect 0 0 30 12)(font "Arial" ))
+		(text "scanline" (rect 21 75 51 87)(font "Arial" ))
 		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port
 		(pt 0 96)
 		(input)
-		(text "sw_deinterlace" (rect 0 0 57 12)(font "Arial" ))
-		(text "sw_deinterlace" (rect 21 91 78 103)(font "Arial" ))
+		(text "deinterlace" (rect 0 0 41 12)(font "Arial" ))
+		(text "deinterlace" (rect 21 91 62 103)(font "Arial" ))
 		(line (pt 0 96)(pt 16 96)(line_width 1))
 	)
 	(port
@@ -68,37 +68,37 @@ applicable agreement for further details.
 	(port
 		(pt 0 128)
 		(input)
-		(text "sw_video_active" (rect 0 0 67 12)(font "Arial" ))
-		(text "sw_video_active" (rect 21 123 88 135)(font "Arial" ))
+		(text "video_active" (rect 0 0 50 12)(font "Arial" ))
+		(text "video_active" (rect 21 123 71 135)(font "Arial" ))
 		(line (pt 0 128)(pt 16 128)(line_width 1))
 	)
 	(port
-		(pt 240 32)
+		(pt 224 32)
 		(output)
 		(text "vga_out[9..0]" (rect 0 0 53 12)(font "Arial" ))
-		(text "vga_out[9..0]" (rect 166 27 219 39)(font "Arial" ))
-		(line (pt 240 32)(pt 224 32)(line_width 3))
+		(text "vga_out[9..0]" (rect 150 27 203 39)(font "Arial" ))
+		(line (pt 224 32)(pt 208 32)(line_width 3))
 	)
 	(port
-		(pt 240 48)
+		(pt 224 48)
 		(output)
 		(text "row_number[9..0]" (rect 0 0 70 12)(font "Arial" ))
-		(text "row_number[9..0]" (rect 149 43 219 55)(font "Arial" ))
-		(line (pt 240 48)(pt 224 48)(line_width 3))
+		(text "row_number[9..0]" (rect 133 43 203 55)(font "Arial" ))
+		(line (pt 224 48)(pt 208 48)(line_width 3))
 	)
 	(port
-		(pt 240 64)
+		(pt 224 64)
 		(output)
 		(text "col_number[9..0]" (rect 0 0 67 12)(font "Arial" ))
-		(text "col_number[9..0]" (rect 152 59 219 71)(font "Arial" ))
-		(line (pt 240 64)(pt 224 64)(line_width 3))
+		(text "col_number[9..0]" (rect 136 59 203 71)(font "Arial" ))
+		(line (pt 224 64)(pt 208 64)(line_width 3))
 	)
 	(port
-		(pt 240 80)
+		(pt 224 80)
 		(output)
 		(text "load_req" (rect 0 0 34 12)(font "Arial" ))
-		(text "load_req" (rect 185 75 219 87)(font "Arial" ))
-		(line (pt 240 80)(pt 224 80)(line_width 1))
+		(text "load_req" (rect 169 75 203 87)(font "Arial" ))
+		(line (pt 224 80)(pt 208 80)(line_width 1))
 	)
 	(parameter
 		"hor_active_video"
@@ -141,7 +141,7 @@ applicable agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 224 160)(line_width 1))
+		(rectangle (rect 16 16 208 160)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 256 -64 356 16))
+	(annotation_block (parameter)(rect 240 -64 340 16))
 )

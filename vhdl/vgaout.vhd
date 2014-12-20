@@ -25,11 +25,11 @@ entity vgaout is
 			load_req	: out std_logic := '0';
 			load_ack  : in std_logic;
 
-			sw_scanline	: in std_logic;
-			sw_deinterlace	: in std_logic;			
+			scanline	: in std_logic;
+			deinterlace	: in std_logic;			
 			
 			clock_dram: std_logic;
-			sw_video_active : std_logic
+			video_active : std_logic
 			
          );
 end vgaout;
@@ -39,10 +39,6 @@ architecture behavioral of vgaout is
 signal hcount												: unsigned(13 downto 0);
 signal vcount												: unsigned(9 downto 0);
 signal videov, videoh, hsync, vsync					: std_logic;
---signal scanline											: std_logic;
---signal deinterlace										: std_logic;
-signal shrink												: std_logic;
---signal video_active										: std_logic;
 signal animate												: unsigned(9 downto 0);
 
 		
@@ -92,16 +88,15 @@ begin
 	if (rising_edge(clock_vga)) then     
 	   hsync <= '1';				
 		
-		if (sw_deinterlace = '0') then
+		if (deinterlace = '0') then
 			row := to_integer(vcount(9 downto 0)) + 1;
 		else
 			row := to_integer(vcount(9 downto 1)) + 1;		
 		end if;		
 		
-		--row_number <= to_unsigned(row, row_number'length);
+		row_number <= to_unsigned(row, row_number'length);
 		
       if (hcount <= (hor_active_video + hor_front_porch + hor_sync_pulse - 1) and hcount >= (hor_active_video + hor_front_porch - 1)) then
- 		  row_number <= to_unsigned(row, row_number'length);
         hsync <= '0';
       end if;
 	end if;		
@@ -133,22 +128,13 @@ begin
 
 		blank := videoh and videov;		
 		
-		if (sw_video_active = '0') then
+		if (video_active = '0') then
 			vga_pixel := pixel_in;
 		else
 			vga_pixel := not(vcount(8 downto 1) xor hcount(8 downto 1));
 		end if;
-									
-		if (vga_pixel(7 downto 2) = "000000") then -- pure blue		
-			case (vga_pixel(1 downto 0)) is
-				when "00" => vga_pixel(1 downto 0) := "00";
-				when "01" => vga_pixel(1 downto 0) := "01";
-				when "10" => vga_pixel(1 downto 0) := "01";
-				when "11" => vga_pixel(1 downto 0) := "11";				
-			end case;
-		end if;		
 
-		if (sw_scanline = '0' and vcount(0) = '0') then
+		if (scanline = '0' and vcount(0) = '0') then
 			vga_pixel := '0'&vga_pixel(7 downto 6) & '0'&vga_pixel(4 downto 3) & '0'&vga_pixel(1);
 		end if;		
 
@@ -178,14 +164,5 @@ begin
 		end if;
 	end if;
 end process;
-
---switches: process(clock_vga)
---begin
---	if (rising_edge(clock_vga)) then
---		scanline <= sw_scanline;
---		deinterlace <= sw_deinterlace;
---		video_active <= sw_video_active;
---	end if;
---end process;
 
 end behavioral;

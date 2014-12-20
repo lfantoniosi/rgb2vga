@@ -19,7 +19,7 @@
 ## PROGRAM "Quartus II"
 ## VERSION "Version 13.0.0 Build 156 04/24/2013 SJ Web Edition"
 
-## DATE    "Wed Dec 17 22:16:36 2014"
+## DATE    "Sat Dec 20 11:19:43 2014"
 
 ##
 ## DEVICE  "EP4CE22F17C6"
@@ -63,20 +63,20 @@ derive_clock_uncertainty
 # Set Input Delay
 #**************************************************************
 
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {CLOCK_50}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {CLOCK_50}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFB}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {CLOCK_50}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFB}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFBn}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFB}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFBn}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFG}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFBn}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFG}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFGn}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFG}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFGn}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFR}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFGn}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFR}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFRn}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFR}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFRn}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFRn}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_DQ[0]}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_DQ[1]}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_DQ[2]}]
@@ -93,39 +93,38 @@ set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_g
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_DQ[13]}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_DQ[14]}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_DQ[15]}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP0}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP0}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP1}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP0}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP1}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP2}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP1}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP2}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP3}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP2}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP3}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP4}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP3}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP4}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP5}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP4}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP5}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP6}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP5}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP6}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP7}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP6}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP7}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {HSYNC}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {FP7}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {HSYNC}]
-set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VSYNC}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {HSYNC}]
 set_input_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VSYNC}]
+set_input_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VSYNC}]
 
 
 #**************************************************************
 # Set Output Delay
 #**************************************************************
 
-set_output_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D0}]
 set_output_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D0}]
-set_output_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D1}]
+set_output_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D0}]
 set_output_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D1}]
-set_output_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D2}]
+set_output_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D1}]
 set_output_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D2}]
-
+set_output_delay -add_delay  -clock [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D2}]
 set_output_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_ADDR[0]}]
 set_output_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_ADDR[1]}]
 set_output_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_ADDR[2]}]
@@ -183,10 +182,8 @@ set_output_delay -add_delay  -clock [get_clocks {pll_ntsc|altpll_component|auto_
 
 set_clock_groups -asynchronous -group [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[1]}] 
 set_clock_groups -asynchronous -group [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}] 
-
 set_clock_groups -asynchronous -group [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[1]}] -group [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}] 
 set_clock_groups -asynchronous -group [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[1]}] -group [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}] 
-
 set_clock_groups -asynchronous -group [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}] 
 set_clock_groups -asynchronous -group [get_clocks {pll_pal|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[1]}] 
 
@@ -195,10 +192,17 @@ set_clock_groups -asynchronous -group [get_clocks {pll_pal|altpll_component|auto
 # Set False Path
 #**************************************************************
 
-#set_false_path -from [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}] -to [get_keepers {DRAM_CLK}]
-#set_false_path -from {dac_counter:inst|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[1]} -to {D1}
-#set_false_path -from {dac_counter:inst|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[2]} -to {D2}
-#set_false_path -from {dac_counter:inst|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[0]} -to {D0}
+set_false_path -from [get_clocks {pll_ntsc|altpll_component|auto_generated|pll1|clk[0]}] -to [get_keepers {DRAM_CLK}]
+set_false_path -from [get_keepers {dac_cnt:inst1|dram_step[0]}] -to [get_keepers {D0}]
+set_false_path -from [get_keepers {dac_cnt:inst1|dram_step[2]}] -to [get_keepers {D2}]
+set_false_path -from [get_keepers {dac_cnt:inst1|dram_step[1]}] -to [get_keepers {D1}]
+set_false_path -from [get_keepers {FP6}] -to [get_keepers {D2}]
+set_false_path -from [get_keepers {FP6}] -to [get_keepers {D0}]
+set_false_path -from [get_keepers {FP6}] -to [get_keepers {D1}]
+set_false_path -from [get_keepers {dac_cnt:inst1|pal_step[1]}] -to [get_keepers {D1}]
+set_false_path -from [get_keepers {dac_cnt:inst1|pal_step[0]}] -to [get_keepers {D0}]
+set_false_path -from [get_keepers {dac_cnt:inst1|pal_step[2]}] -to [get_keepers {D2}]
+
 
 #**************************************************************
 # Set Multicycle Path

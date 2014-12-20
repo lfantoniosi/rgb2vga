@@ -14,15 +14,14 @@ entity genlock is
 			col_number	: out unsigned(9 downto 0); 
 			store_req	: out std_logic := '0';
 			store_ack 	: in std_logic;
-			sw_artifact		: in std_logic;
-			sw_mode 			: in std_logic;
-			sw_sync_level	: in std_logic;
-			sw_deinterlace	: in std_logic;
-			sw_apple2		: in std_logic;
-			sw_shrink		: in std_logic;
-			sw_clock_sw		: in std_logic;
-			clock_dram		: in std_logic;
-			sw_enable		: in std_logic
+			artifact		: in std_logic;
+			mode 			: in std_logic;
+			sync_level	: in std_logic;
+			deinterlace	: in std_logic;
+			apple2		: in std_logic;
+			shrink		: in std_logic;
+			clock_sw		: in std_logic;
+			clock_dram		: in std_logic
 );
 			
 end genlock;
@@ -39,18 +38,11 @@ signal red_adc: unsigned(6 downto 0);
 signal green_adc: unsigned(6 downto 0);
 signal blue_adc: unsigned(6 downto 0);
 
+signal pixel_a: unsigned(7 downto 0);
+signal pixel_d: unsigned(7 downto 0);
 signal pixel_adc: unsigned(7 downto 0);
 signal artifact_mode: std_logic;
-
-signal artifact: 	std_logic;
-signal mode: 		std_logic;
-signal sync_level: std_logic;
-signal apple2: 	std_logic;
-signal deinterlace: std_logic;
-signal shrink: 	std_logic;
-signal clock_sw: 	std_logic;
 signal avg_pixel: std_logic;
-signal enable:		std_logic;
 
 signal frame: 		unsigned(0 downto 0);
 
@@ -241,11 +233,11 @@ if (rising_edge(clock_pixel)) then
 		when "100" => 
 			red_adc(4) <= adc_rgb(2);
 		when "101" => 
-			red_adc(4) <= adc_rgb(2) or red_adc(4);
+			red_adc(4) <= adc_rgb(2) or red_adc(4); 
 		when "110" => 
 			red_adc(5) <= adc_rgb(2);					
 		when "111" =>
-			red_adc(6) <= adc_rgb(2);					
+			red_adc(6) <= adc_rgb(2);
 	end case;
 end if;	
 end process;
@@ -265,7 +257,7 @@ if (rising_edge(clock_pixel)) then
 		when "100" => 
 			green_adc(4) <= adc_rgb(1);
 		when "101" => 
-			green_adc(4) <= adc_rgb(1) or green_adc(4);
+			green_adc(4) <= adc_rgb(1) or green_adc(4); 
 		when "110" => 
 			green_adc(5) <= adc_rgb(1);					
 		when "111" =>
@@ -289,7 +281,7 @@ if (rising_edge(clock_pixel)) then
 		when "100" => 
 			blue_adc(4) <= adc_rgb(0);
 		when "101" => 
-			blue_adc(4) <= adc_rgb(0) or blue_adc(4);
+			blue_adc(4) <= adc_rgb(0) or blue_adc(4); 
 		when "110" => 
 			blue_adc(5) <= adc_rgb(0);
 		when "111" => 
@@ -307,15 +299,13 @@ begin
 	end if;
 end process;
 
-col_counter: process(clock_pixel, hcount, hblank, vblank)
+col_counter: process(clock_pixel, hcount, hblank)
 begin
-	if (hblank = '0' or vblank = '0') then
+	if (hblank = '0') then
 		decimator <= "000";
 		column <= 0;
 	elsif (rising_edge(clock_pixel)) then
-
 		if (hcount(2 downto 0) = "111") then
-	
 			if (shrink = '1') then
 				avg_pixel <= '1';
 				column <= column + 1;
@@ -328,13 +318,9 @@ begin
 				avg_pixel <= '1';
 				column <= column + 1;
 			end if;
-
 			decimator <= decimator + 1;			
-
-		end if;
-		
-	end if;	
-	
+		end if;		
+	end if;		
 end process;
 		
 
@@ -398,38 +384,20 @@ begin
 	end if;
 end process;
 
-process_pixel: process(clock_pixel, hcount) 
-variable row, col: integer range 0 to 1024;
+
+process_d: process(clock_pixel, hcount) 
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 variable c_pixel: unsigned(7 downto 0);
-variable b_pixel: unsigned(7 downto 0);
 begin
 	if (rising_edge(clock_pixel)) then
 	
 		if (hcount(2 downto 0) = "100") then
 			-- digitize in the middle of the pixel
 			
-			b_pixel := c_pixel;
-			c_pixel := pixel_adc;
-			p_pixel := a_pixel;				
+				p_pixel := a_pixel;				
 			
-			if (column >= front_porch and column < 900 and vcount >= top_border and vcount < 312) then		
-				-- user active window
-				col := column - front_porch;
-				case (deinterlace) is
-					when '0' =>
-						-- for deinterlace extend the image. frame = odd/even fields
-						row := to_integer(vcount) - top_border;
-						row := row + row + to_integer(frame);
-					when '1' =>
-						row := to_integer(vcount) - top_border;					
-				end case;				
-				
-				row_number <= to_unsigned(row, row_number'length);
-				col_number <= to_unsigned(col, col_number'length);				
-		
 				pixel(3 downto 1) := pixel(2 downto 0);
 				-- pixel shifting for apple2/coco3 artifact
 				case (pixel_adc(4 downto 2)) is
@@ -440,7 +408,6 @@ begin
 					when others => pixel(0) := '0';
 				end case;				
 													
-				
 				case (hcount(3)) is
 					when '0' =>
 						-- even rows					
@@ -589,16 +556,56 @@ begin
 						--
 				end case;
 			
-				if (avg_pixel = '0' and artifact_mode = '1') then
-					pixel_out(7 downto 5) <= to_unsigned(to_integer(c_pixel(7 downto 5)) + to_integer(b_pixel(7 downto 5)), 4)(3 downto 1);
-					pixel_out(4 downto 2) <= to_unsigned(to_integer(c_pixel(4 downto 2)) + to_integer(b_pixel(4 downto 2)), 4)(3 downto 1);
-					pixel_out(1 downto 0) <= to_unsigned(to_integer(c_pixel(1 downto 0)) + to_integer(b_pixel(1 downto 0)), 3)(2 downto 1);
-				else
-					pixel_out <= c_pixel;
-				end if;
+				pixel_d <= c_pixel;
 
+		end if;
+	end if;
+end process;
+
+process_a: process(clock_pixel, hcount) 
+variable pixel: unsigned(3 downto 0);
+variable c_pixel: unsigned(7 downto 0);
+variable b_pixel: unsigned(7 downto 0);
+begin
+	if (rising_edge(clock_pixel)) then
+	
+		if (hcount(2 downto 0) = "100") then
+			b_pixel := c_pixel;
+
+			c_pixel := pixel_adc;
+				
+			if (avg_pixel = '0' and artifact_mode = '1') then
+				pixel_a(7 downto 5) <= to_unsigned(to_integer(c_pixel(7 downto 5)) + to_integer(b_pixel(7 downto 5)), 4)(3 downto 1);
+				pixel_a(4 downto 2) <= to_unsigned(to_integer(c_pixel(4 downto 2)) + to_integer(b_pixel(4 downto 2)), 4)(3 downto 1);
+				pixel_a(1 downto 0) <= to_unsigned(to_integer(c_pixel(1 downto 0)) + to_integer(b_pixel(1 downto 0)), 3)(2 downto 1);
+			else
+				pixel_a <= c_pixel;
 			end if;
 		end if;
+		
+	end if;
+end process;
+
+process_colr: process(clock_pixel, hcount) 
+variable row, col: integer range 0 to 1024;
+begin
+	if (rising_edge(clock_pixel)) then
+	
+		if (column >= front_porch and column < 900 and vcount >= top_border and vcount < 312) then
+			-- user active window
+			col := column - front_porch;
+			case (deinterlace) is
+				when '0' =>
+					-- for deinterlace extend the image. frame = odd/even fields
+					row := to_integer(vcount) - top_border;
+					row := row + row + to_integer(frame);
+				when '1' =>
+					row := to_integer(vcount) - top_border;					
+			end case;							
+			row_number <= to_unsigned(row, row_number'length);
+			col_number <= to_unsigned(col, col_number'length);				
+		end if;
+		
 	end if;
 end process;
 
@@ -668,26 +675,12 @@ end process;
 
 store_row: process(clock_dram, hblank, store_ack)
 begin	
-	if (store_ack = '1') then
+	if (store_ack = '1') then -- store_ack is asynchronous
 			store_req <= '0';
 	elsif (rising_edge(clock_dram)) then
 		if (hblank = '0') then
-			store_req <= '1';
+			store_req <= '1'; -- store_req is on clock_dram
 		end if;
-	end if;	
-end process;
-
-switches: process(clock_pixel)
-begin
-	if (rising_edge(clock_pixel)) then
-		mode <= sw_mode;
-		artifact <= sw_artifact;
-		sync_level <= sw_sync_level;
-		deinterlace <= sw_deinterlace;
-		apple2 <= sw_apple2;
-		shrink <= sw_shrink;
-		clock_sw <= sw_clock_sw;
-		enable <= sw_enable;
 	end if;	
 end process;
 
@@ -710,5 +703,9 @@ end process;
 	pixel_adc(7 downto 5) <= f_adc(red_adc);
 	pixel_adc(4 downto 2) <= f_adc(green_adc);
 	pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
+	
+	with (artifact and apple2) select pixel_out <= 
+		pixel_a when '1',
+		pixel_d when '0';
 	
 end behavioral;

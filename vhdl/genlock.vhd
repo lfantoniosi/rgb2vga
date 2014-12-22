@@ -21,7 +21,8 @@ entity genlock is
 			apple2		: in std_logic;
 			shrink		: in std_logic;
 			clock_sw		: in std_logic;
-			clock_dram		: in std_logic
+			clock_dram		: in std_logic;
+			dac_step		: in unsigned(2 downto 0)
 );
 			
 end genlock;
@@ -218,10 +219,10 @@ end f_adc;
 
 begin
 
-channel_red: process(clock_pixel, hcount)
+channel_red: process(clock_pixel, dac_step, hcount)
 begin
 if (rising_edge(clock_pixel)) then
-	case hcount(2 downto 0) is		
+	case dac_step(2 downto 0) is		
 		when "000" =>
 			red_adc(0) <= adc_rgb(2);
 		when "001" => 
@@ -242,10 +243,10 @@ if (rising_edge(clock_pixel)) then
 end if;	
 end process;
 
-channel_green: process(clock_pixel, hcount)
+channel_green: process(clock_pixel, dac_step, hcount)
 begin
 if (rising_edge(clock_pixel)) then
-	case hcount(2 downto 0) is		
+	case dac_step(2 downto 0) is		
 		when "000" =>			
 			green_adc(0) <= adc_rgb(1);					
 		when "001" => 
@@ -266,10 +267,10 @@ if (rising_edge(clock_pixel)) then
 end if;
 end process;
 
-channel_blue: process(clock_pixel, hcount)
+channel_blue: process(clock_pixel, dac_step, hcount)
 begin
 if (rising_edge(clock_pixel)) then
-	case hcount(2 downto 0) is		
+	case dac_step(2 downto 0) is		
 		when "000" =>	
 			blue_adc(0) <= adc_rgb(0);					
 		when "001" => 
@@ -385,7 +386,7 @@ begin
 end process;
 
 
-process_d: process(clock_pixel, hcount) 
+process_d: process(clock_pixel, dac_step, hcount) 
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
@@ -393,7 +394,7 @@ variable c_pixel: unsigned(7 downto 0);
 begin
 	if (rising_edge(clock_pixel)) then
 	
-		if (hcount(2 downto 0) = "100") then
+		if (dac_step(2 downto 0) = "100") then
 			-- digitize in the middle of the pixel
 			
 				p_pixel := a_pixel;				
@@ -562,14 +563,14 @@ begin
 	end if;
 end process;
 
-process_a: process(clock_pixel, hcount) 
+process_a: process(clock_pixel, dac_step, hcount) 
 variable pixel: unsigned(3 downto 0);
 variable c_pixel: unsigned(7 downto 0);
 variable b_pixel: unsigned(7 downto 0);
 begin
 	if (rising_edge(clock_pixel)) then
 	
-		if (hcount(2 downto 0) = "100") then
+		if (dac_step(2 downto 0) = "100") then
 			b_pixel := c_pixel;
 
 			c_pixel := pixel_adc;

@@ -41,9 +41,12 @@ signal blue_adc: unsigned(6 downto 0);
 
 signal pixel_a: unsigned(7 downto 0);
 signal pixel_d: unsigned(7 downto 0);
+signal pixel_b: unsigned(7 downto 0);
+
+signal pixel_sel: unsigned(1 downto 0);
+
 signal pixel_adc: unsigned(7 downto 0);
 signal artifact_mode: std_logic;
-signal avg_pixel: std_logic;
 
 signal frame: 		unsigned(0 downto 0);
 
@@ -67,7 +70,6 @@ signal lightblue:	unsigned(7 downto 0);
 signal white:		unsigned(7 downto 0);
 
 signal column: 	integer range 0 to 1024;
-signal decimator: unsigned(2 downto 0);
 
 function f_adc(adc: unsigned) return unsigned;
 
@@ -217,6 +219,530 @@ begin
 		
 end f_adc;
 
+
+function f_lerp(pattern: unsigned) return unsigned;
+
+function f_lerp(pattern: unsigned) return unsigned is
+variable VALUE : unsigned (2 downto 0); 
+begin
+		case pattern is	
+			when	"000000000"	 => VALUE :=	"000";
+			when	"000000001"	 => VALUE :=	"000";
+			when	"000000010"	 => VALUE :=	"000";
+			when	"000000011"	 => VALUE :=	"000";
+			when	"000000100"	 => VALUE :=	"000";
+			when	"000000101"	 => VALUE :=	"000";
+			when	"000000110"	 => VALUE :=	"000";
+			when	"000000111"	 => VALUE :=	"000";
+			when	"000001000"	 => VALUE :=	"000";
+			when	"000001001"	 => VALUE :=	"001";
+			when	"000001010"	 => VALUE :=	"001";
+			when	"000001011"	 => VALUE :=	"001";
+			when	"000001100"	 => VALUE :=	"001";
+			when	"000001101"	 => VALUE :=	"001";
+			when	"000001110"	 => VALUE :=	"001";
+			when	"000001111"	 => VALUE :=	"001";
+			when	"000010000"	 => VALUE :=	"001";
+			when	"000010001"	 => VALUE :=	"001";
+			when	"000010010"	 => VALUE :=	"010";
+			when	"000010011"	 => VALUE :=	"010";
+			when	"000010100"	 => VALUE :=	"010";
+			when	"000010101"	 => VALUE :=	"010";
+			when	"000010110"	 => VALUE :=	"010";
+			when	"000010111"	 => VALUE :=	"010";
+			when	"000011000"	 => VALUE :=	"010";
+			when	"000011001"	 => VALUE :=	"010";
+			when	"000011010"	 => VALUE :=	"010";
+			when	"000011011"	 => VALUE :=	"011";
+			when	"000011100"	 => VALUE :=	"011";
+			when	"000011101"	 => VALUE :=	"011";
+			when	"000011110"	 => VALUE :=	"011";
+			when	"000011111"	 => VALUE :=	"011";
+			when	"000100000"	 => VALUE :=	"011";
+			when	"000100001"	 => VALUE :=	"011";
+			when	"000100010"	 => VALUE :=	"011";
+			when	"000100011"	 => VALUE :=	"011";
+			when	"000100100"	 => VALUE :=	"100";
+			when	"000100101"	 => VALUE :=	"100";
+			when	"000100110"	 => VALUE :=	"100";
+			when	"000100111"	 => VALUE :=	"100";
+			when	"000101000"	 => VALUE :=	"100";
+			when	"000101001"	 => VALUE :=	"100";
+			when	"000101010"	 => VALUE :=	"100";
+			when	"000101011"	 => VALUE :=	"100";
+			when	"000101100"	 => VALUE :=	"100";
+			when	"000101101"	 => VALUE :=	"101";
+			when	"000101110"	 => VALUE :=	"101";
+			when	"000101111"	 => VALUE :=	"101";
+			when	"000110000"	 => VALUE :=	"101";
+			when	"000110001"	 => VALUE :=	"101";
+			when	"000110010"	 => VALUE :=	"101";
+			when	"000110011"	 => VALUE :=	"101";
+			when	"000110100"	 => VALUE :=	"101";
+			when	"000110101"	 => VALUE :=	"101";
+			when	"000110110"	 => VALUE :=	"110";
+			when	"000110111"	 => VALUE :=	"110";
+			when	"000111000"	 => VALUE :=	"110";
+			when	"000111001"	 => VALUE :=	"110";
+			when	"000111010"	 => VALUE :=	"110";
+			when	"000111011"	 => VALUE :=	"110";
+			when	"000111100"	 => VALUE :=	"110";
+			when	"000111101"	 => VALUE :=	"110";
+			when	"000111110"	 => VALUE :=	"110";
+			when	"000111111"	 => VALUE :=	"111";
+			when	"001000000"	 => VALUE :=	"000";
+			when	"001000001"	 => VALUE :=	"000";
+			when	"001000010"	 => VALUE :=	"000";
+			when	"001000011"	 => VALUE :=	"000";
+			when	"001000100"	 => VALUE :=	"001";
+			when	"001000101"	 => VALUE :=	"001";
+			when	"001000110"	 => VALUE :=	"001";
+			when	"001000111"	 => VALUE :=	"001";
+			when	"001001000"	 => VALUE :=	"000";
+			when	"001001001"	 => VALUE :=	"001";
+			when	"001001010"	 => VALUE :=	"001";
+			when	"001001011"	 => VALUE :=	"001";
+			when	"001001100"	 => VALUE :=	"001";
+			when	"001001101"	 => VALUE :=	"010";
+			when	"001001110"	 => VALUE :=	"010";
+			when	"001001111"	 => VALUE :=	"010";
+			when	"001010000"	 => VALUE :=	"001";
+			when	"001010001"	 => VALUE :=	"001";
+			when	"001010010"	 => VALUE :=	"010";
+			when	"001010011"	 => VALUE :=	"010";
+			when	"001010100"	 => VALUE :=	"010";
+			when	"001010101"	 => VALUE :=	"010";
+			when	"001010110"	 => VALUE :=	"011";
+			when	"001010111"	 => VALUE :=	"011";
+			when	"001011000"	 => VALUE :=	"010";
+			when	"001011001"	 => VALUE :=	"010";
+			when	"001011010"	 => VALUE :=	"010";
+			when	"001011011"	 => VALUE :=	"011";
+			when	"001011100"	 => VALUE :=	"011";
+			when	"001011101"	 => VALUE :=	"011";
+			when	"001011110"	 => VALUE :=	"011";
+			when	"001011111"	 => VALUE :=	"100";
+			when	"001100000"	 => VALUE :=	"011";
+			when	"001100001"	 => VALUE :=	"011";
+			when	"001100010"	 => VALUE :=	"011";
+			when	"001100011"	 => VALUE :=	"011";
+			when	"001100100"	 => VALUE :=	"100";
+			when	"001100101"	 => VALUE :=	"100";
+			when	"001100110"	 => VALUE :=	"100";
+			when	"001100111"	 => VALUE :=	"100";
+			when	"001101000"	 => VALUE :=	"011";
+			when	"001101001"	 => VALUE :=	"100";
+			when	"001101010"	 => VALUE :=	"100";
+			when	"001101011"	 => VALUE :=	"100";
+			when	"001101100"	 => VALUE :=	"100";
+			when	"001101101"	 => VALUE :=	"101";
+			when	"001101110"	 => VALUE :=	"101";
+			when	"001101111"	 => VALUE :=	"101";
+			when	"001110000"	 => VALUE :=	"100";
+			when	"001110001"	 => VALUE :=	"100";
+			when	"001110010"	 => VALUE :=	"101";
+			when	"001110011"	 => VALUE :=	"101";
+			when	"001110100"	 => VALUE :=	"101";
+			when	"001110101"	 => VALUE :=	"101";
+			when	"001110110"	 => VALUE :=	"110";
+			when	"001110111"	 => VALUE :=	"110";
+			when	"001111000"	 => VALUE :=	"101";
+			when	"001111001"	 => VALUE :=	"101";
+			when	"001111010"	 => VALUE :=	"101";
+			when	"001111011"	 => VALUE :=	"110";
+			when	"001111100"	 => VALUE :=	"110";
+			when	"001111101"	 => VALUE :=	"110";
+			when	"001111110"	 => VALUE :=	"110";
+			when	"001111111"	 => VALUE :=	"111";
+			when	"010000000"	 => VALUE :=	"000";
+			when	"010000001"	 => VALUE :=	"000";
+			when	"010000010"	 => VALUE :=	"000";
+			when	"010000011"	 => VALUE :=	"001";
+			when	"010000100"	 => VALUE :=	"001";
+			when	"010000101"	 => VALUE :=	"001";
+			when	"010000110"	 => VALUE :=	"010";
+			when	"010000111"	 => VALUE :=	"010";
+			when	"010001000"	 => VALUE :=	"000";
+			when	"010001001"	 => VALUE :=	"001";
+			when	"010001010"	 => VALUE :=	"001";
+			when	"010001011"	 => VALUE :=	"001";
+			when	"010001100"	 => VALUE :=	"010";
+			when	"010001101"	 => VALUE :=	"010";
+			when	"010001110"	 => VALUE :=	"010";
+			when	"010001111"	 => VALUE :=	"011";
+			when	"010010000"	 => VALUE :=	"001";
+			when	"010010001"	 => VALUE :=	"001";
+			when	"010010010"	 => VALUE :=	"010";
+			when	"010010011"	 => VALUE :=	"010";
+			when	"010010100"	 => VALUE :=	"010";
+			when	"010010101"	 => VALUE :=	"011";
+			when	"010010110"	 => VALUE :=	"011";
+			when	"010010111"	 => VALUE :=	"011";
+			when	"010011000"	 => VALUE :=	"001";
+			when	"010011001"	 => VALUE :=	"010";
+			when	"010011010"	 => VALUE :=	"010";
+			when	"010011011"	 => VALUE :=	"011";
+			when	"010011100"	 => VALUE :=	"011";
+			when	"010011101"	 => VALUE :=	"011";
+			when	"010011110"	 => VALUE :=	"100";
+			when	"010011111"	 => VALUE :=	"100";
+			when	"010100000"	 => VALUE :=	"010";
+			when	"010100001"	 => VALUE :=	"010";
+			when	"010100010"	 => VALUE :=	"011";
+			when	"010100011"	 => VALUE :=	"011";
+			when	"010100100"	 => VALUE :=	"100";
+			when	"010100101"	 => VALUE :=	"100";
+			when	"010100110"	 => VALUE :=	"100";
+			when	"010100111"	 => VALUE :=	"101";
+			when	"010101000"	 => VALUE :=	"011";
+			when	"010101001"	 => VALUE :=	"011";
+			when	"010101010"	 => VALUE :=	"011";
+			when	"010101011"	 => VALUE :=	"100";
+			when	"010101100"	 => VALUE :=	"100";
+			when	"010101101"	 => VALUE :=	"101";
+			when	"010101110"	 => VALUE :=	"101";
+			when	"010101111"	 => VALUE :=	"101";
+			when	"010110000"	 => VALUE :=	"011";
+			when	"010110001"	 => VALUE :=	"100";
+			when	"010110010"	 => VALUE :=	"100";
+			when	"010110011"	 => VALUE :=	"100";
+			when	"010110100"	 => VALUE :=	"101";
+			when	"010110101"	 => VALUE :=	"101";
+			when	"010110110"	 => VALUE :=	"110";
+			when	"010110111"	 => VALUE :=	"110";
+			when	"010111000"	 => VALUE :=	"100";
+			when	"010111001"	 => VALUE :=	"100";
+			when	"010111010"	 => VALUE :=	"101";
+			when	"010111011"	 => VALUE :=	"101";
+			when	"010111100"	 => VALUE :=	"101";
+			when	"010111101"	 => VALUE :=	"110";
+			when	"010111110"	 => VALUE :=	"110";
+			when	"010111111"	 => VALUE :=	"111";
+			when	"011000000"	 => VALUE :=	"000";
+			when	"011000001"	 => VALUE :=	"000";
+			when	"011000010"	 => VALUE :=	"001";
+			when	"011000011"	 => VALUE :=	"001";
+			when	"011000100"	 => VALUE :=	"010";
+			when	"011000101"	 => VALUE :=	"010";
+			when	"011000110"	 => VALUE :=	"011";
+			when	"011000111"	 => VALUE :=	"011";
+			when	"011001000"	 => VALUE :=	"000";
+			when	"011001001"	 => VALUE :=	"001";
+			when	"011001010"	 => VALUE :=	"001";
+			when	"011001011"	 => VALUE :=	"010";
+			when	"011001100"	 => VALUE :=	"010";
+			when	"011001101"	 => VALUE :=	"011";
+			when	"011001110"	 => VALUE :=	"011";
+			when	"011001111"	 => VALUE :=	"100";
+			when	"011010000"	 => VALUE :=	"001";
+			when	"011010001"	 => VALUE :=	"001";
+			when	"011010010"	 => VALUE :=	"010";
+			when	"011010011"	 => VALUE :=	"010";
+			when	"011010100"	 => VALUE :=	"011";
+			when	"011010101"	 => VALUE :=	"011";
+			when	"011010110"	 => VALUE :=	"100";
+			when	"011010111"	 => VALUE :=	"100";
+			when	"011011000"	 => VALUE :=	"001";
+			when	"011011001"	 => VALUE :=	"010";
+			when	"011011010"	 => VALUE :=	"010";
+			when	"011011011"	 => VALUE :=	"011";
+			when	"011011100"	 => VALUE :=	"011";
+			when	"011011101"	 => VALUE :=	"100";
+			when	"011011110"	 => VALUE :=	"100";
+			when	"011011111"	 => VALUE :=	"101";
+			when	"011100000"	 => VALUE :=	"010";
+			when	"011100001"	 => VALUE :=	"010";
+			when	"011100010"	 => VALUE :=	"011";
+			when	"011100011"	 => VALUE :=	"011";
+			when	"011100100"	 => VALUE :=	"100";
+			when	"011100101"	 => VALUE :=	"100";
+			when	"011100110"	 => VALUE :=	"101";
+			when	"011100111"	 => VALUE :=	"101";
+			when	"011101000"	 => VALUE :=	"010";
+			when	"011101001"	 => VALUE :=	"011";
+			when	"011101010"	 => VALUE :=	"011";
+			when	"011101011"	 => VALUE :=	"100";
+			when	"011101100"	 => VALUE :=	"100";
+			when	"011101101"	 => VALUE :=	"101";
+			when	"011101110"	 => VALUE :=	"101";
+			when	"011101111"	 => VALUE :=	"110";
+			when	"011110000"	 => VALUE :=	"011";
+			when	"011110001"	 => VALUE :=	"011";
+			when	"011110010"	 => VALUE :=	"100";
+			when	"011110011"	 => VALUE :=	"100";
+			when	"011110100"	 => VALUE :=	"101";
+			when	"011110101"	 => VALUE :=	"101";
+			when	"011110110"	 => VALUE :=	"110";
+			when	"011110111"	 => VALUE :=	"110";
+			when	"011111000"	 => VALUE :=	"011";
+			when	"011111001"	 => VALUE :=	"100";
+			when	"011111010"	 => VALUE :=	"100";
+			when	"011111011"	 => VALUE :=	"101";
+			when	"011111100"	 => VALUE :=	"101";
+			when	"011111101"	 => VALUE :=	"110";
+			when	"011111110"	 => VALUE :=	"110";
+			when	"011111111"	 => VALUE :=	"111";
+			when	"100000000"	 => VALUE :=	"000";
+			when	"100000001"	 => VALUE :=	"000";
+			when	"100000010"	 => VALUE :=	"001";
+			when	"100000011"	 => VALUE :=	"001";
+			when	"100000100"	 => VALUE :=	"010";
+			when	"100000101"	 => VALUE :=	"011";
+			when	"100000110"	 => VALUE :=	"011";
+			when	"100000111"	 => VALUE :=	"100";
+			when	"100001000"	 => VALUE :=	"000";
+			when	"100001001"	 => VALUE :=	"001";
+			when	"100001010"	 => VALUE :=	"001";
+			when	"100001011"	 => VALUE :=	"010";
+			when	"100001100"	 => VALUE :=	"010";
+			when	"100001101"	 => VALUE :=	"011";
+			when	"100001110"	 => VALUE :=	"100";
+			when	"100001111"	 => VALUE :=	"100";
+			when	"100010000"	 => VALUE :=	"000";
+			when	"100010001"	 => VALUE :=	"001";
+			when	"100010010"	 => VALUE :=	"010";
+			when	"100010011"	 => VALUE :=	"010";
+			when	"100010100"	 => VALUE :=	"011";
+			when	"100010101"	 => VALUE :=	"011";
+			when	"100010110"	 => VALUE :=	"100";
+			when	"100010111"	 => VALUE :=	"101";
+			when	"100011000"	 => VALUE :=	"001";
+			when	"100011001"	 => VALUE :=	"001";
+			when	"100011010"	 => VALUE :=	"010";
+			when	"100011011"	 => VALUE :=	"011";
+			when	"100011100"	 => VALUE :=	"011";
+			when	"100011101"	 => VALUE :=	"100";
+			when	"100011110"	 => VALUE :=	"100";
+			when	"100011111"	 => VALUE :=	"101";
+			when	"100100000"	 => VALUE :=	"001";
+			when	"100100001"	 => VALUE :=	"010";
+			when	"100100010"	 => VALUE :=	"010";
+			when	"100100011"	 => VALUE :=	"011";
+			when	"100100100"	 => VALUE :=	"100";
+			when	"100100101"	 => VALUE :=	"100";
+			when	"100100110"	 => VALUE :=	"101";
+			when	"100100111"	 => VALUE :=	"101";
+			when	"100101000"	 => VALUE :=	"001";
+			when	"100101001"	 => VALUE :=	"010";
+			when	"100101010"	 => VALUE :=	"011";
+			when	"100101011"	 => VALUE :=	"011";
+			when	"100101100"	 => VALUE :=	"100";
+			when	"100101101"	 => VALUE :=	"101";
+			when	"100101110"	 => VALUE :=	"101";
+			when	"100101111"	 => VALUE :=	"110";
+			when	"100110000"	 => VALUE :=	"010";
+			when	"100110001"	 => VALUE :=	"010";
+			when	"100110010"	 => VALUE :=	"011";
+			when	"100110011"	 => VALUE :=	"100";
+			when	"100110100"	 => VALUE :=	"100";
+			when	"100110101"	 => VALUE :=	"101";
+			when	"100110110"	 => VALUE :=	"110";
+			when	"100110111"	 => VALUE :=	"110";
+			when	"100111000"	 => VALUE :=	"010";
+			when	"100111001"	 => VALUE :=	"011";
+			when	"100111010"	 => VALUE :=	"011";
+			when	"100111011"	 => VALUE :=	"100";
+			when	"100111100"	 => VALUE :=	"101";
+			when	"100111101"	 => VALUE :=	"101";
+			when	"100111110"	 => VALUE :=	"110";
+			when	"100111111"	 => VALUE :=	"111";
+			when	"101000000"	 => VALUE :=	"000";
+			when	"101000001"	 => VALUE :=	"000";
+			when	"101000010"	 => VALUE :=	"001";
+			when	"101000011"	 => VALUE :=	"010";
+			when	"101000100"	 => VALUE :=	"011";
+			when	"101000101"	 => VALUE :=	"011";
+			when	"101000110"	 => VALUE :=	"100";
+			when	"101000111"	 => VALUE :=	"101";
+			when	"101001000"	 => VALUE :=	"000";
+			when	"101001001"	 => VALUE :=	"001";
+			when	"101001010"	 => VALUE :=	"001";
+			when	"101001011"	 => VALUE :=	"010";
+			when	"101001100"	 => VALUE :=	"011";
+			when	"101001101"	 => VALUE :=	"100";
+			when	"101001110"	 => VALUE :=	"100";
+			when	"101001111"	 => VALUE :=	"101";
+			when	"101010000"	 => VALUE :=	"000";
+			when	"101010001"	 => VALUE :=	"001";
+			when	"101010010"	 => VALUE :=	"010";
+			when	"101010011"	 => VALUE :=	"010";
+			when	"101010100"	 => VALUE :=	"011";
+			when	"101010101"	 => VALUE :=	"100";
+			when	"101010110"	 => VALUE :=	"101";
+			when	"101010111"	 => VALUE :=	"101";
+			when	"101011000"	 => VALUE :=	"000";
+			when	"101011001"	 => VALUE :=	"001";
+			when	"101011010"	 => VALUE :=	"010";
+			when	"101011011"	 => VALUE :=	"011";
+			when	"101011100"	 => VALUE :=	"011";
+			when	"101011101"	 => VALUE :=	"100";
+			when	"101011110"	 => VALUE :=	"101";
+			when	"101011111"	 => VALUE :=	"110";
+			when	"101100000"	 => VALUE :=	"001";
+			when	"101100001"	 => VALUE :=	"001";
+			when	"101100010"	 => VALUE :=	"010";
+			when	"101100011"	 => VALUE :=	"011";
+			when	"101100100"	 => VALUE :=	"100";
+			when	"101100101"	 => VALUE :=	"100";
+			when	"101100110"	 => VALUE :=	"101";
+			when	"101100111"	 => VALUE :=	"110";
+			when	"101101000"	 => VALUE :=	"001";
+			when	"101101001"	 => VALUE :=	"010";
+			when	"101101010"	 => VALUE :=	"010";
+			when	"101101011"	 => VALUE :=	"011";
+			when	"101101100"	 => VALUE :=	"100";
+			when	"101101101"	 => VALUE :=	"101";
+			when	"101101110"	 => VALUE :=	"101";
+			when	"101101111"	 => VALUE :=	"110";
+			when	"101110000"	 => VALUE :=	"001";
+			when	"101110001"	 => VALUE :=	"010";
+			when	"101110010"	 => VALUE :=	"011";
+			when	"101110011"	 => VALUE :=	"011";
+			when	"101110100"	 => VALUE :=	"100";
+			when	"101110101"	 => VALUE :=	"101";
+			when	"101110110"	 => VALUE :=	"110";
+			when	"101110111"	 => VALUE :=	"110";
+			when	"101111000"	 => VALUE :=	"001";
+			when	"101111001"	 => VALUE :=	"010";
+			when	"101111010"	 => VALUE :=	"011";
+			when	"101111011"	 => VALUE :=	"100";
+			when	"101111100"	 => VALUE :=	"100";
+			when	"101111101"	 => VALUE :=	"101";
+			when	"101111110"	 => VALUE :=	"110";
+			when	"101111111"	 => VALUE :=	"111";
+			when	"110000000"	 => VALUE :=	"000";
+			when	"110000001"	 => VALUE :=	"000";
+			when	"110000010"	 => VALUE :=	"001";
+			when	"110000011"	 => VALUE :=	"010";
+			when	"110000100"	 => VALUE :=	"011";
+			when	"110000101"	 => VALUE :=	"100";
+			when	"110000110"	 => VALUE :=	"101";
+			when	"110000111"	 => VALUE :=	"110";
+			when	"110001000"	 => VALUE :=	"000";
+			when	"110001001"	 => VALUE :=	"001";
+			when	"110001010"	 => VALUE :=	"001";
+			when	"110001011"	 => VALUE :=	"010";
+			when	"110001100"	 => VALUE :=	"011";
+			when	"110001101"	 => VALUE :=	"100";
+			when	"110001110"	 => VALUE :=	"101";
+			when	"110001111"	 => VALUE :=	"110";
+			when	"110010000"	 => VALUE :=	"000";
+			when	"110010001"	 => VALUE :=	"001";
+			when	"110010010"	 => VALUE :=	"010";
+			when	"110010011"	 => VALUE :=	"010";
+			when	"110010100"	 => VALUE :=	"011";
+			when	"110010101"	 => VALUE :=	"100";
+			when	"110010110"	 => VALUE :=	"101";
+			when	"110010111"	 => VALUE :=	"110";
+			when	"110011000"	 => VALUE :=	"000";
+			when	"110011001"	 => VALUE :=	"001";
+			when	"110011010"	 => VALUE :=	"010";
+			when	"110011011"	 => VALUE :=	"011";
+			when	"110011100"	 => VALUE :=	"011";
+			when	"110011101"	 => VALUE :=	"100";
+			when	"110011110"	 => VALUE :=	"101";
+			when	"110011111"	 => VALUE :=	"110";
+			when	"110100000"	 => VALUE :=	"000";
+			when	"110100001"	 => VALUE :=	"001";
+			when	"110100010"	 => VALUE :=	"010";
+			when	"110100011"	 => VALUE :=	"011";
+			when	"110100100"	 => VALUE :=	"100";
+			when	"110100101"	 => VALUE :=	"100";
+			when	"110100110"	 => VALUE :=	"101";
+			when	"110100111"	 => VALUE :=	"110";
+			when	"110101000"	 => VALUE :=	"000";
+			when	"110101001"	 => VALUE :=	"001";
+			when	"110101010"	 => VALUE :=	"010";
+			when	"110101011"	 => VALUE :=	"011";
+			when	"110101100"	 => VALUE :=	"100";
+			when	"110101101"	 => VALUE :=	"101";
+			when	"110101110"	 => VALUE :=	"101";
+			when	"110101111"	 => VALUE :=	"110";
+			when	"110110000"	 => VALUE :=	"000";
+			when	"110110001"	 => VALUE :=	"001";
+			when	"110110010"	 => VALUE :=	"010";
+			when	"110110011"	 => VALUE :=	"011";
+			when	"110110100"	 => VALUE :=	"100";
+			when	"110110101"	 => VALUE :=	"101";
+			when	"110110110"	 => VALUE :=	"110";
+			when	"110110111"	 => VALUE :=	"110";
+			when	"110111000"	 => VALUE :=	"000";
+			when	"110111001"	 => VALUE :=	"001";
+			when	"110111010"	 => VALUE :=	"010";
+			when	"110111011"	 => VALUE :=	"011";
+			when	"110111100"	 => VALUE :=	"100";
+			when	"110111101"	 => VALUE :=	"101";
+			when	"110111110"	 => VALUE :=	"110";
+			when	"110111111"	 => VALUE :=	"111";
+			when	"111000000"	 => VALUE :=	"000";
+			when	"111000001"	 => VALUE :=	"001";
+			when	"111000010"	 => VALUE :=	"010";
+			when	"111000011"	 => VALUE :=	"011";
+			when	"111000100"	 => VALUE :=	"100";
+			when	"111000101"	 => VALUE :=	"101";
+			when	"111000110"	 => VALUE :=	"110";
+			when	"111000111"	 => VALUE :=	"111";
+			when	"111001000"	 => VALUE :=	"000";
+			when	"111001001"	 => VALUE :=	"001";
+			when	"111001010"	 => VALUE :=	"010";
+			when	"111001011"	 => VALUE :=	"011";
+			when	"111001100"	 => VALUE :=	"100";
+			when	"111001101"	 => VALUE :=	"101";
+			when	"111001110"	 => VALUE :=	"110";
+			when	"111001111"	 => VALUE :=	"111";
+			when	"111010000"	 => VALUE :=	"000";
+			when	"111010001"	 => VALUE :=	"001";
+			when	"111010010"	 => VALUE :=	"010";
+			when	"111010011"	 => VALUE :=	"011";
+			when	"111010100"	 => VALUE :=	"100";
+			when	"111010101"	 => VALUE :=	"101";
+			when	"111010110"	 => VALUE :=	"110";
+			when	"111010111"	 => VALUE :=	"111";
+			when	"111011000"	 => VALUE :=	"000";
+			when	"111011001"	 => VALUE :=	"001";
+			when	"111011010"	 => VALUE :=	"010";
+			when	"111011011"	 => VALUE :=	"011";
+			when	"111011100"	 => VALUE :=	"100";
+			when	"111011101"	 => VALUE :=	"101";
+			when	"111011110"	 => VALUE :=	"110";
+			when	"111011111"	 => VALUE :=	"111";
+			when	"111100000"	 => VALUE :=	"000";
+			when	"111100001"	 => VALUE :=	"001";
+			when	"111100010"	 => VALUE :=	"010";
+			when	"111100011"	 => VALUE :=	"011";
+			when	"111100100"	 => VALUE :=	"100";
+			when	"111100101"	 => VALUE :=	"101";
+			when	"111100110"	 => VALUE :=	"110";
+			when	"111100111"	 => VALUE :=	"111";
+			when	"111101000"	 => VALUE :=	"000";
+			when	"111101001"	 => VALUE :=	"001";
+			when	"111101010"	 => VALUE :=	"010";
+			when	"111101011"	 => VALUE :=	"011";
+			when	"111101100"	 => VALUE :=	"100";
+			when	"111101101"	 => VALUE :=	"101";
+			when	"111101110"	 => VALUE :=	"110";
+			when	"111101111"	 => VALUE :=	"111";
+			when	"111110000"	 => VALUE :=	"000";
+			when	"111110001"	 => VALUE :=	"001";
+			when	"111110010"	 => VALUE :=	"010";
+			when	"111110011"	 => VALUE :=	"011";
+			when	"111110100"	 => VALUE :=	"100";
+			when	"111110101"	 => VALUE :=	"101";
+			when	"111110110"	 => VALUE :=	"110";
+			when	"111110111"	 => VALUE :=	"111";
+			when	"111111000"	 => VALUE :=	"000";
+			when	"111111001"	 => VALUE :=	"001";
+			when	"111111010"	 => VALUE :=	"010";
+			when	"111111011"	 => VALUE :=	"011";
+			when	"111111100"	 => VALUE :=	"100";
+			when	"111111101"	 => VALUE :=	"101";
+			when	"111111110"	 => VALUE :=	"110";
+			when	"111111111"	 => VALUE :=	"111";	
+		end case;		
+		return VALUE;
+		
+end f_lerp;
+
 begin
 
 channel_red: process(clock_pixel, dac_step, hcount)
@@ -232,9 +758,9 @@ if (rising_edge(clock_pixel)) then
 		when "011" => 
 			red_adc(3) <= adc_rgb(2);
 		when "100" => 
-			red_adc(4) <= adc_rgb(2);
+			red_adc(3) <= adc_rgb(2) or red_adc(3);
 		when "101" => 
-			red_adc(4) <= adc_rgb(2) or red_adc(4); 
+			red_adc(4) <= adc_rgb(2); 
 		when "110" => 
 			red_adc(5) <= adc_rgb(2);					
 		when "111" =>
@@ -256,9 +782,9 @@ if (rising_edge(clock_pixel)) then
 		when "011" => 
 			green_adc(3) <= adc_rgb(1);					
 		when "100" => 
-			green_adc(4) <= adc_rgb(1);
+			green_adc(3) <= adc_rgb(1) or green_adc(3);
 		when "101" => 
-			green_adc(4) <= adc_rgb(1) or green_adc(4); 
+			green_adc(4) <= adc_rgb(1); 
 		when "110" => 
 			green_adc(5) <= adc_rgb(1);					
 		when "111" =>
@@ -280,9 +806,9 @@ if (rising_edge(clock_pixel)) then
 		when "011" => 
 			blue_adc(3) <= adc_rgb(0);
 		when "100" => 
-			blue_adc(4) <= adc_rgb(0);
+			blue_adc(3) <= adc_rgb(0) or blue_adc(3);
 		when "101" => 
-			blue_adc(4) <= adc_rgb(0) or blue_adc(4); 
+			blue_adc(4) <= adc_rgb(0); 
 		when "110" => 
 			blue_adc(5) <= adc_rgb(0);
 		when "111" => 
@@ -303,23 +829,12 @@ end process;
 col_counter: process(clock_pixel, hcount, hblank)
 begin
 	if (hblank = '0') then
-		decimator <= "000";
 		column <= 0;
 	elsif (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "111") then
-			if (shrink = '1') then
-				avg_pixel <= '1';
-				column <= column + 1;
-			elsif (decimator = "111") then
-				avg_pixel <= '0';
-			elsif (decimator = "000") then
-				avg_pixel <= '0';
-				column <= column + 1;
-			else
-				avg_pixel <= '1';
+			if (shrink = '1' or hcount(5 downto 3) /= "111") then
 				column <= column + 1;
 			end if;
-			decimator <= decimator + 1;			
 		end if;		
 	end if;		
 end process;
@@ -386,6 +901,24 @@ begin
 end process;
 
 
+
+process_b: process(clock_pixel, dac_step, hcount) 
+variable pixel: std_logic;
+begin
+	if (rising_edge(clock_pixel)) then
+		if (dac_step(2 downto 0) = "100") then
+			case (pixel_adc(4 downto 2)) is
+				when "111" => pixel_b <= "11111111";
+				when "110" => pixel_b <= apple2&apple2&apple2&apple2&apple2&apple2&apple2&apple2;
+				when "101" => pixel_b <= apple2&apple2&apple2&apple2&apple2&apple2&apple2&apple2;
+				when "100" => pixel_b <= apple2&apple2&apple2&apple2&apple2&apple2&apple2&apple2;
+				when others => pixel_b <= "00000000";
+			end case;
+		end if;
+	end if;
+end process;
+
+
 process_d: process(clock_pixel, dac_step, hcount) 
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
@@ -412,13 +945,6 @@ begin
 				case (hcount(3)) is
 					when '0' =>
 						-- even rows					
-						case (artifact_mode) is
-							when '1' =>
-								if (apple2 = '0') then
-									c_pixel := pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);
-								end if;																
-								
-							when '0' =>
 								--	APPLE ][ NTSC ARTIFACT COLOUR TABLE					
 								--	|00|11|00|11|00|11   hcount(4)
 								--	|01|01|01|01|01|01   hcount(3)
@@ -492,21 +1018,16 @@ begin
 										end case;
 								end case;								
 								--
-								c_pixel(7 downto 5) := to_unsigned(to_integer(p_pixel(7 downto 5)) + to_integer(a_pixel(7 downto 5)), 4)(3 downto 1);
-								c_pixel(4 downto 2) := to_unsigned(to_integer(p_pixel(4 downto 2)) + to_integer(a_pixel(4 downto 2)), 4)(3 downto 1);
-								c_pixel(1 downto 0) := to_unsigned(to_integer(p_pixel(1 downto 0)) + to_integer(a_pixel(1 downto 0)), 3)(2 downto 1);
-								
-						end case;
+								if (shrink = '0') then
+									pixel_d(7 downto 5) <= f_lerp(hcount(5 downto 3) & p_pixel(7 downto 5) & a_pixel(7 downto 5));									
+									pixel_d(4 downto 2) <= f_lerp(hcount(5 downto 3) & p_pixel(4 downto 2) & a_pixel(4 downto 2));
+									pixel_d(1 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(1 downto 0) & '0' & a_pixel(1 downto 0) & '0')(2 downto 1);
+								else
+									pixel_d <= a_pixel;
+								end if;
 											
 					when '1' =>
 						-- odd rows
-						case (artifact_mode) is
-							when '1' =>
-								if (apple2 = '0') then
-									c_pixel := pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0)&pixel(0);
-								end if;																
-								
-							when '0' =>
 								case (hcount(4)) is
 									when '0' => -- "01" 
 										-- decode colour by the last 4-bit pattern
@@ -549,16 +1070,16 @@ begin
 										end case;
 								end case;
 								--
-								c_pixel(7 downto 5) := to_unsigned(to_integer(p_pixel(7 downto 5)) + to_integer(a_pixel(7 downto 5)), 4)(3 downto 1);
-								c_pixel(4 downto 2) := to_unsigned(to_integer(p_pixel(4 downto 2)) + to_integer(a_pixel(4 downto 2)), 4)(3 downto 1);
-								c_pixel(1 downto 0) := to_unsigned(to_integer(p_pixel(1 downto 0)) + to_integer(a_pixel(1 downto 0)), 3)(2 downto 1);
-
-							end case;	
+								if (shrink = '0') then
+									pixel_d(7 downto 5) <= f_lerp(hcount(5 downto 3) & p_pixel(7 downto 5) & a_pixel(7 downto 5));									
+									pixel_d(4 downto 2) <= f_lerp(hcount(5 downto 3) & p_pixel(4 downto 2) & a_pixel(4 downto 2));
+									pixel_d(1 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(1 downto 0) & '0' & a_pixel(1 downto 0) & '0')(2 downto 1);
+								else
+									pixel_d <= a_pixel;
+								end if;
 						--
 				end case;
 			
-				pixel_d <= c_pixel;
-
 		end if;
 	end if;
 end process;
@@ -572,13 +1093,12 @@ begin
 	
 		if (dac_step(2 downto 0) = "100") then
 			b_pixel := c_pixel;
-
 			c_pixel := pixel_adc;
 				
-			if (avg_pixel = '0' and artifact_mode = '1') then
-				pixel_a(7 downto 5) <= to_unsigned(to_integer(c_pixel(7 downto 5)) + to_integer(b_pixel(7 downto 5)), 4)(3 downto 1);
-				pixel_a(4 downto 2) <= to_unsigned(to_integer(c_pixel(4 downto 2)) + to_integer(b_pixel(4 downto 2)), 4)(3 downto 1);
-				pixel_a(1 downto 0) <= to_unsigned(to_integer(c_pixel(1 downto 0)) + to_integer(b_pixel(1 downto 0)), 3)(2 downto 1);
+			if (shrink = '0') then
+				pixel_a(7 downto 5) <= f_lerp(hcount(5 downto 3) & b_pixel(7 downto 5) & c_pixel(7 downto 5));
+				pixel_a(4 downto 2) <= f_lerp(hcount(5 downto 3) & b_pixel(4 downto 2) & c_pixel(4 downto 2));
+				pixel_a(1 downto 0) <= f_lerp(hcount(5 downto 3) & b_pixel(1 downto 0) & '0' & c_pixel(1 downto 0) & '0')(2 downto 1);
 			else
 				pixel_a <= c_pixel;
 			end if;
@@ -704,9 +1224,12 @@ end process;
 	pixel_adc(7 downto 5) <= f_adc(red_adc);
 	pixel_adc(4 downto 2) <= f_adc(green_adc);
 	pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
+	pixel_sel(1 downto 0) <= artifact_mode&apple2;
 	
-	with (artifact and apple2) select pixel_out <= 
-		pixel_a when '1',
-		pixel_d when '0';
+	with pixel_sel select pixel_out <= 
+		pixel_a when "11",
+		pixel_b when "10",
+		pixel_d when "01",
+		pixel_d when "00";
 	
 end behavioral;

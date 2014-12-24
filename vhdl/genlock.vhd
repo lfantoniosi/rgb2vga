@@ -22,7 +22,8 @@ entity genlock is
 			shrink		: in std_logic;
 			clock_sw		: in std_logic;
 			clock_dram		: in std_logic;
-			dac_step		: in unsigned(2 downto 0)
+			dac_step		: in unsigned(2 downto 0);
+			bright		: in std_logic
 );
 			
 end genlock;
@@ -744,6 +745,24 @@ begin
 		
 end f_lerp;
 
+function f_bright(adc: unsigned) return unsigned;
+
+function f_bright(adc: unsigned) return unsigned is
+variable VALUE : unsigned (2 downto 0); 
+begin
+		case adc is
+			when "000" => VALUE := "000";
+			when "001" => VALUE := "010";
+			when "010" => VALUE := "011";
+			when "011" => VALUE := "100";
+			when "100" => VALUE := "101";
+			when "101" => VALUE := "110";
+			when "110" => VALUE := "111";
+			when "111" => VALUE := "111";
+		end case;
+		return VALUE;
+end f_bright;		
+
 begin
 
 channel_red: process(clock_pixel, dac_step, hcount)
@@ -1095,6 +1114,21 @@ begin
 		if (dac_step(2 downto 0) = "100") then
 			b_pixel := c_pixel;
 			c_pixel := pixel_adc;
+			
+			if (bright = '0') then
+				if (c_pixel(7 downto 5) /= "000") then
+					--c_pixel(7 downto 5) := (c_pixel(7) or c_pixel(6)) & c_pixel(5) & '0';
+					c_pixel(7 downto 5) := f_bright(c_pixel(7 downto 5));
+				end if;
+				if (c_pixel(4 downto 2) /= "000") then
+					--c_pixel(4 downto 2) := (c_pixel(4) or c_pixel(3)) & c_pixel(2) & '0';
+					c_pixel(4 downto 2) := f_bright(c_pixel(4 downto 2));
+				end if;
+				if (c_pixel(1 downto 0) /= "00") then
+					--c_pixel(1 downto 0) := (c_pixel(1) or c_pixel(0)) & c_pixel(0);
+					c_pixel(1 downto 0) := f_bright(c_pixel(1 downto 0)&'0')(2 downto 1);
+				end if;
+			end if;
 				
 			if (shrink = '0') then
 				pixel_a(7 downto 5) <= f_lerp(hcount(5 downto 3) & b_pixel(7 downto 5) & c_pixel(7 downto 5));
@@ -1108,7 +1142,7 @@ begin
 	end if;
 end process;
 
-process_colr: process(clock_pixel, hcount) 
+process_colnr: process(clock_pixel, hcount) 
 variable row, col: integer range 0 to 1024;
 begin
 	if (rising_edge(clock_pixel)) then

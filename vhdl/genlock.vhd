@@ -22,8 +22,7 @@ entity genlock is
 			shrink		: in std_logic;
 			clock_sw		: in std_logic;
 			clock_dram		: in std_logic;
-			dac_step		: in unsigned(2 downto 0);
-			bright		: in std_logic
+			dac_step		: in unsigned(2 downto 0)
 );
 			
 end genlock;
@@ -36,10 +35,6 @@ signal hcount, vcount							: unsigned(13 downto 0);
 signal top_border									: integer := 32;
 signal front_porch								: integer := 181;
 
-signal red_adc: unsigned(6 downto 0);
-signal green_adc: unsigned(6 downto 0);
-signal blue_adc: unsigned(6 downto 0);
-
 signal pixel_a: unsigned(7 downto 0);
 signal pixel_d: unsigned(7 downto 0);
 signal pixel_b: unsigned(7 downto 0);
@@ -47,11 +42,10 @@ signal pixel_b: unsigned(7 downto 0);
 signal pixel_sel: unsigned(1 downto 0);
 
 signal pixel_adc: unsigned(7 downto 0);
+
 signal artifact_mode: std_logic;
 
 signal frame: 		unsigned(0 downto 0);
-
-signal pixel_in: 	unsigned (15 downto 0);
 
 signal black:		unsigned(7 downto 0);
 signal brown:		unsigned(7 downto 0);
@@ -743,98 +737,89 @@ begin
 		end case;		
 		return VALUE;
 		
-end f_lerp;
-
-function f_bright(adc: unsigned) return unsigned;
-
-function f_bright(adc: unsigned) return unsigned is
-variable VALUE : unsigned (2 downto 0); 
-begin
-		case adc is
-			when "000" => VALUE := "000";
-			when "001" => VALUE := "010";
-			when "010" => VALUE := "011";
-			when "011" => VALUE := "100";
-			when "100" => VALUE := "101";
-			when "101" => VALUE := "110";
-			when "110" => VALUE := "111";
-			when "111" => VALUE := "111";
-		end case;
-		return VALUE;
-end f_bright;		
+end f_lerp;	
 
 begin
 
-channel_red: process(clock_pixel, dac_step, hcount)
+channel_red: process--(clock_pixel, dac_step)
+variable red_adc: unsigned(6 downto 0);
 begin
-if (rising_edge(clock_pixel)) then
+	wait until (clock_pixel'event and clock_pixel='1');	
+	--if (rising_edge(clock_pixel)) then
 	case dac_step(2 downto 0) is		
 		when "000" =>
-			red_adc(0) <= adc_rgb(2);
+			red_adc(0) := adc_rgb(2);
 		when "001" => 
-			red_adc(1) <= adc_rgb(2);
+			red_adc(1) := adc_rgb(2);
 		when "010" => 
-			red_adc(2) <= adc_rgb(2);
+			red_adc(2) := adc_rgb(2);
 		when "011" => 
-			red_adc(3) <= adc_rgb(2);
+			red_adc(3) := adc_rgb(2);
 		when "100" => 
-			red_adc(3) <= adc_rgb(2) or red_adc(3);
+			red_adc(3) := adc_rgb(2);
 		when "101" => 
-			red_adc(4) <= adc_rgb(2); 
+			red_adc(4) := adc_rgb(2); 
 		when "110" => 
-			red_adc(5) <= adc_rgb(2);					
+			red_adc(5) := adc_rgb(2);					
 		when "111" =>
-			red_adc(6) <= adc_rgb(2);
-	end case;
-end if;	
+			red_adc(6) := adc_rgb(2);					
+	end case;	
+	pixel_adc(7 downto 5) <= f_adc(red_adc);
+	--end if;
 end process;
 
-channel_green: process(clock_pixel, dac_step, hcount)
+channel_green: process--(clock_pixel, dac_step)
+variable green_adc: unsigned(6 downto 0);
 begin
-if (rising_edge(clock_pixel)) then
-	case dac_step(2 downto 0) is		
-		when "000" =>			
-			green_adc(0) <= adc_rgb(1);					
-		when "001" => 
-			green_adc(1) <= adc_rgb(1);
-		when "010" => 
-			green_adc(2) <= adc_rgb(1);
-		when "011" => 
-			green_adc(3) <= adc_rgb(1);					
-		when "100" => 
-			green_adc(3) <= adc_rgb(1) or green_adc(3);
-		when "101" => 
-			green_adc(4) <= adc_rgb(1); 
-		when "110" => 
-			green_adc(5) <= adc_rgb(1);					
-		when "111" =>
-			green_adc(6) <= adc_rgb(1);					
-	end case;
-end if;
-end process;
-
-channel_blue: process(clock_pixel, dac_step, hcount)
-begin
-if (rising_edge(clock_pixel)) then
+	wait until (clock_pixel'event and clock_pixel='1');
+	--if (rising_edge(clock_pixel)) then
 	case dac_step(2 downto 0) is		
 		when "000" =>	
-			blue_adc(0) <= adc_rgb(0);					
+			green_adc(0) := adc_rgb(1);					
 		when "001" => 
-			blue_adc(1) <= adc_rgb(0);					
+			green_adc(1) := adc_rgb(1);
 		when "010" => 
-			blue_adc(2) <= adc_rgb(0);					
+			green_adc(2) := adc_rgb(1);
 		when "011" => 
-			blue_adc(3) <= adc_rgb(0);
+			green_adc(3) := adc_rgb(1);					
 		when "100" => 
-			blue_adc(3) <= adc_rgb(0) or blue_adc(3);
+			green_adc(3) := adc_rgb(1);
 		when "101" => 
-			blue_adc(4) <= adc_rgb(0); 
+			green_adc(4) := adc_rgb(1); 
 		when "110" => 
-			blue_adc(5) <= adc_rgb(0);
+			green_adc(5) := adc_rgb(1);					
+		when "111" =>
+			green_adc(6) := adc_rgb(1);					
+	end case;
+	pixel_adc(4 downto 2) <= f_adc(green_adc);
+	--end if;	
+end process;
+
+channel_blue: process--(clock_pixel, dac_step)
+variable blue_adc: unsigned(6 downto 0);
+begin
+	wait until (clock_pixel'event and clock_pixel='1');
+	--if (rising_edge(clock_pixel)) then
+	case dac_step(2 downto 0) is		
+		when "000" =>	
+			blue_adc(0) := adc_rgb(0);					
+		when "001" => 
+			blue_adc(1) := adc_rgb(0);					
+		when "010" => 
+			blue_adc(2) := adc_rgb(0);					
+		when "011" => 
+			blue_adc(3) := adc_rgb(0);
+		when "100" => 
+			blue_adc(3) := adc_rgb(0);
+		when "101" => 
+			blue_adc(4) := adc_rgb(0); 
+		when "110" => 
+			blue_adc(5) := adc_rgb(0);
 		when "111" => 
-			blue_adc(6) <= adc_rgb(0);
-	end case;			
-end if;	
+			blue_adc(6) := adc_rgb(0);
+	end case;
+	pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
+	--end if;	
 end process;
 
 hraster: process (clock_pixel, hblank, vblank)
@@ -922,11 +907,11 @@ end process;
 
 
 
-process_b: process(clock_pixel, dac_step, hcount) 
+process_b: process 
 variable pixel: std_logic;
 begin
-	if (rising_edge(clock_pixel)) then
-		if (dac_step(2 downto 0) = "100") then
+		wait until (clock_pixel'event and clock_pixel='1' and dac_step = "100");
+		
 			case (pixel_adc(4 downto 2)) is
 				when "111" => pixel_b <= "11111111";
 				when "110" => pixel_b <= apple2&apple2&apple2&apple2&apple2&apple2&apple2&apple2;
@@ -934,21 +919,16 @@ begin
 				when "100" => pixel_b <= apple2&apple2&apple2&apple2&apple2&apple2&apple2&apple2;
 				when others => pixel_b <= "00000000";
 			end case;
-		end if;
-	end if;
 end process;
 
 
-process_d: process(clock_pixel, dac_step, hcount) 
+process_d: process 
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 variable c_pixel: unsigned(7 downto 0);
 begin
-	if (rising_edge(clock_pixel)) then
-	
-		if (dac_step(2 downto 0) = "100") then
-			-- digitize in the middle of the pixel
+		wait until (clock_pixel'event and clock_pixel='1' and dac_step = "100");
 			
 				p_pixel := a_pixel;				
 			
@@ -1099,50 +1079,28 @@ begin
 								end if;
 						--
 				end case;
-			
-		end if;
-	end if;
 end process;
 
-process_a: process(clock_pixel, dac_step, hcount) 
+process_a: process
 variable pixel: unsigned(3 downto 0);
 variable c_pixel: unsigned(7 downto 0);
-variable b_pixel: unsigned(7 downto 0);
+variable p_pixel: unsigned(7 downto 0);
 begin
-	if (rising_edge(clock_pixel)) then
-	
-		if (dac_step(2 downto 0) = "100") then
-			b_pixel := c_pixel;
+		wait until (clock_pixel'event and clock_pixel='1' and dac_step = "100");
+		
+			p_pixel := c_pixel;
 			c_pixel := pixel_adc;
-			
-			if (bright = '0') then
-				if (c_pixel(7 downto 5) /= "000") then
-					--c_pixel(7 downto 5) := (c_pixel(7) or c_pixel(6)) & c_pixel(5) & '0';
-					c_pixel(7 downto 5) := f_bright(c_pixel(7 downto 5));
-				end if;
-				if (c_pixel(4 downto 2) /= "000") then
-					--c_pixel(4 downto 2) := (c_pixel(4) or c_pixel(3)) & c_pixel(2) & '0';
-					c_pixel(4 downto 2) := f_bright(c_pixel(4 downto 2));
-				end if;
-				if (c_pixel(1 downto 0) /= "00") then
-					--c_pixel(1 downto 0) := (c_pixel(1) or c_pixel(0)) & c_pixel(0);
-					c_pixel(1 downto 0) := f_bright(c_pixel(1 downto 0)&'0')(2 downto 1);
-				end if;
-			end if;
-				
+						
 			if (shrink = '0') then
-				pixel_a(7 downto 5) <= f_lerp(hcount(5 downto 3) & b_pixel(7 downto 5) & c_pixel(7 downto 5));
-				pixel_a(4 downto 2) <= f_lerp(hcount(5 downto 3) & b_pixel(4 downto 2) & c_pixel(4 downto 2));
-				pixel_a(1 downto 0) <= f_lerp(hcount(5 downto 3) & b_pixel(1 downto 0) & '0' & c_pixel(1 downto 0) & '0')(2 downto 1);
+				pixel_a(7 downto 5) <= f_lerp(hcount(5 downto 3) & p_pixel(7 downto 5) & c_pixel(7 downto 5));
+				pixel_a(4 downto 2) <= f_lerp(hcount(5 downto 3) & p_pixel(4 downto 2) & c_pixel(4 downto 2));
+				pixel_a(1 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(1 downto 0) & '0' & c_pixel(1 downto 0) & '0')(2 downto 1);
 			else
 				pixel_a <= c_pixel;
 			end if;
-		end if;
-		
-	end if;
 end process;
 
-process_colnr: process(clock_pixel, hcount) 
+process_col_nr: process(clock_pixel, hcount) 
 variable row, col: integer range 0 to 1024;
 begin
 	if (rising_edge(clock_pixel)) then
@@ -1249,16 +1207,13 @@ begin
 		elsif (apple2 = '0') then
 			front_porch <= 202;
 		elsif (clock_sw = '0') then
-			front_porch <= 201;
+			front_porch <= 202;
 		else
 			front_porch <= 182;
 		end if;		
 	end if;	
 end process;
 
-	pixel_adc(7 downto 5) <= f_adc(red_adc);
-	pixel_adc(4 downto 2) <= f_adc(green_adc);
-	pixel_adc(1 downto 0) <= f_adc(blue_adc)(2 downto 1);
 	pixel_sel(1 downto 0) <= artifact_mode&apple2;
 	
 	with pixel_sel select pixel_out <= 

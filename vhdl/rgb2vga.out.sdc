@@ -203,7 +203,6 @@ set_false_path -from [get_keepers {dac_cnt:inst1|pal_step[1]}] -to [get_keepers 
 set_false_path -from [get_keepers {dac_cnt:inst1|pal_step[0]}] -to [get_keepers {D0}]
 set_false_path -from [get_keepers {dac_cnt:inst1|pal_step[2]}] -to [get_keepers {D2}]
 
-
 #**************************************************************
 # Set Multicycle Path
 #**************************************************************

@@ -40,8 +40,9 @@ signal hcount												: unsigned(13 downto 0);
 signal vcount												: unsigned(9 downto 0);
 signal videov, videoh, hsync, vsync					: std_logic;
 signal animate												: unsigned(9 downto 0);
-
-		
+signal bar_color											: unsigned(2 downto 0);
+signal bar_cnt												: integer;
+	
 begin
 
 
@@ -75,9 +76,20 @@ hcounter: process (clock_vga, hcount)
 begin
 	if (rising_edge(clock_vga)) then				
 		hcount <= hcount + 1;
+		
+		bar_cnt <= bar_cnt + 1;
+		if (bar_cnt >= 80) then
+			bar_color <= bar_color + 1;
+			bar_cnt <= 0;
+		end if;
+		
+		
       if hcount = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1)	then 
         hcount <= (others => '0');
+		  bar_cnt <= 0;
+		  bar_color <= (others => '0');
 		end if;	
+		
 	end if;
 end process;
 
@@ -131,7 +143,19 @@ begin
 		if (video_active = '0') then
 			vga_pixel := pixel_in;
 		else
-			vga_pixel := not(vcount(8 downto 1) xor hcount(8 downto 1));
+			--vga_pixel := not(vcount(8 downto 1) xor hcount(8 downto 1));
+			vga_pixel(7 downto 0) := "00000000";
+			
+			if (vcount < 120) then
+				vga_pixel(7 downto 5) := bar_color;
+			elsif (vcount < 240) then
+				vga_pixel(4 downto 2) := bar_color;
+			elsif (vcount < 360) then
+				vga_pixel(1 downto 0) := bar_color(2 downto 1);
+			else 
+				vga_pixel(7 downto 0) := bar_color & bar_color & bar_color(2 downto 1);
+			end if;
+			
 		end if;
 
 		if (scanline = '0' and vcount(0) = '0') then

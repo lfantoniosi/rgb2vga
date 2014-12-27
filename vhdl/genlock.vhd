@@ -746,28 +746,25 @@ channel_red: process
 variable red_adc: unsigned(7 downto 0);
 begin
 	wait until (clock_pixel'event and clock_pixel='1' and dac_step = hcount(2 downto 0));	
-
---	case dac_step(2 downto 0) is		
---		when "000" =>
---			red_adc(0) := adc_rgb(2);				
---		when "001" => 
---			red_adc(1) := adc_rgb(2);				
---		when "010" => 
---			red_adc(2) := adc_rgb(2);				
---		when "011" => 
---			red_adc(3) := adc_rgb(2);				
---		when "100" => 
---			red_adc(3) := adc_rgb(2);				
---		when "101" => 
---			red_adc(4) := adc_rgb(2);				
---		when "110" => 
---			red_adc(5) := adc_rgb(2);				
---		when others =>
---			red_adc(6) := adc_rgb(2);				
---	end case;
-
-	red_adc(to_integer(dac_step)) := adc_rgb(2);
-	
+	case dac_step(2 downto 0) is		
+		when "000" =>
+			red_adc(0) := adc_rgb(2);
+		when "001" => 
+			red_adc(1) := adc_rgb(2);
+		when "010" => 
+			red_adc(2) := adc_rgb(2);
+		when "011" => 
+			red_adc(3) := adc_rgb(2);
+		when "100" => 
+			red_adc(3) := adc_rgb(2);
+		when "101" => 
+			red_adc(4) := adc_rgb(2); 
+		when "110" => 
+			red_adc(5) := adc_rgb(2);					
+		when "111" =>
+			red_adc(6) := adc_rgb(2);					
+	end case;
+	--red_adc(to_integer(dac_step)) := adc_rgb(2);
 	pixel_adc(7 downto 5) <= f_adc(red_adc(6 downto 0));
 
 end process;
@@ -776,27 +773,25 @@ channel_green: process
 variable green_adc: unsigned(7 downto 0);
 begin
 	wait until (clock_pixel'event and clock_pixel='1' and dac_step = hcount(2 downto 0));	
-
---	case dac_step(2 downto 0) is		
---		when "000" =>	
---			green_adc(0) := adc_rgb(1);				
---		when "001" => 
---			green_adc(1) := adc_rgb(1);				
---		when "010" => 
---			green_adc(2) := adc_rgb(1);				
---		when "011" => 
---			green_adc(3) := adc_rgb(1);				
---		when "100" => 
---			green_adc(3) := adc_rgb(1);				
---		when "101" => 
---			green_adc(4) := adc_rgb(1);				
---		when "110" => 
---			green_adc(5) := adc_rgb(1);				
---		when others =>
---			green_adc(6) := adc_rgb(1);				
---	end case;
-
-	green_adc(to_integer(dac_step)) := adc_rgb(1);
+	case dac_step(2 downto 0) is		
+		when "000" =>	
+			green_adc(0) := adc_rgb(1);					
+		when "001" => 
+			green_adc(1) := adc_rgb(1);
+		when "010" => 
+			green_adc(2) := adc_rgb(1);
+		when "011" => 
+			green_adc(3) := adc_rgb(1);					
+		when "100" => 
+			green_adc(3) := adc_rgb(1);
+		when "101" => 
+			green_adc(4) := adc_rgb(1); 
+		when "110" => 
+			green_adc(5) := adc_rgb(1);					
+		when "111" =>
+			green_adc(6) := adc_rgb(1);					
+	end case;	
+	--green_adc(to_integer(dac_step)) := adc_rgb(1);
 	pixel_adc(4 downto 2) <= f_adc(green_adc(6 downto 0));
 	
 end process;
@@ -805,26 +800,25 @@ channel_blue: process
 variable blue_adc: unsigned(7 downto 0);
 begin
 	wait until (clock_pixel'event and clock_pixel='1' and dac_step = hcount(2 downto 0));	
-
---	case dac_step(2 downto 0) is		
---		when "000" =>	
---			blue_adc(0) := adc_rgb(0);					
---		when "001" => 
---			blue_adc(1) := adc_rgb(0);					
---		when "010" => 
---			blue_adc(2) := adc_rgb(0);					
---		when "011" => 
---			blue_adc(3) := adc_rgb(0);
---		when "100" => 
---			blue_adc(3) := adc_rgb(0);
---		when "101" => 
---			blue_adc(4) := adc_rgb(0); 
---		when "110" => 
---			blue_adc(5) := adc_rgb(0);
---		when others => 
---			blue_adc(6) := adc_rgb(0);
---	end case;
-	blue_adc(to_integer(dac_step)) := adc_rgb(0);
+	case dac_step(2 downto 0) is		
+		when "000" =>	
+			blue_adc(0) := adc_rgb(0);					
+		when "001" => 
+			blue_adc(1) := adc_rgb(0);					
+		when "010" => 
+			blue_adc(2) := adc_rgb(0);					
+		when "011" => 
+			blue_adc(3) := adc_rgb(0);
+		when "100" => 
+			blue_adc(3) := adc_rgb(0);
+		when "101" => 
+			blue_adc(4) := adc_rgb(0); 
+		when "110" => 
+			blue_adc(5) := adc_rgb(0);
+		when "111" => 
+			blue_adc(6) := adc_rgb(0);
+	end case;	
+	--blue_adc(to_integer(dac_step)) := adc_rgb(0);
 	pixel_adc(1 downto 0) <= f_adc(blue_adc(6 downto 0))(2 downto 1);
 
 end process;

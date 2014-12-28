@@ -749,7 +749,7 @@ begin
 channel_red: process
 variable red_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and dac_step = hcount(2 downto 0));	
+	wait until (clock_dram'event and clock_dram='1'); -- and dac_step = hcount(2 downto 0));	
 	red_adc(to_integer(dac_step)) := adc_rgb(2);
 	pixel_adc(7 downto 5) <= f_adc(red_adc(6 downto 3)&red_adc(2 downto 0));
 
@@ -758,7 +758,7 @@ end process;
 channel_green: process
 variable green_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and dac_step = hcount(2 downto 0));	
+	wait until (clock_dram'event and clock_dram='1'); -- and dac_step = hcount(2 downto 0));	
 	green_adc(to_integer(dac_step)) := adc_rgb(1);
 	pixel_adc(4 downto 2) <= f_adc(green_adc(6 downto 3)&green_adc(2 downto 0));
 	
@@ -767,7 +767,7 @@ end process;
 channel_blue: process
 variable blue_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and dac_step = hcount(2 downto 0));	
+	wait until (clock_dram'event and clock_dram='1'); -- and dac_step = hcount(2 downto 0));	
 	blue_adc(to_integer(dac_step)) := adc_rgb(0);
 	pixel_adc(1 downto 0) <= f_adc(blue_adc(7 downto 4)&blue_adc(2 downto 0))(2 downto 1);
 

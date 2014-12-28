@@ -3,8 +3,3 @@ PLLJITTER	NA
 PLLSPEmax	84
 PLLSPEmin	-53
 
-PLL_Name	pll_pal:pll_pal|altpll:altpll_component|pll_pal_altpll1:auto_generated|pll1
-PLLJITTER	NA
-PLLSPEmax	84
-PLLSPEmin	-53
-

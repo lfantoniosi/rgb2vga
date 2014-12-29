@@ -34,7 +34,7 @@ begin
 			hpeak := hpeak + 1;
 		end if;
 		
-		if (hsync /= horsync and hpeak > 6) then
+		if (hsync /= horsync and hpeak > 7) then
 		
 			if (sync_down > sync_high) then
 				sync_level <= '1';

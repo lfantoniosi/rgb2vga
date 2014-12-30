@@ -191,7 +191,6 @@ set_global_assignment -name VHDL_FILE vgaout.vhd
 set_global_assignment -name VHDL_FILE ram.vhd
 set_global_assignment -name VHDL_FILE sdram.vhd
 set_global_assignment -name QIP_FILE altiobuf.qip
-set_global_assignment -name QIP_FILE pll_ntsc.qip
 set_global_assignment -name QIP_FILE ram2.qip
 set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name VHDL_FILE genlock.vhd
@@ -199,10 +198,6 @@ set_global_assignment -name VHDL_FILE input_detect.vhd
 set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
 set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name QIP_FILE dac_counter.qip
-set_global_assignment -name QIP_FILE pll_pal.qip
-set_global_assignment -name QIP_FILE clock_mux.qip
-set_global_assignment -name QIP_FILE dac_counter_ntsc.qip
-set_global_assignment -name QIP_FILE pll_dram.qip
 set_global_assignment -name QIP_FILE pll_speccy.qip
 set_location_assignment PLL_1 -to "pll_speccy:pll_inst"
 set_location_assignment PLL_1 -to "pll_coco3:pll_inst"

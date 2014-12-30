@@ -1151,7 +1151,7 @@ begin
 		elsif (clock_sw = '0') then
 			front_porch <= 202;
 		else
-			front_porch <= 180;
+			front_porch <= 182;
 		end if;		
 	end if;	
 end process;

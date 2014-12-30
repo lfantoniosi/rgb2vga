@@ -183,8 +183,6 @@ set_global_assignment -name OPTIMIZE_HOLD_TIMING "ALL PATHS"
 set_global_assignment -name OPTIMIZE_MULTI_CORNER_TIMING ON
 set_global_assignment -name OPTIMIZE_POWER_DURING_FITTING "NORMAL COMPILATION"
 set_global_assignment -name FITTER_EFFORT "AUTO FIT"
-set_location_assignment PLL_2 -to "pll_pal:pll_pal"
-set_location_assignment PLL_1 -to "pll_ntsc:pll_ntsc"
 set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
 set_global_assignment -name BDF_FILE top.bdf
@@ -203,4 +201,10 @@ set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulati
 set_global_assignment -name QIP_FILE dac_counter.qip
 set_global_assignment -name QIP_FILE pll_pal.qip
 set_global_assignment -name QIP_FILE clock_mux.qip
+set_global_assignment -name QIP_FILE dac_counter_ntsc.qip
+set_global_assignment -name QIP_FILE pll_dram.qip
+set_global_assignment -name QIP_FILE pll_speccy.qip
+set_location_assignment PLL_1 -to "pll_speccy:pll_inst"
+set_location_assignment PLL_1 -to "pll_coco3:pll_inst"
+set_global_assignment -name QIP_FILE pll_coco3.qip
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

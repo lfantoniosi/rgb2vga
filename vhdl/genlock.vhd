@@ -2,6 +2,9 @@
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
+-- speccy clock: 35469/15625
+-- coco3 clock: 
+
 entity genlock is
 	
     port(clock_dram : in std_logic;
@@ -749,7 +752,7 @@ begin
 channel_red: process
 variable red_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); -- and dac_step = hcount(2 downto 0));	
+	wait until (clock_dram'event and clock_dram='1'); 
 	red_adc(to_integer(dac_step)) := adc_rgb(2);
 	pixel_adc(7 downto 5) <= f_adc(red_adc(6 downto 3)&red_adc(2 downto 0));
 
@@ -758,7 +761,7 @@ end process;
 channel_green: process
 variable green_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); -- and dac_step = hcount(2 downto 0));	
+	wait until (clock_dram'event and clock_dram='1'); 
 	green_adc(to_integer(dac_step)) := adc_rgb(1);
 	pixel_adc(4 downto 2) <= f_adc(green_adc(6 downto 3)&green_adc(2 downto 0));
 	
@@ -767,7 +770,7 @@ end process;
 channel_blue: process
 variable blue_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); -- and dac_step = hcount(2 downto 0));	
+	wait until (clock_dram'event and clock_dram='1'); 
 	blue_adc(to_integer(dac_step)) := adc_rgb(0);
 	pixel_adc(1 downto 0) <= f_adc(blue_adc(7 downto 4)&blue_adc(2 downto 0))(2 downto 1);
 
@@ -854,7 +857,7 @@ end process;
 process_b: process 
 variable pixel: std_logic;
 begin
-		wait until (clock_dram'event and clock_dram='1' and dac_step = "100" and hcount(2 downto 0) = "100");
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step = "100");
 		
 		case (pixel_adc(4 downto 2)) is
 			when "111" => pixel_b <= "11111111";
@@ -873,7 +876,7 @@ variable a_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 variable c_pixel: unsigned(7 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and dac_step = "100" and hcount(2 downto 0) = "100");
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step = "100");
 			
 				p_pixel := a_pixel;				
 			
@@ -1027,7 +1030,7 @@ variable pixel: unsigned(3 downto 0);
 variable c_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and dac_step = "100" and hcount(2 downto 0) = "100");
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step = "100");
 		
 			p_pixel := c_pixel;
 			c_pixel := pixel_adc;
@@ -1148,7 +1151,7 @@ begin
 		elsif (clock_sw = '0') then
 			front_porch <= 202;
 		else
-			front_porch <= 182;
+			front_porch <= 180;
 		end if;		
 	end if;	
 end process;

@@ -95,7 +95,7 @@ END SYN;
 -- Retrieval info: PRIVATE: ACLR NUMERIC "1"
 -- Retrieval info: PRIVATE: ALOAD NUMERIC "0"
 -- Retrieval info: PRIVATE: ASET NUMERIC "0"
--- Retrieval info: PRIVATE: ASET_ALL1 NUMERIC "1"
+-- Retrieval info: PRIVATE: ASET_ALL1 NUMERIC "0"
 -- Retrieval info: PRIVATE: CLK_EN NUMERIC "0"
 -- Retrieval info: PRIVATE: CNT_EN NUMERIC "0"
 -- Retrieval info: PRIVATE: CarryIn NUMERIC "0"
@@ -125,6 +125,6 @@ END SYN;
 -- Retrieval info: GEN_FILE: TYPE_NORMAL dac_counter.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL dac_counter.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL dac_counter.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL dac_counter.bsf TRUE FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL dac_counter.bsf TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL dac_counter_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: lpm

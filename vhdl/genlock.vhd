@@ -749,30 +749,36 @@ end f_lerp;
 
 begin
 
-channel_red: process
+channel_red: process--(clock_dram, dac_step)
 variable red_adc: unsigned(7 downto 0);
 begin
 	wait until (clock_dram'event and clock_dram='1'); 
-	red_adc(to_integer(dac_step)) := adc_rgb(2);
-	pixel_adc(7 downto 5) <= f_adc(red_adc(6 downto 3)&red_adc(2 downto 0));
+	--if (rising_edge(clock_dram)) then	
+		red_adc(to_integer(dac_step)) := adc_rgb(2);
+		pixel_adc(7 downto 5) <= f_adc(red_adc(6 downto 4)&red_adc(3 downto 0));
+	--end if;
 
 end process;
 
-channel_green: process
+channel_green: process--(clock_dram, dac_step)
 variable green_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); 
-	green_adc(to_integer(dac_step)) := adc_rgb(1);
-	pixel_adc(4 downto 2) <= f_adc(green_adc(6 downto 3)&green_adc(2 downto 0));
+	wait until (clock_dram'event and clock_dram='1');
+	--if (rising_edge(clock_dram)) then	
+		green_adc(to_integer(dac_step)) := adc_rgb(1);
+		pixel_adc(4 downto 2) <= f_adc(green_adc(6 downto 4)&green_adc(3 downto 0));
+	--end if;
 	
 end process;
 
-channel_blue: process
+channel_blue: process--(clock_dram, dac_step)
 variable blue_adc: unsigned(7 downto 0);
 begin
 	wait until (clock_dram'event and clock_dram='1'); 
-	blue_adc(to_integer(dac_step)) := adc_rgb(0);
-	pixel_adc(1 downto 0) <= f_adc(blue_adc(7 downto 4)&blue_adc(2 downto 0))(2 downto 1);
+	--if (rising_edge(clock_dram)) then		
+		blue_adc(to_integer(dac_step)) := adc_rgb(0);
+		pixel_adc(1 downto 0) <= f_adc(blue_adc(7 downto 5)&blue_adc(3 downto 0))(2 downto 1);
+	--end if;
 
 end process;
 
@@ -852,12 +858,10 @@ begin
 	end if;
 end process;
 
-
-
 process_b: process 
 variable pixel: std_logic;
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step = "100");
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step = "100");
 		
 		case (pixel_adc(4 downto 2)) is
 			when "111" => pixel_b <= "11111111";
@@ -876,7 +880,7 @@ variable a_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 variable c_pixel: unsigned(7 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step = "100");
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step = "100");
 			
 				p_pixel := a_pixel;				
 			
@@ -1030,7 +1034,7 @@ variable pixel: unsigned(3 downto 0);
 variable c_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step = "100");
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and (dac_step = "100" or clock_sw = '0'));
 		
 			p_pixel := c_pixel;
 			c_pixel := pixel_adc;

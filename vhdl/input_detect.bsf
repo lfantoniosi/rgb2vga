@@ -58,7 +58,13 @@ applicable agreement for further details.
 		(text "hblank_out" (rect 129 59 171 71)(font "Arial" ))
 		(line (pt 192 64)(pt 176 64)(line_width 1))
 	)
+	(parameter
+		"pixel_width"
+		"7"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 176 96)(line_width 1))
 	)
+	(annotation_block (parameter)(rect 208 -64 308 16))
 )

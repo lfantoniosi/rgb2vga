@@ -64,6 +64,8 @@ derive_clock_uncertainty
 #**************************************************************
 
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {CLOCK_50}]
+set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {CLOCK_50}]
+
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFB}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFBn}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFG}]
@@ -103,9 +105,9 @@ set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_g
 # Set Output Delay
 #**************************************************************
 
-set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D0}]
-set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D1}]
-set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {D2}]
+set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {D0}]
+set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {D1}]
+set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {D2}]
 
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_ADDR[0]}]
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DRAM_ADDR[1]}]
@@ -163,7 +165,14 @@ set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_
 #**************************************************************
 
 set_clock_groups -asynchronous -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}] 
+set_clock_groups -asynchronous -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}] -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}] 
+
 set_clock_groups -asynchronous -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}] -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}] 
+set_clock_groups -asynchronous -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}] -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}] 
+
+set_clock_groups -asynchronous -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}] -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}] 
+set_clock_groups -asynchronous -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}] -group [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}] 
+
 
 #**************************************************************
 # Set False Path
@@ -171,9 +180,9 @@ set_clock_groups -asynchronous -group [get_clocks {pll_inst|altpll_component|aut
 
 set_false_path -from {pll_inst|altpll_component|auto_generated|pll1|clk[0]} -to {DRAM_CLK}
 
-set_false_path -from {dac_counter:inst2|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[1]} -to {D1}
-set_false_path -from {dac_counter:inst2|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[2]} -to {D2}
-set_false_path -from {dac_counter:inst2|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[0]} -to {D0}
+set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[1]} -to {D1}
+set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[2]} -to {D2}
+set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[0]} -to {D0}
 
 #**************************************************************
 # Set Multicycle Path

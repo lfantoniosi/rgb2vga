@@ -43,6 +43,26 @@ signal animate												: unsigned(9 downto 0);
 signal bar_color											: unsigned(2 downto 0);
 signal bar_cnt												: integer;
 	
+	
+function f_scanline(adc: unsigned) return unsigned;
+
+function f_scanline(adc: unsigned) return unsigned is
+variable VALUE : unsigned (2 downto 0); 
+begin
+		case adc is
+		
+			when "000" => VALUE := "000";
+			when "001" => VALUE := "000";
+			when "010" => VALUE := "001";
+			when "011" => VALUE := "001";
+			when "100" => VALUE := "011";
+			when "101" => VALUE := "011";
+			when "110" => VALUE := "100";
+			when "111" => VALUE := "100";
+		end case;
+		return VALUE;
+end f_scanline;
+	
 begin
 
 
@@ -159,7 +179,8 @@ begin
 		end if;
 
 		if (scanline = '0' and vcount(0) = '0') then
-			vga_pixel := '0'&vga_pixel(7 downto 6) & '0'&vga_pixel(4 downto 3) & '0'&vga_pixel(1);
+			--vga_pixel := '0'&vga_pixel(7 downto 6) & '0'&vga_pixel(4 downto 3) & '0'&vga_pixel(1);
+			vga_pixel := f_scanline(vga_pixel(7 downto 5)) & f_scanline(vga_pixel(4 downto 2)) & f_scanline(vga_pixel(1 downto 0)&'0')(2 downto 1);
 		end if;		
 
 		vga_out(9 downto 2) <= vga_pixel and blank&blank&blank&blank&blank&blank&blank&blank;

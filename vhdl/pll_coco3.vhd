@@ -78,7 +78,6 @@ ARCHITECTURE SYN OF pll_coco3 IS
 		clk2_duty_cycle		: NATURAL;
 		clk2_multiply_by		: NATURAL;
 		clk2_phase_shift		: STRING;
-		compensate_clock		: STRING;
 		inclk0_input_frequency		: NATURAL;
 		intended_device_family		: STRING;
 		lpm_hint		: STRING;
@@ -161,12 +160,11 @@ BEGIN
 		clk2_duty_cycle => 50,
 		clk2_multiply_by => 126,
 		clk2_phase_shift => "1091",
-		compensate_clock => "CLK0",
 		inclk0_input_frequency => 20000,
 		intended_device_family => "Cyclone IV E",
 		lpm_hint => "CBX_MODULE_PREFIX=pll_coco3",
 		lpm_type => "altpll",
-		operation_mode => "NORMAL",
+		operation_mode => "NO_COMPENSATION",
 		pll_type => "AUTO",
 		port_activeclock => "PORT_UNUSED",
 		port_areset => "PORT_UNUSED",
@@ -233,7 +231,7 @@ END SYN;
 -- Retrieval info: PRIVATE: CLKBAD_SWITCHOVER_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CLKLOSS_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CLKSWITCH_CHECK STRING "0"
--- Retrieval info: PRIVATE: CNX_NO_COMPENSATE_RADIO STRING "0"
+-- Retrieval info: PRIVATE: CNX_NO_COMPENSATE_RADIO STRING "1"
 -- Retrieval info: PRIVATE: CREATE_CLKBAD_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CREATE_INCLK1_CHECK STRING "0"
 -- Retrieval info: PRIVATE: CUR_DEDICATED_CLK STRING "c0"
@@ -277,7 +275,7 @@ END SYN;
 -- Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "126"
 -- Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "63"
 -- Retrieval info: PRIVATE: MULT_FACTOR2 NUMERIC "126"
--- Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
+-- Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "0"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "100.00000000"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "100.00000000"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ2 STRING "100.00000000"
@@ -309,7 +307,7 @@ END SYN;
 -- Retrieval info: PRIVATE: RECONFIG_FILE STRING "pll_coco3.mif"
 -- Retrieval info: PRIVATE: SACN_INPUTS_CHECK STRING "0"
 -- Retrieval info: PRIVATE: SCAN_FEATURE_ENABLED STRING "1"
--- Retrieval info: PRIVATE: SELF_RESET_LOCK_LOSS STRING "0"
+-- Retrieval info: PRIVATE: SELF_RESET_LOCK_LOSS STRING "1"
 -- Retrieval info: PRIVATE: SHORT_SCAN_RADIO STRING "0"
 -- Retrieval info: PRIVATE: SPREAD_FEATURE_ENABLED STRING "0"
 -- Retrieval info: PRIVATE: SPREAD_FREQ STRING "50.000"
@@ -345,11 +343,10 @@ END SYN;
 -- Retrieval info: CONSTANT: CLK2_DUTY_CYCLE NUMERIC "50"
 -- Retrieval info: CONSTANT: CLK2_MULTIPLY_BY NUMERIC "126"
 -- Retrieval info: CONSTANT: CLK2_PHASE_SHIFT STRING "1091"
--- Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
 -- Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "20000"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
 -- Retrieval info: CONSTANT: LPM_TYPE STRING "altpll"
--- Retrieval info: CONSTANT: OPERATION_MODE STRING "NORMAL"
+-- Retrieval info: CONSTANT: OPERATION_MODE STRING "NO_COMPENSATION"
 -- Retrieval info: CONSTANT: PLL_TYPE STRING "AUTO"
 -- Retrieval info: CONSTANT: PORT_ACTIVECLOCK STRING "PORT_UNUSED"
 -- Retrieval info: CONSTANT: PORT_ARESET STRING "PORT_UNUSED"

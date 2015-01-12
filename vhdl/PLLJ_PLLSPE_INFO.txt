@@ -1,4 +1,4 @@
-PLL_Name	pll_coco3:pll_inst|altpll:altpll_component|pll_coco3_altpll1:auto_generated|pll1
+PLL_Name	pll_speccy:pll_inst|altpll:altpll_component|pll_speccy_altpll1:auto_generated|pll1
 PLLJITTER	NA
 PLLSPEmax	84
 PLLSPEmin	-53

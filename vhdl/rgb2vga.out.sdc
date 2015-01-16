@@ -65,6 +65,7 @@ derive_clock_uncertainty
 
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {CLOCK_50}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {CLOCK_50}]
+set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {CLOCK_50}]
 
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFB}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFBn}]

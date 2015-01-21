@@ -152,13 +152,13 @@ BEGIN
 		clk0_divide_by => 15625,
 		clk0_duty_cycle => 50,
 		clk0_multiply_by => 35469,
-		clk0_phase_shift => "0",
+		clk0_phase_shift => "1101",
 		clk1_divide_by => 125,
 		clk1_duty_cycle => 50,
 		clk1_multiply_by => 63,
 		clk1_phase_shift => "0",
 		clk2_divide_by => 15625,
-		clk2_duty_cycle => 50,
+		clk2_duty_cycle => 75,
 		clk2_multiply_by => 35469,
 		clk2_phase_shift => "1101",
 		compensate_clock => "CLK0",
@@ -244,7 +244,7 @@ END SYN;
 -- Retrieval info: PRIVATE: DIV_FACTOR2 NUMERIC "15625"
 -- Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 -- Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
--- Retrieval info: PRIVATE: DUTY_CYCLE2 STRING "50.00000000"
+-- Retrieval info: PRIVATE: DUTY_CYCLE2 STRING "75.00000000"
 -- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "113.500801"
 -- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "25.200001"
 -- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE2 STRING "113.500801"
@@ -289,7 +289,7 @@ END SYN;
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_UNIT2 STRING "MHz"
 -- Retrieval info: PRIVATE: PHASE_RECONFIG_FEATURE_ENABLED STRING "1"
 -- Retrieval info: PRIVATE: PHASE_RECONFIG_INPUTS_CHECK STRING "0"
--- Retrieval info: PRIVATE: PHASE_SHIFT0 STRING "0.00000000"
+-- Retrieval info: PRIVATE: PHASE_SHIFT0 STRING "45.00000000"
 -- Retrieval info: PRIVATE: PHASE_SHIFT1 STRING "0.00000000"
 -- Retrieval info: PRIVATE: PHASE_SHIFT2 STRING "45.00000000"
 -- Retrieval info: PRIVATE: PHASE_SHIFT_STEP_ENABLED_CHECK STRING "0"
@@ -336,13 +336,13 @@ END SYN;
 -- Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "15625"
 -- Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
 -- Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "35469"
--- Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
+-- Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "1101"
 -- Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "125"
 -- Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
 -- Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "63"
 -- Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
 -- Retrieval info: CONSTANT: CLK2_DIVIDE_BY NUMERIC "15625"
--- Retrieval info: CONSTANT: CLK2_DUTY_CYCLE NUMERIC "50"
+-- Retrieval info: CONSTANT: CLK2_DUTY_CYCLE NUMERIC "75"
 -- Retrieval info: CONSTANT: CLK2_MULTIPLY_BY NUMERIC "35469"
 -- Retrieval info: CONSTANT: CLK2_PHASE_SHIFT STRING "1101"
 -- Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"

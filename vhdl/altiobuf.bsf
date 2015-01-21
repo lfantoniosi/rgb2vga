@@ -26,22 +26,22 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "datain[0]" (rect 0 0 48 14)(font "Arial" (font_size 8)))
-		(text "datain[0]" (rect 4 34 43 47)(font "Arial" (font_size 8)))
+		(text "datain[2..0]" (rect 0 0 62 14)(font "Arial" (font_size 8)))
+		(text "datain[2..0]" (rect 4 34 55 47)(font "Arial" (font_size 8)))
 		(line (pt 0 48)(pt 100 48)(line_width 3))
 	)
 	(port
 		(pt 0 64)
 		(input)
-		(text "datain_b[0]" (rect 0 0 62 14)(font "Arial" (font_size 8)))
-		(text "datain_b[0]" (rect 4 50 55 63)(font "Arial" (font_size 8)))
+		(text "datain_b[2..0]" (rect 0 0 76 14)(font "Arial" (font_size 8)))
+		(text "datain_b[2..0]" (rect 4 50 67 63)(font "Arial" (font_size 8)))
 		(line (pt 0 64)(pt 100 64)(line_width 3))
 	)
 	(port
 		(pt 232 56)
 		(output)
-		(text "dataout[0]" (rect 0 0 56 14)(font "Arial" (font_size 8)))
-		(text "dataout[0]" (rect 181 42 227 55)(font "Arial" (font_size 8)))
+		(text "dataout[2..0]" (rect 0 0 70 14)(font "Arial" (font_size 8)))
+		(text "dataout[2..0]" (rect 169 42 227 55)(font "Arial" (font_size 8)))
 		(line (pt 232 56)(pt 132 56)(line_width 3))
 	)
 	(drawing

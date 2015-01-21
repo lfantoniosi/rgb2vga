@@ -1511,55 +1511,6 @@ applicable agreement for further details.
 	)
 )
 (symbol
-	(rect 1344 448 1536 560)
-	(text "input_detect" (rect 5 0 65 12)(font "Arial" ))
-	(text "input_detect" (rect 8 96 68 108)(font "Arial" ))
-	(port
-		(pt 0 32)
-		(input)
-		(text "clock_pixel" (rect 0 0 54 12)(font "Arial" ))
-		(text "clock_pixel" (rect 21 27 75 39)(font "Arial" ))
-		(line (pt 0 32)(pt 16 32))
-	)
-	(port
-		(pt 0 48)
-		(input)
-		(text "hsync" (rect 0 0 30 12)(font "Arial" ))
-		(text "hsync" (rect 21 43 51 55)(font "Arial" ))
-		(line (pt 0 48)(pt 16 48))
-	)
-	(port
-		(pt 192 32)
-		(output)
-		(text "sync_level" (rect 0 0 54 12)(font "Arial" ))
-		(text "sync_level" (rect 126 27 180 39)(font "Arial" ))
-		(line (pt 192 32)(pt 176 32))
-	)
-	(port
-		(pt 192 48)
-		(output)
-		(text "video_active" (rect 0 0 63 12)(font "Arial" ))
-		(text "video_active" (rect 118 43 181 55)(font "Arial" ))
-		(line (pt 192 48)(pt 176 48))
-	)
-	(port
-		(pt 192 64)
-		(output)
-		(text "hblank_out" (rect 0 0 53 12)(font "Arial" ))
-		(text "hblank_out" (rect 127 59 180 71)(font "Arial" ))
-		(line (pt 192 64)(pt 176 64))
-	)
-	(parameter
-		"pixel_width"
-		"7"
-		""
-		(type "PARAMETER_SIGNED_DEC")	)
-	(drawing
-		(rectangle (rect 16 16 176 96))
-	)
-	(annotation_block (parameter)(rect 1344 400 1531 428))
-)
-(symbol
 	(rect 904 400 1048 496)
 	(text "dac_counter" (rect 38 0 121 16)(font "Arial" (font_size 10)))
 	(text "dac_counter" (rect 8 80 68 92)(font "Arial" ))
@@ -1676,6 +1627,62 @@ applicable agreement for further details.
 	)
 	(annotation_block (location)(rect 1072 328 1120 344))
 )
+(symbol
+	(rect 1344 448 1536 560)
+	(text "input_detect" (rect 5 0 65 12)(font "Arial" ))
+	(text "input_detect" (rect 8 96 68 108)(font "Arial" ))
+	(port
+		(pt 0 32)
+		(input)
+		(text "clock_pixel" (rect 0 0 54 12)(font "Arial" ))
+		(text "clock_pixel" (rect 21 27 75 39)(font "Arial" ))
+		(line (pt 0 32)(pt 16 32))
+	)
+	(port
+		(pt 0 48)
+		(input)
+		(text "hsync" (rect 0 0 30 12)(font "Arial" ))
+		(text "hsync" (rect 21 43 51 55)(font "Arial" ))
+		(line (pt 0 48)(pt 16 48))
+	)
+	(port
+		(pt 0 64)
+		(input)
+		(text "sync_level" (rect 0 0 54 12)(font "Arial" ))
+		(text "sync_level" (rect 21 59 75 71)(font "Arial" ))
+		(line (pt 0 64)(pt 16 64))
+	)
+	(port
+		(pt 0 80)
+		(input)
+		(text "clock_sw" (rect 0 0 44 12)(font "Arial" ))
+		(text "clock_sw" (rect 21 75 65 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80))
+	)
+	(port
+		(pt 192 32)
+		(output)
+		(text "video_active" (rect 0 0 63 12)(font "Arial" ))
+		(text "video_active" (rect 118 27 171 39)(font "Arial" ))
+		(line (pt 192 32)(pt 176 32))
+	)
+	(port
+		(pt 192 48)
+		(output)
+		(text "hblank_out" (rect 0 0 53 12)(font "Arial" ))
+		(text "hblank_out" (rect 127 43 171 55)(font "Arial" ))
+		(line (pt 192 48)(pt 176 48))
+	)
+	(parameter
+		"pixel_width"
+		"3"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(drawing
+		(rectangle (rect 16 16 176 96))
+	)
+	(annotation_block (parameter)(rect 1344 400 1531 428))
+)
 (connector
 	(text "ARGB[2]" (rect 306 640 349 652)(font "Arial" ))
 	(pt 296 656)
@@ -1730,21 +1737,6 @@ applicable agreement for further details.
 	(pt 376 432)
 )
 (connector
-	(text "MODE" (rect 282 448 313 460)(font "Arial" ))
-	(pt 280 464)
-	(pt 376 464)
-)
-(connector
-	(text "APPLE2" (rect 282 464 322 476)(font "Arial" ))
-	(pt 280 480)
-	(pt 376 480)
-)
-(connector
-	(text "DEINTERLACE" (rect 282 480 358 492)(font "Arial" ))
-	(pt 280 496)
-	(pt 376 496)
-)
-(connector
 	(text "CLOCK_SW" (rect 282 512 343 524)(font "Arial" ))
 	(pt 280 528)
 	(pt 376 528)
@@ -1753,11 +1745,6 @@ applicable agreement for further details.
 	(text "MAIN_CLK" (rect 282 128 336 140)(font "Arial" ))
 	(pt 336 144)
 	(pt 272 144)
-)
-(connector
-	(text "ARTIFACT" (rect 282 432 335 444)(font "Arial" ))
-	(pt 376 448)
-	(pt 280 448)
 )
 (connector
 	(text "DIFFR" (rect 2 632 36 644)(font "Arial" ))
@@ -1835,10 +1822,6 @@ applicable agreement for further details.
 	(text "VGA_OUT[1]" (rect 410 208 473 220)(font "Arial" ))
 	(pt 400 224)
 	(pt 464 224)
-)
-(connector
-	(pt 280 512)
-	(pt 376 512)
 )
 (connector
 	(text "VSYNC" (rect 1258 128 1296 140)(font "Arial" ))
@@ -2243,39 +2226,14 @@ applicable agreement for further details.
 	(pt 984 496)
 )
 (connector
-	(text "CLOCK_DAC" (rect 818 416 885 428)(font "Arial" ))
-	(pt 904 432)
-	(pt 808 432)
-)
-(connector
 	(text "HSYNC" (rect 1274 480 1314 492)(font "Arial" ))
 	(pt 1264 496)
 	(pt 1344 496)
 )
 (connector
-	(text "SYNC_LEVEL" (rect 1562 464 1632 476)(font "Arial" ))
-	(pt 1536 480)
-	(pt 1632 480)
-)
-(connector
-	(text "VIDEO_ACTIVE" (rect 1562 480 1641 492)(font "Arial" ))
-	(pt 1536 496)
-	(pt 1640 496)
-)
-(connector
-	(text "HBLANK" (rect 1562 496 1605 508)(font "Arial" ))
-	(pt 1536 512)
-	(pt 1640 512)
-)
-(connector
 	(text "HBLANK" (rect 826 504 869 516)(font "Arial" ))
 	(pt 816 520)
 	(pt 984 520)
-)
-(connector
-	(text "CLOCK_DRAM" (rect 1274 464 1349 476)(font "Arial" ))
-	(pt 1264 480)
-	(pt 1344 480)
 )
 (connector
 	(text "MAIN_CLK" (rect 754 208 808 220)(font "Arial" ))
@@ -2296,4 +2254,59 @@ applicable agreement for further details.
 	(text "CLOCK_DAC" (rect 1098 240 1165 252)(font "Arial" ))
 	(pt 1072 256)
 	(pt 1176 256)
+)
+(connector
+	(text "CLOCK_DAC" (rect 818 416 885 428)(font "Arial" ))
+	(pt 904 432)
+	(pt 808 432)
+)
+(connector
+	(text "CLOCK_DAC" (rect 1274 464 1341 476)(font "Arial" ))
+	(pt 1264 480)
+	(pt 1344 480)
+)
+(connector
+	(text "SYNC_LEVEL" (rect 282 432 352 444)(font "Arial" ))
+	(pt 376 448)
+	(pt 280 448)
+)
+(connector
+	(text "DEINTERLACE" (rect 282 496 358 508)(font "Arial" ))
+	(pt 280 512)
+	(pt 376 512)
+)
+(connector
+	(text "APPLE2" (rect 282 480 322 492)(font "Arial" ))
+	(pt 280 496)
+	(pt 376 496)
+)
+(connector
+	(text "MODE" (rect 282 464 313 476)(font "Arial" ))
+	(pt 280 480)
+	(pt 376 480)
+)
+(connector
+	(text "ARTIFACT" (rect 282 448 335 460)(font "Arial" ))
+	(pt 280 464)
+	(pt 376 464)
+)
+(connector
+	(text "VIDEO_ACTIVE" (rect 1562 464 1641 476)(font "Arial" ))
+	(pt 1536 480)
+	(pt 1632 480)
+)
+(connector
+	(text "HBLANK" (rect 1562 480 1605 492)(font "Arial" ))
+	(pt 1536 496)
+	(pt 1640 496)
+)
+(connector
+	(text "SYNC_LEVEL" (rect 1274 496 1344 508)(font "Arial" ))
+	(pt 1344 512)
+	(pt 1264 512)
+)
+(connector
+	(text "CLOCK_SW" (rect 1274 512 1335 524)(font "Arial" ))
+	(pt 1344 528)
+	(pt 1264 528)
 )

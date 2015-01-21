@@ -69,11 +69,6 @@ signal white:		unsigned(7 downto 0);
 
 signal column: 	integer range 0 to 1024;
 
---signal red_adc:		unsigned(7 downto 0);
---signal green_adc:		unsigned(7 downto 0);
---signal blue_adc:		unsigned(7 downto 0);
-
-
 function f_adc(adc: unsigned) return unsigned;
 
 function f_adc(adc: unsigned) return unsigned is
@@ -753,7 +748,7 @@ begin
 channel_red: process
 variable red_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); 
+	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
 	if (rising_edge(clock_dram)) then	
 		red_adc(to_integer(hcount(2 downto 0))) := adc_rgb(2);
 		pixel_adc(7 downto 5) <= f_adc(red_adc(6 downto 0));
@@ -764,7 +759,7 @@ end process;
 channel_green: process
 variable green_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1');
+	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
 	if (rising_edge(clock_dram)) then	
 		green_adc(to_integer(hcount(2 downto 0))) := adc_rgb(1);
 		pixel_adc(4 downto 2) <= f_adc(green_adc(6 downto 0));
@@ -774,7 +769,7 @@ end process;
 channel_blue: process
 variable blue_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); 
+	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
 	if (rising_edge(clock_dram)) then		
 		blue_adc(to_integer(hcount(2 downto 0))) := adc_rgb(0);
 		pixel_adc(1 downto 0) <= f_adc(blue_adc(7 downto 5)&blue_adc(3 downto 0))(2 downto 1);
@@ -860,7 +855,7 @@ end process;
 process_b: process 
 variable pixel: std_logic;
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); 
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100");  
 		
 		case (pixel_adc(4 downto 2)) is
 			when "111" => pixel_b <= "11111111";
@@ -879,7 +874,7 @@ variable a_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 variable c_pixel: unsigned(7 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); 
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 			
 				p_pixel := a_pixel;				
 			
@@ -887,7 +882,7 @@ begin
 				-- pixel shifting for apple2/coco3 artifact
 				case (pixel_adc(4 downto 2)) is
 					when "111" => pixel(0) := '1';
-					when "110" => pixel(0) := apple2;
+					when "110" => pixel(0) := '1';
 					when "101" => pixel(0) := apple2;
 					when "100" => pixel(0) := apple2;
 					when others => pixel(0) := '0';
@@ -1033,7 +1028,7 @@ variable pixel: unsigned(3 downto 0);
 variable c_pixel: unsigned(7 downto 0);
 variable p_pixel: unsigned(7 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); 
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 		
 			p_pixel := c_pixel;
 			c_pixel := pixel_adc;

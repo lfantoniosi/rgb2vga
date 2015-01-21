@@ -33,28 +33,30 @@
 --applicable agreement for further details.
 
 
---altiobuf_in CBX_AUTO_BLACKBOX="ALL" DEVICE_FAMILY="Cyclone IV E" ENABLE_BUS_HOLD="FALSE" NUMBER_OF_CHANNELS=1 USE_DIFFERENTIAL_MODE="TRUE" USE_DYNAMIC_TERMINATION_CONTROL="FALSE" datain datain_b dataout
+--altiobuf_in CBX_AUTO_BLACKBOX="ALL" DEVICE_FAMILY="Cyclone IV E" ENABLE_BUS_HOLD="FALSE" NUMBER_OF_CHANNELS=3 USE_DIFFERENTIAL_MODE="TRUE" USE_DYNAMIC_TERMINATION_CONTROL="FALSE" datain datain_b dataout
 --VERSION_BEGIN 13.0 cbx_altiobuf_in 2013:04:24:18:08:47:SJ cbx_mgl 2013:04:24:18:11:10:SJ cbx_stratixiii 2013:04:24:18:08:47:SJ cbx_stratixv 2013:04:24:18:08:47:SJ  VERSION_END
 
  LIBRARY cycloneive;
  USE cycloneive.all;
 
---synthesis_resources = cycloneive_io_ibuf 1 
+--synthesis_resources = cycloneive_io_ibuf 3 
  LIBRARY ieee;
  USE ieee.std_logic_1164.all;
 
- ENTITY  altiobuf_iobuf_in_k0j IS 
+ ENTITY  altiobuf_iobuf_in_m0j IS 
 	 PORT 
 	 ( 
-		 datain	:	IN  STD_LOGIC_VECTOR (0 DOWNTO 0);
-		 datain_b	:	IN  STD_LOGIC_VECTOR (0 DOWNTO 0) := (OTHERS => '0');
-		 dataout	:	OUT  STD_LOGIC_VECTOR (0 DOWNTO 0)
+		 datain	:	IN  STD_LOGIC_VECTOR (2 DOWNTO 0);
+		 datain_b	:	IN  STD_LOGIC_VECTOR (2 DOWNTO 0) := (OTHERS => '0');
+		 dataout	:	OUT  STD_LOGIC_VECTOR (2 DOWNTO 0)
 	 ); 
- END altiobuf_iobuf_in_k0j;
+ END altiobuf_iobuf_in_m0j;
 
- ARCHITECTURE RTL OF altiobuf_iobuf_in_k0j IS
+ ARCHITECTURE RTL OF altiobuf_iobuf_in_m0j IS
 
-	 SIGNAL  wire_ibufa_o	:	STD_LOGIC;
+	 SIGNAL  wire_ibufa_i	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_ibufa_ibar	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
+	 SIGNAL  wire_ibufa_o	:	STD_LOGIC_VECTOR (2 DOWNTO 0);
 	 COMPONENT  cycloneive_io_ibuf
 	 GENERIC 
 	 (
@@ -72,19 +74,23 @@
 	 END COMPONENT;
  BEGIN
 
-	dataout(0) <= wire_ibufa_o;
-	ibufa :  cycloneive_io_ibuf
+	dataout <= wire_ibufa_o;
+	wire_ibufa_i <= datain;
+	wire_ibufa_ibar <= datain_b;
+	loop0 : FOR i IN 0 TO 2 GENERATE 
+	  ibufa :  cycloneive_io_ibuf
 	  GENERIC MAP (
 		bus_hold => "false",
 		differential_mode => "true"
 	  )
 	  PORT MAP ( 
-		i => datain(0),
-		ibar => datain_b(0),
-		o => wire_ibufa_o
+		i => wire_ibufa_i(i),
+		ibar => wire_ibufa_ibar(i),
+		o => wire_ibufa_o(i)
 	  );
+	END GENERATE loop0;
 
- END RTL; --altiobuf_iobuf_in_k0j
+ END RTL; --altiobuf_iobuf_in_m0j
 --VALID FILE
 
 
@@ -94,31 +100,31 @@ USE ieee.std_logic_1164.all;
 ENTITY altiobuf IS
 	PORT
 	(
-		datain		: IN STD_LOGIC_VECTOR (0 DOWNTO 0);
-		datain_b		: IN STD_LOGIC_VECTOR (0 DOWNTO 0);
-		dataout		: OUT STD_LOGIC_VECTOR (0 DOWNTO 0)
+		datain		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+		datain_b		: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+		dataout		: OUT STD_LOGIC_VECTOR (2 DOWNTO 0)
 	);
 END altiobuf;
 
 
 ARCHITECTURE RTL OF altiobuf IS
 
-	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (0 DOWNTO 0);
+	SIGNAL sub_wire0	: STD_LOGIC_VECTOR (2 DOWNTO 0);
 
 
 
-	COMPONENT altiobuf_iobuf_in_k0j
+	COMPONENT altiobuf_iobuf_in_m0j
 	PORT (
-			datain	: IN STD_LOGIC_VECTOR (0 DOWNTO 0);
-			datain_b	: IN STD_LOGIC_VECTOR (0 DOWNTO 0);
-			dataout	: OUT STD_LOGIC_VECTOR (0 DOWNTO 0)
+			datain	: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+			datain_b	: IN STD_LOGIC_VECTOR (2 DOWNTO 0);
+			dataout	: OUT STD_LOGIC_VECTOR (2 DOWNTO 0)
 	);
 	END COMPONENT;
 
 BEGIN
-	dataout    <= sub_wire0(0 DOWNTO 0);
+	dataout    <= sub_wire0(2 DOWNTO 0);
 
-	altiobuf_iobuf_in_k0j_component : altiobuf_iobuf_in_k0j
+	altiobuf_iobuf_in_m0j_component : altiobuf_iobuf_in_m0j
 	PORT MAP (
 		datain => datain,
 		datain_b => datain_b,
@@ -137,18 +143,18 @@ END RTL;
 -- Retrieval info: LIBRARY: altera_mf altera_mf.altera_mf_components.all
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
 -- Retrieval info: CONSTANT: enable_bus_hold STRING "FALSE"
--- Retrieval info: CONSTANT: number_of_channels NUMERIC "1"
+-- Retrieval info: CONSTANT: number_of_channels NUMERIC "3"
 -- Retrieval info: CONSTANT: use_differential_mode STRING "TRUE"
 -- Retrieval info: CONSTANT: use_dynamic_termination_control STRING "FALSE"
--- Retrieval info: USED_PORT: datain 0 0 1 0 INPUT NODEFVAL "datain[0..0]"
--- Retrieval info: USED_PORT: datain_b 0 0 1 0 INPUT NODEFVAL "datain_b[0..0]"
--- Retrieval info: USED_PORT: dataout 0 0 1 0 OUTPUT NODEFVAL "dataout[0..0]"
--- Retrieval info: CONNECT: @datain 0 0 1 0 datain 0 0 1 0
--- Retrieval info: CONNECT: @datain_b 0 0 1 0 datain_b 0 0 1 0
--- Retrieval info: CONNECT: dataout 0 0 1 0 @dataout 0 0 1 0
+-- Retrieval info: USED_PORT: datain 0 0 3 0 INPUT NODEFVAL "datain[2..0]"
+-- Retrieval info: USED_PORT: datain_b 0 0 3 0 INPUT NODEFVAL "datain_b[2..0]"
+-- Retrieval info: USED_PORT: dataout 0 0 3 0 OUTPUT NODEFVAL "dataout[2..0]"
+-- Retrieval info: CONNECT: @datain 0 0 3 0 datain 0 0 3 0
+-- Retrieval info: CONNECT: @datain_b 0 0 3 0 datain_b 0 0 3 0
+-- Retrieval info: CONNECT: dataout 0 0 3 0 @dataout 0 0 3 0
 -- Retrieval info: GEN_FILE: TYPE_NORMAL altiobuf.vhd TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL altiobuf.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL altiobuf.cmp TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL altiobuf.bsf TRUE FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL altiobuf.bsf TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL altiobuf_inst.vhd FALSE
 -- Retrieval info: LIB_FILE: cycloneive

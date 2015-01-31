@@ -38,34 +38,33 @@ applicable agreement for further details.
 		(line (pt 0 48)(pt 16 48)(line_width 1))
 	)
 	(port
-		(pt 0 64)
-		(input)
-		(text "sync_level" (rect 0 0 43 12)(font "Arial" ))
-		(text "sync_level" (rect 21 59 64 71)(font "Arial" ))
-		(line (pt 0 64)(pt 16 64)(line_width 1))
-	)
-	(port
-		(pt 0 80)
-		(input)
-		(text "clock_sw" (rect 0 0 36 12)(font "Arial" ))
-		(text "clock_sw" (rect 21 75 57 87)(font "Arial" ))
-		(line (pt 0 80)(pt 16 80)(line_width 1))
-	)
-	(port
 		(pt 192 32)
 		(output)
-		(text "video_active" (rect 0 0 50 12)(font "Arial" ))
-		(text "video_active" (rect 121 27 171 39)(font "Arial" ))
+		(text "sync_level" (rect 0 0 43 12)(font "Arial" ))
+		(text "sync_level" (rect 128 27 171 39)(font "Arial" ))
 		(line (pt 192 32)(pt 176 32)(line_width 1))
 	)
 	(port
 		(pt 192 48)
 		(output)
-		(text "hblank_out" (rect 0 0 42 12)(font "Arial" ))
-		(text "hblank_out" (rect 129 43 171 55)(font "Arial" ))
+		(text "video_active" (rect 0 0 50 12)(font "Arial" ))
+		(text "video_active" (rect 121 43 171 55)(font "Arial" ))
 		(line (pt 192 48)(pt 176 48)(line_width 1))
 	)
+	(port
+		(pt 192 64)
+		(output)
+		(text "hblank_out" (rect 0 0 42 12)(font "Arial" ))
+		(text "hblank_out" (rect 129 59 171 71)(font "Arial" ))
+		(line (pt 192 64)(pt 176 64)(line_width 1))
+	)
+	(parameter
+		"pixel_width"
+		"7"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 176 96)(line_width 1))
 	)
+	(annotation_block (parameter)(rect 208 -64 308 16))
 )

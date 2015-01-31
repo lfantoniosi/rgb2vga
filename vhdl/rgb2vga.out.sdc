@@ -67,6 +67,7 @@ set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_g
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {CLOCK_50}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {CLOCK_50}]
 
+set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {BRIGHT}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFB}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFBn}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {DIFFG}]
@@ -76,6 +77,7 @@ set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_g
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {HSYNC}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[0]}]  2.000 [get_ports {VSYNC}]
 
+set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {BRIGHT}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {DIFFB}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {DIFFBn}]
 set_input_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[2]}]  2.000 [get_ports {DIFFG}]
@@ -168,6 +170,7 @@ set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_
 
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAB0}]
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAB1}]
+set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAB2}]
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAG0}]
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAG1}]
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAG2}]
@@ -176,6 +179,7 @@ set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAR1}]
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAR2}]
 set_output_delay -add_delay  -clock [get_clocks {pll_inst|altpll_component|auto_generated|pll1|clk[1]}]  2.000 [get_ports {VGAVS}]
+
 
 #**************************************************************
 # Set Clock Groups
@@ -200,6 +204,28 @@ set_false_path -from {pll_inst|altpll_component|auto_generated|pll1|clk[0]} -to 
 set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[1]} -to {D1}
 set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[2]} -to {D2}
 set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[0]} -to {D0}
+
+#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[0]}
+#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[1]}
+#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[2]}
+#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[4]}
+#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[5]}
+#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[6]}
+#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[7]}
+#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[0]}
+#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[1]}
+#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[2]}
+#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[3]}
+#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[4]}
+#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[5]}
+#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[6]}
+#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[0]}
+#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[1]}
+#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[2]}
+#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[3]}
+#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[4]}
+#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[5]}
+#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[6]}
 
 #**************************************************************
 # Set Multicycle Path

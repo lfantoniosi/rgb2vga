@@ -1,5 +1,5 @@
 
-    library IEEE;
+library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
@@ -7,15 +7,15 @@ use IEEE.NUMERIC_STD.ALL;
 -- coco3 clock: 
 
 entity genlock is
-	
+
     port(clock_dram : in std_logic;
 			vsync  		: in std_logic; -- digital vsync
 			hblank 		: in std_logic; -- digital hsync
 			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
 			
-			pixel_out	: out unsigned(7 downto 0);
+			pixel_out	: out unsigned(7 downto 0); -- RRRGGGBB
 			row_number	: out unsigned(9 downto 0); 
-			col_number	: out unsigned(9 downto 0); 
+			col_number	: buffer unsigned(9 downto 0); 
 			store_req	: out std_logic := '0';
 			store_ack 	: in std_logic;
 			artifact		: in std_logic;
@@ -24,8 +24,10 @@ entity genlock is
 			deinterlace	: in std_logic;
 			apple2		: in std_logic;
 			shrink		: in std_logic;
-			clock_sw		: in std_logic;
-			dac_step		: in unsigned(2 downto 0)
+			offset		: in std_logic;
+			dac_step		: in unsigned(2 downto 0);
+			bright		: in std_logic;
+			digital		: in std_logic
 );
 			
 end genlock;
@@ -38,34 +40,34 @@ signal hcount, vcount							: unsigned(13 downto 0);
 signal top_border									: integer := 32;
 signal front_porch								: integer := 181;
 
-signal pixel_a: unsigned(7 downto 0);
-signal pixel_d: unsigned(7 downto 0);
-signal pixel_b: unsigned(7 downto 0);
+signal pixel_a: unsigned(8 downto 0);
+signal pixel_d: unsigned(8 downto 0);
+signal pixel_b: unsigned(8 downto 0);
 
 signal pixel_sel: unsigned(1 downto 0);
 
-signal pixel_adc: unsigned(7 downto 0);
+signal pixel_adc: unsigned(8 downto 0);
 
 signal artifact_mode: std_logic;
 
 signal frame: 		unsigned(0 downto 0);
 
-signal black:		unsigned(7 downto 0);
-signal brown:		unsigned(7 downto 0);
-signal magenta:	unsigned(7 downto 0);
-signal orange:		unsigned(7 downto 0);
-signal darkblue:	unsigned(7 downto 0);
-signal darkgray:	unsigned(7 downto 0);
-signal violet:		unsigned(7 downto 0);
-signal pink:		unsigned(7 downto 0);
-signal darkgreen:	unsigned(7 downto 0);
-signal green:		unsigned(7 downto 0);
-signal lightgray:	unsigned(7 downto 0);
-signal yellow:		unsigned(7 downto 0);
-signal mediumblue:unsigned(7 downto 0);
-signal aqua:		unsigned(7 downto 0);
-signal lightblue:	unsigned(7 downto 0);
-signal white:		unsigned(7 downto 0);
+signal black:		unsigned(8 downto 0);
+signal brown:		unsigned(8 downto 0);
+signal magenta:	unsigned(8 downto 0);
+signal orange:		unsigned(8 downto 0);
+signal darkblue:	unsigned(8 downto 0);
+signal darkgray:	unsigned(8 downto 0);
+signal violet:		unsigned(8 downto 0);
+signal pink:		unsigned(8 downto 0);
+signal darkgreen:	unsigned(8 downto 0);
+signal green:		unsigned(8 downto 0);
+signal lightgray:	unsigned(8 downto 0);
+signal yellow:		unsigned(8 downto 0);
+signal mediumblue:unsigned(8 downto 0);
+signal aqua:		unsigned(8 downto 0);
+signal lightblue:	unsigned(8 downto 0);
+signal white:		unsigned(8 downto 0);
 
 signal column: 	integer range 0 to 1024;
 
@@ -748,35 +750,29 @@ begin
 channel_red: process
 variable red_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
-	if (rising_edge(clock_dram)) then	
-		red_adc(to_integer(hcount(2 downto 0))) := adc_rgb(2);
-		pixel_adc(7 downto 5) <= f_adc(red_adc(6 downto 0));
-	end if;
+	wait until (clock_dram'event and clock_dram='1'); -- and hcount(2 downto 0) = dac_step); 
+	red_adc(to_integer(hcount(2 downto 0))) := adc_rgb(2);
+	pixel_adc(8 downto 6) <= f_adc(red_adc(6 downto 0));
 
 end process;
 
 channel_green: process
 variable green_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
-	if (rising_edge(clock_dram)) then	
-		green_adc(to_integer(hcount(2 downto 0))) := adc_rgb(1);
-		pixel_adc(4 downto 2) <= f_adc(green_adc(6 downto 0));
-	end if;	
+	wait until (clock_dram'event and clock_dram='1'); -- and hcount(2 downto 0) = dac_step); 
+	green_adc(to_integer(hcount(2 downto 0))) := adc_rgb(1);
+	pixel_adc(5 downto 3) <= f_adc(green_adc(6 downto 0));
 end process;
 
 channel_blue: process
 variable blue_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
-	if (rising_edge(clock_dram)) then		
-		blue_adc(to_integer(hcount(2 downto 0))) := adc_rgb(0);
-		pixel_adc(1 downto 0) <= f_adc(blue_adc(7 downto 5)&blue_adc(3 downto 0))(2 downto 1);
-	end if;
+	wait until (clock_dram'event and clock_dram='1'); -- and hcount(2 downto 0) = dac_step); 
+	blue_adc(to_integer(hcount(2 downto 0))) := adc_rgb(0);
+	pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 3) & blue_adc(2 downto 0));
 end process;
 
-hraster: process (clock_dram, dac_step, hblank, vblank)
+hraster: process (clock_dram, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
 		hcount <= (others => '0');
@@ -836,210 +832,235 @@ detect_artifact: process(clock_dram, hblank, hcount)
 begin
 	if (hblank = '0') then
 		artifact_mode <= '1';	
-	elsif (rising_edge(clock_dram)) then
-	
+	elsif (rising_edge(clock_dram)) then	
 		if (apple2 = '1') then
-				if (column < front_porch) then		
+				if (column  < front_porch) then		
 					-- out of active window. if coco2/coco3 check for white border to activate artifacting
-					if (pixel_adc(7 downto 2) = "111111") then
+					if (pixel_adc = "111111111") then
 						artifact_mode <= artifact;
 					end if;
 				end if;
 		else
 				artifact_mode <= artifact;			
-		end if;
-		
+		end if;		
 	end if;
 end process;
 
 process_b: process 
-variable pixel: std_logic;
+variable a_pixel: unsigned(8 downto 0);
+variable p_pixel: unsigned(8 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100");  
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step(2 downto 0) = "100");  
 		
-		case (pixel_adc(4 downto 2)) is
-			when "111" => pixel_b <= "11111111";
-			when "110" => pixel_b <= apple2&apple2&apple2&apple2&apple2&apple2&apple2&apple2;
-			when "101" => pixel_b <= apple2&apple2&apple2&apple2&apple2&apple2&apple2&apple2;
-			when "100" => pixel_b <= apple2&apple2&apple2&apple2&apple2&apple2&apple2&apple2;
-			when others => pixel_b <= "00000000";
+		case (pixel_adc(5 downto 3)) is
+			when "111" => 
+				a_pixel := "111111111";
+			when "110" => 
+				a_pixel := "111111111"; 
+			when "101" => 
+				a_pixel := "111111111"; 
+			when "100" => 
+				a_pixel := "111111111"; 
+			when others => 
+				a_pixel := "000000000";
 		end case;
+		
+		if (shrink = '0') then
+			pixel_b(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+			pixel_b(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+			pixel_b(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));	
+		else				
+			pixel_b <= a_pixel;
+		end if;		
+		
+		p_pixel := a_pixel;	
 		
 end process;
 
-
 process_d: process 
 variable pixel: unsigned(3 downto 0);
-variable a_pixel: unsigned(7 downto 0);
-variable p_pixel: unsigned(7 downto 0);
-variable c_pixel: unsigned(7 downto 0);
+variable a_pixel: unsigned(8 downto 0);
+variable p_pixel: unsigned(8 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
-			
-				p_pixel := a_pixel;				
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step(2 downto 0) = "100"); 
 			
 				pixel(3 downto 1) := pixel(2 downto 0);
 				-- pixel shifting for apple2/coco3 artifact
-				case (pixel_adc(4 downto 2)) is
+				case (pixel_adc(5 downto 3)) is
 					when "111" => pixel(0) := '1';
 					when "110" => pixel(0) := '1';
-					when "101" => pixel(0) := apple2;
-					when "100" => pixel(0) := apple2;
+					when "101" => pixel(0) := '1';
+					when "100" => pixel(0) := '1';
 					when others => pixel(0) := '0';
 				end case;				
 													
 				if (hcount(3) = '0') then
-						-- even rows					
-								--	APPLE ][ NTSC ARTIFACT COLOUR TABLE					
-								--	|00|11|00|11|00|11   hcount(4)
-								--	|01|01|01|01|01|01   hcount(3)
-								--	+------------------+------
-								--	|00|00|00|00|00|00 - black
-								--	|00|01|00|01|00|01 - brown
-								--	|10|00|10|00|10|00 - magenta
-								--	|10|01|10|01|10|01 - orange
-								--	|01|00|01|00|01|00 - darkblue
-								--	|01|01|01|01|01|01 - darkgray
-								--	|11|00|11|00|11|00 - violet
-								--	|11|01|11|01|11|01 - pink
-								--	|00|10|00|10|00|10 - darkgreen
-								--	|00|11|00|11|00|11 - green
-								--	|10|10|10|10|10|10 - lightgray
-								--	|10|11|10|11|10|11 - yellow
-								--	|01|10|01|10|01|10 - mediumblue
-								--	|01|11|01|11|01|11 - aqua
-								--	|11|10|11|10|11|10 - lightblue 
-								--	|11|11|11|11|11|11 - white								
+					-- even rows					
+					--	APPLE ][ NTSC ARTIFACT COLOUR TABLE					
+					--	|00|11|00|11|00|11   hcount(4)
+					--	|01|01|01|01|01|01   hcount(3)
+					--	+------------------+------
+					--	|00|00|00|00|00|00 - black
+					--	|00|01|00|01|00|01 - brown
+					--	|10|00|10|00|10|00 - magenta
+					--	|10|01|10|01|10|01 - orange
+					--	|01|00|01|00|01|00 - darkblue
+					--	|01|01|01|01|01|01 - darkgray
+					--	|11|00|11|00|11|00 - violet
+					--	|11|01|11|01|11|01 - pink
+					--	|00|10|00|10|00|10 - darkgreen
+					--	|00|11|00|11|00|11 - green
+					--	|10|10|10|10|10|10 - lightgray
+					--	|10|11|10|11|10|11 - yellow
+					--	|01|10|01|10|01|10 - mediumblue
+					--	|01|11|01|11|01|11 - aqua
+					--	|11|10|11|10|11|10 - lightblue 
+					--	|11|11|11|11|11|11 - white								
+					
+					--	COCO2/COCO3 PMODE4 NTSC ARTIFACT COLOUR TABLE					
+					--	|00|11|00|11|00|11   hcount(4)
+					--	|01|01|01|01|01|01   hcount(3)
+					--	+------------------+------
+					--	|00|00|00|00|00|00 - black					
+					--	|00|11|00|11|00|11 - medium blue
+					--	|11|00|11|00|11|00 - orange
+					--	|11|11|11|11|11|11 - white
+					
+					if (hcount(4) = '0') then
+						-- decode colour by the last 4-bit pattern
+							case (pixel) is
+								when "0000" => a_pixel := black;
+								when "0010" => a_pixel := brown;
+								when "0001" => a_pixel := magenta;
+								when "0011" => a_pixel := orange;
+								when "1000" => a_pixel := darkblue;
+								when "1010" => a_pixel := darkgray;
+								when "1001" => a_pixel := violet;
+								when "1011" => a_pixel := pink;
+								when "0100" => a_pixel := darkgreen;
+								when "0110" => a_pixel := green;
+								when "0101" => a_pixel := lightgray;
+								when "0111" => a_pixel := yellow;				
+								when "1100" => a_pixel := mediumblue;
+								when "1110" => a_pixel := aqua;
+								when "1101" => a_pixel := lightblue;
+								when others => a_pixel := white;      
 								
-								--	COCO2/COCO3 PMODE4 NTSC ARTIFACT COLOUR TABLE					
-								--	|00|11|00|11|00|11   hcount(4)
-								--	|01|01|01|01|01|01   hcount(3)
-								--	+------------------+------
-								--	|00|00|00|00|00|00 - black					
-								--	|00|11|00|11|00|11 - medium blue
-								--	|11|00|11|00|11|00 - orange
-								--	|11|11|11|11|11|11 - white
-								
-								if (hcount(4) = '0') then
-									-- decode colour by the last 4-bit pattern
-										case (pixel) is
-											when "0000" => a_pixel := black;
-											when "0010" => a_pixel := brown;
-											when "0001" => a_pixel := magenta;
-											when "0011" => a_pixel := orange;
-											when "1000" => a_pixel := darkblue;
-											when "1010" => a_pixel := darkgray;
-											when "1001" => a_pixel := violet;
-											when "1011" => a_pixel := pink;
-											when "0100" => a_pixel := darkgreen;
-											when "0110" => a_pixel := green;
-											when "0101" => a_pixel := lightgray;
-											when "0111" => a_pixel := yellow;				
-											when "1100" => a_pixel := mediumblue;
-											when "1110" => a_pixel := aqua;
-											when "1101" => a_pixel := lightblue;
-											when others => a_pixel := white;      
-											
-										end case;
-								else
-										case (pixel) is
-											when "0000" => a_pixel := black;
-											when "1000" => a_pixel := brown;
-											when "0100" => a_pixel := magenta;
-											when "1100" => a_pixel := orange;
-											when "0010" => a_pixel := darkblue;
-											when "1010" => a_pixel := darkgray;
-											when "0110" => a_pixel := violet;
-											when "1110" => a_pixel := pink;
-											when "0001" => a_pixel := darkgreen;
-											when "1001" => a_pixel := green;
-											when "0101" => a_pixel := lightgray;
-											when "1101" => a_pixel := yellow;				
-											when "0011" => a_pixel := mediumblue;
-											when "1011" => a_pixel := aqua;
-											when "0111" => a_pixel := lightblue;
-											when others => a_pixel := white;      
-										end case;
-								end if;								
-								--
-								if (shrink = '0') then
-									pixel_d(7 downto 5) <= f_lerp(hcount(5 downto 3) & p_pixel(7 downto 5) & a_pixel(7 downto 5));									
-									pixel_d(4 downto 2) <= f_lerp(hcount(5 downto 3) & p_pixel(4 downto 2) & a_pixel(4 downto 2));
-									pixel_d(1 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(1 downto 0) & '0' & a_pixel(1 downto 0) & '0')(2 downto 1);
-								else
-									pixel_d <= a_pixel;
-								end if;
+							end case;
+					else
+							case (pixel) is
+								when "0000" => a_pixel := black;
+								when "1000" => a_pixel := brown;
+								when "0100" => a_pixel := magenta;
+								when "1100" => a_pixel := orange;
+								when "0010" => a_pixel := darkblue;
+								when "1010" => a_pixel := darkgray;
+								when "0110" => a_pixel := violet;
+								when "1110" => a_pixel := pink;
+								when "0001" => a_pixel := darkgreen;
+								when "1001" => a_pixel := green;
+								when "0101" => a_pixel := lightgray;
+								when "1101" => a_pixel := yellow;				
+								when "0011" => a_pixel := mediumblue;
+								when "1011" => a_pixel := aqua;
+								when "0111" => a_pixel := lightblue;
+								when others => a_pixel := white;      
+							end case;
+					end if;								
 				else
-						-- odd rows
-								if (hcount(4) = '0') then
-										-- decode colour by the last 4-bit pattern
-										case (pixel) is
-											when "0000" => a_pixel := black;
-											when "0100" => a_pixel := brown;
-											when "0010" => a_pixel := magenta;
-											when "0110" => a_pixel := orange;
-											when "0001" => a_pixel := darkblue;
-											when "0101" => a_pixel := darkgray;
-											when "0011" => a_pixel := violet;
-											when "0111" => a_pixel := pink;
-											when "1000" => a_pixel := darkgreen;
-											when "1100" => a_pixel := green;
-											when "1010" => a_pixel := lightgray;
-											when "1110" => a_pixel := yellow;					
-											when "1001" => a_pixel := mediumblue;
-											when "1101" => a_pixel := aqua;
-											when "1011" => a_pixel := lightblue;
-											when others => a_pixel := white;      
-										end case;										
-								else
-										case (pixel) is
-											when "0000" => a_pixel := black;
-											when "0001" => a_pixel := brown;
-											when "1000" => a_pixel := magenta;
-											when "1001" => a_pixel := orange;
-											when "0100" => a_pixel := darkblue;
-											when "0101" => a_pixel := darkgray;
-											when "1100" => a_pixel := violet;
-											when "1101" => a_pixel := pink;
-											when "0010" => a_pixel := darkgreen;
-											when "0011" => a_pixel := green;
-											when "1010" => a_pixel := lightgray;
-											when "1011" => a_pixel := yellow;			
-											when "0110" => a_pixel := mediumblue;
-											when "0111" => a_pixel := aqua;
-											when "1110" => a_pixel := lightblue;
-											when others => a_pixel := white;      
-										end case;
-								end if;
-								--
-								if (shrink = '0') then
-									pixel_d(7 downto 5) <= f_lerp(hcount(5 downto 3) & p_pixel(7 downto 5) & a_pixel(7 downto 5));									
-									pixel_d(4 downto 2) <= f_lerp(hcount(5 downto 3) & p_pixel(4 downto 2) & a_pixel(4 downto 2));
-									pixel_d(1 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(1 downto 0) & '0' & a_pixel(1 downto 0) & '0')(2 downto 1);
-								else
-									pixel_d <= a_pixel;
-								end if;
-						--
+					-- odd rows
+					if (hcount(4) = '0') then
+							-- decode colour by the last 4-bit pattern
+							case (pixel) is
+								when "0000" => a_pixel := black;
+								when "0100" => a_pixel := brown;
+								when "0010" => a_pixel := magenta;
+								when "0110" => a_pixel := orange;
+								when "0001" => a_pixel := darkblue;
+								when "0101" => a_pixel := darkgray;
+								when "0011" => a_pixel := violet;
+								when "0111" => a_pixel := pink;
+								when "1000" => a_pixel := darkgreen;
+								when "1100" => a_pixel := green;
+								when "1010" => a_pixel := lightgray;
+								when "1110" => a_pixel := yellow;					
+								when "1001" => a_pixel := mediumblue;
+								when "1101" => a_pixel := aqua;
+								when "1011" => a_pixel := lightblue;
+								when others => a_pixel := white;      
+							end case;										
+					else
+							case (pixel) is
+								when "0000" => a_pixel := black;
+								when "0001" => a_pixel := brown;
+								when "1000" => a_pixel := magenta;
+								when "1001" => a_pixel := orange;
+								when "0100" => a_pixel := darkblue;
+								when "0101" => a_pixel := darkgray;
+								when "1100" => a_pixel := violet;
+								when "1101" => a_pixel := pink;
+								when "0010" => a_pixel := darkgreen;
+								when "0011" => a_pixel := green;
+								when "1010" => a_pixel := lightgray;
+								when "1011" => a_pixel := yellow;			
+								when "0110" => a_pixel := mediumblue;
+								when "0111" => a_pixel := aqua;
+								when "1110" => a_pixel := lightblue;
+								when others => a_pixel := white;      
+							end case;
+					end if;
 				end if;
+				
+				if (shrink = '0') then
+					pixel_d(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+					pixel_d(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+					pixel_d(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));	
+				else				
+					pixel_d <= a_pixel;
+				end if;
+
+				p_pixel := a_pixel;			
+				
 end process;
 
 process_a: process
-variable pixel: unsigned(3 downto 0);
-variable c_pixel: unsigned(7 downto 0);
-variable p_pixel: unsigned(7 downto 0);
+variable c_pixel: unsigned(8 downto 0);
+variable p_pixel: unsigned(8 downto 0);
+variable n_pixel: unsigned(8 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step(2 downto 0) = "100"); 
 		
-			p_pixel := c_pixel;
 			c_pixel := pixel_adc;
-						
-			if (shrink = '0') then
-				pixel_a(7 downto 5) <= f_lerp(hcount(5 downto 3) & p_pixel(7 downto 5) & c_pixel(7 downto 5));
-				pixel_a(4 downto 2) <= f_lerp(hcount(5 downto 3) & p_pixel(4 downto 2) & c_pixel(4 downto 2));
-				pixel_a(1 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(1 downto 0) & '0' & c_pixel(1 downto 0) & '0')(2 downto 1);
-			else
-				pixel_a <= c_pixel;
+			--c_pixel := pixel_adc and '1'&(bright or digital)&'1' & '1'&(bright or digital)&'1' & '1'&(bright or digital)&'1';				
+			
+			if (digital = '0') then
+				
+				c_pixel := (others => '0');
+				
+				if (to_integer(pixel_adc(8 downto 6)) > 3) then
+					c_pixel(8 downto 6) := "111";
+				end if;
+				if (to_integer(pixel_adc(5 downto 3)) > 3) then
+					c_pixel(5 downto 3) := "111";
+				end if;
+				if (to_integer(pixel_adc(2 downto 0)) > 3) then
+					c_pixel(2 downto 0) := "111";
+				end if;
+							
+				c_pixel := c_pixel and '1'&bright&'1' & '1'&bright&'1' & '1'&bright&'1';
+				
 			end if;
+			
+			if (shrink = '0') then
+				pixel_a(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & c_pixel(8 downto 6));
+				pixel_a(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & c_pixel(5 downto 3));
+				pixel_a(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0));				
+			else
+				pixel_a <= c_pixel;					
+			end if;
+
+			p_pixel := c_pixel;				
+				
 end process;
 
 process_col_nr: process(clock_dram, hcount) 
@@ -1070,62 +1091,63 @@ begin
 		if (apple2 = '1') then
 		
 			if (mode = '0') then
-					black 				<= "00000000"; -- black
-					brown					<= "11101100"; -- brown
-					magenta				<= "01001011"; -- dark blue
-					orange				<= "11101100"; -- orange
-					darkblue				<= "01001011"; -- dark mediumblue
-					darkgray				<= "11101100"; -- dark gray
-					violet				<= "01001011"; -- medium blue
-					pink					<= "11101100"; -- light blue
-					darkgreen			<= "01001011"; -- darkgreen
-					green					<= "11101100"; -- green
-					lightgray			<= "01001011"; -- light gray
-					yellow				<= "11101100"; -- yellow				
-					mediumblue			<= "01001011"; -- mediumblue
-					aqua					<= "11101100"; -- aqua
-					lightblue			<= "01001011"; -- lightblue
-					white					<= "11111111"; -- white		
+					black 				<= "000000000"; -- black
+					brown					<= "111011000"; -- brown
+					magenta				<= "010010111"; -- dark blue
+					orange				<= "111011000"; -- orange
+					darkblue				<= "010010111"; -- dark mediumblue
+					darkgray				<= "111011000"; -- dark gray
+					violet				<= "010010111"; -- medium blue
+					pink					<= "111011000"; -- light blue
+					darkgreen			<= "010010111"; -- darkgreen
+					green					<= "111011000"; -- green
+					lightgray			<= "010010111"; -- light gray
+					yellow				<= "111011000"; -- yellow				
+					mediumblue			<= "010010111"; -- mediumblue
+					aqua					<= "111011000"; -- aqua
+					lightblue			<= "010010111"; -- lightblue
+					white					<= "111111111"; -- white		
 			else
-					black 				<= "00000000"; -- black
-					brown					<= "01001011"; -- brown
-					magenta				<= "11101100"; -- dark blue
-					orange				<= "01001011"; -- orange
-					darkblue				<= "11101100"; -- dark mediumblue
-					darkgray				<= "01001011"; -- dark gray
-					violet				<= "11101100"; -- medium blue
-					pink					<= "01001011"; -- light blue
-					darkgreen			<= "11101100"; -- darkgreen
-					green					<= "01001011"; -- green
-					lightgray			<= "11101100"; -- light gray
-					yellow				<= "01001011"; -- yellow				
-					mediumblue			<= "11101100"; -- mediumblue
-					aqua					<= "01001011"; -- aqua
-					lightblue			<= "11101100"; -- lightblue
-					white					<= "11111111"; -- white		
+					black 				<= "000000000"; -- black
+					brown					<= "010010111"; -- brown
+					magenta				<= "111011000"; -- dark blue
+					orange				<= "010010111"; -- orange
+					darkblue				<= "111011000"; -- dark mediumblue
+					darkgray				<= "010010111"; -- dark gray
+					violet				<= "111011000"; -- medium blue
+					pink					<= "010010111"; -- light blue
+					darkgreen			<= "111011000"; -- darkgreen
+					green					<= "010010111"; -- green
+					lightgray			<= "111011000"; -- light gray
+					yellow				<= "010010111"; -- yellow				
+					mediumblue			<= "111011000"; -- mediumblue
+					aqua					<= "010010111"; -- aqua
+					lightblue			<= "111011000"; -- lightblue
+					white					<= "111111111"; -- white		
 			end if;
 
 		else
-				darkgreen			<= "00010000"; -- darkgreen
-				green					<= "00011100"; -- green
-				yellow				<= "11111100"; -- yellow
-				brown					<= "01001000"; -- brown
-				orange				<= "11101100"; -- orange
-				pink					<= "11101111"; -- pink				
-				magenta				<= "11000001"; -- magenta
-				violet				<= "11100011"; -- violet
-				darkblue				<= "00000010"; -- darkblue
-				mediumblue			<= "01001011"; -- mediumblue
-				lightblue			<= "01111011"; -- lightblue
-				aqua					<= "00111110"; -- aqua
+				darkgreen			<= "000100000"; -- darkgreen
+				green					<= "000111000"; -- green
+				yellow				<= "111111000"; -- yellow
+				brown					<= "010010000"; -- brown
+				orange				<= "111011000"; -- orange
+				pink					<= "111011111"; -- pink				
+				magenta				<= "110000011"; -- magenta
+				violet				<= "111000111"; -- violet
+				darkblue				<= "000000100"; -- darkblue
+				mediumblue			<= "010010110"; -- mediumblue
+				lightblue			<= "011110110"; -- lightblue
+				aqua					<= "001111100"; -- aqua
 				
-				black 				<= "00000000"; -- black
-				darkgray				<= "01001001"; -- darkgray
-				lightgray			<= "10010010"; -- lightgray
-				white					<= "11111111"; -- white									
+				black 				<= "000000000"; -- black
+				darkgray				<= "010010010"; -- darkgray
+				lightgray			<= "100100100"; -- lightgray
+				white					<= "111111111"; -- white									
 		end if;
 	end if;
 end process;
+
 
 store_row: process(clock_dram, hblank, store_ack)
 begin	
@@ -1141,25 +1163,24 @@ end process;
 mode_change: process(clock_dram)
 begin
 	if (rising_edge(clock_dram)) then
-
 		if (shrink = '0') then
-			front_porch <= 134;
+			front_porch <= 128;
 		elsif (apple2 = '0') then
-			front_porch <= 202;
-		elsif (clock_sw = '0') then
-			front_porch <= 202;
+			front_porch <= 192;
+		elsif (offset = '0') then
+			front_porch <= 192;
 		else
-			front_porch <= 183;
-		end if;		
+			front_porch <= 174;
+		end if;			
 	end if;	
 end process;
 
 	pixel_sel(1 downto 0) <= artifact_mode&apple2;
 	
-	with pixel_sel select pixel_out <= 
-		pixel_a when "11",
-		pixel_b when "10",
-		pixel_d when "01",
-		pixel_d when "00";
-	
+	with pixel_sel select pixel_out(7 downto 0) <= 
+		pixel_a(8 downto 1) when "11",
+		pixel_b(8 downto 1) when "10",
+		pixel_d(8 downto 1) when "01",
+		pixel_d(8 downto 1) when "00";
+			
 end behavioral;

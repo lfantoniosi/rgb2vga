@@ -20,9 +20,9 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 248 288)
+	(rect 16 16 248 320)
 	(text "genlock" (rect 5 0 34 12)(font "Arial" ))
-	(text "inst" (rect 8 256 20 268)(font "Arial" ))
+	(text "inst" (rect 8 288 20 300)(font "Arial" ))
 	(port
 		(pt 0 32)
 		(input)
@@ -103,8 +103,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 208)
 		(input)
-		(text "clock_sw" (rect 0 0 36 12)(font "Arial" ))
-		(text "clock_sw" (rect 21 203 57 215)(font "Arial" ))
+		(text "offset" (rect 0 0 23 12)(font "Arial" ))
+		(text "offset" (rect 21 203 44 215)(font "Arial" ))
 		(line (pt 0 208)(pt 16 208)(line_width 1))
 	)
 	(port
@@ -113,6 +113,20 @@ applicable agreement for further details.
 		(text "dac_step[2..0]" (rect 0 0 56 12)(font "Arial" ))
 		(text "dac_step[2..0]" (rect 21 219 77 231)(font "Arial" ))
 		(line (pt 0 224)(pt 16 224)(line_width 3))
+	)
+	(port
+		(pt 0 240)
+		(input)
+		(text "bright" (rect 0 0 21 12)(font "Arial" ))
+		(text "bright" (rect 21 235 42 247)(font "Arial" ))
+		(line (pt 0 240)(pt 16 240)(line_width 1))
+	)
+	(port
+		(pt 0 256)
+		(input)
+		(text "digital" (rect 0 0 20 12)(font "Arial" ))
+		(text "digital" (rect 21 251 41 263)(font "Arial" ))
+		(line (pt 0 256)(pt 16 256)(line_width 1))
 	)
 	(port
 		(pt 232 32)
@@ -143,6 +157,6 @@ applicable agreement for further details.
 		(line (pt 232 80)(pt 216 80)(line_width 1))
 	)
 	(drawing
-		(rectangle (rect 16 16 216 256)(line_width 1))
+		(rectangle (rect 16 16 216 288)(line_width 1))
 	)
 )

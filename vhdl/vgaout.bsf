@@ -75,8 +75,8 @@ applicable agreement for further details.
 	(port
 		(pt 224 32)
 		(output)
-		(text "vga_out[9..0]" (rect 0 0 53 12)(font "Arial" ))
-		(text "vga_out[9..0]" (rect 150 27 203 39)(font "Arial" ))
+		(text "vga_out[10..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "vga_out[10..0]" (rect 147 27 203 39)(font "Arial" ))
 		(line (pt 224 32)(pt 208 32)(line_width 3))
 	)
 	(port

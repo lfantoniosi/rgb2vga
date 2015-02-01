@@ -157,82 +157,46 @@ begin
 			end if;
 			
 		else
-			vga_pixel(8 downto 0) := "000000000";
+
+			vga_pixel(8 downto 0) := "100100100";	
+
+			if (hcount = 0) then					
+				posx := 0;	
+				posy := 0;
+			end if;
 			
-			if (vcount < 240) then
-				if (hcount = 0) then					
-						posx := 0;	
-						posy := 0;
-				else
-						posx := posx + 1;
-						if (posx > 80) then			
-							posy := posy + 1;
-							posx := 0;				
-						end if;			
+			if (hcount >= 40 and hcount < 600) then
+				posx := posx + 1;
+				if (posx = 70) then			
+					posy := posy + 1;
+					posx := 0;				
+				end if;			
+				
+				if (vcount > 20 and vcount < 100) then
+					vga_pixel := to_unsigned(posy, 3) & "000000";
+					if (hcount = 40 or hcount = 599) then
+						vga_pixel(8 downto 0) := "000000000";				
+					end if;
+				elsif (vcount > 140 and vcount < 220) then
+					vga_pixel := "000" & to_unsigned(posy, 3) & "000";
+					if (hcount = 40 or hcount = 599) then
+						vga_pixel(8 downto 0) := "000000000";				
+					end if;
+				elsif (vcount > 260 and vcount < 340) then
+					vga_pixel := "000000" & to_unsigned(posy, 3);
+					if (hcount = 40 or hcount = 599) then
+						vga_pixel(8 downto 0) := "000000000";				
+					end if;
+				elsif (vcount > 380 and vcount < 460) then
+					vga_pixel := to_unsigned(posy, 3) & to_unsigned(posy, 3) & to_unsigned(posy, 3);
+					if (hcount = 40 or hcount = 599) then
+						vga_pixel(8 downto 0) := "000000000";				
+					end if;
+				elsif (vcount = 20 or vcount = 100 or vcount = 140 or vcount = 220 or vcount = 260 or vcount = 340 or vcount = 380 or vcount = 460) then
+					vga_pixel(8 downto 0) := "000000000";								
 				end if;
 			end if;
 			
-			if (vcount < 60) then
-				vga_pixel(8 downto 6) := to_unsigned(posy, 3);
-			elsif (vcount < 120) then
-				vga_pixel(5 downto 3) := to_unsigned(posy, 3);
-			elsif (vcount < 180) then
-				vga_pixel(2 downto 0) := to_unsigned(posy, 3);
-			elsif (vcount < 240) then
-				vga_pixel(8 downto 0) := to_unsigned(posy, 3) & to_unsigned(posy, 3) & to_unsigned(posy, 3);
-			else
-			
-				if (hcount = 0) then					
-					posx := 0;
-					if (vcount < 255) then
-						posy := 0;
-					elsif (vcount < 270) then
-						posy := 32;
-					elsif (vcount < 285) then
-						posy := 64;
-					elsif (vcount < 300) then
-						posy := 96;
-					elsif (vcount < 315) then
-						posy := 128;
-					elsif (vcount < 330) then
-						posy := 160;
-					elsif (vcount < 345) then
-						posy := 192;
-					elsif (vcount < 360) then
-						posy := 224;
-					elsif (vcount < 375) then
-						posy := 256;
-					elsif (vcount < 390) then
-						posy := 288;
-					elsif (vcount < 405) then
-						posy := 320;
-					elsif (vcount < 420) then
-						posy := 352;
-					elsif (vcount < 435) then
-						posy := 384;
-					elsif (vcount < 450) then
-						posy := 416;
-					elsif (vcount < 465) then
-						posy := 448;
-					else
-						posy := 480;					
-					end if;
-				else
-				
-					posx := posx + 1;					
-					
-					if (posx > 20) then
-					
-						posy := posy + 1;
-						posx := 0;
-						
-					end if;
-					
-				end if;
-				
-				vga_pixel := to_unsigned(posy, 9);
-			
-			end if;
 			
 		end if;
 

@@ -2136,11 +2136,6 @@ applicable agreement for further details.
 	(pt 1624 408)
 )
 (connector
-	(text "CLOCK_DAC" (rect 1266 392 1333 404)(font "Arial" ))
-	(pt 1256 408)
-	(pt 1336 408)
-)
-(connector
 	(text "DIFFRn" (rect 258 192 298 204)(font "Arial" ))
 	(pt 256 208)
 	(pt 312 208)
@@ -2275,4 +2270,9 @@ applicable agreement for further details.
 	(text "MAIN_CLK" (rect 762 136 816 148)(font "Arial" ))
 	(pt 760 152)
 	(pt 840 152)
+)
+(connector
+	(text "CLOCK_DAC" (rect 1266 392 1333 404)(font "Arial" ))
+	(pt 1256 408)
+	(pt 1336 408)
 )

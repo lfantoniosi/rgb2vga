@@ -135,7 +135,7 @@ end process;
 pixel_out: process (clock_dram, hcount, vcount)
 begin
 	if (rising_edge(clock_dram)) then	
-		col_number <= hcount(9 downto 0);		
+		col_number <= hcount(9 downto 0) + 2;		
 	end if;
 end process;
 
@@ -225,7 +225,7 @@ process (clock_vga, hcount)
 begin
 	if (rising_edge(clock_vga)) then
 		videoh <= '1';
-		if hcount > hor_active_video+16 then
+		if hcount > hor_active_video then
 			videoh <= '0';
 		end if;
 	end if;

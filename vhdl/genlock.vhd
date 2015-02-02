@@ -786,7 +786,7 @@ begin
 	if (hblank = '0') then
 		column <= 0;
 	elsif (rising_edge(clock_dram)) then
-		if (hcount(2 downto 0) = "111") then
+		if (hcount(2 downto 0) = "100") then
 			if (shrink = '1' or hcount(5 downto 3) /= "111") then
 				column <= column + 1;
 			end if;
@@ -804,7 +804,7 @@ begin
 		if (vsync = sync_level and vcount > 261) then
 		
 			if (vcount > 290) then
-					top_border <= 42;
+					top_border <= 50;
 			else
 				top_border <= 16;
 			end if;		
@@ -1030,37 +1030,36 @@ variable n_pixel: unsigned(8 downto 0);
 begin
 		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step(2 downto 0) = "100"); 
 		
-			c_pixel := pixel_adc;
-			--c_pixel := pixel_adc and '1'&(bright or digital)&'1' & '1'&(bright or digital)&'1' & '1'&(bright or digital)&'1';				
+		c_pixel := pixel_adc;
 			
-			if (digital = '0') then
-				
-				c_pixel := (others => '0');
-				
-				if (to_integer(pixel_adc(8 downto 6)) > 3) then
-					c_pixel(8 downto 6) := "111";
-				end if;
-				if (to_integer(pixel_adc(5 downto 3)) > 3) then
-					c_pixel(5 downto 3) := "111";
-				end if;
-				if (to_integer(pixel_adc(2 downto 0)) > 3) then
-					c_pixel(2 downto 0) := "111";
-				end if;
-							
-				c_pixel := c_pixel and '1'&bright&'1' & '1'&bright&'1' & '1'&bright&'1';
-				
-			end if;
+		if (digital = '0') then
 			
-			if (shrink = '0') then
-				pixel_a(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & c_pixel(8 downto 6));
-				pixel_a(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & c_pixel(5 downto 3));
-				pixel_a(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0));				
-			else
-				pixel_a <= c_pixel;					
+			c_pixel := (others => '0');
+			
+			if (to_integer(pixel_adc(8 downto 6)) > 3) then
+				c_pixel(8 downto 6) := "111";
 			end if;
+			if (to_integer(pixel_adc(5 downto 3)) > 3) then
+				c_pixel(5 downto 3) := "111";
+			end if;
+			if (to_integer(pixel_adc(2 downto 0)) > 3) then
+				c_pixel(2 downto 0) := "111";
+			end if;
+						
+			c_pixel := c_pixel and '1'&bright&'1' & '1'&bright&'1' & '1'&bright&'1';
+			
+		end if;
+		
+		if (shrink = '0') then
+			pixel_a(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & c_pixel(8 downto 6));
+			pixel_a(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & c_pixel(5 downto 3));
+			pixel_a(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0));				
+		else
+			pixel_a <= c_pixel;					
+		end if;
 
-			p_pixel := c_pixel;				
-				
+		p_pixel := c_pixel;
+
 end process;
 
 process_col_nr: process(clock_dram, hcount) 
@@ -1068,7 +1067,7 @@ variable row, col: integer range 0 to 1024;
 begin
 	if (rising_edge(clock_dram)) then
 	
-		if (column >= front_porch and column < 900 and vcount >= top_border and vcount < 312) then
+		if (column >= front_porch and hcount(hcount'length - 1 downto 3) < 900 and vcount >= top_border and vcount < 312) then
 			-- user active window
 			col := column - front_porch;
 			if (deinterlace = '0') then
@@ -1164,13 +1163,13 @@ mode_change: process(clock_dram)
 begin
 	if (rising_edge(clock_dram)) then
 		if (shrink = '0') then
-			front_porch <= 128;
+			front_porch <= 138;
 		elsif (apple2 = '0') then
-			front_porch <= 192;
+			front_porch <= 202;
 		elsif (offset = '0') then
-			front_porch <= 192;
+			front_porch <= 202;
 		else
-			front_porch <= 174;
+			front_porch <= 182;
 		end if;			
 	end if;	
 end process;

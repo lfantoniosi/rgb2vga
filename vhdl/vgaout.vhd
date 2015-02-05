@@ -139,7 +139,7 @@ begin
 	end if;
 end process;
 
-pixel: process(clock_vga, hcount, vcount, col_number) --, videoh, videov, pixel_in, hsync, vsync)
+pixel: process(clock_vga, hcount, vcount) 
 variable blank: std_logic;
 variable vga_pixel: unsigned(8 downto 0);
 variable posy, posx, color: integer range 0 to 1024;
@@ -225,7 +225,7 @@ process (clock_vga, hcount)
 begin
 	if (rising_edge(clock_vga)) then
 		videoh <= '1';
-		if hcount > hor_active_video then
+		if hcount > hor_active_video or hcount = 0 then
 			videoh <= '0';
 		end if;
 	end if;

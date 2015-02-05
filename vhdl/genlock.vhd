@@ -804,7 +804,7 @@ begin
 		if (vsync = sync_level and vcount > 261) then
 		
 			if (vcount > 290) then
-					top_border <= 50;
+					top_border <= 42;
 			else
 				top_border <= 16;
 			end if;		

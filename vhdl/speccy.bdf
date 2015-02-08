@@ -2111,11 +2111,6 @@ applicable agreement for further details.
 	(pt 400 456)
 )
 (connector
-	(text "CLOCK_DAC" (rect 834 400 901 412)(font "Arial" ))
-	(pt 824 416)
-	(pt 920 416)
-)
-(connector
 	(text "OFFSET" (rect 282 512 324 524)(font "Arial" ))
 	(pt 280 528)
 	(pt 376 528)
@@ -2139,11 +2134,6 @@ applicable agreement for further details.
 	(text "SYNC_LEVEL" (rect 1578 464 1648 476)(font "Arial" ))
 	(pt 1552 480)
 	(pt 1648 480)
-)
-(connector
-	(text "CLOCK_DAC" (rect 1290 464 1357 476)(font "Arial" ))
-	(pt 1280 480)
-	(pt 1360 480)
 )
 (connector
 	(text "DIFFRn" (rect 282 264 322 276)(font "Arial" ))
@@ -2275,4 +2265,14 @@ applicable agreement for further details.
 	(text "DIGITAL" (rect 1250 304 1292 316)(font "Arial" ))
 	(pt 1352 320)
 	(pt 1240 320)
+)
+(connector
+	(text "CLOCK_DRAM" (rect 834 400 909 412)(font "Arial" ))
+	(pt 824 416)
+	(pt 920 416)
+)
+(connector
+	(text "CLOCK_DRAM" (rect 1290 464 1365 476)(font "Arial" ))
+	(pt 1280 480)
+	(pt 1360 480)
 )

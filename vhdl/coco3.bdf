@@ -2267,12 +2267,12 @@ applicable agreement for further details.
 	(pt 840 152)
 )
 (connector
-	(text "CLOCK_DRAM" (rect 810 328 885 340)(font "Arial" ))
+	(text "CLOCK_DAC" (rect 810 328 877 340)(font "Arial" ))
 	(pt 800 344)
 	(pt 896 344)
 )
 (connector
-	(text "CLOCK_DRAM" (rect 1266 392 1341 404)(font "Arial" ))
+	(text "CLOCK_DAC" (rect 1266 392 1333 404)(font "Arial" ))
 	(pt 1256 408)
 	(pt 1336 408)
 )

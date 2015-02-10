@@ -156,6 +156,13 @@ applicable agreement for further details.
 		(text "store_req" (rect 173 75 211 87)(font "Arial" ))
 		(line (pt 232 80)(pt 216 80)(line_width 1))
 	)
+	(port
+		(pt 232 96)
+		(output)
+		(text "pixel_out_b[7..0]" (rect 0 0 64 12)(font "Arial" ))
+		(text "pixel_out_b[7..0]" (rect 147 91 211 103)(font "Arial" ))
+		(line (pt 232 96)(pt 216 96)(line_width 3))
+	)
 	(drawing
 		(rectangle (rect 16 16 216 288)(line_width 1))
 	)

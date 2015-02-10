@@ -20,7 +20,7 @@ applicable agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
-	(rect 16 16 240 192)
+	(rect 16 16 248 192)
 	(text "vgaout" (rect 5 0 32 12)(font "Arial" ))
 	(text "inst" (rect 8 160 20 172)(font "Arial" ))
 	(port
@@ -73,32 +73,39 @@ applicable agreement for further details.
 		(line (pt 0 128)(pt 16 128)(line_width 1))
 	)
 	(port
-		(pt 224 32)
+		(pt 0 144)
+		(input)
+		(text "pixel_in_b[7..0]" (rect 0 0 59 12)(font "Arial" ))
+		(text "pixel_in_b[7..0]" (rect 21 139 80 151)(font "Arial" ))
+		(line (pt 0 144)(pt 16 144)(line_width 3))
+	)
+	(port
+		(pt 232 32)
 		(output)
 		(text "vga_out[10..0]" (rect 0 0 56 12)(font "Arial" ))
-		(text "vga_out[10..0]" (rect 147 27 203 39)(font "Arial" ))
-		(line (pt 224 32)(pt 208 32)(line_width 3))
+		(text "vga_out[10..0]" (rect 155 27 211 39)(font "Arial" ))
+		(line (pt 232 32)(pt 216 32)(line_width 3))
 	)
 	(port
-		(pt 224 48)
+		(pt 232 48)
 		(output)
 		(text "row_number[9..0]" (rect 0 0 70 12)(font "Arial" ))
-		(text "row_number[9..0]" (rect 133 43 203 55)(font "Arial" ))
-		(line (pt 224 48)(pt 208 48)(line_width 3))
+		(text "row_number[9..0]" (rect 141 43 211 55)(font "Arial" ))
+		(line (pt 232 48)(pt 216 48)(line_width 3))
 	)
 	(port
-		(pt 224 64)
+		(pt 232 64)
 		(output)
 		(text "col_number[9..0]" (rect 0 0 67 12)(font "Arial" ))
-		(text "col_number[9..0]" (rect 136 59 203 71)(font "Arial" ))
-		(line (pt 224 64)(pt 208 64)(line_width 3))
+		(text "col_number[9..0]" (rect 144 59 211 71)(font "Arial" ))
+		(line (pt 232 64)(pt 216 64)(line_width 3))
 	)
 	(port
-		(pt 224 80)
+		(pt 232 80)
 		(output)
 		(text "load_req" (rect 0 0 34 12)(font "Arial" ))
-		(text "load_req" (rect 169 75 203 87)(font "Arial" ))
-		(line (pt 224 80)(pt 208 80)(line_width 1))
+		(text "load_req" (rect 177 75 211 87)(font "Arial" ))
+		(line (pt 232 80)(pt 216 80)(line_width 1))
 	)
 	(parameter
 		"hor_active_video"
@@ -141,7 +148,7 @@ applicable agreement for further details.
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
-		(rectangle (rect 16 16 208 160)(line_width 1))
+		(rectangle (rect 16 16 216 160)(line_width 1))
 	)
-	(annotation_block (parameter)(rect 240 -64 340 16))
+	(annotation_block (parameter)(rect 248 -64 348 16))
 )

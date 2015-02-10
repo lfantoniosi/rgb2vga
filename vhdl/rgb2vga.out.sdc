@@ -205,28 +205,6 @@ set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|
 set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[2]} -to {D2}
 set_false_path -from {dac_counter:dac_counter|lpm_counter:LPM_COUNTER_component|cntr_b7i:auto_generated|counter_reg_bit[0]} -to {D0}
 
-#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[0]}
-#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[1]}
-#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[2]}
-#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[4]}
-#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[5]}
-#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[6]}
-#set_false_path -from {DIFFB} -to {genlock:genlock|\channel_blue:blue_adc[7]}
-#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[0]}
-#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[1]}
-#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[2]}
-#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[3]}
-#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[4]}
-#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[5]}
-#set_false_path -from {DIFFG} -to {genlock:genlock|\channel_green:green_adc[6]}
-#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[0]}
-#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[1]}
-#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[2]}
-#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[3]}
-#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[4]}
-#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[5]}
-#set_false_path -from {DIFFR} -to {genlock:genlock|\channel_red:red_adc[6]}
-
 #**************************************************************
 # Set Multicycle Path
 #**************************************************************

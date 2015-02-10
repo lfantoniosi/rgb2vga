@@ -29,7 +29,8 @@ entity vgaout is
 			deinterlace	: in std_logic;			
 			
 			clock_dram: std_logic;
-			video_active : std_logic
+			video_active : std_logic;
+			pixel_in_b		: in unsigned(7 downto 0)	
 			
          );
 end vgaout;
@@ -135,7 +136,7 @@ end process;
 pixel_out: process (clock_dram, hcount, vcount)
 begin
 	if (rising_edge(clock_dram)) then	
-		col_number <= hcount(9 downto 0) + 2;		
+		col_number <= hcount(9 downto 0) + 8;		
 	end if;
 end process;
 
@@ -150,12 +151,8 @@ begin
 		
 		if (video_active = '0') then
 			
-			vga_pixel := pixel_in & '0';
-			
-			if ((vga_pixel(8 downto 6) = vga_pixel(5 downto 3)) and (vga_pixel(8 downto 7) = vga_pixel(2 downto 1))) then
-				vga_pixel(2 downto 0) := vga_pixel(8 downto 6); -- gray level correction
-			end if;
-			
+			vga_pixel := pixel_in & pixel_in_b(to_integer(to_unsigned(to_integer(hcount(9 downto 0) + 6), 9)(2 downto 0)));
+
 		else
 
 			vga_pixel(8 downto 0) := "100100100";	

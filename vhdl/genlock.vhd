@@ -3,9 +3,6 @@ library IEEE;
 use IEEE.STD_LOGIC_1164.ALL;
 use IEEE.NUMERIC_STD.ALL;
 
--- speccy clock: 35469/15625
--- coco3 clock: 
-
 entity genlock is
 
     port(clock_dram : in std_logic;
@@ -27,7 +24,8 @@ entity genlock is
 			offset		: in std_logic;
 			dac_step		: in unsigned(2 downto 0);
 			bright		: in std_logic;
-			digital		: in std_logic
+			digital		: in std_logic;
+			pixel_out_b	: out unsigned(7 downto 0) -- BBBBBBBB
 );
 			
 end genlock;
@@ -43,6 +41,11 @@ signal front_porch								: integer := 181;
 signal pixel_a: unsigned(8 downto 0);
 signal pixel_d: unsigned(8 downto 0);
 signal pixel_b: unsigned(8 downto 0);
+
+signal pixel_ab: unsigned(7 downto 0);
+signal pixel_db: unsigned(7 downto 0);
+signal pixel_bb: unsigned(7 downto 0);
+
 
 signal pixel_sel: unsigned(1 downto 0);
 
@@ -750,7 +753,7 @@ begin
 channel_red: process
 variable red_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); -- and hcount(2 downto 0) = dac_step); 
+	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
 	red_adc(to_integer(hcount(2 downto 0))) := adc_rgb(2);
 	pixel_adc(8 downto 6) <= f_adc(red_adc(6 downto 0));
 
@@ -759,7 +762,7 @@ end process;
 channel_green: process
 variable green_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); -- and hcount(2 downto 0) = dac_step); 
+	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
 	green_adc(to_integer(hcount(2 downto 0))) := adc_rgb(1);
 	pixel_adc(5 downto 3) <= f_adc(green_adc(6 downto 0));
 end process;
@@ -767,9 +770,9 @@ end process;
 channel_blue: process
 variable blue_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1'); -- and hcount(2 downto 0) = dac_step); 
+	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
 	blue_adc(to_integer(hcount(2 downto 0))) := adc_rgb(0);
-	pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 3) & blue_adc(2 downto 0));
+	pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 0)); 
 end process;
 
 hraster: process (clock_dram, hblank, vblank)
@@ -850,7 +853,7 @@ process_b: process
 variable a_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step(2 downto 0) = "100");  
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100");  
 		
 		case (pixel_adc(5 downto 3)) is
 			when "111" => 
@@ -869,8 +872,10 @@ begin
 			pixel_b(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
 			pixel_b(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
 			pixel_b(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));	
+			pixel_bb(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0))(0);	
 		else				
 			pixel_b <= a_pixel;
+			pixel_bb(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= a_pixel(0);
 		end if;		
 		
 		p_pixel := a_pixel;	
@@ -882,7 +887,7 @@ variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step(2 downto 0) = "100"); 
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 			
 				pixel(3 downto 1) := pixel(2 downto 0);
 				-- pixel shifting for apple2/coco3 artifact
@@ -1014,9 +1019,11 @@ begin
 				if (shrink = '0') then
 					pixel_d(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
 					pixel_d(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
-					pixel_d(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));	
+					pixel_d(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));						
+					pixel_db(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0))(0);						
 				else				
 					pixel_d <= a_pixel;
+					pixel_db(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= a_pixel(0);
 				end if;
 
 				p_pixel := a_pixel;			
@@ -1028,7 +1035,7 @@ variable c_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100"); -- and dac_step(2 downto 0) = "100"); 
+		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 		
 		c_pixel := pixel_adc;
 			
@@ -1053,9 +1060,13 @@ begin
 		if (shrink = '0') then
 			pixel_a(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & c_pixel(8 downto 6));
 			pixel_a(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & c_pixel(5 downto 3));
-			pixel_a(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0));				
+			pixel_a(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0));		
+		
+			pixel_ab(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0))(0);		
+			
 		else
-			pixel_a <= c_pixel;					
+			pixel_a <= c_pixel;								
+			pixel_ab(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= c_pixel(0);
 		end if;
 
 		p_pixel := c_pixel;
@@ -1163,23 +1174,29 @@ mode_change: process(clock_dram)
 begin
 	if (rising_edge(clock_dram)) then
 		if (shrink = '0') then
-			front_porch <= 138;
+			front_porch <= 128;
 		elsif (apple2 = '0') then
-			front_porch <= 202;
+			front_porch <= 200;
 		elsif (offset = '0') then
-			front_porch <= 202;
+			front_porch <= 200;
 		else
-			front_porch <= 182;
+			front_porch <= 176;
 		end if;			
 	end if;	
 end process;
 
 	pixel_sel(1 downto 0) <= artifact_mode&apple2;
 	
-	with pixel_sel select pixel_out(7 downto 0) <= 
+	with pixel_sel select pixel_out <= 
 		pixel_a(8 downto 1) when "11",
 		pixel_b(8 downto 1) when "10",
 		pixel_d(8 downto 1) when "01",
 		pixel_d(8 downto 1) when "00";
+						
+	with pixel_sel select pixel_out_b <= 
+		pixel_ab when "11",
+		pixel_bb when "10",
+		pixel_db when "01",
+		pixel_db when "00";			
 			
 end behavioral;

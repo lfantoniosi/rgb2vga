@@ -18,14 +18,12 @@ entity genlock is
 			artifact		: in std_logic;
 			mode 			: in std_logic;
 			sync_level	: in std_logic;
-			deinterlace	: in std_logic;
 			apple2		: in std_logic;
 			shrink		: in std_logic;
 			offset		: in std_logic;
 			dac_step		: in unsigned(2 downto 0);
 			bright		: in std_logic;
-			digital		: in std_logic;
-			pixel_out_b	: out unsigned(7 downto 0) -- BBBBBBBB
+			digital		: in std_logic
 );
 			
 end genlock;
@@ -42,18 +40,11 @@ signal pixel_a: unsigned(8 downto 0);
 signal pixel_d: unsigned(8 downto 0);
 signal pixel_b: unsigned(8 downto 0);
 
-signal pixel_ab: unsigned(7 downto 0);
-signal pixel_db: unsigned(7 downto 0);
-signal pixel_bb: unsigned(7 downto 0);
-
-
 signal pixel_sel: unsigned(1 downto 0);
 
 signal pixel_adc: unsigned(8 downto 0);
 
 signal artifact_mode: std_logic;
-
-signal frame: 		unsigned(0 downto 0);
 
 signal black:		unsigned(8 downto 0);
 signal brown:		unsigned(8 downto 0);
@@ -810,7 +801,8 @@ begin
 					top_border <= 42;
 			else
 				top_border <= 16;
-			end if;		
+			end if;	
+			
 			vblank <= '0';
 		end if;								
 	end if;	
@@ -824,9 +816,6 @@ begin
 	elsif(rising_edge(clock_dram)) then
 		if hblank = '0' then
 			vcount <= vcount + 1;
-			if (vcount = 0) then 
-				frame <= not frame;
-			end if;
 		end if;
 	end if;
 end process;
@@ -844,60 +833,68 @@ begin
 					end if;
 				end if;
 		else
-				artifact_mode <= artifact;			
+				artifact_mode <= artifact;		
 		end if;		
 	end if;
 end process;
 
-process_b: process 
+process_b: process(clock_dram, hcount, dac_step, col_number)
 variable a_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
+variable n_pixel: unsigned(8 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100");  
+
+if (rising_edge(clock_dram)) then
+
+	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
+
+		--wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100");  
 		
-		case (pixel_adc(5 downto 3)) is
-			when "111" => 
-				a_pixel := "111111111";
-			when "110" => 
-				a_pixel := "111111111"; 
-			when "101" => 
-				a_pixel := "111111111"; 
-			when "100" => 
-				a_pixel := "111111111"; 
-			when others => 
-				a_pixel := "000000000";
-		end case;
+		if (to_integer(pixel_adc(5 downto 3)) > 4) then
+			a_pixel := "111111111"; 
+		else
+			a_pixel := "000000000";
+		end if;
 		
 		if (shrink = '0') then
-			pixel_b(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
-			pixel_b(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
-			pixel_b(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));	
-			pixel_bb(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0))(0);	
+			n_pixel(8 downto 6) := f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+			n_pixel(5 downto 3) := f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+			n_pixel(2 downto 0) := f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));	
+			n_pixel(0) := '0';
 		else				
-			pixel_b <= a_pixel;
-			pixel_bb(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= a_pixel(0);
+			n_pixel := a_pixel;
 		end if;		
 		
+		pixel_b <= n_pixel;
+		
 		p_pixel := a_pixel;	
+	
+	end if;
+
+end if;
 		
 end process;
 
-process_d: process 
+process_d: process(clock_dram, hcount, dac_step, col_number)
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
+variable n_pixel: unsigned(8 downto 0);
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
+
+if (rising_edge(clock_dram)) then
+
+	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
+
+		--wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 			
 				pixel(3 downto 1) := pixel(2 downto 0);
 				-- pixel shifting for apple2/coco3 artifact
-				case (pixel_adc(5 downto 3)) is
-					when "111" => pixel(0) := '1';
-					when "110" => pixel(0) := '1';
-					when "101" => pixel(0) := '1';
-					when "100" => pixel(0) := '1';
-					when others => pixel(0) := '0';
-				end case;				
+				if (to_integer(pixel_adc(5 downto 3)) > 4) then
+					pixel(0) := '1'; 
+				else
+					pixel(0) := '0';
+				end if;	
 													
 				if (hcount(3) = '0') then
 					-- even rows					
@@ -935,49 +932,6 @@ begin
 						-- decode colour by the last 4-bit pattern
 							case (pixel) is
 								when "0000" => a_pixel := black;
-								when "0010" => a_pixel := brown;
-								when "0001" => a_pixel := magenta;
-								when "0011" => a_pixel := orange;
-								when "1000" => a_pixel := darkblue;
-								when "1010" => a_pixel := darkgray;
-								when "1001" => a_pixel := violet;
-								when "1011" => a_pixel := pink;
-								when "0100" => a_pixel := darkgreen;
-								when "0110" => a_pixel := green;
-								when "0101" => a_pixel := lightgray;
-								when "0111" => a_pixel := yellow;				
-								when "1100" => a_pixel := mediumblue;
-								when "1110" => a_pixel := aqua;
-								when "1101" => a_pixel := lightblue;
-								when others => a_pixel := white;      
-								
-							end case;
-					else
-							case (pixel) is
-								when "0000" => a_pixel := black;
-								when "1000" => a_pixel := brown;
-								when "0100" => a_pixel := magenta;
-								when "1100" => a_pixel := orange;
-								when "0010" => a_pixel := darkblue;
-								when "1010" => a_pixel := darkgray;
-								when "0110" => a_pixel := violet;
-								when "1110" => a_pixel := pink;
-								when "0001" => a_pixel := darkgreen;
-								when "1001" => a_pixel := green;
-								when "0101" => a_pixel := lightgray;
-								when "1101" => a_pixel := yellow;				
-								when "0011" => a_pixel := mediumblue;
-								when "1011" => a_pixel := aqua;
-								when "0111" => a_pixel := lightblue;
-								when others => a_pixel := white;      
-							end case;
-					end if;								
-				else
-					-- odd rows
-					if (hcount(4) = '0') then
-							-- decode colour by the last 4-bit pattern
-							case (pixel) is
-								when "0000" => a_pixel := black;
 								when "0100" => a_pixel := brown;
 								when "0010" => a_pixel := magenta;
 								when "0110" => a_pixel := orange;
@@ -988,12 +942,13 @@ begin
 								when "1000" => a_pixel := darkgreen;
 								when "1100" => a_pixel := green;
 								when "1010" => a_pixel := lightgray;
-								when "1110" => a_pixel := yellow;					
+								when "1110" => a_pixel := yellow;				
 								when "1001" => a_pixel := mediumblue;
 								when "1101" => a_pixel := aqua;
 								when "1011" => a_pixel := lightblue;
 								when others => a_pixel := white;      
-							end case;										
+								
+							end case;
 					else
 							case (pixel) is
 								when "0000" => a_pixel := black;
@@ -1007,35 +962,107 @@ begin
 								when "0010" => a_pixel := darkgreen;
 								when "0011" => a_pixel := green;
 								when "1010" => a_pixel := lightgray;
-								when "1011" => a_pixel := yellow;			
+								when "1011" => a_pixel := yellow;				
 								when "0110" => a_pixel := mediumblue;
 								when "0111" => a_pixel := aqua;
 								when "1110" => a_pixel := lightblue;
 								when others => a_pixel := white;      
 							end case;
+					end if;								
+				else
+					-- odd rows
+					if (hcount(4) = '0') then
+							-- decode colour by the last 4-bit pattern
+							case (pixel) is
+								when "0000" => a_pixel := black;
+								when "1000" => a_pixel := brown;
+								when "0100" => a_pixel := magenta;
+								when "1100" => a_pixel := orange;
+								when "0010" => a_pixel := darkblue;
+								when "1010" => a_pixel := darkgray;
+								when "0110" => a_pixel := violet;
+								when "1110" => a_pixel := pink;
+								when "0001" => a_pixel := darkgreen;
+								when "1001" => a_pixel := green;
+								when "0101" => a_pixel := lightgray;
+								when "1101" => a_pixel := yellow;					
+								when "0011" => a_pixel := mediumblue;
+								when "1011" => a_pixel := aqua;
+								when "0111" => a_pixel := lightblue;
+								when others => a_pixel := white;      
+							end case;										
+					else
+							case (pixel) is
+								when "0000" => a_pixel := black;
+								when "0010" => a_pixel := brown;
+								when "0001" => a_pixel := magenta;
+								when "0011" => a_pixel := orange;
+								when "1000" => a_pixel := darkblue;
+								when "1010" => a_pixel := darkgray;
+								when "1001" => a_pixel := violet;
+								when "1011" => a_pixel := pink;
+								when "0100" => a_pixel := darkgreen;
+								when "0110" => a_pixel := green;
+								when "0101" => a_pixel := lightgray;
+								when "0111" => a_pixel := yellow;			
+								when "1100" => a_pixel := mediumblue;
+								when "1110" => a_pixel := aqua;
+								when "1101" => a_pixel := lightblue;
+								when others => a_pixel := white;      
+							end case;
 					end if;
-				end if;
+				end if;			
 				
 				if (shrink = '0') then
-					pixel_d(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
-					pixel_d(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
-					pixel_d(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));						
-					pixel_db(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0))(0);						
+					n_pixel(8 downto 6) := f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+					n_pixel(5 downto 3) := f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+					n_pixel(2 downto 0) := f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));						
+					n_pixel(0) := '0';
 				else				
-					pixel_d <= a_pixel;
-					pixel_db(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= a_pixel(0);
+
+					if (p_pixel = "000000000" or p_pixel = "111111111") then
+						n_pixel(8 downto 6) := f_lerp("010" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+						n_pixel(5 downto 3) := f_lerp("010" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+						n_pixel(2 downto 0) := f_lerp("010" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
+					elsif (a_pixel = "000000000" or a_pixel = "111111111") then
+						n_pixel(8 downto 6) := f_lerp("101" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+						n_pixel(5 downto 3) := f_lerp("101" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+						n_pixel(2 downto 0) := f_lerp("101" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
+--					elsif (p_pixel /= a_pixel) then
+--						n_pixel(8 downto 6) := f_lerp("100" & p_pixel(8 downto 6) & pixel(0)&pixel(0)&pixel(0));
+--						n_pixel(5 downto 3) := f_lerp("100" & p_pixel(5 downto 3) & pixel(0)&pixel(0)&pixel(0));
+--						n_pixel(2 downto 0) := f_lerp("100" & p_pixel(2 downto 0) & pixel(0)&pixel(0)&pixel(0));					
+					else					
+						n_pixel(8 downto 6) := f_lerp("100" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+						n_pixel(5 downto 3) := f_lerp("100" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+						n_pixel(2 downto 0) := f_lerp("100" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
+					end if;
+
+
 				end if;
 
+				pixel_d <= n_pixel;
+				
 				p_pixel := a_pixel;			
+				
+		end if;
+	
+end if;				
 				
 end process;
 
-process_a: process
+process_a: process(clock_dram, hcount, dac_step, col_number)
 variable c_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
+variable col: integer;
 begin
-		wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
+
+if (rising_edge(clock_dram)) then
+
+	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
+
+		--wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 		
 		c_pixel := pixel_adc;
 			
@@ -1043,13 +1070,13 @@ begin
 			
 			c_pixel := (others => '0');
 			
-			if (to_integer(pixel_adc(8 downto 6)) > 3) then
+			if (to_integer(c_pixel(8 downto 6)) > 4) then
 				c_pixel(8 downto 6) := "111";
 			end if;
-			if (to_integer(pixel_adc(5 downto 3)) > 3) then
+			if (to_integer(c_pixel(5 downto 3)) > 4) then
 				c_pixel(5 downto 3) := "111";
 			end if;
-			if (to_integer(pixel_adc(2 downto 0)) > 3) then
+			if (to_integer(c_pixel(2 downto 0)) > 4) then
 				c_pixel(2 downto 0) := "111";
 			end if;
 						
@@ -1058,18 +1085,20 @@ begin
 		end if;
 		
 		if (shrink = '0') then
-			pixel_a(8 downto 6) <= f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & c_pixel(8 downto 6));
-			pixel_a(5 downto 3) <= f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & c_pixel(5 downto 3));
-			pixel_a(2 downto 0) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0));		
-		
-			pixel_ab(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0))(0);		
-			
+			n_pixel(8 downto 6) := f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & c_pixel(8 downto 6));
+			n_pixel(5 downto 3) := f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & c_pixel(5 downto 3));
+			n_pixel(2 downto 0) := f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0));		
 		else
-			pixel_a <= c_pixel;								
-			pixel_ab(to_integer(to_unsigned(column - front_porch, 10)(2 downto 0))) <= c_pixel(0);
+			n_pixel := c_pixel;
 		end if;
 
+		pixel_a <= n_pixel;
+
 		p_pixel := c_pixel;
+
+		end if;
+	
+end if;
 
 end process;
 
@@ -1078,16 +1107,11 @@ variable row, col: integer range 0 to 1024;
 begin
 	if (rising_edge(clock_dram)) then
 	
-		if (column >= front_porch and hcount(hcount'length - 1 downto 3) < 900 and vcount >= top_border and vcount < 312) then
+		if (column >= front_porch and column < 1024 and vcount >= top_border and vcount < 312) then
 			-- user active window
 			col := column - front_porch;
-			if (deinterlace = '0') then
-					-- for deinterlace extend the image. frame = odd/even fields
-					row := to_integer(vcount) - top_border;
-					row := row + row + to_integer(frame);
-			else
-					row := to_integer(vcount) - top_border;					
-			end if;							
+			row := to_integer(vcount) - top_border;					
+
 			row_number <= to_unsigned(row, row_number'length);
 			col_number <= to_unsigned(col, col_number'length);				
 		end if;
@@ -1192,11 +1216,6 @@ end process;
 		pixel_b(8 downto 1) when "10",
 		pixel_d(8 downto 1) when "01",
 		pixel_d(8 downto 1) when "00";
-						
-	with pixel_sel select pixel_out_b <= 
-		pixel_ab when "11",
-		pixel_bb when "10",
-		pixel_db when "01",
-		pixel_db when "00";			
+							
 			
 end behavioral;

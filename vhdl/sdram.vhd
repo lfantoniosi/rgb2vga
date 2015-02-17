@@ -39,13 +39,7 @@ entity sdram is
 		pMemBa1     : out std_logic;                        -- SD-RAM Bank select address 1
 		pMemBa0     : out std_logic;                        -- SD-RAM Bank select address 0
 		pMemAdr     : out unsigned(12 downto 0);    			 -- SD-RAM Address
-		pMemDat     : inout unsigned(15 downto 0);   		 -- SD-RAM Data
-		
-		pixelOutB	: out unsigned(15 downto 0);
-		colStoreNrB	: buffer unsigned(5 downto 0); 
-		colLoadNrB	: buffer unsigned(5 downto 0);
-		pixelInB		: in unsigned(15 downto 0)
-		
+		pMemDat     : inout unsigned(15 downto 0)   		 	 -- SD-RAM Data
 		
 	);
   
@@ -184,8 +178,7 @@ begin
 						SdrAdr <= SdrAddress(21 downto 9);						
 						SdrRoutineSeq := SdrRoutineSeq + 1;			
 						
-						colLoadNr <= SdrAddress(8 downto 0);
-						colLoadNrB <= SdrAddress(8 downto 3);
+						colLoadNr <= SdrAddress(8 downto 0);						
 
 					elsif( SdrRoutineSeq = X"002" ) then					
 						SdrCmd <= SdrCmd_rd;
@@ -203,11 +196,6 @@ begin
 						pixelOut <= pMemDat;
 						
 						SdrAddress := SdrAddress + 1;					
-						
-						if (SdrAddress(8 downto 0) >= 448) then
-							colLoadNrB <= to_unsigned(to_integer(SdrAddress(8 downto 0)) - 448, colLoadNrB'length);
-							pixelOutB <= pMemDat;
-						end if;
 						
 						SdrRoutineSeq := SdrRoutineSeq + 1;					
 						
@@ -233,8 +221,7 @@ begin
 						SdrBa1 <= SdrAddress(23);
 						SdrAdr <= SdrAddress(21 downto 9);
 
-						colStoreNr <= SdrAddress(8 downto 0);	
-						colStoreNrB <= SdrAddress(8 downto 3);	
+						colStoreNr <= SdrAddress(8 downto 0);							
 						
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						
@@ -258,11 +245,6 @@ begin
 						SdrDat <= pixelIn;					
 						SdrAddress := SdrAddress + 1;						
 						colStoreNr <= colStoreNr + 1;
-						
-						if (SdrAddress(8 downto 0) >= 447) then
-							colStoreNrB <= colStoreNrB + 1;
-							SdrDat <= pixelInB;					
-						end if;
 						
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						

@@ -26,11 +26,9 @@ entity vgaout is
 			load_ack  : in std_logic;
 
 			scanline	: in std_logic;
-			deinterlace	: in std_logic;			
 			
 			clock_dram: std_logic;
-			video_active : std_logic;
-			pixel_in_b		: in unsigned(7 downto 0)	
+			video_active : std_logic
 			
          );
 end vgaout;
@@ -40,6 +38,8 @@ architecture behavioral of vgaout is
 signal hcount												: unsigned(13 downto 0);
 signal vcount												: unsigned(9 downto 0);
 signal videov, videoh, hsync, vsync					: std_logic;
+signal pixel		  										: unsigned(10 downto 0);
+signal barcolor	  										: unsigned(10 downto 0);
 	
 	
 function f_scanline(adc: unsigned) return unsigned;
@@ -108,12 +108,7 @@ begin
 	if (rising_edge(clock_vga)) then     
 	   hsync <= '1';				
 		
-		if (deinterlace = '0') then
-			row := to_integer(vcount(9 downto 0)) + 1;
-		else
-			row := to_integer(vcount(9 downto 1)) + 1;		
-		end if;		
-		
+		row := to_integer(vcount(9 downto 1)) + 1;		
 		row_number <= to_unsigned(row, row_number'length);
 		
       if (hcount <= (hor_active_video + hor_front_porch + hor_sync_pulse - 1) and hcount >= (hor_active_video + hor_front_porch - 1)) then
@@ -140,7 +135,7 @@ begin
 	end if;
 end process;
 
-pixel: process(clock_vga, hcount, vcount) 
+video: process(clock_vga, hcount, vcount) 
 variable blank: std_logic;
 variable vga_pixel: unsigned(8 downto 0);
 variable posy, posx, color: integer range 0 to 1024;
@@ -149,63 +144,88 @@ begin
 
 		blank := videoh and videov;		
 		
-		if (video_active = '0') then
+		vga_pixel := pixel_in & '0';
 			
-			vga_pixel := pixel_in & pixel_in_b(to_integer(to_unsigned(to_integer(hcount(9 downto 0) + 6), 9)(2 downto 0)));
-
+		if (vga_pixel(2 downto 1) = vga_pixel(8 downto 7) and vga_pixel(2 downto 1) = vga_pixel(5 downto 4)) then
+			vga_pixel(2 downto 0) := vga_pixel(8 downto 6);
 		else
-
-			vga_pixel(8 downto 0) := "100100100";	
-
-			if (hcount = 0) then					
-				posx := 0;	
-				posy := 0;
-			end if;
-			
-			if (hcount >= 40 and hcount < 600) then
-				posx := posx + 1;
-				if (posx = 70) then			
-					posy := posy + 1;
-					posx := 0;				
-				end if;			
-				
-				if (vcount > 20 and vcount < 100) then
-					vga_pixel := to_unsigned(posy, 3) & "000000";
-					if (hcount = 40 or hcount = 599) then
-						vga_pixel(8 downto 0) := "000000000";				
-					end if;
-				elsif (vcount > 140 and vcount < 220) then
-					vga_pixel := "000" & to_unsigned(posy, 3) & "000";
-					if (hcount = 40 or hcount = 599) then
-						vga_pixel(8 downto 0) := "000000000";				
-					end if;
-				elsif (vcount > 260 and vcount < 340) then
-					vga_pixel := "000000" & to_unsigned(posy, 3);
-					if (hcount = 40 or hcount = 599) then
-						vga_pixel(8 downto 0) := "000000000";				
-					end if;
-				elsif (vcount > 380 and vcount < 460) then
-					vga_pixel := to_unsigned(posy, 3) & to_unsigned(posy, 3) & to_unsigned(posy, 3);
-					if (hcount = 40 or hcount = 599) then
-						vga_pixel(8 downto 0) := "000000000";				
-					end if;
-				elsif (vcount = 20 or vcount = 100 or vcount = 140 or vcount = 220 or vcount = 260 or vcount = 340 or vcount = 380 or vcount = 460) then
-					vga_pixel(8 downto 0) := "000000000";								
-				end if;
-			end if;
-			
-			
+			case (vga_pixel(2 downto 1)) is
+				when "11" => vga_pixel(2 downto 0) := "111";
+				when "10" => vga_pixel(2 downto 0) := "100";
+				when "01" => vga_pixel(2 downto 0) := "011";
+				when "00" => vga_pixel(2 downto 0) := "000";
+			end case;
 		end if;
 
 		if (scanline = '0' and vcount(0) = '0') then
 			vga_pixel := f_scanline(vga_pixel(8 downto 6)) & f_scanline(vga_pixel(5 downto 3)) & f_scanline(vga_pixel(2 downto 0));
 		end if;		
 
-		vga_out(10 downto 2) <= vga_pixel and blank&blank&blank&blank&blank&blank&blank&blank&blank;
-		vga_out(1 downto 0) <= hsync & vsync;		
+		pixel(10 downto 2) <= vga_pixel and blank&blank&blank&blank&blank&blank&blank&blank&blank;
+		pixel(1 downto 0) <= hsync & vsync;		
+
 		
 	end if;
 end process;
+
+bar: process(clock_vga, hcount, vcount) 
+variable blank: std_logic;
+variable vga_pixel: unsigned(8 downto 0);
+variable posy, posx, color: integer range 0 to 1024;
+begin
+	if (rising_edge(clock_vga)) then
+
+		blank := videoh and videov;		
+		
+		vga_pixel(8 downto 0) := "100100100";	
+
+		if (hcount = 0) then					
+			posx := 0;	
+			posy := 0;
+		end if;
+		
+		if (hcount >= 40 and hcount < 600) then
+			posx := posx + 1;
+			if (posx = 70) then			
+				posy := posy + 1;
+				posx := 0;				
+			end if;			
+			
+			if (vcount > 20 and vcount < 100) then
+				vga_pixel := to_unsigned(posy, 3) & "000000";
+				if (hcount = 40 or hcount = 599) then
+					vga_pixel(8 downto 0) := "000000000";				
+				end if;
+			elsif (vcount > 140 and vcount < 220) then
+				vga_pixel := "000" & to_unsigned(posy, 3) & "000";
+				if (hcount = 40 or hcount = 599) then
+					vga_pixel(8 downto 0) := "000000000";				
+				end if;
+			elsif (vcount > 260 and vcount < 340) then
+				vga_pixel := "000000" & to_unsigned(posy, 3);
+				if (hcount = 40 or hcount = 599) then
+					vga_pixel(8 downto 0) := "000000000";				
+				end if;
+			elsif (vcount > 380 and vcount < 460) then
+				vga_pixel := to_unsigned(posy, 3) & to_unsigned(posy, 3) & to_unsigned(posy, 3);
+				if (hcount = 40 or hcount = 599) then
+					vga_pixel(8 downto 0) := "000000000";				
+				end if;
+			elsif (vcount = 20 or vcount = 100 or vcount = 140 or vcount = 220 or vcount = 260 or vcount = 340 or vcount = 380 or vcount = 460) then
+				vga_pixel(8 downto 0) := "000000000";								
+			end if;
+		end if;
+
+		if (scanline = '0' and vcount(0) = '0') then
+			vga_pixel := f_scanline(vga_pixel(8 downto 6)) & f_scanline(vga_pixel(5 downto 3)) & f_scanline(vga_pixel(2 downto 0));
+		end if;		
+
+		barcolor(10 downto 2) <= vga_pixel and blank&blank&blank&blank&blank&blank&blank&blank&blank;
+		barcolor(1 downto 0) <= hsync & vsync;		
+
+	end if;
+end process;
+
 
 process (clock_vga, vcount)
 begin
@@ -227,5 +247,9 @@ begin
 		end if;
 	end if;
 end process;
+
+	with video_active select vga_out <= 
+		pixel when '0',
+		barcolor when '1';
 
 end behavioral;

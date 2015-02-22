@@ -124,8 +124,8 @@ applicable agreement for further details.
 	(port
 		(pt 232 32)
 		(output)
-		(text "pixel_out[7..0]" (rect 0 0 54 12)(font "Arial" ))
-		(text "pixel_out[7..0]" (rect 157 27 211 39)(font "Arial" ))
+		(text "pixel_out[15..0]" (rect 0 0 57 12)(font "Arial" ))
+		(text "pixel_out[15..0]" (rect 154 27 211 39)(font "Arial" ))
 		(line (pt 232 32)(pt 216 32)(line_width 3))
 	)
 	(port
@@ -148,6 +148,13 @@ applicable agreement for further details.
 		(text "store_req" (rect 0 0 38 12)(font "Arial" ))
 		(text "store_req" (rect 173 75 211 87)(font "Arial" ))
 		(line (pt 232 80)(pt 216 80)(line_width 1))
+	)
+	(port
+		(pt 232 96)
+		(output)
+		(text "wren_pixel" (rect 0 0 41 12)(font "Arial" ))
+		(text "wren_pixel" (rect 170 91 211 103)(font "Arial" ))
+		(line (pt 232 96)(pt 216 96)(line_width 1))
 	)
 	(drawing
 		(rectangle (rect 16 16 216 256)(line_width 1))

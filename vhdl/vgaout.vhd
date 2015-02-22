@@ -19,7 +19,7 @@ entity vgaout is
     port(clock_vga  : in std_logic;
          vga_out	  : out unsigned(10 downto 0); -- r, g, b, hsync, vsync
 								
-			pixel_in		: in unsigned(7 downto 0);		
+			pixel_in		: in unsigned(15 downto 0);		
 			row_number	: buffer unsigned(9 downto 0);
 			col_number	: buffer unsigned(9 downto 0); 
 			load_req	: out std_logic := '0';
@@ -96,6 +96,9 @@ begin
 		
       if hcount = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1)	then 
         hcount <= (others => '0');
+		  col_number <= to_unsigned(1, col_number'length);
+		else
+			col_number <= to_unsigned(to_integer(hcount(9 downto 0)) + 2, col_number'length);
 		end if;	
 		
 	end if;
@@ -128,12 +131,6 @@ begin
 	end if;
 end process;
 
-pixel_out: process (clock_dram, hcount, vcount)
-begin
-	if (rising_edge(clock_dram)) then	
-		col_number <= hcount(9 downto 0) + 8;		
-	end if;
-end process;
 
 video: process(clock_vga, hcount, vcount) 
 variable blank: std_logic;
@@ -144,18 +141,18 @@ begin
 
 		blank := videoh and videov;		
 		
-		vga_pixel := pixel_in & '0';
+		vga_pixel := pixel_in(8 downto 0); -- & '0';
 			
-		if (vga_pixel(2 downto 1) = vga_pixel(8 downto 7) and vga_pixel(2 downto 1) = vga_pixel(5 downto 4)) then
-			vga_pixel(2 downto 0) := vga_pixel(8 downto 6);
-		else
-			case (vga_pixel(2 downto 1)) is
-				when "11" => vga_pixel(2 downto 0) := "111";
-				when "10" => vga_pixel(2 downto 0) := "100";
-				when "01" => vga_pixel(2 downto 0) := "011";
-				when "00" => vga_pixel(2 downto 0) := "000";
-			end case;
-		end if;
+		--if (vga_pixel(2 downto 1) = vga_pixel(8 downto 7) and vga_pixel(2 downto 1) = vga_pixel(5 downto 4)) then
+		--	vga_pixel(2 downto 0) := vga_pixel(8 downto 6);
+		--else
+		--	case (vga_pixel(2 downto 1)) is
+		--		when "11" => vga_pixel(2 downto 0) := "111";
+		--		when "10" => vga_pixel(2 downto 0) := "101";
+		--		when "01" => vga_pixel(2 downto 0) := "011";
+		--		when "00" => vga_pixel(2 downto 0) := "000";
+		--	end case;
+		--end if;
 
 		if (scanline = '0' and vcount(0) = '0') then
 			vga_pixel := f_scanline(vga_pixel(8 downto 6)) & f_scanline(vga_pixel(5 downto 3)) & f_scanline(vga_pixel(2 downto 0));

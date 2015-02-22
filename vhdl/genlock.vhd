@@ -10,7 +10,7 @@ entity genlock is
 			hblank 		: in std_logic; -- digital hsync
 			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
 			
-			pixel_out	: out unsigned(7 downto 0); -- RRRGGGBB
+			pixel_out	: out unsigned(15 downto 0); -- RRRGGGBB
 			row_number	: out unsigned(9 downto 0); 
 			col_number	: buffer unsigned(9 downto 0); 
 			store_req	: out std_logic := '0';
@@ -23,7 +23,8 @@ entity genlock is
 			offset		: in std_logic;
 			dac_step		: in unsigned(2 downto 0);
 			bright		: in std_logic;
-			digital		: in std_logic
+			digital		: in std_logic;
+			wren_pixel	: out std_logic
 );
 			
 end genlock;
@@ -63,7 +64,7 @@ signal aqua:		unsigned(8 downto 0);
 signal lightblue:	unsigned(8 downto 0);
 signal white:		unsigned(8 downto 0);
 
-signal column: 	integer range 0 to 1024;
+signal column: 	integer range 0 to 2048;
 
 function f_adc(adc: unsigned) return unsigned;
 
@@ -1070,13 +1071,13 @@ if (rising_edge(clock_dram)) then
 			
 			c_pixel := (others => '0');
 			
-			if (to_integer(c_pixel(8 downto 6)) > 4) then
+			if (to_integer(pixel_adc(8 downto 6)) > 4) then
 				c_pixel(8 downto 6) := "111";
 			end if;
-			if (to_integer(c_pixel(5 downto 3)) > 4) then
+			if (to_integer(pixel_adc(5 downto 3)) > 4) then
 				c_pixel(5 downto 3) := "111";
 			end if;
-			if (to_integer(c_pixel(2 downto 0)) > 4) then
+			if (to_integer(pixel_adc(2 downto 0)) > 4) then
 				c_pixel(2 downto 0) := "111";
 			end if;
 						
@@ -1102,18 +1103,54 @@ end if;
 
 end process;
 
+--process_row_nr: process(clock_dram, hcount) 
+--variable row: integer range 0 to 2048;
+--begin
+--	if (rising_edge(clock_dram)) then
+--	
+--		if (vcount >= top_border and vcount < 312) then
+--			row := to_integer(vcount) - top_border;					
+--		else
+--			row := 320;
+--		end if;
+--
+--		row_number <= to_unsigned(row, row_number'length);
+--		
+--	end if;
+--end process;
+--
+--
+--process_col_nr: process(clock_dram, hcount) 
+--variable col: integer range 0 to 2048;
+--begin
+--	if (rising_edge(clock_dram)) then
+--	
+--		if (column >= front_porch and column < 1024+front_porch) then
+--			col := column - front_porch;
+--		else
+--			col := 640;
+--		end if;
+--			
+--		col_number <= to_unsigned(col, col_number'length);				
+--		
+--	end if;
+--end process;
+
 process_col_nr: process(clock_dram, hcount) 
-variable row, col: integer range 0 to 1024;
+variable row, col: integer range 0 to 2048;
 begin
 	if (rising_edge(clock_dram)) then
-	
-		if (column >= front_porch and column < 1024 and vcount >= top_border and vcount < 312) then
+		
+		wren_pixel <= '0';
+		
+		if (column >= front_porch and column < 1024+front_porch and vcount >= top_border and vcount < 312) then
 			-- user active window
 			col := column - front_porch;
 			row := to_integer(vcount) - top_border;					
 
 			row_number <= to_unsigned(row, row_number'length);
 			col_number <= to_unsigned(col, col_number'length);				
+			wren_pixel <= '1';
 		end if;
 		
 	end if;
@@ -1200,22 +1237,22 @@ begin
 		if (shrink = '0') then
 			front_porch <= 128;
 		elsif (apple2 = '0') then
-			front_porch <= 200;
+			front_porch <= 208;
 		elsif (offset = '0') then
-			front_porch <= 200;
+			front_porch <= 208;
 		else
-			front_porch <= 176;
+			front_porch <= 183;
 		end if;			
 	end if;	
 end process;
 
 	pixel_sel(1 downto 0) <= artifact_mode&apple2;
 	
-	with pixel_sel select pixel_out <= 
-		pixel_a(8 downto 1) when "11",
-		pixel_b(8 downto 1) when "10",
-		pixel_d(8 downto 1) when "01",
-		pixel_d(8 downto 1) when "00";
+	with pixel_sel select pixel_out(8 downto 0) <= 
+		pixel_a(8 downto 0) when "11",
+		pixel_b(8 downto 0) when "10",
+		pixel_d(8 downto 0) when "01",
+		pixel_d(8 downto 0) when "00";
 							
 			
 end behavioral;

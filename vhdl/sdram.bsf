@@ -68,8 +68,8 @@ applicable agreement for further details.
 	(port
 		(pt 232 32)
 		(output)
-		(text "colStoreNr[8..0]" (rect 0 0 62 12)(font "Arial" ))
-		(text "colStoreNr[8..0]" (rect 149 27 211 39)(font "Arial" ))
+		(text "colStoreNr[9..0]" (rect 0 0 62 12)(font "Arial" ))
+		(text "colStoreNr[9..0]" (rect 149 27 211 39)(font "Arial" ))
 		(line (pt 232 32)(pt 216 32)(line_width 3))
 	)
 	(port
@@ -89,8 +89,8 @@ applicable agreement for further details.
 	(port
 		(pt 232 80)
 		(output)
-		(text "colLoadNr[8..0]" (rect 0 0 61 12)(font "Arial" ))
-		(text "colLoadNr[8..0]" (rect 150 75 211 87)(font "Arial" ))
+		(text "colLoadNr[9..0]" (rect 0 0 61 12)(font "Arial" ))
+		(text "colLoadNr[9..0]" (rect 150 75 211 87)(font "Arial" ))
 		(line (pt 232 80)(pt 216 80)(line_width 3))
 	)
 	(port
@@ -178,13 +178,31 @@ applicable agreement for further details.
 		(line (pt 232 272)(pt 216 272)(line_width 3))
 	)
 	(port
+		(pt 232 304)
+		(output)
+		(text "wren_sdr" (rect 0 0 37 12)(font "Arial" ))
+		(text "wren_sdr" (rect 174 299 211 311)(font "Arial" ))
+		(line (pt 232 304)(pt 216 304)(line_width 1))
+	)
+	(port
 		(pt 232 288)
 		(bidir)
 		(text "pMemDat[15..0]" (rect 0 0 63 12)(font "Arial" ))
 		(text "pMemDat[15..0]" (rect 148 283 211 295)(font "Arial" ))
 		(line (pt 232 288)(pt 216 288)(line_width 3))
 	)
+	(parameter
+		"page0"
+		"512"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"page1"
+		"128"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 216 320)(line_width 1))
 	)
+	(annotation_block (parameter)(rect 248 -64 348 16))
 )

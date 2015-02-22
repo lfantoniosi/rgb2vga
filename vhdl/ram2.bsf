@@ -33,8 +33,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 48)
 		(input)
-		(text "wraddress[8..0]" (rect 0 0 92 14)(font "Arial" (font_size 8)))
-		(text "wraddress[8..0]" (rect 4 34 80 47)(font "Arial" (font_size 8)))
+		(text "wraddress[9..0]" (rect 0 0 92 14)(font "Arial" (font_size 8)))
+		(text "wraddress[9..0]" (rect 4 34 80 47)(font "Arial" (font_size 8)))
 		(line (pt 0 48)(pt 112 48)(line_width 3))
 	)
 	(port
@@ -68,12 +68,12 @@ applicable agreement for further details.
 	(port
 		(pt 256 88)
 		(output)
-		(text "q[7..0]" (rect 0 0 35 14)(font "Arial" (font_size 8)))
-		(text "q[7..0]" (rect 223 74 251 87)(font "Arial" (font_size 8)))
+		(text "q[15..0]" (rect 0 0 42 14)(font "Arial" (font_size 8)))
+		(text "q[15..0]" (rect 217 74 251 87)(font "Arial" (font_size 8)))
 		(line (pt 256 88)(pt 192 88)(line_width 3))
 	)
 	(drawing
-		(text "512 Word(s)" (rect 137 -6 233 181)(font "Arial" )(vertical))
+		(text "1024 Word(s)" (rect 137 -5 236 187)(font "Arial" )(vertical))
 		(text "RAM" (rect 148 -16 229 151)(font "Arial" )(vertical))
 		(text "Block Type: AUTO" (rect 40 141 156 293)(font "Arial" ))
 		(line (pt 128 24)(pt 168 24))

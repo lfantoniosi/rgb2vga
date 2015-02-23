@@ -38,7 +38,7 @@
 
 set_global_assignment -name FAMILY "Cyclone IV E"
 set_global_assignment -name DEVICE EP4CE22F17C6
-set_global_assignment -name TOP_LEVEL_ENTITY coco3
+set_global_assignment -name TOP_LEVEL_ENTITY speccy
 set_global_assignment -name ORIGINAL_QUARTUS_VERSION 13.0
 set_global_assignment -name PROJECT_CREATION_TIME_DATE "22:47:32  SEPTEMBER 22, 2014"
 set_global_assignment -name LAST_QUARTUS_VERSION 13.0
@@ -145,27 +145,26 @@ set_global_assignment -name OPTIMIZE_POWER_DURING_FITTING "NORMAL COMPILATION"
 set_global_assignment -name FITTER_EFFORT "AUTO FIT"
 set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
+set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
+set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
+set_location_assignment PLL_1 -to "pll_speccy:pll_inst"
+set_location_assignment PLL_1 -to "pll_coco3:pll_inst"
+set_location_assignment PIN_R10 -to VGAB2
+set_location_assignment PIN_B4 -to BRIGHT
+set_global_assignment -name BDF_FILE generic.bdf
 set_global_assignment -name SDC_FILE rgb2vga.out.sdc
 set_global_assignment -name VHDL_FILE vgaout.vhd
-set_global_assignment -name VHDL_FILE ram.vhd
 set_global_assignment -name VHDL_FILE sdram.vhd
 set_global_assignment -name QIP_FILE altiobuf.qip
 set_global_assignment -name QIP_FILE ram2.qip
-set_global_assignment -name QIP_FILE ram.qip
 set_global_assignment -name VHDL_FILE genlock.vhd
 set_global_assignment -name VHDL_FILE input_detect.vhd
-set_global_assignment -name EDA_SIMULATION_TOOL "ModelSim-Altera (VHDL)"
-set_global_assignment -name EDA_OUTPUT_DATA_FORMAT VHDL -section_id eda_simulation
 set_global_assignment -name QIP_FILE dac_counter.qip
 set_global_assignment -name QIP_FILE pll_speccy.qip
-set_location_assignment PLL_1 -to "pll_speccy:pll_inst"
-set_location_assignment PLL_1 -to "pll_coco3:pll_inst"
 set_global_assignment -name QIP_FILE pll_coco3.qip
 set_global_assignment -name CDF_FILE output_files/rgb2vga.cdf
 set_global_assignment -name BDF_FILE coco3.bdf
 set_global_assignment -name BDF_FILE speccy.bdf
-set_location_assignment PIN_R10 -to VGAB2
-set_location_assignment PIN_B4 -to BRIGHT
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top

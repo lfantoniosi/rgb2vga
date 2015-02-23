@@ -24,7 +24,8 @@ entity genlock is
 			dac_step		: in unsigned(2 downto 0);
 			bright		: in std_logic;
 			digital		: in std_logic;
-			wren_pixel	: out std_logic
+			wren_pixel	: out std_logic;
+			off			: in unsigned(3 downto 0)
 );
 			
 end genlock;
@@ -1235,13 +1236,17 @@ mode_change: process(clock_dram)
 begin
 	if (rising_edge(clock_dram)) then
 		if (shrink = '0') then
-			front_porch <= 128;
+			if (offset = '0') then			
+				front_porch <= 138;
+			else
+				front_porch <= 128;
+			end if;
 		elsif (apple2 = '0') then
 			front_porch <= 208;
 		elsif (offset = '0') then
 			front_porch <= 208;
 		else
-			front_porch <= 183;
+			front_porch <= 171 + to_integer(off);
 		end if;			
 	end if;	
 end process;

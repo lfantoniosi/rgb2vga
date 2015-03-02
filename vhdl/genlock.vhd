@@ -1063,8 +1063,6 @@ begin
 if (rising_edge(clock_dram)) then
 
 	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
-
-		--wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 		
 		c_pixel := pixel_adc;
 			
@@ -1082,7 +1080,7 @@ if (rising_edge(clock_dram)) then
 				c_pixel(2 downto 0) := "111";
 			end if;
 						
-			c_pixel := c_pixel and '1'&bright&'1' & '1'&bright&'1' & '1'&bright&'1';
+			c_pixel := c_pixel and '1'&'1'&bright & '1'&'1'&bright & '1'&'1'&bright;
 			
 		end if;
 		
@@ -1103,39 +1101,6 @@ if (rising_edge(clock_dram)) then
 end if;
 
 end process;
-
---process_row_nr: process(clock_dram, hcount) 
---variable row: integer range 0 to 2048;
---begin
---	if (rising_edge(clock_dram)) then
---	
---		if (vcount >= top_border and vcount < 312) then
---			row := to_integer(vcount) - top_border;					
---		else
---			row := 320;
---		end if;
---
---		row_number <= to_unsigned(row, row_number'length);
---		
---	end if;
---end process;
---
---
---process_col_nr: process(clock_dram, hcount) 
---variable col: integer range 0 to 2048;
---begin
---	if (rising_edge(clock_dram)) then
---	
---		if (column >= front_porch and column < 1024+front_porch) then
---			col := column - front_porch;
---		else
---			col := 640;
---		end if;
---			
---		col_number <= to_unsigned(col, col_number'length);				
---		
---	end if;
---end process;
 
 process_col_nr: process(clock_dram, hcount) 
 variable row, col: integer range 0 to 2048;

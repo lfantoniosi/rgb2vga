@@ -5,7 +5,7 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity genlock is
 
-    port(clock_dram : in std_logic;
+    port(clock_pixel : in std_logic;
 			vsync  		: in std_logic; -- digital vsync
 			hblank 		: in std_logic; -- digital hsync
 			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
@@ -25,7 +25,7 @@ entity genlock is
 			bright		: in std_logic;
 			digital		: in std_logic;
 			wren_pixel	: out std_logic;
-			off			: in unsigned(3 downto 0)
+			clock_dram  : in std_logic
 );
 			
 end genlock;
@@ -746,7 +746,7 @@ begin
 channel_red: process
 variable red_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
 	red_adc(to_integer(hcount(2 downto 0))) := adc_rgb(2);
 	pixel_adc(8 downto 6) <= f_adc(red_adc(6 downto 0));
 
@@ -755,7 +755,7 @@ end process;
 channel_green: process
 variable green_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
 	green_adc(to_integer(hcount(2 downto 0))) := adc_rgb(1);
 	pixel_adc(5 downto 3) <= f_adc(green_adc(6 downto 0));
 end process;
@@ -763,25 +763,25 @@ end process;
 channel_blue: process
 variable blue_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = dac_step); 
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
 	blue_adc(to_integer(hcount(2 downto 0))) := adc_rgb(0);
 	pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 0)); 
 end process;
 
-hraster: process (clock_dram, hblank, vblank)
+hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
 		hcount <= (others => '0');
-	elsif (rising_edge(clock_dram)) then
-		hcount <= hcount + 1;
+	elsif (rising_edge(clock_pixel)) then
+		hcount <= hcount + 1;		
 	end if;
 end process;
 
-col_counter: process(clock_dram, hcount, hblank)
+col_counter: process(clock_pixel, hcount, hblank, vblank)
 begin
-	if (hblank = '0') then
+	if (hblank = '0' or vblank = '0') then
 		column <= 0;
-	elsif (rising_edge(clock_dram)) then
+	elsif (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "100") then
 			if (shrink = '1' or hcount(5 downto 3) /= "111") then
 				column <= column + 1;
@@ -791,10 +791,10 @@ begin
 end process;
 		
 
-vsync_lock: process(clock_dram, vsync)
+vsync_lock: process(clock_pixel, vsync)
 variable sync: std_logic;
 begin	
-	if (rising_edge(clock_dram)) then		
+	if (rising_edge(clock_pixel)) then		
 
 		vblank <= '1'; 					
 		if (vsync = sync_level and vcount > 261) then
@@ -811,22 +811,22 @@ begin
 
 end process;
 
-vraster: process (clock_dram, vblank)
+vraster: process (clock_pixel, vblank)
 begin
 	if (vblank = '0') then 
 			vcount <= (others => '0');
-	elsif(rising_edge(clock_dram)) then
+	elsif(rising_edge(clock_pixel)) then
 		if hblank = '0' then
 			vcount <= vcount + 1;
 		end if;
 	end if;
 end process;
 
-detect_artifact: process(clock_dram, hblank, hcount)
+detect_artifact: process(clock_pixel, hblank, hcount)
 begin
 	if (hblank = '0') then
 		artifact_mode <= '1';	
-	elsif (rising_edge(clock_dram)) then	
+	elsif (rising_edge(clock_pixel)) then	
 		if (apple2 = '1') then
 				if (column  < front_porch) then		
 					-- out of active window. if coco2/coco3 check for white border to activate artifacting
@@ -840,17 +840,17 @@ begin
 	end if;
 end process;
 
-process_b: process(clock_dram, hcount, dac_step, col_number)
+process_b: process(clock_pixel, hcount, dac_step, col_number)
 variable a_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
 begin
 
-if (rising_edge(clock_dram)) then
+if (rising_edge(clock_pixel)) then
 
 	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
 
-		--wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100");  
+		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100");  
 		
 		if (to_integer(pixel_adc(5 downto 3)) > 4) then
 			a_pixel := "111111111"; 
@@ -877,18 +877,18 @@ end if;
 		
 end process;
 
-process_d: process(clock_dram, hcount, dac_step, col_number)
+process_d: process(clock_pixel, hcount, dac_step, col_number)
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
 begin
 
-if (rising_edge(clock_dram)) then
+if (rising_edge(clock_pixel)) then
 
 	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
 
-		--wait until (clock_dram'event and clock_dram='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
+		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 			
 				pixel(3 downto 1) := pixel(2 downto 0);
 				-- pixel shifting for apple2/coco3 artifact
@@ -1053,17 +1053,17 @@ end if;
 				
 end process;
 
-process_a: process(clock_dram, hcount, dac_step, col_number)
+process_a: process(clock_pixel, hcount, dac_step, col_number)
 variable c_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
 variable col: integer;
 begin
 
-if (rising_edge(clock_dram)) then
+if (rising_edge(clock_pixel)) then
 
 	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
-		
+
 		c_pixel := pixel_adc;
 			
 		if (digital = '0') then
@@ -1080,7 +1080,7 @@ if (rising_edge(clock_dram)) then
 				c_pixel(2 downto 0) := "111";
 			end if;
 						
-			c_pixel := c_pixel and '1'&'1'&bright & '1'&'1'&bright & '1'&'1'&bright;
+			c_pixel := c_pixel and '1'&bright&'1' & '1'&bright&'1' & '1'&bright&'1';
 			
 		end if;
 		
@@ -1122,9 +1122,9 @@ begin
 	end if;
 end process;
 
-color_scheme: process(clock_dram, apple2, mode)
+color_scheme: process(clock_pixel, apple2, mode)
 begin
-	if (rising_edge(clock_dram)) then
+	if (rising_edge(clock_pixel)) then
 		if (apple2 = '1') then
 		
 			if (mode = '0') then
@@ -1191,38 +1191,35 @@ begin
 	if (store_ack = '1') then -- store_ack is asynchronous
 			store_req <= '0';
 	elsif (rising_edge(clock_dram)) then
+		--if (column = front_porch + 640) then
 		if (hblank = '0') then
-			store_req <= '1'; -- store_req is on clock_dram
+			store_req <= '1'; -- store_req is on clock_pixel
 		end if;
 	end if;	
 end process;
 
-mode_change: process(clock_dram)
+mode_change: process(clock_pixel)
 begin
-	if (rising_edge(clock_dram)) then
+	if (rising_edge(clock_pixel)) then
 		if (shrink = '0') then
-			if (offset = '0') then			
-				front_porch <= 138;
-			else
-				front_porch <= 128;
-			end if;
+			front_porch <= 128;
 		elsif (apple2 = '0') then
 			front_porch <= 208;
 		elsif (offset = '0') then
 			front_porch <= 208;
 		else
-			front_porch <= 171 + to_integer(off);
+			front_porch <= 183;
 		end if;			
 	end if;	
 end process;
 
-	pixel_sel(1 downto 0) <= artifact_mode&apple2;
-	
+	pixel_sel(1 downto 0) <= artifact_mode&apple2;	
 	with pixel_sel select pixel_out(8 downto 0) <= 
 		pixel_a(8 downto 0) when "11",
 		pixel_b(8 downto 0) when "10",
 		pixel_d(8 downto 0) when "01",
 		pixel_d(8 downto 0) when "00";
+	
 							
 			
 end behavioral;

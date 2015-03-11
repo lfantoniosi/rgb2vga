@@ -283,7 +283,8 @@ begin
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 					elsif( SdrRoutineSeq = 4+page0) then
 						SdrCmd <= SdrCmd_bs;
-						SdrDat <= (others => 'Z');						
+						SdrDat <= (others => 'Z');			
+						--rowStoreAck <= '1';				
 						SdrRoutineSeq := SdrRoutineSeq + 1;
 						SdrAddress(23 downto 19) := "00000";
 						SdrAddress(18 downto 9) := curRow;

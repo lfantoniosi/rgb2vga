@@ -96,9 +96,9 @@ begin
 		
       if hcount = (hor_active_video + hor_front_porch + hor_sync_pulse + hor_back_porch - 1)	then 
         hcount <= (others => '0');
-		  col_number <= to_unsigned(1, col_number'length);
+		  col_number <= to_unsigned(0, col_number'length);
 		else
-			col_number <= to_unsigned(to_integer(hcount(9 downto 0)) + 2, col_number'length);
+			col_number <= to_unsigned(to_integer(hcount(9 downto 0)) + 1, col_number'length);
 		end if;	
 		
 	end if;
@@ -125,7 +125,7 @@ begin
 	if (load_ack = '1') then
 		load_req <= '0';
 	elsif (rising_edge(clock_dram)) then
-		if (hsync = '0') then
+		if (hcount = (hor_active_video + hor_front_porch - 1)) then --hsync = '0') then
 			load_req <= '1';
 		end if;
 	end if;
@@ -141,18 +141,7 @@ begin
 
 		blank := videoh and videov;		
 		
-		vga_pixel := pixel_in(8 downto 0); -- & '0';
-			
-		--if (vga_pixel(2 downto 1) = vga_pixel(8 downto 7) and vga_pixel(2 downto 1) = vga_pixel(5 downto 4)) then
-		--	vga_pixel(2 downto 0) := vga_pixel(8 downto 6);
-		--else
-		--	case (vga_pixel(2 downto 1)) is
-		--		when "11" => vga_pixel(2 downto 0) := "111";
-		--		when "10" => vga_pixel(2 downto 0) := "101";
-		--		when "01" => vga_pixel(2 downto 0) := "011";
-		--		when "00" => vga_pixel(2 downto 0) := "000";
-		--	end case;
-		--end if;
+		vga_pixel := pixel_in(8 downto 0); 
 
 		if (scanline = '0' and vcount(0) = '0') then
 			vga_pixel := f_scanline(vga_pixel(8 downto 6)) & f_scanline(vga_pixel(5 downto 3)) & f_scanline(vga_pixel(2 downto 0));
@@ -228,7 +217,7 @@ process (clock_vga, vcount)
 begin
 	if (rising_edge(clock_vga)) then
 		videov <= '1'; 
-		if vcount > vert_active_video-1 or vcount < 1 then 
+		if vcount > vert_active_video-1 or vcount = 0 then 
 			videov <= '0';
 		end if;	
    end if;
@@ -239,7 +228,7 @@ process (clock_vga, hcount)
 begin
 	if (rising_edge(clock_vga)) then
 		videoh <= '1';
-		if hcount > hor_active_video or hcount = 0 then
+		if hcount > hor_active_video then
 			videoh <= '0';
 		end if;
 	end if;

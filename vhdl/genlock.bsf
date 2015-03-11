@@ -26,8 +26,8 @@ applicable agreement for further details.
 	(port
 		(pt 0 32)
 		(input)
-		(text "clock_dram" (rect 0 0 47 12)(font "Arial" ))
-		(text "clock_dram" (rect 21 27 68 39)(font "Arial" ))
+		(text "clock_pixel" (rect 0 0 42 12)(font "Arial" ))
+		(text "clock_pixel" (rect 21 27 63 39)(font "Arial" ))
 		(line (pt 0 32)(pt 16 32)(line_width 1))
 	)
 	(port
@@ -124,9 +124,9 @@ applicable agreement for further details.
 	(port
 		(pt 0 256)
 		(input)
-		(text "off[3..0]" (rect 0 0 31 12)(font "Arial" ))
-		(text "off[3..0]" (rect 21 251 52 263)(font "Arial" ))
-		(line (pt 0 256)(pt 16 256)(line_width 3))
+		(text "clock_dram" (rect 0 0 47 12)(font "Arial" ))
+		(text "clock_dram" (rect 21 251 68 263)(font "Arial" ))
+		(line (pt 0 256)(pt 16 256)(line_width 1))
 	)
 	(port
 		(pt 232 32)

@@ -29,11 +29,11 @@ variable pixel_width: integer range 0 to 128;
 begin
 	if (rising_edge(clock_pixel)) then
 		
-		if (offset = '0') then 
-			pixel_width := 3;
-		else
+		--if (offset = '0') then 
+		--	pixel_width := 3;
+		--else
 			pixel_width := 7;
-		end if;
+		--end if;
 		
 		hblank_out <= '1';		
 		

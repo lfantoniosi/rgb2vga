@@ -228,7 +228,7 @@ process (clock_vga, hcount)
 begin
 	if (rising_edge(clock_vga)) then
 		videoh <= '1';
-		if hcount > hor_active_video then
+		if hcount > hor_active_video or hcount < 3 then
 			videoh <= '0';
 		end if;
 	end if;

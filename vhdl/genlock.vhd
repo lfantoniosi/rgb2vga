@@ -849,8 +849,6 @@ begin
 if (rising_edge(clock_pixel)) then
 
 	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
-
-		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100");  
 		
 		if (to_integer(pixel_adc(5 downto 3)) > 4) then
 			a_pixel := "111111111"; 
@@ -1030,10 +1028,6 @@ if (rising_edge(clock_pixel)) then
 						n_pixel(8 downto 6) := f_lerp("101" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
 						n_pixel(5 downto 3) := f_lerp("101" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
 						n_pixel(2 downto 0) := f_lerp("101" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
---					elsif (p_pixel /= a_pixel) then
---						n_pixel(8 downto 6) := f_lerp("100" & p_pixel(8 downto 6) & pixel(0)&pixel(0)&pixel(0));
---						n_pixel(5 downto 3) := f_lerp("100" & p_pixel(5 downto 3) & pixel(0)&pixel(0)&pixel(0));
---						n_pixel(2 downto 0) := f_lerp("100" & p_pixel(2 downto 0) & pixel(0)&pixel(0)&pixel(0));					
 					else					
 						n_pixel(8 downto 6) := f_lerp("100" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
 						n_pixel(5 downto 3) := f_lerp("100" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
@@ -1102,14 +1096,14 @@ end if;
 
 end process;
 
-process_col_nr: process(clock_dram, hcount) 
+process_col_nr: process(clock_pixel, hcount, column) 
 variable row, col: integer range 0 to 2048;
 begin
-	if (rising_edge(clock_dram)) then
+	if (rising_edge(clock_pixel)) then
 		
 		wren_pixel <= '0';
 		
-		if (column >= front_porch and column < 1024+front_porch and vcount >= top_border and vcount < 312) then
+		if (column >= front_porch and column < 641+front_porch and vcount >= top_border and vcount < top_border+241) then
 			-- user active window
 			col := column - front_porch;
 			row := to_integer(vcount) - top_border;					
@@ -1191,7 +1185,6 @@ begin
 	if (store_ack = '1') then -- store_ack is asynchronous
 			store_req <= '0';
 	elsif (rising_edge(clock_dram)) then
-		--if (column = front_porch + 640) then
 		if (hblank = '0') then
 			store_req <= '1'; -- store_req is on clock_pixel
 		end if;

@@ -1861,11 +1861,6 @@ applicable agreement for further details.
 	(bus)
 )
 (connector
-	(text "SHRINK" (rect 786 -8 828 4)(font "Arial" ))
-	(pt 776 8)
-	(pt 888 8)
-)
-(connector
 	(text "BRIGHT" (rect 786 40 827 52)(font "Arial" ))
 	(pt 888 56)
 	(pt 776 56)
@@ -2267,4 +2262,9 @@ applicable agreement for further details.
 	(text "CLOCK_PIXEL" (rect 786 72 859 84)(font "Arial" ))
 	(pt 888 88)
 	(pt 776 88)
+)
+(connector
+	(text "SHRINK" (rect 786 -8 828 4)(font "Arial" ))
+	(pt 776 8)
+	(pt 888 8)
 )

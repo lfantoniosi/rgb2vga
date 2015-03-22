@@ -782,7 +782,7 @@ begin
 	if (hblank = '0' or vblank = '0') then
 		column <= 0;
 	elsif (rising_edge(clock_pixel)) then
-		if (hcount(2 downto 0) = "100") then
+		if (hcount(2 downto 0) = "111") then
 			if (shrink = '1' or hcount(5 downto 3) /= "111") then
 				column <= column + 1;
 			end if;
@@ -848,7 +848,7 @@ begin
 
 if (rising_edge(clock_pixel)) then
 
-	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
+	if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
 		
 		if (to_integer(pixel_adc(5 downto 3)) > 4) then
 			a_pixel := "111111111"; 
@@ -860,7 +860,6 @@ if (rising_edge(clock_pixel)) then
 			n_pixel(8 downto 6) := f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
 			n_pixel(5 downto 3) := f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
 			n_pixel(2 downto 0) := f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));	
-			n_pixel(0) := '0';
 		else				
 			n_pixel := a_pixel;
 		end if;		
@@ -884,7 +883,7 @@ begin
 
 if (rising_edge(clock_pixel)) then
 
-	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
+	if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
 
 		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 			
@@ -1056,7 +1055,7 @@ begin
 
 if (rising_edge(clock_pixel)) then
 
-	if (hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100") then
+	if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
 
 		c_pixel := pixel_adc;
 			

@@ -32,7 +32,7 @@ begin
 		--if (offset = '0') then 
 		--	pixel_width := 3;
 		--else
-			pixel_width := 7;
+			pixel_width := 3;
 		--end if;
 		
 		hblank_out <= '1';		

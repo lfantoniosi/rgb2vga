@@ -743,29 +743,35 @@ end f_lerp;
 
 begin
 
-channel_red: process
+channel_red: process(clock_pixel, hcount, dac_step)
 variable red_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
-	red_adc(to_integer(hcount(2 downto 0))) := adc_rgb(2);
-	pixel_adc(8 downto 6) <= f_adc(red_adc(6 downto 0));
+	if (rising_edge(clock_pixel)) then		
+		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
+		red_adc(to_integer(hcount(2 downto 0))) := adc_rgb(2);
+		pixel_adc(8 downto 6) <= f_adc(red_adc(6 downto 0));
+	end if;
 
 end process;
 
-channel_green: process
+channel_green: process(clock_pixel, hcount, dac_step)
 variable green_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
-	green_adc(to_integer(hcount(2 downto 0))) := adc_rgb(1);
-	pixel_adc(5 downto 3) <= f_adc(green_adc(6 downto 0));
+	if (rising_edge(clock_pixel)) then		
+		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
+		green_adc(to_integer(hcount(2 downto 0))) := adc_rgb(1);
+		pixel_adc(5 downto 3) <= f_adc(green_adc(6 downto 0));
+	end if;
 end process;
 
-channel_blue: process
+channel_blue: process(clock_pixel, hcount, dac_step)
 variable blue_adc: unsigned(7 downto 0);
 begin
-	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
-	blue_adc(to_integer(hcount(2 downto 0))) := adc_rgb(0);
-	pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 0)); 
+	if (rising_edge(clock_pixel)) then		
+		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
+		blue_adc(to_integer(hcount(2 downto 0))) := adc_rgb(0);
+		pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 0)); 
+	end if;
 end process;
 
 hraster: process (clock_pixel, hblank, vblank)
@@ -840,15 +846,18 @@ begin
 	end if;
 end process;
 
-process_b: process(clock_pixel, hcount, dac_step, col_number)
+process_b: process--(clock_pixel, hcount, dac_step, col_number)
 variable a_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
 begin
 
-if (rising_edge(clock_pixel)) then
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); 
+--if (rising_edge(clock_pixel)) then
 
-	if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
+	--if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
+	--if (hcount(2 downto 0) = dac_step(2 downto 0)) then
+	--if (hcount(2 downto 0) = "111") then
 		
 		if (to_integer(pixel_adc(5 downto 3)) > 4) then
 			a_pixel := "111111111"; 
@@ -868,22 +877,26 @@ if (rising_edge(clock_pixel)) then
 		
 		p_pixel := a_pixel;	
 	
-	end if;
+	--end if;
 
-end if;
+--end if;
 		
 end process;
 
-process_d: process(clock_pixel, hcount, dac_step, col_number)
+process_d: process --(clock_pixel, hcount, dac_step, col_number)
 variable pixel: unsigned(3 downto 0);
 variable a_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
 begin
 
-if (rising_edge(clock_pixel)) then
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); 
 
-	if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
+--if (rising_edge(clock_pixel)) then
+
+	--if (hcount(2 downto 0) = dac_step(2 downto 0)) then
+	--if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
+	--if (hcount(2 downto 0) = "111") then
 
 		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 			
@@ -1040,22 +1053,25 @@ if (rising_edge(clock_pixel)) then
 				
 				p_pixel := a_pixel;			
 				
-		end if;
+		--end if;
 	
-end if;				
+--end if;				
 				
 end process;
 
-process_a: process(clock_pixel, hcount, dac_step, col_number)
+process_a: process --(clock_pixel, hcount, dac_step, col_number)
 variable c_pixel: unsigned(8 downto 0);
 variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
 variable col: integer;
 begin
 
-if (rising_edge(clock_pixel)) then
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); 
+--if (rising_edge(clock_pixel)) then
 
-	if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
+	--if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
+	--if (hcount(2 downto 0) = dac_step(2 downto 0)) then
+	--if (hcount(2 downto 0) = "111") then
 
 		c_pixel := pixel_adc;
 			
@@ -1089,9 +1105,9 @@ if (rising_edge(clock_pixel)) then
 
 		p_pixel := c_pixel;
 
-		end if;
+		--end if;
 	
-end if;
+--end if;
 
 end process;
 

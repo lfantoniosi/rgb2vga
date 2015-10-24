@@ -1200,7 +1200,7 @@ begin
 		elsif (offset = '0') then
 			front_porch <= 208;
 		else
-			front_porch <= 183;
+			front_porch <= 182;
 		end if;			
 	end if;	
 end process;
@@ -1211,7 +1211,5 @@ end process;
 		pixel_b(8 downto 0) when "10",
 		pixel_d(8 downto 0) when "01",
 		pixel_d(8 downto 0) when "00";
-	
-							
-			
+									
 end behavioral;

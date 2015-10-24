@@ -24,16 +24,10 @@ variable hcount : integer range 0 to 262 * 1024 * 8;
 variable sync_high : integer range 0 to 1024 * 8;
 variable sync_down : integer range 0 to 1024 * 8;
 variable hpeak: integer range 0 to 1024 * 8;
-variable pixel_width: integer range 0 to 128;
+--variable pixel_width: integer range 0 to 128;
 
 begin
 	if (rising_edge(clock_pixel)) then
-		
-		--if (offset = '0') then 
-		--	pixel_width := 3;
-		--else
-			pixel_width := 3;
-		--end if;
 		
 		hblank_out <= '1';		
 		
@@ -41,7 +35,7 @@ begin
 			hpeak := hpeak + 1;
 		end if;
 		
-		if (hsync /= horsync and hpeak > pixel_width) then
+		if (hsync /= horsync and hpeak > 11) then
 		
 			horsync := hsync;
 						

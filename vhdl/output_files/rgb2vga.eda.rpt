@@ -1,5 +1,5 @@
 EDA Netlist Writer report for rgb2vga
-Sat Oct 24 00:54:30 2015
+Sat Oct 31 01:59:26 2015
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -37,7 +37,7 @@ agreement for further details.
 +-------------------------------------------------------------------+
 ; EDA Netlist Writer Summary                                        ;
 +---------------------------+---------------------------------------+
-; EDA Netlist Writer Status ; Successful - Sat Oct 24 00:54:30 2015 ;
+; EDA Netlist Writer Status ; Successful - Sat Oct 31 01:59:26 2015 ;
 ; Revision Name             ; rgb2vga                               ;
 ; Top-level Entity Name     ; coco3                                 ;
 ; Family                    ; Cyclone IV E                          ;
@@ -89,7 +89,7 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit EDA Netlist Writer
     Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
-    Info: Processing started: Sat Oct 24 00:54:28 2015
+    Info: Processing started: Sat Oct 31 01:59:24 2015
 Info: Command: quartus_eda --read_settings_files=off --write_settings_files=off rgb2vga -c rgb2vga
 Info (204019): Generated file rgb2vga_6_1200mv_85c_slow.vho in folder "C:/src/rgb2vga/vhdl/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file rgb2vga_6_1200mv_0c_slow.vho in folder "C:/src/rgb2vga/vhdl/simulation/modelsim/" for EDA simulation tool
@@ -100,8 +100,8 @@ Info (204019): Generated file rgb2vga_6_1200mv_0c_vhd_slow.sdo in folder "C:/src
 Info (204019): Generated file rgb2vga_min_1200mv_0c_vhd_fast.sdo in folder "C:/src/rgb2vga/vhdl/simulation/modelsim/" for EDA simulation tool
 Info (204019): Generated file rgb2vga_vhd.sdo in folder "C:/src/rgb2vga/vhdl/simulation/modelsim/" for EDA simulation tool
 Info: Quartus II 64-Bit EDA Netlist Writer was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 606 megabytes
-    Info: Processing ended: Sat Oct 24 00:54:30 2015
+    Info: Peak virtual memory: 607 megabytes
+    Info: Processing ended: Sat Oct 31 01:59:26 2015
     Info: Elapsed time: 00:00:02
     Info: Total CPU time (on all processors): 00:00:02
 

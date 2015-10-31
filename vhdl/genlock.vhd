@@ -8,8 +8,6 @@ entity genlock is
     port(clock_pixel : in std_logic;
 			vsync  		: in std_logic; -- digital vsync
 			hblank 		: in std_logic; -- digital hsync
-			adc_rgb	 	: in	unsigned(2 downto 0); -- analog r, g, b
-			
 			pixel_out	: out unsigned(15 downto 0); -- RRRGGGBB
 			row_number	: out unsigned(9 downto 0); 
 			col_number	: buffer unsigned(9 downto 0); 
@@ -25,7 +23,8 @@ entity genlock is
 			bright		: in std_logic;
 			digital		: in std_logic;
 			wren_pixel	: out std_logic;
-			clock_dram  : in std_logic
+			clock_sync  : in std_logic;
+			pixel_adc	: in unsigned(8 downto 0)
 );
 			
 end genlock;
@@ -35,16 +34,14 @@ architecture behavioral of genlock is
 signal vblank: 	std_logic;
 
 signal hcount, vcount							: unsigned(13 downto 0);
-signal top_border									: integer := 32;
-signal front_porch								: integer := 181;
+signal top_border									: integer := 16;
+signal front_porch								: integer := 142;
 
 signal pixel_a: unsigned(8 downto 0);
 signal pixel_d: unsigned(8 downto 0);
 signal pixel_b: unsigned(8 downto 0);
 
 signal pixel_sel: unsigned(1 downto 0);
-
-signal pixel_adc: unsigned(8 downto 0);
 
 signal artifact_mode: std_logic;
 
@@ -67,158 +64,7 @@ signal white:		unsigned(8 downto 0);
 
 signal column: 	integer range 0 to 2048;
 
-function f_adc(adc: unsigned) return unsigned;
-
-function f_adc(adc: unsigned) return unsigned is
-variable VALUE : unsigned (2 downto 0); 
-begin
-		case adc is
-		
-			when "0000000" => VALUE := "000";
-			when "0000001" => VALUE := "001";
-			when "0000011" => VALUE := "010";
-			when "0000111" => VALUE := "011";
-			when "0001111" => VALUE := "100";
-			when "0011111" => VALUE := "101";
-			when "0111111" => VALUE := "110";
-			
-			when "0000010" => VALUE := "001";
-			
-			when "0000100" => VALUE := "001";
-			when "0000101" => VALUE := "010";
-			when "0000110" => VALUE := "010";
-			
-			when "0001000" => VALUE := "001";
-			when "0001001" => VALUE := "010";
-			when "0001010" => VALUE := "010";
-			when "0001011" => VALUE := "011";
-			when "0001100" => VALUE := "010";
-			when "0001101" => VALUE := "011";
-			when "0001110" => VALUE := "011";
-			
-			when "0010000" => VALUE := "001";
-			when "0010001" => VALUE := "010";
-			when "0010010" => VALUE := "010";
-			when "0010011" => VALUE := "011";
-			when "0010100" => VALUE := "010";
-			when "0010101" => VALUE := "011";
-			when "0010110" => VALUE := "011";
-			when "0010111" => VALUE := "100";
-			when "0011000" => VALUE := "010";
-			when "0011001" => VALUE := "011";
-			when "0011010" => VALUE := "011";
-			when "0011011" => VALUE := "100";
-			when "0011100" => VALUE := "011";
-			when "0011101" => VALUE := "100";
-			when "0011110" => VALUE := "100";
-			
-			when "0100000" => VALUE := "001";
-			when "0100001" => VALUE := "010";
-			when "0100010" => VALUE := "010";
-			when "0100011" => VALUE := "011";
-			when "0100100" => VALUE := "010";
-			when "0100101" => VALUE := "011";
-			when "0100110" => VALUE := "011";
-			when "0100111" => VALUE := "100";
-			when "0101000" => VALUE := "010";
-			when "0101001" => VALUE := "011";
-			when "0101010" => VALUE := "011";
-			when "0101011" => VALUE := "100";
-			when "0101100" => VALUE := "011";
-			when "0101101" => VALUE := "100";
-			when "0101110" => VALUE := "100";
-			when "0101111" => VALUE := "101";
-			when "0110000" => VALUE := "010";
-			when "0110001" => VALUE := "011";
-			when "0110010" => VALUE := "011";
-			when "0110011" => VALUE := "100";
-			when "0110100" => VALUE := "011";
-			when "0110101" => VALUE := "100";
-			when "0110110" => VALUE := "100";
-			when "0110111" => VALUE := "101";
-			when "0111000" => VALUE := "011";
-			when "0111001" => VALUE := "100";
-			when "0111010" => VALUE := "100";
-			when "0111011" => VALUE := "101"; 
-			when "0111100" => VALUE := "100";
-			when "0111101" => VALUE := "101";
-			when "0111110" => VALUE := "101";
-			
-			when "1000000" => VALUE := "001";
-			when "1000001" => VALUE := "010";
-			when "1000010" => VALUE := "010";
-			when "1000011" => VALUE := "011";
-			when "1000100" => VALUE := "010";
-			when "1000101" => VALUE := "011";
-			when "1000110" => VALUE := "011";
-			when "1000111" => VALUE := "100";
-			when "1001000" => VALUE := "010";
-			when "1001001" => VALUE := "011";
-			when "1001010" => VALUE := "011";
-			when "1001011" => VALUE := "100";
-			when "1001100" => VALUE := "011";
-			when "1001101" => VALUE := "100";
-			when "1001110" => VALUE := "100";
-			when "1001111" => VALUE := "101";
-			when "1010000" => VALUE := "010";
-			when "1010001" => VALUE := "011";
-			when "1010010" => VALUE := "011";
-			when "1010011" => VALUE := "100";
-			when "1010100" => VALUE := "011";
-			when "1010101" => VALUE := "100";
-			when "1010110" => VALUE := "100";
-			when "1010111" => VALUE := "101";
-			when "1011000" => VALUE := "011";
-			when "1011001" => VALUE := "100";
-			when "1011010" => VALUE := "100";
-			when "1011011" => VALUE := "101";
-			when "1011100" => VALUE := "100";
-			when "1011101" => VALUE := "101";
-			when "1011110" => VALUE := "101";
-			when "1011111" => VALUE := "110";
-			when "1100000" => VALUE := "010";
-			when "1100001" => VALUE := "011";
-			when "1100010" => VALUE := "011";
-			when "1100011" => VALUE := "100";
-			when "1100100" => VALUE := "011";
-			when "1100101" => VALUE := "100";
-			when "1100110" => VALUE := "100";
-			when "1100111" => VALUE := "101";
-			when "1101000" => VALUE := "011";
-			when "1101001" => VALUE := "100";
-			when "1101010" => VALUE := "100";
-			when "1101011" => VALUE := "101";
-			when "1101100" => VALUE := "100";
-			when "1101101" => VALUE := "101";
-			when "1101110" => VALUE := "101";
-			when "1101111" => VALUE := "110";
-			when "1110000" => VALUE := "011";
-			when "1110001" => VALUE := "100";
-			when "1110010" => VALUE := "100";
-			when "1110011" => VALUE := "101";
-			when "1110100" => VALUE := "100";
-			when "1110101" => VALUE := "101";
-			when "1110110" => VALUE := "101";
-			when "1110111" => VALUE := "110";
-			when "1111000" => VALUE := "100";
-			when "1111001" => VALUE := "101";
-			when "1111010" => VALUE := "101";
-			when "1111011" => VALUE := "110";
-			when "1111100" => VALUE := "101";
-			when "1111101" => VALUE := "110";
-			when "1111110" => VALUE := "110";
-	
-			when others 	=> VALUE := "111";	
-
-		end case;
-		
-		return VALUE;
-		
-end f_adc;
-
-
 function f_lerp(pattern: unsigned) return unsigned;
-
 function f_lerp(pattern: unsigned) return unsigned is
 variable VALUE : unsigned (2 downto 0); 
 begin
@@ -743,37 +589,6 @@ end f_lerp;
 
 begin
 
-channel_red: process(clock_pixel, hcount, dac_step)
-variable red_adc: unsigned(7 downto 0);
-begin
-	if (rising_edge(clock_pixel)) then		
-		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
-		red_adc(to_integer(hcount(2 downto 0))) := adc_rgb(2);
-		pixel_adc(8 downto 6) <= f_adc(red_adc(6 downto 0));
-	end if;
-
-end process;
-
-channel_green: process(clock_pixel, hcount, dac_step)
-variable green_adc: unsigned(7 downto 0);
-begin
-	if (rising_edge(clock_pixel)) then		
-		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
-		green_adc(to_integer(hcount(2 downto 0))) := adc_rgb(1);
-		pixel_adc(5 downto 3) <= f_adc(green_adc(6 downto 0));
-	end if;
-end process;
-
-channel_blue: process(clock_pixel, hcount, dac_step)
-variable blue_adc: unsigned(7 downto 0);
-begin
-	if (rising_edge(clock_pixel)) then		
-		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = dac_step); 
-		blue_adc(to_integer(hcount(2 downto 0))) := adc_rgb(0);
-		pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 0)); 
-	end if;
-end process;
-
 hraster: process (clock_pixel, hblank, vblank)
 begin
 	if (hblank = '0' or vblank = '0') then
@@ -789,9 +604,7 @@ begin
 		column <= 0;
 	elsif (rising_edge(clock_pixel)) then
 		if (hcount(2 downto 0) = "111") then
-			if (shrink = '1' or hcount(5 downto 3) /= "111") then
-				column <= column + 1;
-			end if;
+			column <= column + 1;
 		end if;		
 	end if;		
 end process;
@@ -848,37 +661,19 @@ end process;
 
 process_b: process--(clock_pixel, hcount, dac_step, col_number)
 variable a_pixel: unsigned(8 downto 0);
-variable p_pixel: unsigned(8 downto 0);
-variable n_pixel: unsigned(8 downto 0);
 begin
 
-	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); 
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); -- and hcount(2 downto 0) = dac_step(3 downto 1)); 
 --if (rising_edge(clock_pixel)) then
 
-	--if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
-	--if (hcount(2 downto 0) = dac_step(2 downto 0)) then
-	--if (hcount(2 downto 0) = "111") then
-		
 		if (to_integer(pixel_adc(5 downto 3)) > 4) then
 			a_pixel := "111111111"; 
 		else
 			a_pixel := "000000000";
 		end if;
 		
-		if (shrink = '0') then
-			n_pixel(8 downto 6) := f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
-			n_pixel(5 downto 3) := f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
-			n_pixel(2 downto 0) := f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));	
-		else				
-			n_pixel := a_pixel;
-		end if;		
-		
-		pixel_b <= n_pixel;
-		
-		p_pixel := a_pixel;	
+		pixel_b <= a_pixel;
 	
-	--end if;
-
 --end if;
 		
 end process;
@@ -890,13 +685,9 @@ variable p_pixel: unsigned(8 downto 0);
 variable n_pixel: unsigned(8 downto 0);
 begin
 
-	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); 
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); -- and hcount(2 downto 0) = dac_step(3 downto 1)); 
 
 --if (rising_edge(clock_pixel)) then
-
-	--if (hcount(2 downto 0) = dac_step(2 downto 0)) then
-	--if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
-	--if (hcount(2 downto 0) = "111") then
 
 		--wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "100" and dac_step(2 downto 0) = "100"); 
 			
@@ -1024,36 +815,24 @@ begin
 							end case;
 					end if;
 				end if;			
-				
-				if (shrink = '0') then
-					n_pixel(8 downto 6) := f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & a_pixel(8 downto 6));
-					n_pixel(5 downto 3) := f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & a_pixel(5 downto 3));
-					n_pixel(2 downto 0) := f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & a_pixel(2 downto 0));						
-					n_pixel(0) := '0';
-				else				
 
-					if (p_pixel = "000000000" or p_pixel = "111111111") then
-						n_pixel(8 downto 6) := f_lerp("010" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
-						n_pixel(5 downto 3) := f_lerp("010" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
-						n_pixel(2 downto 0) := f_lerp("010" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
-					elsif (a_pixel = "000000000" or a_pixel = "111111111") then
-						n_pixel(8 downto 6) := f_lerp("101" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
-						n_pixel(5 downto 3) := f_lerp("101" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
-						n_pixel(2 downto 0) := f_lerp("101" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
-					else					
-						n_pixel(8 downto 6) := f_lerp("100" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
-						n_pixel(5 downto 3) := f_lerp("100" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
-						n_pixel(2 downto 0) := f_lerp("100" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
-					end if;
-
-
+				if (p_pixel = "000000000" or p_pixel = "111111111") then
+					n_pixel(8 downto 6) := f_lerp("010" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+					n_pixel(5 downto 3) := f_lerp("010" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+					n_pixel(2 downto 0) := f_lerp("010" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
+				elsif (a_pixel = "000000000" or a_pixel = "111111111") then
+					n_pixel(8 downto 6) := f_lerp("101" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+					n_pixel(5 downto 3) := f_lerp("101" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+					n_pixel(2 downto 0) := f_lerp("101" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
+				else					
+					n_pixel(8 downto 6) := f_lerp("100" & p_pixel(8 downto 6) & a_pixel(8 downto 6));
+					n_pixel(5 downto 3) := f_lerp("100" & p_pixel(5 downto 3) & a_pixel(5 downto 3));
+					n_pixel(2 downto 0) := f_lerp("100" & p_pixel(2 downto 0) & a_pixel(2 downto 0));					
 				end if;
 
 				pixel_d <= n_pixel;
 				
 				p_pixel := a_pixel;			
-				
-		--end if;
 	
 --end if;				
 				
@@ -1061,16 +840,12 @@ end process;
 
 process_a: process --(clock_pixel, hcount, dac_step, col_number)
 variable c_pixel: unsigned(8 downto 0);
-variable p_pixel: unsigned(8 downto 0);
-variable n_pixel: unsigned(8 downto 0);
 variable col: integer;
 begin
 
-	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); 
+	wait until (clock_pixel'event and clock_pixel='1' and hcount(2 downto 0) = "111"); -- and hcount(2 downto 0) = dac_step(3 downto 1)); 
 --if (rising_edge(clock_pixel)) then
 
-	--if (hcount(2 downto 0) = "111" and dac_step(2 downto 0) = "111") then
-	--if (hcount(2 downto 0) = dac_step(2 downto 0)) then
 	--if (hcount(2 downto 0) = "111") then
 
 		c_pixel := pixel_adc;
@@ -1092,18 +867,8 @@ begin
 			c_pixel := c_pixel and '1'&bright&'1' & '1'&bright&'1' & '1'&bright&'1';
 			
 		end if;
-		
-		if (shrink = '0') then
-			n_pixel(8 downto 6) := f_lerp(hcount(5 downto 3) & p_pixel(8 downto 6) & c_pixel(8 downto 6));
-			n_pixel(5 downto 3) := f_lerp(hcount(5 downto 3) & p_pixel(5 downto 3) & c_pixel(5 downto 3));
-			n_pixel(2 downto 0) := f_lerp(hcount(5 downto 3) & p_pixel(2 downto 0) & c_pixel(2 downto 0));		
-		else
-			n_pixel := c_pixel;
-		end if;
 
-		pixel_a <= n_pixel;
-
-		p_pixel := c_pixel;
+		pixel_a <= c_pixel;
 
 		--end if;
 	
@@ -1118,7 +883,7 @@ begin
 		
 		wren_pixel <= '0';
 		
-		if (column >= front_porch and column < 641+front_porch and vcount >= top_border and vcount < top_border+241) then
+		if (column >= front_porch and column < 1023+front_porch and vcount >= top_border and vcount < top_border+241) then
 			-- user active window
 			col := column - front_porch;
 			row := to_integer(vcount) - top_border;					
@@ -1195,11 +960,11 @@ begin
 end process;
 
 
-store_row: process(clock_dram, hblank, store_ack)
+store_row: process(clock_pixel, hblank, store_ack)
 begin	
 	if (store_ack = '1') then -- store_ack is asynchronous
 			store_req <= '0';
-	elsif (rising_edge(clock_dram)) then
+	elsif (rising_edge(clock_pixel)) then
 		if (hblank = '0') then
 			store_req <= '1'; -- store_req is on clock_pixel
 		end if;
@@ -1209,15 +974,7 @@ end process;
 mode_change: process(clock_pixel)
 begin
 	if (rising_edge(clock_pixel)) then
-		if (shrink = '0') then
-			front_porch <= 128;
-		elsif (apple2 = '0') then
-			front_porch <= 208;
-		elsif (offset = '0') then
-			front_porch <= 208;
-		else
-			front_porch <= 182;
-		end if;			
+		front_porch  <= 144;
 	end if;	
 end process;
 

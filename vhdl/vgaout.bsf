@@ -4,19 +4,20 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2013 Altera Corporation
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
 to the terms and conditions of the Altera Program License 
-Subscription Agreement, Altera MegaCore Function License 
-Agreement, or other applicable license agreement, including, 
-without limitation, that your use is for the sole purpose of 
-programming logic devices manufactured by Altera and sold by 
-Altera or its authorized distributors.  Please refer to the 
-applicable agreement for further details.
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
@@ -95,42 +96,42 @@ applicable agreement for further details.
 	)
 	(parameter
 		"hor_active_video"
-		"640"
+		"800"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"hor_front_porch"
-		"16"
+		"40"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"hor_sync_pulse"
-		"96"
+		"128"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"hor_back_porch"
-		"48"
+		"88"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"vert_active_video"
-		"480"
+		"600"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"vert_front_porch"
-		"10"
+		"1"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"vert_sync_pulse"
-		"2"
+		"4"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(parameter
 		"vert_back_porch"
-		"33"
+		"23"
 		""
 		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing

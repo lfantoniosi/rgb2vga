@@ -147,7 +147,6 @@ set_global_assignment -name TIMEQUEST_DO_REPORT_TIMING ON
 set_global_assignment -name TIMEQUEST_DO_CCPP_REMOVAL ON
 set_global_assignment -name SDC_FILE rgb2vga.out.sdc
 set_global_assignment -name VHDL_FILE vgaout.vhd
-set_global_assignment -name VHDL_FILE ram.vhd
 set_global_assignment -name VHDL_FILE sdram.vhd
 set_global_assignment -name QIP_FILE altiobuf.qip
 set_global_assignment -name QIP_FILE ram2.qip
@@ -164,9 +163,6 @@ set_global_assignment -name CDF_FILE output_files/rgb2vga.cdf
 set_global_assignment -name BDF_FILE coco3.bdf
 set_location_assignment PIN_R10 -to VGAB2
 set_location_assignment PIN_B4 -to BRIGHT
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D0
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D1
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D2
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFB
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFBn
 set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFG
@@ -206,4 +202,14 @@ set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to BRIGHT
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
+set_global_assignment -name ECO_OPTIMIZE_TIMING OFF
+set_instance_assignment -name IO_STANDARD "2.5 V" -to D0
+set_instance_assignment -name IO_STANDARD "2.5 V" -to D1
+set_instance_assignment -name IO_STANDARD "2.5 V" -to D2
+set_global_assignment -name VHDL_FILE adc.vhd
+set_global_assignment -name VHDL_FILE counter.vhd
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to CLOCK_50
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D0
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D1
+set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D2
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

@@ -4,19 +4,20 @@ editor if you plan to continue editing the block that represents it in
 the Block Editor! File corruption is VERY likely to occur.
 */
 /*
-Copyright (C) 1991-2013 Altera Corporation
+Copyright (C) 1991-2015 Altera Corporation. All rights reserved.
 Your use of Altera Corporation's design tools, logic functions 
 and other software and tools, and its AMPP partner logic 
 functions, and any output files from any of the foregoing 
 (including device programming or simulation files), and any 
 associated documentation or information are expressly subject 
 to the terms and conditions of the Altera Program License 
-Subscription Agreement, Altera MegaCore Function License 
-Agreement, or other applicable license agreement, including, 
-without limitation, that your use is for the sole purpose of 
-programming logic devices manufactured by Altera and sold by 
-Altera or its authorized distributors.  Please refer to the 
-applicable agreement for further details.
+Subscription Agreement, the Altera Quartus II License Agreement,
+the Altera MegaCore Function License Agreement, or other 
+applicable license agreement, including, without limitation, 
+that your use is for the sole purpose of programming logic 
+devices manufactured by Altera and sold by Altera or its 
+authorized distributors.  Please refer to the applicable 
+agreement for further details.
 */
 (header "symbol" (version "1.1"))
 (symbol
@@ -47,86 +48,86 @@ applicable agreement for further details.
 	(port
 		(pt 0 80)
 		(input)
-		(text "adc_rgb[2..0]" (rect 0 0 53 12)(font "Arial" ))
-		(text "adc_rgb[2..0]" (rect 21 75 74 87)(font "Arial" ))
-		(line (pt 0 80)(pt 16 80)(line_width 3))
+		(text "store_ack" (rect 0 0 40 12)(font "Arial" ))
+		(text "store_ack" (rect 21 75 61 87)(font "Arial" ))
+		(line (pt 0 80)(pt 16 80)(line_width 1))
 	)
 	(port
 		(pt 0 96)
 		(input)
-		(text "store_ack" (rect 0 0 40 12)(font "Arial" ))
-		(text "store_ack" (rect 21 91 61 103)(font "Arial" ))
+		(text "artifact" (rect 0 0 27 12)(font "Arial" ))
+		(text "artifact" (rect 21 91 48 103)(font "Arial" ))
 		(line (pt 0 96)(pt 16 96)(line_width 1))
 	)
 	(port
 		(pt 0 112)
 		(input)
-		(text "artifact" (rect 0 0 27 12)(font "Arial" ))
-		(text "artifact" (rect 21 107 48 119)(font "Arial" ))
+		(text "mode" (rect 0 0 22 12)(font "Arial" ))
+		(text "mode" (rect 21 107 43 119)(font "Arial" ))
 		(line (pt 0 112)(pt 16 112)(line_width 1))
 	)
 	(port
 		(pt 0 128)
 		(input)
-		(text "mode" (rect 0 0 22 12)(font "Arial" ))
-		(text "mode" (rect 21 123 43 135)(font "Arial" ))
+		(text "sync_level" (rect 0 0 43 12)(font "Arial" ))
+		(text "sync_level" (rect 21 123 64 135)(font "Arial" ))
 		(line (pt 0 128)(pt 16 128)(line_width 1))
 	)
 	(port
 		(pt 0 144)
 		(input)
-		(text "sync_level" (rect 0 0 43 12)(font "Arial" ))
-		(text "sync_level" (rect 21 139 64 151)(font "Arial" ))
+		(text "apple2" (rect 0 0 24 12)(font "Arial" ))
+		(text "apple2" (rect 21 139 45 151)(font "Arial" ))
 		(line (pt 0 144)(pt 16 144)(line_width 1))
 	)
 	(port
 		(pt 0 160)
 		(input)
-		(text "apple2" (rect 0 0 24 12)(font "Arial" ))
-		(text "apple2" (rect 21 155 45 167)(font "Arial" ))
+		(text "shrink" (rect 0 0 23 12)(font "Arial" ))
+		(text "shrink" (rect 21 155 44 167)(font "Arial" ))
 		(line (pt 0 160)(pt 16 160)(line_width 1))
 	)
 	(port
 		(pt 0 176)
 		(input)
-		(text "shrink" (rect 0 0 23 12)(font "Arial" ))
-		(text "shrink" (rect 21 171 44 183)(font "Arial" ))
+		(text "offset" (rect 0 0 23 12)(font "Arial" ))
+		(text "offset" (rect 21 171 44 183)(font "Arial" ))
 		(line (pt 0 176)(pt 16 176)(line_width 1))
 	)
 	(port
 		(pt 0 192)
 		(input)
-		(text "offset" (rect 0 0 23 12)(font "Arial" ))
-		(text "offset" (rect 21 187 44 199)(font "Arial" ))
-		(line (pt 0 192)(pt 16 192)(line_width 1))
+		(text "dac_step[2..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "dac_step[2..0]" (rect 21 187 77 199)(font "Arial" ))
+		(line (pt 0 192)(pt 16 192)(line_width 3))
 	)
 	(port
 		(pt 0 208)
 		(input)
-		(text "dac_step[2..0]" (rect 0 0 56 12)(font "Arial" ))
-		(text "dac_step[2..0]" (rect 21 203 77 215)(font "Arial" ))
-		(line (pt 0 208)(pt 16 208)(line_width 3))
+		(text "bright" (rect 0 0 21 12)(font "Arial" ))
+		(text "bright" (rect 21 203 42 215)(font "Arial" ))
+		(line (pt 0 208)(pt 16 208)(line_width 1))
 	)
 	(port
 		(pt 0 224)
 		(input)
-		(text "bright" (rect 0 0 21 12)(font "Arial" ))
-		(text "bright" (rect 21 219 42 231)(font "Arial" ))
+		(text "digital" (rect 0 0 20 12)(font "Arial" ))
+		(text "digital" (rect 21 219 41 231)(font "Arial" ))
 		(line (pt 0 224)(pt 16 224)(line_width 1))
 	)
 	(port
 		(pt 0 240)
 		(input)
-		(text "digital" (rect 0 0 20 12)(font "Arial" ))
-		(text "digital" (rect 21 235 41 247)(font "Arial" ))
+		(text "clock_sync" (rect 0 0 46 12)(font "Arial" ))
+		(text "clock_sync" (rect 21 235 67 247)(font "Arial" ))
 		(line (pt 0 240)(pt 16 240)(line_width 1))
 	)
 	(port
 		(pt 0 256)
 		(input)
-		(text "clock_dram" (rect 0 0 47 12)(font "Arial" ))
-		(text "clock_dram" (rect 21 251 68 263)(font "Arial" ))
-		(line (pt 0 256)(pt 16 256)(line_width 1))
+		(text "pixel_adc[8..0]" (rect 0 0 56 12)(font "Arial" ))
+		(text "pixel_adc[8..0]" (rect 21 251 77 263)(font "Arial" ))
+		(line (pt 0 256)(pt 16 256)(line_width 3))
 	)
 	(port
 		(pt 232 32)

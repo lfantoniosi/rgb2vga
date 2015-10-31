@@ -8,10 +8,6 @@ use IEEE.std_logic_1164.all;
 use IEEE.numeric_std.all;
 
 entity sdram is
-	generic(
-		page0 : integer := 512;
-		page1	: integer := 128
-	);
 
 	port(
 		clk			 : in std_logic; 
@@ -200,14 +196,14 @@ begin
 						wren_sdr <= '1';
 						SdrAddress := SdrAddress + 1;											
 						SdrRoutineSeq := SdrRoutineSeq + 1;						
-					elsif( SdrRoutineSeq > 7 and SdrRoutineSeq < 8+page0 ) then
+					elsif( SdrRoutineSeq > 7 and SdrRoutineSeq < 8+360 ) then
 						SdrCmd <= SdrCmd_xx;						
 						colLoadNr <= colLoadNr + 1;
 						pixelOut <= pMemDat;						
 						wren_sdr <= '1';
 						SdrAddress := SdrAddress + 1;											
 						SdrRoutineSeq := SdrRoutineSeq + 1;											
-					elsif( SdrRoutineSeq = 8+page0) then					
+					elsif( SdrRoutineSeq = 8+360) then					
 						SdrCmd <= SdrCmd_bs; 	
 						--rowLoadAck <= '1'; 						
 						SdrRoutineSeq := SdrRoutineSeq + 1;											
@@ -215,39 +211,39 @@ begin
 						SdrAddress(18 downto 9) := curRow;
 						SdrAddress(8 downto 0) := "000000000";		
 						
-					elsif( SdrRoutineSeq = 9+page0 ) then
+					elsif( SdrRoutineSeq = 9+360 ) then
 						SdrCmd <= SdrCmd_ac;
 						SdrBa0 <= SdrAddress(22);
 						SdrBa1 <= '1';
 						SdrAdr <= SdrAddress(21 downto 9);	
-						colLoadNr <= to_unsigned(page0+1, colLoadNr'length);					
+						colLoadNr <= to_unsigned(360+1, colLoadNr'length);					
 						SdrRoutineSeq := SdrRoutineSeq + 1;									
-					elsif( SdrRoutineSeq = 11+page0) then
+					elsif( SdrRoutineSeq = 11+360) then
 						SdrCmd <= SdrCmd_rd;
 						SdrUdq <= '0';
 						SdrLdq <= '0';
 						SdrAdr(12 downto 9) <= "0010";
 						SdrAdr(8 downto 0) <= SdrAddress(8 downto 0);						
 						SdrRoutineSeq := SdrRoutineSeq + 1;		
-					elsif( SdrRoutineSeq = 16+page0) then
+					elsif( SdrRoutineSeq = 16+360) then
 						SdrCmd <= SdrCmd_xx;										
 						pixelOut <= pMemDat;	
 						colLoadNr <= colLoadNr + 1;	
 						wren_sdr <= '1';				
 						SdrAddress := SdrAddress + 1;											
 						SdrRoutineSeq := SdrRoutineSeq + 1;								
-					elsif( SdrRoutineSeq > 17+page0 and SdrRoutineSeq < 17+page0+page1 ) then
+					elsif( SdrRoutineSeq > 17+360 and SdrRoutineSeq < 17+360+360 ) then
 						SdrCmd <= SdrCmd_xx;						
 						colLoadNr <= colLoadNr + 1;
 						pixelOut <= pMemDat;		
 						wren_sdr <= '1';				
 						SdrAddress := SdrAddress + 1;											
 						SdrRoutineSeq := SdrRoutineSeq + 1;		
-					elsif( SdrRoutineSeq = 17+page0+page1  ) then	
+					elsif( SdrRoutineSeq = 17+360+360  ) then	
 						SdrCmd <= SdrCmd_bs;	
 						rowLoadAck <= '1'; 					
 						SdrRoutineSeq := SdrRoutineSeq + 1;	
-					elsif( SdrRoutineSeq = 18+page0+page1  ) then
+					elsif( SdrRoutineSeq = 18+360+360  ) then
 						SdrCmd <= SdrCmd_xx;						
 						SdrRoutineSeq := 0;
 						SdrRoutine := SdrRoutine_Idle;						
@@ -275,13 +271,13 @@ begin
 						colStoreNr <= colStoreNr + 1;
 						SdrAddress := SdrAddress + 1;						
 						SdrRoutineSeq := SdrRoutineSeq + 1;
-					elsif( SdrRoutineSeq >= 3 and SdrRoutineSeq < 4+page0) then
+					elsif( SdrRoutineSeq >= 3 and SdrRoutineSeq < 4+360) then
 						SdrCmd <= SdrCmd_xx;
 						SdrDat <= pixelIn;					
 						SdrAddress := SdrAddress + 1;						
 						colStoreNr <= colStoreNr + 1;
 						SdrRoutineSeq := SdrRoutineSeq + 1;
-					elsif( SdrRoutineSeq = 4+page0) then
+					elsif( SdrRoutineSeq = 4+360) then
 						SdrCmd <= SdrCmd_bs;
 						SdrDat <= (others => 'Z');			
 						--rowStoreAck <= '1';				
@@ -290,14 +286,14 @@ begin
 						SdrAddress(18 downto 9) := curRow;
 						SdrAddress(8 downto 0) := "000000000";
 						
-					elsif( SdrRoutineSeq = 5+page0) then
+					elsif( SdrRoutineSeq = 5+360) then
 						SdrCmd <= SdrCmd_ac;
 						SdrBa0 <= SdrAddress(22);
 						SdrBa1 <= '1';
 						SdrAdr <= SdrAddress(21 downto 9);
-						colStoreNr <= to_unsigned(page0, colStoreNr'length);						
+						colStoreNr <= to_unsigned(360, colStoreNr'length);						
 						SdrRoutineSeq := SdrRoutineSeq + 1;
-					elsif( SdrRoutineSeq = 7+page0 ) then
+					elsif( SdrRoutineSeq = 7+360 ) then
 						SdrCmd <= SdrCmd_wr;
 						SdrAdr(12 downto 9) <= "0010";
 						SdrAdr(8 downto 0) <= SdrAddress(8 downto 0);
@@ -307,18 +303,18 @@ begin
 						SdrAddress := SdrAddress + 1;						
 						colStoreNr <= colStoreNr + 1;						
 						SdrRoutineSeq := SdrRoutineSeq + 1;					
-					elsif( SdrRoutineSeq >= 8+page0 and SdrRoutineSeq < 8+page0+page1) then
+					elsif( SdrRoutineSeq >= 8+360 and SdrRoutineSeq < 8+360+360) then
 						SdrCmd <= SdrCmd_xx;
 						SdrDat <= pixelIn;					
 						SdrAddress := SdrAddress + 1;						
 						colStoreNr <= colStoreNr + 1;
 						SdrRoutineSeq := SdrRoutineSeq + 1;
-					elsif( SdrRoutineSeq = 8+page0+page1) then
+					elsif( SdrRoutineSeq = 8+360+360) then
 						SdrCmd <= SdrCmd_bs;
 						SdrDat <= (others => 'Z');
 						rowStoreAck <= '1';					
 						SdrRoutineSeq := SdrRoutineSeq + 1;							
-					elsif( SdrRoutineSeq = 9+page0+page1 ) then		
+					elsif( SdrRoutineSeq = 9+360+360 ) then		
 						SdrCmd <= SdrCmd_xx;
 						SdrRoutineSeq := 0;
 						SdrRoutine := SdrRoutine_Idle;

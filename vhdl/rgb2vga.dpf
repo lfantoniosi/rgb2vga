@@ -2,17 +2,17 @@
 
 <pin_planner>
 	<pin_info>
-		<pin name="DIFFB" direction="Input" source="Hierarchy Database" diff_pair_node="DIFFBn" >
+		<pin name="DIFFB" direction="Input" source="Hierarchy Database" >
 		</pin>
-		<pin name="DIFFBn" direction="Input" source="Hierarchy Database" diff_pair_node="DIFFB" >
+		<pin name="DIFFBn" direction="Input" source="Hierarchy Database" >
 		</pin>
-		<pin name="DIFFG" direction="Input" source="Hierarchy Database" diff_pair_node="DIFFGn" >
+		<pin name="DIFFG" direction="Input" source="Hierarchy Database" >
 		</pin>
-		<pin name="DIFFGn" direction="Input" source="Hierarchy Database" diff_pair_node="DIFFG" >
+		<pin name="DIFFGn" direction="Input" source="Hierarchy Database" >
 		</pin>
-		<pin name="DIFFR" direction="Input" source="Hierarchy Database" diff_pair_node="DIFFRn" >
+		<pin name="DIFFR" direction="Input" source="Hierarchy Database" >
 		</pin>
-		<pin name="DIFFRn" direction="Input" source="Hierarchy Database" diff_pair_node="DIFFR" >
+		<pin name="DIFFRn" direction="Input" source="Hierarchy Database" >
 		</pin>
 	</pin_info>
 	<buses>

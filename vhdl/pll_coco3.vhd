@@ -152,16 +152,16 @@ BEGIN
 		bandwidth_type => "AUTO",
 		clk0_divide_by => 55,
 		clk0_duty_cycle => 50,
-		clk0_multiply_by => 126,
+		clk0_multiply_by => 252,
 		clk0_phase_shift => "0",
-		clk1_divide_by => 125,
+		clk1_divide_by => 55,
 		clk1_duty_cycle => 50,
-		clk1_multiply_by => 63,
-		clk1_phase_shift => "0",
-		clk2_divide_by => 55,
+		clk1_multiply_by => 126,
+		clk1_phase_shift => "1091",
+		clk2_divide_by => 69,
 		clk2_duty_cycle => 50,
-		clk2_multiply_by => 126,
-		clk2_phase_shift => "1091",
+		clk2_multiply_by => 55,
+		clk2_phase_shift => "0",
 		compensate_clock => "CLK0",
 		inclk0_input_frequency => 20000,
 		intended_device_family => "Cyclone IV E",
@@ -241,14 +241,14 @@ END SYN;
 -- Retrieval info: PRIVATE: CUR_FBIN_CLK STRING "c0"
 -- Retrieval info: PRIVATE: DEVICE_SPEED_GRADE STRING "6"
 -- Retrieval info: PRIVATE: DIV_FACTOR0 NUMERIC "55"
--- Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "125"
--- Retrieval info: PRIVATE: DIV_FACTOR2 NUMERIC "55"
+-- Retrieval info: PRIVATE: DIV_FACTOR1 NUMERIC "55"
+-- Retrieval info: PRIVATE: DIV_FACTOR2 NUMERIC "69"
 -- Retrieval info: PRIVATE: DUTY_CYCLE0 STRING "50.00000000"
 -- Retrieval info: PRIVATE: DUTY_CYCLE1 STRING "50.00000000"
 -- Retrieval info: PRIVATE: DUTY_CYCLE2 STRING "50.00000000"
--- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "114.545456"
--- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "25.200001"
--- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE2 STRING "114.545456"
+-- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE0 STRING "229.090912"
+-- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE1 STRING "114.545456"
+-- Retrieval info: PRIVATE: EFF_OUTPUT_FREQ_VALUE2 STRING "39.855072"
 -- Retrieval info: PRIVATE: EXPLICIT_SWITCHOVER_COUNTER STRING "0"
 -- Retrieval info: PRIVATE: EXT_FEEDBACK_RADIO STRING "0"
 -- Retrieval info: PRIVATE: GLOCKED_COUNTER_EDIT_CHANGED STRING "1"
@@ -270,18 +270,18 @@ END SYN;
 -- Retrieval info: PRIVATE: LVDS_MODE_DATA_RATE_DIRTY NUMERIC "0"
 -- Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT0 STRING "deg"
 -- Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT1 STRING "deg"
--- Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT2 STRING "ps"
+-- Retrieval info: PRIVATE: LVDS_PHASE_SHIFT_UNIT2 STRING "deg"
 -- Retrieval info: PRIVATE: MIG_DEVICE_SPEED_GRADE STRING "Any"
 -- Retrieval info: PRIVATE: MIRROR_CLK0 STRING "0"
 -- Retrieval info: PRIVATE: MIRROR_CLK1 STRING "0"
 -- Retrieval info: PRIVATE: MIRROR_CLK2 STRING "0"
--- Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "126"
--- Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "63"
--- Retrieval info: PRIVATE: MULT_FACTOR2 NUMERIC "126"
+-- Retrieval info: PRIVATE: MULT_FACTOR0 NUMERIC "252"
+-- Retrieval info: PRIVATE: MULT_FACTOR1 NUMERIC "126"
+-- Retrieval info: PRIVATE: MULT_FACTOR2 NUMERIC "55"
 -- Retrieval info: PRIVATE: NORMAL_MODE_RADIO STRING "1"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ0 STRING "100.00000000"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ1 STRING "100.00000000"
--- Retrieval info: PRIVATE: OUTPUT_FREQ2 STRING "100.00000000"
+-- Retrieval info: PRIVATE: OUTPUT_FREQ2 STRING "40.00000000"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_MODE0 STRING "0"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_MODE1 STRING "0"
 -- Retrieval info: PRIVATE: OUTPUT_FREQ_MODE2 STRING "0"
@@ -291,8 +291,8 @@ END SYN;
 -- Retrieval info: PRIVATE: PHASE_RECONFIG_FEATURE_ENABLED STRING "1"
 -- Retrieval info: PRIVATE: PHASE_RECONFIG_INPUTS_CHECK STRING "0"
 -- Retrieval info: PRIVATE: PHASE_SHIFT0 STRING "0.00000000"
--- Retrieval info: PRIVATE: PHASE_SHIFT1 STRING "0.00000000"
--- Retrieval info: PRIVATE: PHASE_SHIFT2 STRING "45.00000000"
+-- Retrieval info: PRIVATE: PHASE_SHIFT1 STRING "45.00000000"
+-- Retrieval info: PRIVATE: PHASE_SHIFT2 STRING "0.00000000"
 -- Retrieval info: PRIVATE: PHASE_SHIFT_STEP_ENABLED_CHECK STRING "0"
 -- Retrieval info: PRIVATE: PHASE_SHIFT_UNIT0 STRING "deg"
 -- Retrieval info: PRIVATE: PHASE_SHIFT_UNIT1 STRING "deg"
@@ -336,16 +336,16 @@ END SYN;
 -- Retrieval info: CONSTANT: BANDWIDTH_TYPE STRING "AUTO"
 -- Retrieval info: CONSTANT: CLK0_DIVIDE_BY NUMERIC "55"
 -- Retrieval info: CONSTANT: CLK0_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "126"
+-- Retrieval info: CONSTANT: CLK0_MULTIPLY_BY NUMERIC "252"
 -- Retrieval info: CONSTANT: CLK0_PHASE_SHIFT STRING "0"
--- Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "125"
+-- Retrieval info: CONSTANT: CLK1_DIVIDE_BY NUMERIC "55"
 -- Retrieval info: CONSTANT: CLK1_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "63"
--- Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "0"
--- Retrieval info: CONSTANT: CLK2_DIVIDE_BY NUMERIC "55"
+-- Retrieval info: CONSTANT: CLK1_MULTIPLY_BY NUMERIC "126"
+-- Retrieval info: CONSTANT: CLK1_PHASE_SHIFT STRING "1091"
+-- Retrieval info: CONSTANT: CLK2_DIVIDE_BY NUMERIC "69"
 -- Retrieval info: CONSTANT: CLK2_DUTY_CYCLE NUMERIC "50"
--- Retrieval info: CONSTANT: CLK2_MULTIPLY_BY NUMERIC "126"
--- Retrieval info: CONSTANT: CLK2_PHASE_SHIFT STRING "1091"
+-- Retrieval info: CONSTANT: CLK2_MULTIPLY_BY NUMERIC "55"
+-- Retrieval info: CONSTANT: CLK2_PHASE_SHIFT STRING "0"
 -- Retrieval info: CONSTANT: COMPENSATE_CLOCK STRING "CLK0"
 -- Retrieval info: CONSTANT: INCLK0_INPUT_FREQUENCY NUMERIC "20000"
 -- Retrieval info: CONSTANT: INTENDED_DEVICE_FAMILY STRING "Cyclone IV E"
@@ -410,6 +410,6 @@ END SYN;
 -- Retrieval info: GEN_FILE: TYPE_NORMAL pll_coco3.inc FALSE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL pll_coco3.cmp TRUE
 -- Retrieval info: GEN_FILE: TYPE_NORMAL pll_coco3.bsf TRUE
--- Retrieval info: GEN_FILE: TYPE_NORMAL pll_coco3_inst.vhd FALSE
+-- Retrieval info: GEN_FILE: TYPE_NORMAL pll_coco3_inst.vhd TRUE
 -- Retrieval info: LIB_FILE: altera_mf
 -- Retrieval info: CBX_MODULE_PREFIX: ON

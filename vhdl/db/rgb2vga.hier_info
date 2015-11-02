@@ -1,6 +1,7 @@
 |coco3
 DRAM_CLK <= sdram:inst1.pMemClk
 CLOCK_50 => pll_coco3:pll_inst.inclk0
+CLOCK_50 => pll_svga:pll_svga.inclk0
 VSYNC => genlock:inst4.vsync
 HSYNC => input_detect:input_detect.hsync
 FP6 => input_detect:input_detect.offset
@@ -459,7 +460,6 @@ wren_sdr <= wren_sdr~reg0.DB_MAX_OUTPUT_PORT_TYPE
 inclk0 => altpll:altpll_component.inclk[0]
 c0 <= altpll:altpll_component.clk[0]
 c1 <= altpll:altpll_component.clk[1]
-c2 <= altpll:altpll_component.clk[2]
 
 
 |coco3|pll_coco3:pll_inst|altpll:altpll_component
@@ -1025,10 +1025,6 @@ clock_pixel => \horizontal:hpeak[10].CLK
 clock_pixel => \horizontal:hpeak[11].CLK
 clock_pixel => \horizontal:hpeak[12].CLK
 clock_pixel => \horizontal:hpeak[13].CLK
-clock_pixel => \horizontal:hblank_pulse[0].CLK
-clock_pixel => \horizontal:hblank_pulse[1].CLK
-clock_pixel => \horizontal:hblank_pulse[2].CLK
-clock_pixel => \horizontal:hblank_pulse[3].CLK
 hsync => horizontal.IN1
 hsync => horizontal.IN0
 hsync => \horizontal:horsync.DATAIN
@@ -1330,6 +1326,81 @@ video_active => vga_out.OUTPUTSELECT
 video_active => vga_out.OUTPUTSELECT
 video_active => vga_out.OUTPUTSELECT
 video_active => vga_out.OUTPUTSELECT
+
+
+|coco3|pll_svga:pll_svga
+inclk0 => altpll:altpll_component.inclk[0]
+c0 <= altpll:altpll_component.clk[0]
+
+
+|coco3|pll_svga:pll_svga|altpll:altpll_component
+inclk[0] => pll_svga_altpll:auto_generated.inclk[0]
+inclk[1] => pll_svga_altpll:auto_generated.inclk[1]
+fbin => ~NO_FANOUT~
+pllena => ~NO_FANOUT~
+clkswitch => ~NO_FANOUT~
+areset => ~NO_FANOUT~
+pfdena => ~NO_FANOUT~
+clkena[0] => ~NO_FANOUT~
+clkena[1] => ~NO_FANOUT~
+clkena[2] => ~NO_FANOUT~
+clkena[3] => ~NO_FANOUT~
+clkena[4] => ~NO_FANOUT~
+clkena[5] => ~NO_FANOUT~
+extclkena[0] => ~NO_FANOUT~
+extclkena[1] => ~NO_FANOUT~
+extclkena[2] => ~NO_FANOUT~
+extclkena[3] => ~NO_FANOUT~
+scanclk => ~NO_FANOUT~
+scanclkena => ~NO_FANOUT~
+scanaclr => ~NO_FANOUT~
+scanread => ~NO_FANOUT~
+scanwrite => ~NO_FANOUT~
+scandata => ~NO_FANOUT~
+phasecounterselect[0] => ~NO_FANOUT~
+phasecounterselect[1] => ~NO_FANOUT~
+phasecounterselect[2] => ~NO_FANOUT~
+phasecounterselect[3] => ~NO_FANOUT~
+phaseupdown => ~NO_FANOUT~
+phasestep => ~NO_FANOUT~
+configupdate => ~NO_FANOUT~
+fbmimicbidir <> <GND>
+clk[0] <= clk[0].DB_MAX_OUTPUT_PORT_TYPE
+clk[1] <= clk[1].DB_MAX_OUTPUT_PORT_TYPE
+clk[2] <= clk[2].DB_MAX_OUTPUT_PORT_TYPE
+clk[3] <= clk[3].DB_MAX_OUTPUT_PORT_TYPE
+clk[4] <= clk[4].DB_MAX_OUTPUT_PORT_TYPE
+extclk[0] <= <GND>
+extclk[1] <= <GND>
+extclk[2] <= <GND>
+extclk[3] <= <GND>
+clkbad[0] <= <GND>
+clkbad[1] <= <GND>
+enable1 <= <GND>
+enable0 <= <GND>
+activeclock <= <GND>
+clkloss <= <GND>
+locked <= <GND>
+scandataout <= <GND>
+scandone <= <GND>
+sclkout0 <= <GND>
+sclkout1 <= <GND>
+phasedone <= <GND>
+vcooverrange <= <GND>
+vcounderrange <= <GND>
+fbout <= <GND>
+fref <= <GND>
+icdrclk <= <GND>
+
+
+|coco3|pll_svga:pll_svga|altpll:altpll_component|pll_svga_altpll:auto_generated
+clk[0] <= pll1.CLK
+clk[1] <= pll1.CLK1
+clk[2] <= pll1.CLK2
+clk[3] <= pll1.CLK3
+clk[4] <= pll1.CLK4
+inclk[0] => pll1.CLK
+inclk[1] => pll1.CLK1
 
 
 |coco3|ram2:ram2

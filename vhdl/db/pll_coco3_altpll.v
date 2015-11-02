@@ -1,4 +1,4 @@
-//altpll bandwidth_type="AUTO" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" clk0_divide_by=55 clk0_duty_cycle=50 clk0_multiply_by=252 clk0_phase_shift="0" clk1_divide_by=55 clk1_duty_cycle=50 clk1_multiply_by=126 clk1_phase_shift="1091" clk2_divide_by=69 clk2_duty_cycle=50 clk2_multiply_by=55 clk2_phase_shift="0" compensate_clock="CLK0" device_family="Cyclone IV E" inclk0_input_frequency=20000 intended_device_family="Cyclone IV E" lpm_hint="CBX_MODULE_PREFIX=pll_coco3" operation_mode="normal" pll_type="AUTO" port_clk0="PORT_USED" port_clk1="PORT_USED" port_clk2="PORT_USED" port_clk3="PORT_UNUSED" port_clk4="PORT_UNUSED" port_clk5="PORT_UNUSED" port_extclk0="PORT_UNUSED" port_extclk1="PORT_UNUSED" port_extclk2="PORT_UNUSED" port_extclk3="PORT_UNUSED" port_inclk1="PORT_UNUSED" port_phasecounterselect="PORT_UNUSED" port_phasedone="PORT_UNUSED" port_scandata="PORT_UNUSED" port_scandataout="PORT_UNUSED" width_clock=5 clk inclk CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
+//altpll bandwidth_type="AUTO" CBX_DECLARE_ALL_CONNECTED_PORTS="OFF" clk0_divide_by=55 clk0_duty_cycle=50 clk0_multiply_by=126 clk0_phase_shift="0" clk1_divide_by=55 clk1_duty_cycle=50 clk1_multiply_by=126 clk1_phase_shift="1091" compensate_clock="CLK0" device_family="Cyclone IV E" inclk0_input_frequency=20000 intended_device_family="Cyclone IV E" lpm_hint="CBX_MODULE_PREFIX=pll_coco3" operation_mode="normal" pll_type="AUTO" port_clk0="PORT_USED" port_clk1="PORT_USED" port_clk2="PORT_UNUSED" port_clk3="PORT_UNUSED" port_clk4="PORT_UNUSED" port_clk5="PORT_UNUSED" port_extclk0="PORT_UNUSED" port_extclk1="PORT_UNUSED" port_extclk2="PORT_UNUSED" port_extclk3="PORT_UNUSED" port_inclk1="PORT_UNUSED" port_phasecounterselect="PORT_UNUSED" port_phasedone="PORT_UNUSED" port_scandata="PORT_UNUSED" port_scandataout="PORT_UNUSED" width_clock=5 clk inclk CARRY_CHAIN="MANUAL" CARRY_CHAIN_LENGTH=48
 //VERSION_BEGIN 15.0 cbx_altclkbuf 2015:04:22:18:04:07:SJ cbx_altiobuf_bidir 2015:04:22:18:04:07:SJ cbx_altiobuf_in 2015:04:22:18:04:07:SJ cbx_altiobuf_out 2015:04:22:18:04:07:SJ cbx_altpll 2015:04:22:18:04:07:SJ cbx_cycloneii 2015:04:22:18:04:07:SJ cbx_lpm_add_sub 2015:04:22:18:04:07:SJ cbx_lpm_compare 2015:04:22:18:04:07:SJ cbx_lpm_counter 2015:04:22:18:04:07:SJ cbx_lpm_decode 2015:04:22:18:04:08:SJ cbx_lpm_mux 2015:04:22:18:04:08:SJ cbx_mgl 2015:04:22:18:06:50:SJ cbx_stratix 2015:04:22:18:04:08:SJ cbx_stratixii 2015:04:22:18:04:08:SJ cbx_stratixiii 2015:04:22:18:04:08:SJ cbx_stratixv 2015:04:22:18:04:08:SJ cbx_util_mgl 2015:04:22:18:04:08:SJ  VERSION_END
 //CBXI_INSTANCE_NAME="coco3_pll_coco3_pll_inst_altpll_altpll_component"
 // synthesis VERILOG_INPUT_VERSION VERILOG_2001
@@ -80,16 +80,12 @@ module  pll_coco3_altpll
 		pll1.bandwidth_type = "auto",
 		pll1.clk0_divide_by = 55,
 		pll1.clk0_duty_cycle = 50,
-		pll1.clk0_multiply_by = 252,
+		pll1.clk0_multiply_by = 126,
 		pll1.clk0_phase_shift = "0",
 		pll1.clk1_divide_by = 55,
 		pll1.clk1_duty_cycle = 50,
 		pll1.clk1_multiply_by = 126,
 		pll1.clk1_phase_shift = "1091",
-		pll1.clk2_divide_by = 69,
-		pll1.clk2_duty_cycle = 50,
-		pll1.clk2_multiply_by = 55,
-		pll1.clk2_phase_shift = "0",
 		pll1.compensate_clock = "clk0",
 		pll1.inclk0_input_frequency = 20000,
 		pll1.operation_mode = "normal",

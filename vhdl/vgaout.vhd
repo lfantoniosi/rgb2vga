@@ -228,7 +228,7 @@ begin
 				videov <= '0';
 			end if;	
 		else		
-			if vcount > vert_active_video-1 or vcount(9 downto 1) < 1 then 
+			if vcount > vert_active_video-1 then 
 				videov <= '0';
 			end if;	
 		end if;
@@ -245,7 +245,7 @@ begin
 				videoh <= '0';
 			end if;
 		else
-			if hcount > hor_active_video-1 or hcount < 1 then
+			if hcount > hor_active_video-1 then
 				videoh <= '0';
 			end if;
 		end if;

@@ -32,16 +32,16 @@ begin
 	if (rising_edge(clock_pixel)) then
 		
 		hblank_out <= '1';	
-		if (hblank_pulse > 0) then
-			hblank_out <= '0';
-			hblank_pulse := hblank_pulse - 1;
-		end if;
+		--if (hblank_pulse > 0) then
+		--	hblank_out <= '0';
+		--	hblank_pulse := hblank_pulse - 1;
+		--end if;
 		
 		if (hsync /= horsync) then
 			hpeak := hpeak + 1;
 		end if;
 		
-		if (hsync /= horsync and hpeak > 23) then
+		if (hsync /= horsync and hpeak > 11) then
 		
 			horsync := hsync;
 						
@@ -54,8 +54,8 @@ begin
 			hpeak := 0;
 			
 			if (hsync = sync_level) then
-				--hblank_out <= '0';
-				hblank_pulse := 2;
+				hblank_out <= '0';
+				--hblank_pulse := 2;
 				hcount := 0;
 			end if;
 		

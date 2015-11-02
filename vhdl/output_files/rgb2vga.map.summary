@@ -1,14 +1,14 @@
-Analysis & Synthesis Status : Successful - Sat Oct 31 01:58:59 2015
+Analysis & Synthesis Status : Successful - Sun Nov 01 23:56:05 2015
 Quartus II 64-Bit Version : 15.0.0 Build 145 04/22/2015 SJ Web Edition
 Revision Name : rgb2vga
 Top-level Entity Name : coco3
 Family : Cyclone IV E
-Total logic elements : 1,110
-    Total combinational functions : 1,058
-    Dedicated logic registers : 403
-Total registers : 403
+Total logic elements : 1,100
+    Total combinational functions : 1,039
+    Dedicated logic registers : 450
+Total registers : 450
 Total pins : 71
 Total virtual pins : 0
 Total memory bits : 25,600
 Embedded Multiplier 9-bit elements : 0
-Total PLLs : 1
+Total PLLs : 2

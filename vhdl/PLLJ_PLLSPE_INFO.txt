@@ -1,5 +1,10 @@
 PLL_Name	pll_coco3:pll_inst|altpll:altpll_component|pll_coco3_altpll:auto_generated|pll1
-PLLJITTER	35
+PLLJITTER	NA
+PLLSPEmax	84
+PLLSPEmin	-53
+
+PLL_Name	pll_svga:pll_svga|altpll:altpll_component|pll_svga_altpll:auto_generated|pll1
+PLLJITTER	30
 PLLSPEmax	84
 PLLSPEmin	-53
 

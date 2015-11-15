@@ -6,9 +6,12 @@ entity input_detect is
 	
     port(clock_pixel : in std_logic;
 			hsync	 		: in std_logic; -- digital hsync
+			vsync	 		: in std_logic; -- digital vsync
 			video_active : out std_logic;
-			offset		: in std_logic;
 			hblank_out : out std_logic;
+			vblank_out : out std_logic;
+			store_req	: out std_logic := '0';
+			store_ack 	: in std_logic;
 			sync_level	: in std_logic
 );
 			
@@ -16,67 +19,88 @@ end input_detect;
 
 architecture behavioral of input_detect is
 
+signal req: std_logic;
+
 begin
 
-horizontal: process(clock_pixel, hsync)
-variable horsync : std_logic;
-variable hcount : integer range 0 to 262 * 1024 * 8;
-variable sync_high : integer range 0 to 1024 * 8;
-variable sync_down : integer range 0 to 1024 * 8;
-variable hpeak: integer range 0 to 1024 * 8;
-variable hblank_pulse: integer range 0 to 8;
+store_row: process(clock_pixel, req, store_ack)
+begin	
+	if (store_ack = '1') then -- store_ack is asynchronous
+			store_req <= '0';
+	elsif (rising_edge(clock_pixel)) then
+		if (req = '0') then
+			store_req <= '1'; -- store_req is on clock_pixel
+		end if;
+	end if;	
+end process;
 
---variable pixel_width: integer range 0 to 128;
+horizontal: process(clock_pixel, hsync)
+variable sync : std_logic;
+variable count : integer range 0 to 262 * 1024 * 8;
+variable peak: integer range 0 to 2048 * 8;
 
 begin
 	if (rising_edge(clock_pixel)) then
 		
 		hblank_out <= '1';	
-		--if (hblank_pulse > 0) then
-		--	hblank_out <= '0';
-		--	hblank_pulse := hblank_pulse - 1;
-		--end if;
+		req <= '1';
 		
-		if (hsync /= horsync) then
-			hpeak := hpeak + 1;
+		if (hsync /= sync) then
+			peak := peak + 1;
 		end if;
 		
-		if (hsync /= horsync and hpeak > 11) then
+		if (hsync /= sync and peak > 11) then
 		
-			horsync := hsync;
+			sync := hsync;
 						
-			if (hsync = '0') then
-				sync_down := hpeak;
-			else
-				sync_high := hpeak;
-			end if;
-			
-			hpeak := 0;
+			peak := 0;
 			
 			if (hsync = sync_level) then
 				hblank_out <= '0';
-				--hblank_pulse := 2;
-				hcount := 0;
+				count := 0;
+			--else
+				req <= '0';
 			end if;
 		
+		end if;
+		
+		video_active <= '0';
+		if (count < 262 * 1024 * 8) then			
+			count := count + 1;
 		else
-		
-			video_active <= '0';
-			if (hcount < 262 * 1024 * 8) then			
-				hcount := hcount + 1;
-			else
-				video_active <= '1';
-			end if;
-			
-			if (hsync = '0') then
-				sync_down := sync_down + 1;
-			else
-				sync_high := sync_high + 1;
-			end if;
-					
+			video_active <= '1';
 		end if;
 		
 	end if;
 end process;
+
+vertical: process(clock_pixel, vsync)
+variable sync : std_logic;
+variable peak: integer range 0 to 320 * 2048 * 8;
+
+begin
+	if (rising_edge(clock_pixel)) then
+		
+		vblank_out <= '1';	
+		
+		if (vsync /= sync) then
+			peak := peak + 1;
+		end if;
+		
+		if (vsync /= sync and peak > 11) then
+		
+			sync := vsync;
+						
+			peak := 0;
+			
+			if (vsync = sync_level) then
+				vblank_out <= '0';
+			end if;
+		
+		end if;
+		
+	end if;
+end process;
+
 
 end behavioral;

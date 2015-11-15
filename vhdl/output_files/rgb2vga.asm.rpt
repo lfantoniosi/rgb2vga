@@ -1,5 +1,5 @@
 Assembler report for rgb2vga
-Sun Nov 01 23:56:21 2015
+Sat Nov 14 16:39:03 2015
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -38,7 +38,7 @@ agreement for further details.
 +---------------------------------------------------------------+
 ; Assembler Summary                                             ;
 +-----------------------+---------------------------------------+
-; Assembler Status      ; Successful - Sun Nov 01 23:56:21 2015 ;
+; Assembler Status      ; Successful - Sat Nov 14 16:39:03 2015 ;
 ; Revision Name         ; rgb2vga                               ;
 ; Top-level Entity Name ; coco3                                 ;
 ; Family                ; Cyclone IV E                          ;
@@ -68,8 +68,8 @@ agreement for further details.
 ; Option         ; Setting                                               ;
 +----------------+-------------------------------------------------------+
 ; Device         ; EP4CE22F17C6                                          ;
-; JTAG usercode  ; 0x001E4C98                                            ;
-; Checksum       ; 0x001E4C98                                            ;
+; JTAG usercode  ; 0x001C35FD                                            ;
+; Checksum       ; 0x001C35FD                                            ;
 +----------------+-------------------------------------------------------+
 
 
@@ -79,14 +79,14 @@ agreement for further details.
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Assembler
     Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
-    Info: Processing started: Sun Nov 01 23:56:19 2015
+    Info: Processing started: Sat Nov 14 16:39:02 2015
 Info: Command: quartus_asm --read_settings_files=off --write_settings_files=off rgb2vga -c rgb2vga
 Info (115031): Writing out detailed assembly data for power analysis
 Info (115030): Assembler is generating device programming files
 Info: Quartus II 64-Bit Assembler was successful. 0 errors, 0 warnings
-    Info: Peak virtual memory: 621 megabytes
-    Info: Processing ended: Sun Nov 01 23:56:21 2015
-    Info: Elapsed time: 00:00:02
+    Info: Peak virtual memory: 619 megabytes
+    Info: Processing ended: Sat Nov 14 16:39:03 2015
+    Info: Elapsed time: 00:00:01
     Info: Total CPU time (on all processors): 00:00:01
 
 

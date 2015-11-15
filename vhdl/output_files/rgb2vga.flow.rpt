@@ -1,5 +1,5 @@
 Flow report for rgb2vga
-Sun Nov 01 23:56:30 2015
+Sat Nov 14 16:39:12 2015
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -41,17 +41,17 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Flow Summary                                                                    ;
 +------------------------------------+--------------------------------------------+
-; Flow Status                        ; Successful - Sun Nov 01 23:56:30 2015      ;
+; Flow Status                        ; Successful - Sat Nov 14 16:39:12 2015      ;
 ; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; coco3                                      ;
 ; Family                             ; Cyclone IV E                               ;
 ; Device                             ; EP4CE22F17C6                               ;
 ; Timing Models                      ; Final                                      ;
-; Total logic elements               ; 1,089 / 22,320 ( 5 % )                     ;
-;     Total combinational functions  ; 1,042 / 22,320 ( 5 % )                     ;
-;     Dedicated logic registers      ; 450 / 22,320 ( 2 % )                       ;
-; Total registers                    ; 450                                        ;
+; Total logic elements               ; 917 / 22,320 ( 4 % )                       ;
+;     Total combinational functions  ; 870 / 22,320 ( 4 % )                       ;
+;     Dedicated logic registers      ; 390 / 22,320 ( 2 % )                       ;
+; Total registers                    ; 390                                        ;
 ; Total pins                         ; 71 / 154 ( 46 % )                          ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 25,600 / 608,256 ( 4 % )                   ;
@@ -65,7 +65,7 @@ agreement for further details.
 +-------------------+---------------------+
 ; Option            ; Setting             ;
 +-------------------+---------------------+
-; Start date & time ; 11/01/2015 23:55:49 ;
+; Start date & time ; 11/14/2015 16:38:34 ;
 ; Main task         ; Compilation         ;
 ; Revision Name     ; rgb2vga             ;
 +-------------------+---------------------+
@@ -76,7 +76,7 @@ agreement for further details.
 +--------------------------------------+---------------------------------------+---------------+-------------+----------------+
 ; Assignment Name                      ; Value                                 ; Default Value ; Entity Name ; Section Id     ;
 +--------------------------------------+---------------------------------------+---------------+-------------+----------------+
-; COMPILER_SIGNATURE_ID                ; 79515801233090.144645094801240        ; --            ; --          ; --             ;
+; COMPILER_SIGNATURE_ID                ; 79515801233090.144754791403124        ; --            ; --          ; --             ;
 ; EDA_OUTPUT_DATA_FORMAT               ; Vhdl                                  ; --            ; --          ; eda_simulation ;
 ; EDA_SIMULATION_TOOL                  ; ModelSim-Altera (VHDL)                ; <None>        ; --          ; --             ;
 ; MAX_CORE_JUNCTION_TEMP               ; 85                                    ; --            ; --          ; --             ;
@@ -119,12 +119,12 @@ agreement for further details.
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 ; Module Name               ; Elapsed Time ; Average Processors Used ; Peak Virtual Memory ; Total CPU Time (on all processors) ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
-; Analysis & Synthesis      ; 00:00:16     ; 1.0                     ; 754 MB              ; 00:00:27                           ;
-; Fitter                    ; 00:00:10     ; 1.0                     ; 1046 MB             ; 00:00:10                           ;
-; Assembler                 ; 00:00:02     ; 1.0                     ; 621 MB              ; 00:00:01                           ;
-; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 728 MB              ; 00:00:03                           ;
-; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 605 MB              ; 00:00:02                           ;
-; Total                     ; 00:00:33     ; --                      ; --                  ; 00:00:43                           ;
+; Analysis & Synthesis      ; 00:00:14     ; 1.0                     ; 753 MB              ; 00:00:25                           ;
+; Fitter                    ; 00:00:09     ; 1.0                     ; 1044 MB             ; 00:00:10                           ;
+; Assembler                 ; 00:00:01     ; 1.0                     ; 619 MB              ; 00:00:01                           ;
+; TimeQuest Timing Analyzer ; 00:00:03     ; 1.0                     ; 730 MB              ; 00:00:03                           ;
+; EDA Netlist Writer        ; 00:00:02     ; 1.0                     ; 602 MB              ; 00:00:02                           ;
+; Total                     ; 00:00:29     ; --                      ; --                  ; 00:00:41                           ;
 +---------------------------+--------------+-------------------------+---------------------+------------------------------------+
 
 

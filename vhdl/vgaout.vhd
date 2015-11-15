@@ -52,11 +52,11 @@ begin
 			when "000" => VALUE := "000";
 			when "001" => VALUE := "000";
 			when "010" => VALUE := "001";
-			when "011" => VALUE := "010";
-			when "100" => VALUE := "011";
-			when "101" => VALUE := "100";
-			when "110" => VALUE := "101";
-			when "111" => VALUE := "110";
+			when "011" => VALUE := "001";
+			when "100" => VALUE := "010";
+			when "101" => VALUE := "010";
+			when "110" => VALUE := "011";
+			when "111" => VALUE := "011";
 		end case;
 		return VALUE;
 end f_scanline;
@@ -131,7 +131,8 @@ begin
 	if (load_ack = '1') then
 		load_req <= '0';
 	elsif (rising_edge(clock_dram)) then
-		if (hcount = (hor_active_video + hor_front_porch - 1) and vcount(0) = '0') then
+--		if (hcount = (hor_active_video + hor_front_porch - 1) and vcount(0) = '0') then
+		if (hcount = (hor_active_video)) then -- and vcount(0) = '0') then
 			load_req <= '1';
 		end if;
 	end if;

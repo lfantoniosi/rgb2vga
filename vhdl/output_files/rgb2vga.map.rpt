@@ -1,5 +1,5 @@
 Analysis & Synthesis report for rgb2vga
-Sat Nov 14 16:38:48 2015
+Mon Jan 25 00:42:45 2016
 Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
 
 
@@ -29,11 +29,12 @@ Quartus II 64-Bit Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
  21. Parameter Settings for User Entity Instance: pll_svga:pll_svga|altpll:altpll_component
  22. Parameter Settings for User Entity Instance: ram2:ram2|altsyncram:altsyncram_component
  23. Parameter Settings for User Entity Instance: ram2:ram3|altsyncram:altsyncram_component
- 24. altpll Parameter Settings by Entity Instance
- 25. altsyncram Parameter Settings by Entity Instance
- 26. Post-Synthesis Netlist Statistics for Top Partition
- 27. Elapsed Time Per Partition
- 28. Analysis & Synthesis Messages
+ 24. Parameter Settings for User Entity Instance: genlock:inst4
+ 25. altpll Parameter Settings by Entity Instance
+ 26. altsyncram Parameter Settings by Entity Instance
+ 27. Post-Synthesis Netlist Statistics for Top Partition
+ 28. Elapsed Time Per Partition
+ 29. Analysis & Synthesis Messages
 
 
 
@@ -60,15 +61,15 @@ agreement for further details.
 +---------------------------------------------------------------------------------+
 ; Analysis & Synthesis Summary                                                    ;
 +------------------------------------+--------------------------------------------+
-; Analysis & Synthesis Status        ; Successful - Sat Nov 14 16:38:48 2015      ;
+; Analysis & Synthesis Status        ; Successful - Mon Jan 25 00:42:45 2016      ;
 ; Quartus II 64-Bit Version          ; 15.0.0 Build 145 04/22/2015 SJ Web Edition ;
 ; Revision Name                      ; rgb2vga                                    ;
 ; Top-level Entity Name              ; coco3                                      ;
 ; Family                             ; Cyclone IV E                               ;
-; Total logic elements               ; 919                                        ;
-;     Total combinational functions  ; 867                                        ;
-;     Dedicated logic registers      ; 390                                        ;
-; Total registers                    ; 390                                        ;
+; Total logic elements               ; 911                                        ;
+;     Total combinational functions  ; 849                                        ;
+;     Dedicated logic registers      ; 388                                        ;
+; Total registers                    ; 388                                        ;
 ; Total pins                         ; 71                                         ;
 ; Total virtual pins                 ; 0                                          ;
 ; Total memory bits                  ; 25,600                                     ;
@@ -215,20 +216,20 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------+---------------------------------------------------------------------------------------------+
 ; Resource                                    ; Usage                                                                                       ;
 +---------------------------------------------+---------------------------------------------------------------------------------------------+
-; Estimated Total logic elements              ; 919                                                                                         ;
+; Estimated Total logic elements              ; 911                                                                                         ;
 ;                                             ;                                                                                             ;
-; Total combinational functions               ; 867                                                                                         ;
+; Total combinational functions               ; 849                                                                                         ;
 ; Logic element usage by number of LUT inputs ;                                                                                             ;
-;     -- 4 input functions                    ; 432                                                                                         ;
-;     -- 3 input functions                    ; 206                                                                                         ;
-;     -- <=2 input functions                  ; 229                                                                                         ;
+;     -- 4 input functions                    ; 450                                                                                         ;
+;     -- 3 input functions                    ; 156                                                                                         ;
+;     -- <=2 input functions                  ; 243                                                                                         ;
 ;                                             ;                                                                                             ;
 ; Logic elements by mode                      ;                                                                                             ;
-;     -- normal mode                          ; 681                                                                                         ;
-;     -- arithmetic mode                      ; 186                                                                                         ;
+;     -- normal mode                          ; 667                                                                                         ;
+;     -- arithmetic mode                      ; 182                                                                                         ;
 ;                                             ;                                                                                             ;
-; Total registers                             ; 390                                                                                         ;
-;     -- Dedicated logic registers            ; 390                                                                                         ;
+; Total registers                             ; 388                                                                                         ;
+;     -- Dedicated logic registers            ; 388                                                                                         ;
 ;     -- I/O registers                        ; 0                                                                                           ;
 ;                                             ;                                                                                             ;
 ; I/O pins                                    ; 71                                                                                          ;
@@ -240,9 +241,9 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;     -- PLLs                                 ; 2                                                                                           ;
 ;                                             ;                                                                                             ;
 ; Maximum fan-out node                        ; pll_coco3:pll_inst|altpll:altpll_component|pll_coco3_altpll:auto_generated|wire_pll1_clk[0] ;
-; Maximum fan-out                             ; 336                                                                                         ;
-; Total fan-out                               ; 4627                                                                                        ;
-; Average fan-out                             ; 3.22                                                                                        ;
+; Maximum fan-out                             ; 334                                                                                         ;
+; Total fan-out                               ; 4597                                                                                        ;
+; Average fan-out                             ; 3.24                                                                                        ;
 +---------------------------------------------+---------------------------------------------------------------------------------------------+
 
 
@@ -251,12 +252,12 @@ Parallel compilation was disabled, but you have multiple processors available. E
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------+--------------+
 ; Compilation Hierarchy Node                                    ; LC Combinationals ; LC Registers ; Memory Bits ; DSP Elements ; DSP 9x9 ; DSP 18x18 ; Pins ; Virtual Pins ; Full Hierarchy Name                                                               ; Library Name ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------+--------------+
-; |coco3                                                        ; 867 (1)           ; 390 (0)      ; 25600       ; 0            ; 0       ; 0         ; 71   ; 0            ; |coco3                                                                            ; work         ;
-;    |adc:inst2|                                                ; 70 (70)           ; 30 (30)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|adc:inst2                                                                  ; work         ;
+; |coco3                                                        ; 849 (1)           ; 388 (0)      ; 25600       ; 0            ; 0       ; 0         ; 71   ; 0            ; |coco3                                                                            ; work         ;
+;    |adc:inst2|                                                ; 13 (13)           ; 18 (18)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|adc:inst2                                                                  ; work         ;
 ;    |altiobuf:lvds|                                            ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|altiobuf:lvds                                                              ; work         ;
 ;       |altiobuf_iobuf_in_m0j:altiobuf_iobuf_in_m0j_component| ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|altiobuf:lvds|altiobuf_iobuf_in_m0j:altiobuf_iobuf_in_m0j_component        ; work         ;
 ;    |counter:inst3|                                            ; 4 (4)             ; 6 (6)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|counter:inst3                                                              ; work         ;
-;    |genlock:inst4|                                            ; 224 (224)         ; 79 (79)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|genlock:inst4                                                              ; work         ;
+;    |genlock:inst4|                                            ; 261 (261)         ; 89 (89)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|genlock:inst4                                                              ; work         ;
 ;    |input_detect:input_detect|                                ; 77 (77)           ; 36 (36)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|input_detect:input_detect                                                  ; work         ;
 ;    |pll_coco3:pll_inst|                                       ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|pll_coco3:pll_inst                                                         ; work         ;
 ;       |altpll:altpll_component|                               ; 0 (0)             ; 0 (0)        ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|pll_coco3:pll_inst|altpll:altpll_component                                 ; work         ;
@@ -271,7 +272,7 @@ Parallel compilation was disabled, but you have multiple processors available. E
 ;       |altsyncram:altsyncram_component|                       ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|ram2:ram3|altsyncram:altsyncram_component                                  ; work         ;
 ;          |altsyncram_inj1:auto_generated|                     ; 0 (0)             ; 0 (0)        ; 16384       ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|ram2:ram3|altsyncram:altsyncram_component|altsyncram_inj1:auto_generated   ; work         ;
 ;    |sdram:inst1|                                              ; 284 (284)         ; 157 (157)    ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|sdram:inst1                                                                ; work         ;
-;    |vgaout:inst|                                              ; 207 (207)         ; 82 (82)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|vgaout:inst                                                                ; work         ;
+;    |vgaout:inst|                                              ; 209 (209)         ; 82 (82)      ; 0           ; 0            ; 0       ; 0         ; 0    ; 0            ; |coco3|vgaout:inst                                                                ; work         ;
 +---------------------------------------------------------------+-------------------+--------------+-------------+--------------+---------+-----------+------+--------------+-----------------------------------------------------------------------------------+--------------+
 Note: For table entries with two numbers listed, the numbers in parentheses indicate the number of resources of the given type used by the specific entity alone. The numbers listed outside of parentheses indicate the total resources of the given type used by the specific entity and all of its sub-entities in the hierarchy.
 
@@ -319,45 +320,43 @@ Encoding Type:  One-Hot
 +---------------------------------------------------+--------------------------------------------------+
 ; Register name                                     ; Reason for Removal                               ;
 +---------------------------------------------------+--------------------------------------------------+
-; genlock:inst4|magenta[2..4,6]                     ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|darkgreen[6]                        ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|top_border[0]                       ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|darkgreen[2..4]                     ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|darkblue[0,1,3,5,6,8]               ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|brown[0,1,3,5,6,8]                  ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|lightblue[4..7]                     ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|black[0..2]                         ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|lightgray[0]                        ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|darkgray[7]                         ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|darkgray[5]                         ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|darkgray[4]                         ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|darkgray[0]                         ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|white[0..8]                         ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|magenta[7]                          ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|magenta[5]                          ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|darkgreen[0]                        ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|darkblue[0,5]                       ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|brown[7]                            ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|brown[5]                            ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|brown[4]                            ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|brown[0]                            ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|violet[6,7]                         ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|violet[5]                           ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|green[3,4]                          ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|green[0]                            ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|lightblue[4,6,7]                    ; Stuck at VCC due to stuck port data_in           ;
 ; genlock:inst4|lightblue[0]                        ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|yellow[4..7]                        ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|yellow[3,4,6,7]                     ; Stuck at VCC due to stuck port data_in           ;
 ; genlock:inst4|yellow[0]                           ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|pink[2..4,6]                        ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|aqua[2..4,6]                        ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|orange[7]                           ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|pink[6,7]                           ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|pink[5]                             ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|pink[3,4]                           ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|aqua[3,4,6]                         ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|aqua[0]                             ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|orange[6,7]                         ; Stuck at VCC due to stuck port data_in           ;
 ; genlock:inst4|orange[5]                           ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|orange[4]                           ; Stuck at VCC due to stuck port data_in           ;
+; genlock:inst4|orange[3,4]                         ; Stuck at VCC due to stuck port data_in           ;
 ; genlock:inst4|orange[0]                           ; Stuck at GND due to stuck port data_in           ;
 ; genlock:inst4|mediumblue[7]                       ; Stuck at VCC due to stuck port data_in           ;
 ; genlock:inst4|mediumblue[5]                       ; Stuck at GND due to stuck port data_in           ;
 ; genlock:inst4|mediumblue[4]                       ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|front_porch[8..31]                  ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|front_porch[7]                      ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|front_porch[0,5,6]                  ; Stuck at GND due to stuck port data_in           ;
 ; genlock:inst4|mediumblue[0]                       ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|white[0..8]                         ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|darkgray[0]                         ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|darkgray[1]                         ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|darkgray[2,3]                       ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|darkgray[4]                         ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|darkgray[5,6]                       ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|darkgray[7]                         ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|darkgray[8]                         ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|lightgray[0,1]                      ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|lightgray[2]                        ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|lightgray[3,4]                      ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|lightgray[5]                        ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|lightgray[6,7]                      ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|lightgray[8]                        ; Stuck at VCC due to stuck port data_in           ;
-; genlock:inst4|black[0..8]                         ; Stuck at GND due to stuck port data_in           ;
-; genlock:inst4|top_border[2,6..31]                 ; Stuck at GND due to stuck port data_in           ;
+; genlock:inst4|black[3..8]                         ; Stuck at GND due to stuck port data_in           ;
 ; sdram:inst1|SdrCmd[3]                             ; Stuck at GND due to stuck port data_in           ;
 ; sdram:inst1|pixelOut[9..15]                       ; Lost fanout                                      ;
 ; genlock:inst4|pixel_b[0..8]                       ; Merged with genlock:inst4|\process_b:pixel[0]    ;
@@ -365,31 +364,53 @@ Encoding Type:  One-Hot
 ; vgaout:inst|barcolor[0]                           ; Merged with vgaout:inst|pixel[0]                 ;
 ; sdram:inst1|SdrUdq                                ; Merged with sdram:inst1|SdrLdq                   ;
 ; input_detect:input_detect|req                     ; Merged with input_detect:input_detect|hblank_out ;
-; genlock:inst4|top_border[3..5]                    ; Merged with genlock:inst4|top_border[1]          ;
-; genlock:inst4|front_porch[2,3]                    ; Merged with genlock:inst4|front_porch[1]         ;
-; genlock:inst4|brown[4,7]                          ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|darkblue[2]                         ; Merged with genlock:inst4|aqua[5]                ;
+; genlock:inst4|brown[8]                            ; Merged with genlock:inst4|aqua[8]                ;
+; genlock:inst4|darkblue[1]                         ; Merged with genlock:inst4|aqua[8]                ;
+; genlock:inst4|darkgray[8]                         ; Merged with genlock:inst4|aqua[8]                ;
+; genlock:inst4|darkgreen[1,2]                      ; Merged with genlock:inst4|aqua[8]                ;
+; genlock:inst4|green[8]                            ; Merged with genlock:inst4|aqua[8]                ;
+; genlock:inst4|lightgray[1]                        ; Merged with genlock:inst4|aqua[8]                ;
+; genlock:inst4|magenta[2]                          ; Merged with genlock:inst4|aqua[8]                ;
+; genlock:inst4|darkgray[1]                         ; Merged with genlock:inst4|aqua[2]                ;
+; genlock:inst4|lightgray[8]                        ; Merged with genlock:inst4|aqua[2]                ;
+; genlock:inst4|magenta[8]                          ; Merged with genlock:inst4|aqua[2]                ;
+; genlock:inst4|pink[1,2]                           ; Merged with genlock:inst4|aqua[2]                ;
+; genlock:inst4|violet[8]                           ; Merged with genlock:inst4|aqua[2]                ;
+; genlock:inst4|lightblue[1,2]                      ; Merged with genlock:inst4|darkblue[2]            ;
+; genlock:inst4|lightgray[2]                        ; Merged with genlock:inst4|darkblue[2]            ;
+; genlock:inst4|magenta[1]                          ; Merged with genlock:inst4|darkblue[2]            ;
+; genlock:inst4|mediumblue[1,2]                     ; Merged with genlock:inst4|darkblue[2]            ;
+; genlock:inst4|orange[8]                           ; Merged with genlock:inst4|darkblue[2]            ;
+; genlock:inst4|pink[8]                             ; Merged with genlock:inst4|darkblue[2]            ;
+; genlock:inst4|violet[1,2]                         ; Merged with genlock:inst4|darkblue[2]            ;
+; genlock:inst4|yellow[8]                           ; Merged with genlock:inst4|darkblue[2]            ;
+; genlock:inst4|brown[1,2]                          ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|darkblue[8]                         ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|darkgray[2]                         ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|darkgreen[8]                        ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|green[1,2]                          ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|lightblue[8]                        ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|mediumblue[8]                       ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|orange[1,2]                         ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|yellow[1,2]                         ; Merged with genlock:inst4|aqua[1]                ;
+; genlock:inst4|brown[3,6]                          ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|darkblue[3,4,6,7]                   ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|darkgray[3,6]                       ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|darkgreen[3,4,6,7]                  ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|green[6,7]                          ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|lightblue[3]                        ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|lightgray[3,4,6,7]                  ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|magenta[3,4,6]                      ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|mediumblue[3,6]                     ; Merged with genlock:inst4|aqua[7]                ;
+; genlock:inst4|violet[3,4]                         ; Merged with genlock:inst4|aqua[7]                ;
 ; genlock:inst4|darkgreen[5]                        ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|green[3..5]                         ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|lightblue[1,2]                      ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|magenta[0,1,7,8]                    ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|mediumblue[1,2]                     ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|orange[3,6,8]                       ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|pink[0,1,7,8]                       ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|violet[0..2,6..8]                   ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|yellow[3,8]                         ; Merged with genlock:inst4|aqua[5]                ;
-; genlock:inst4|aqua[1,7,8]                         ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|brown[2]                            ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|darkblue[4,7]                       ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|darkgreen[0,1,7,8]                  ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|green[0..2,6..8]                    ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|lightblue[3,8]                      ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|magenta[5]                          ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|mediumblue[3,6,8]                   ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|orange[1,2]                         ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|pink[5]                             ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|violet[3..5]                        ; Merged with genlock:inst4|aqua[0]                ;
-; genlock:inst4|yellow[1,2]                         ; Merged with genlock:inst4|aqua[0]                ;
+; genlock:inst4|green[5]                            ; Merged with genlock:inst4|aqua[5]                ;
+; genlock:inst4|lightblue[5]                        ; Merged with genlock:inst4|aqua[5]                ;
+; genlock:inst4|lightgray[5]                        ; Merged with genlock:inst4|aqua[5]                ;
+; genlock:inst4|magenta[0]                          ; Merged with genlock:inst4|aqua[5]                ;
+; genlock:inst4|pink[0]                             ; Merged with genlock:inst4|aqua[5]                ;
+; genlock:inst4|violet[0]                           ; Merged with genlock:inst4|aqua[5]                ;
+; genlock:inst4|yellow[5]                           ; Merged with genlock:inst4|aqua[5]                ;
 ; input_detect:input_detect|\horizontal:peak[13,14] ; Stuck at GND due to stuck port data_in           ;
 ; input_detect:input_detect|\vertical:peak[21,22]   ; Stuck at GND due to stuck port data_in           ;
 ; sdram:inst1|SdrRoutine.SdrRoutine_RefreshAll      ; Stuck at GND due to stuck port data_in           ;
@@ -399,7 +420,7 @@ Encoding Type:  One-Hot
 ; vgaout:inst|row_number[9]                         ; Stuck at GND due to stuck port data_in           ;
 ; input_detect:input_detect|\horizontal:peak[4..12] ; Stuck at GND due to stuck port data_in           ;
 ; input_detect:input_detect|\vertical:peak[4..20]   ; Stuck at GND due to stuck port data_in           ;
-; Total Number of Removed Registers = 274           ;                                                  ;
+; Total Number of Removed Registers = 209           ;                                                  ;
 +---------------------------------------------------+--------------------------------------------------+
 
 
@@ -445,12 +466,12 @@ Encoding Type:  One-Hot
 +----------------------------------------------+-------+
 ; Statistic                                    ; Value ;
 +----------------------------------------------+-------+
-; Total registers                              ; 390   ;
+; Total registers                              ; 388   ;
 ; Number of registers using Synchronous Clear  ; 23    ;
 ; Number of registers using Synchronous Load   ; 31    ;
 ; Number of registers using Asynchronous Clear ; 37    ;
 ; Number of registers using Asynchronous Load  ; 0     ;
-; Number of registers using Clock Enable       ; 214   ;
+; Number of registers using Clock Enable       ; 240   ;
 ; Number of registers using Preset             ; 0     ;
 +----------------------------------------------+-------+
 
@@ -460,9 +481,8 @@ Encoding Type:  One-Hot
 +----------------------------------------+---------+
 ; Inverted Register                      ; Fan out ;
 +----------------------------------------+---------+
-; genlock:inst4|front_porch[1]           ; 6       ;
 ; genlock:inst4|artifact_mode            ; 19      ;
-; Total number of inverted registers = 2 ;         ;
+; Total number of inverted registers = 1 ;         ;
 +----------------------------------------+---------+
 
 
@@ -474,9 +494,9 @@ Encoding Type:  One-Hot
 ; input_detect:input_detect|Add0~1    ; Modified         ; Timing optimization ;
 ; input_detect:input_detect|Add1~1    ; Modified         ; Timing optimization ;
 ; input_detect:input_detect|Add2~1    ; Modified         ; Timing optimization ;
-; input_detect:input_detect|count~22  ; Modified         ; Timing optimization ;
-; input_detect:input_detect|peak~7    ; Modified         ; Timing optimization ;
-; input_detect:input_detect|peak~12   ; Modified         ; Timing optimization ;
+; input_detect:input_detect|count~23  ; Modified         ; Timing optimization ;
+; input_detect:input_detect|peak~3    ; Modified         ; Timing optimization ;
+; input_detect:input_detect|peak~8    ; Modified         ; Timing optimization ;
 ; sdram:inst1|Add0~0_NEW_REG46_RTM048 ; Modified         ; Timing optimization ;
 ; sdram:inst1|Add0~0_NEW_REG46_RTM048 ; Retimed Register ; Timing optimization ;
 ; sdram:inst1|Add0~0_OTERM47          ; Retimed Register ; Timing optimization ;
@@ -507,7 +527,7 @@ Encoding Type:  One-Hot
 ; sdram:inst1|Add0~44_OTERM3          ; Retimed Register ; Timing optimization ;
 ; sdram:inst1|Add0~46_OTERM1          ; Retimed Register ; Timing optimization ;
 ; sdram:inst1|Add3~1                  ; Modified         ; Timing optimization ;
-; sdram:inst1|Selector8~1             ; Modified         ; Timing optimization ;
+; sdram:inst1|Selector3~1             ; Modified         ; Timing optimization ;
 ; sdram:inst1|Selector61~0            ; Modified         ; Timing optimization ;
 ; vgaout:inst|Add0~1                  ; Modified         ; Timing optimization ;
 ; vgaout:inst|Add4~0                  ; Modified         ; Timing optimization ;
@@ -516,7 +536,7 @@ Encoding Type:  One-Hot
 ; vgaout:inst|posx~3                  ; Modified         ; Timing optimization ;
 ; vgaout:inst|posy~3                  ; Modified         ; Timing optimization ;
 ; vgaout:inst|vcount[0]~1             ; Modified         ; Timing optimization ;
-; vgaout:inst|vga_pixel~2             ; Modified         ; Timing optimization ;
+; vgaout:inst|vga_pixel~6             ; Modified         ; Timing optimization ;
 +-------------------------------------+------------------+---------------------+
 
 
@@ -525,28 +545,30 @@ Encoding Type:  One-Hot
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 ; Multiplexer Inputs ; Bus Width ; Baseline Area ; Area if Restructured ; Saving if Restructured ; Registered ; Example Multiplexer Output                           ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |coco3|sdram:inst1|curRow[9]                         ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |coco3|adc:inst2|\channel_blue:i[2]                  ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |coco3|adc:inst2|\channel_green:i[0]                 ;
+; 3:1                ; 3 bits    ; 6 LEs         ; 3 LEs                ; 3 LEs                  ; Yes        ; |coco3|adc:inst2|\channel_red:i[0]                   ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |coco3|sdram:inst1|curRow[0]                         ;
 ; 3:1                ; 11 bits   ; 22 LEs        ; 22 LEs               ; 0 LEs                  ; Yes        ; |coco3|vgaout:inst|\bar:posx[8]                      ;
 ; 3:1                ; 8 bits    ; 16 LEs        ; 8 LEs                ; 8 LEs                  ; Yes        ; |coco3|vgaout:inst|\bar:posy[10]                     ;
 ; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |coco3|input_detect:input_detect|\horizontal:peak[1] ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |coco3|vgaout:inst|vcount[9]                         ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |coco3|input_detect:input_detect|\vertical:peak[1]   ;
-; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |coco3|vgaout:inst|col_number[8]                     ;
-; 8:1                ; 9 bits    ; 45 LEs        ; 0 LEs                ; 45 LEs                 ; Yes        ; |coco3|sdram:inst1|pixelOut[2]                       ;
-; 8:1                ; 10 bits   ; 50 LEs        ; 20 LEs               ; 30 LEs                 ; Yes        ; |coco3|sdram:inst1|colStoreNr[5]                     ;
-; 10:1               ; 10 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |coco3|sdram:inst1|colLoadNr[9]                      ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |coco3|vgaout:inst|vcount[7]                         ;
+; 3:1                ; 2 bits    ; 4 LEs         ; 2 LEs                ; 2 LEs                  ; Yes        ; |coco3|input_detect:input_detect|\vertical:peak[0]   ;
+; 3:1                ; 10 bits   ; 20 LEs        ; 10 LEs               ; 10 LEs                 ; Yes        ; |coco3|vgaout:inst|col_number[2]                     ;
+; 8:1                ; 9 bits    ; 45 LEs        ; 0 LEs                ; 45 LEs                 ; Yes        ; |coco3|sdram:inst1|pixelOut[8]                       ;
+; 8:1                ; 10 bits   ; 50 LEs        ; 20 LEs               ; 30 LEs                 ; Yes        ; |coco3|sdram:inst1|colStoreNr[8]                     ;
+; 10:1               ; 10 bits   ; 60 LEs        ; 20 LEs               ; 40 LEs                 ; Yes        ; |coco3|sdram:inst1|colLoadNr[7]                      ;
 ; 20:1               ; 4 bits    ; 52 LEs        ; 16 LEs               ; 36 LEs                 ; Yes        ; |coco3|sdram:inst1|SdrAdr[12]                        ;
-; 20:1               ; 9 bits    ; 117 LEs       ; 18 LEs               ; 99 LEs                 ; Yes        ; |coco3|sdram:inst1|SdrAdr[1]                         ;
-; 22:1               ; 14 bits   ; 196 LEs       ; 14 LEs               ; 182 LEs                ; Yes        ; |coco3|sdram:inst1|SdrAddress[19]                    ;
-; 22:1               ; 10 bits   ; 140 LEs       ; 20 LEs               ; 120 LEs                ; Yes        ; |coco3|sdram:inst1|SdrAddress[16]                    ;
-; 31:1               ; 12 bits   ; 240 LEs       ; 12 LEs               ; 228 LEs                ; Yes        ; |coco3|sdram:inst1|SdrRoutineSeq[5]                  ;
-; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |coco3|genlock:inst4|Mux44                           ;
-; 3:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |coco3|genlock:inst4|Mux1                            ;
+; 20:1               ; 9 bits    ; 117 LEs       ; 18 LEs               ; 99 LEs                 ; Yes        ; |coco3|sdram:inst1|SdrAdr[4]                         ;
+; 22:1               ; 14 bits   ; 196 LEs       ; 14 LEs               ; 182 LEs                ; Yes        ; |coco3|sdram:inst1|SdrAddress[22]                    ;
+; 22:1               ; 10 bits   ; 140 LEs       ; 20 LEs               ; 120 LEs                ; Yes        ; |coco3|sdram:inst1|SdrAddress[18]                    ;
+; 31:1               ; 12 bits   ; 240 LEs       ; 12 LEs               ; 228 LEs                ; Yes        ; |coco3|sdram:inst1|SdrRoutineSeq[11]                 ;
+; 4:1                ; 9 bits    ; 18 LEs        ; 18 LEs               ; 0 LEs                  ; No         ; |coco3|genlock:inst4|Mux48                           ;
 ; 3:1                ; 22 bits   ; 44 LEs        ; 22 LEs               ; 22 LEs                 ; No         ; |coco3|input_detect:input_detect|count               ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |coco3|vgaout:inst|vga_pixel                         ;
 ; 4:1                ; 2 bits    ; 4 LEs         ; 4 LEs                ; 0 LEs                  ; No         ; |coco3|vgaout:inst|vga_pixel                         ;
 ; 5:1                ; 2 bits    ; 6 LEs         ; 4 LEs                ; 2 LEs                  ; No         ; |coco3|vgaout:inst|vga_pixel                         ;
-; 35:1               ; 6 bits    ; 138 LEs       ; 18 LEs               ; 120 LEs                ; No         ; |coco3|sdram:inst1|Selector8                         ;
+; 35:1               ; 6 bits    ; 138 LEs       ; 18 LEs               ; 120 LEs                ; No         ; |coco3|sdram:inst1|Selector3                         ;
 +--------------------+-----------+---------------+----------------------+------------------------+------------+------------------------------------------------------+
 
 
@@ -1455,6 +1477,17 @@ Note: In order to hide this table in the UI and the text report file, please set
 Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
 
 
++------------------------------------------------------------+
+; Parameter Settings for User Entity Instance: genlock:inst4 ;
++----------------+-------+-----------------------------------+
+; Parameter Name ; Value ; Type                              ;
++----------------+-------+-----------------------------------+
+; front_porch    ; 150   ; Signed Integer                    ;
+; top_border     ; 16    ; Signed Integer                    ;
++----------------+-------+-----------------------------------+
+Note: In order to hide this table in the UI and the text report file, please set the "Show Parameter Settings in Synthesis Report" option in "Analysis and Synthesis Settings -> More Settings" to "Off".
+
+
 +----------------------------------------------------------------------------+
 ; altpll Parameter Settings by Entity Instance                               ;
 +-------------------------------+--------------------------------------------+
@@ -1517,32 +1550,32 @@ Note: In order to hide this table in the UI and the text report file, please set
 ; Type                  ; Count                       ;
 +-----------------------+-----------------------------+
 ; boundary_port         ; 71                          ;
-; cycloneiii_ff         ; 414                         ;
+; cycloneiii_ff         ; 412                         ;
 ;     CLR               ; 10                          ;
-;     ENA               ; 146                         ;
+;     ENA               ; 172                         ;
 ;     ENA CLR           ; 27                          ;
 ;     ENA SCLR          ; 12                          ;
 ;     ENA SLD           ; 29                          ;
 ;     SCLR              ; 9                           ;
 ;     SCLR SLD          ; 2                           ;
-;     plain             ; 179                         ;
+;     plain             ; 151                         ;
 ; cycloneiii_io_ibuf    ; 3                           ;
 ; cycloneiii_io_obuf    ; 16                          ;
-; cycloneiii_lcell_comb ; 869                         ;
-;     arith             ; 186                         ;
-;         2 data inputs ; 142                         ;
-;         3 data inputs ; 44                          ;
-;     normal            ; 683                         ;
+; cycloneiii_lcell_comb ; 851                         ;
+;     arith             ; 182                         ;
+;         2 data inputs ; 145                         ;
+;         3 data inputs ; 37                          ;
+;     normal            ; 669                         ;
 ;         0 data inputs ; 4                           ;
-;         1 data inputs ; 22                          ;
-;         2 data inputs ; 63                          ;
-;         3 data inputs ; 162                         ;
-;         4 data inputs ; 432                         ;
+;         1 data inputs ; 26                          ;
+;         2 data inputs ; 70                          ;
+;         3 data inputs ; 119                         ;
+;         4 data inputs ; 450                         ;
 ; cycloneiii_pll        ; 2                           ;
 ; cycloneiii_ram_block  ; 25                          ;
 ;                       ;                             ;
 ; Max LUT depth         ; 10.00                       ;
-; Average LUT depth     ; 4.05                        ;
+; Average LUT depth     ; 4.26                        ;
 +-----------------------+-----------------------------+
 
 
@@ -1561,7 +1594,7 @@ Note: In order to hide this table in the UI and the text report file, please set
 Info: *******************************************************************
 Info: Running Quartus II 64-Bit Analysis & Synthesis
     Info: Version 15.0.0 Build 145 04/22/2015 SJ Web Edition
-    Info: Processing started: Sat Nov 14 16:38:33 2015
+    Info: Processing started: Mon Jan 25 00:42:29 2016
 Info: Command: quartus_map --read_settings_files=on --write_settings_files=off rgb2vga -c rgb2vga
 Warning (20028): Parallel compilation is not licensed and has been disabled
 Info (12021): Found 2 design units, including 1 entities, in source file vgaout.vhd
@@ -1760,7 +1793,7 @@ Info (12021): Found 1 design units, including 1 entities, in source file db/alts
     Info (12023): Found entity 1: altsyncram_inj1
 Info (12128): Elaborating entity "altsyncram_inj1" for hierarchy "ram2:ram2|altsyncram:altsyncram_component|altsyncram_inj1:auto_generated"
 Info (12128): Elaborating entity "genlock" for hierarchy "genlock:inst4"
-Warning (10873): Using initial value X (don't care) for net "pixel_out[15..9]" at genlock.vhd(11)
+Warning (10873): Using initial value X (don't care) for net "pixel_out[15..9]" at genlock.vhd(16)
 Info (12128): Elaborating entity "counter" for hierarchy "counter:inst3"
 Info (12128): Elaborating entity "adc" for hierarchy "adc:inst2"
 Info (12128): Elaborating entity "altiobuf" for hierarchy "altiobuf:lvds"
@@ -1798,7 +1831,7 @@ Info (332111): Found 4 clocks
     Info (332111):    8.730 pll_inst|altpll_component|auto_generated|pll1|clk[1]
     Info (332111):   25.000 pll_svga|altpll_component|auto_generated|pll1|clk[0]
 Info (128002): Starting physical synthesis algorithm register retiming
-Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 286 ps
+Info (128003): Physical synthesis algorithm register retiming complete: estimated slack improvement of 143 ps
 Info (128002): Starting physical synthesis algorithm combinational resynthesis using boolean division
 Info (128003): Physical synthesis algorithm combinational resynthesis using boolean division complete: estimated slack improvement of 0 ps
 Info (128001): Physical synthesis optimizations for speed complete: elapsed time is 00:00:01
@@ -1832,17 +1865,17 @@ Info (35003): Optimize away 26 nodes that do not fanout to OUTPUT or BIDIR pins
 Warning (21074): Design contains 2 input pin(s) that do not drive logic
     Warning (15610): No output dependent on input pin "FP7"
     Warning (15610): No output dependent on input pin "FP6"
-Info (21057): Implemented 1045 device resources after synthesis - the final resource count might be different
+Info (21057): Implemented 1030 device resources after synthesis - the final resource count might be different
     Info (21058): Implemented 18 input pins
     Info (21059): Implemented 37 output pins
     Info (21060): Implemented 16 bidirectional pins
-    Info (21061): Implemented 947 logic cells
+    Info (21061): Implemented 932 logic cells
     Info (21064): Implemented 25 RAM segments
     Info (21065): Implemented 2 PLLs
 Info: Quartus II 64-Bit Analysis & Synthesis was successful. 0 errors, 17 warnings
-    Info: Peak virtual memory: 753 megabytes
-    Info: Processing ended: Sat Nov 14 16:38:48 2015
-    Info: Elapsed time: 00:00:15
-    Info: Total CPU time (on all processors): 00:00:26
+    Info: Peak virtual memory: 757 megabytes
+    Info: Processing ended: Mon Jan 25 00:42:45 2016
+    Info: Elapsed time: 00:00:16
+    Info: Total CPU time (on all processors): 00:00:28
 
 

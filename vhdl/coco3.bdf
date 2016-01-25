@@ -1705,9 +1705,20 @@ agreement for further details.
 		(text "wren_pixel" (rect 169 75 219 87)(font "Arial" ))
 		(line (pt 232 80)(pt 216 80))
 	)
+	(parameter
+		"front_porch"
+		"150"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"top_border"
+		"16"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 216 256))
 	)
+	(annotation_block (parameter)(rect 784 -216 973 -174))
 )
 (connector
 	(text "VGA_OUT[0]" (rect -86 352 -23 364)(font "Arial" ))

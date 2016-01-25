@@ -165,37 +165,80 @@ end f_adc;
 
 begin
 
-channel_red0: process--(clock_sync, dac_step)
-variable red_adc: unsigned(7 downto 0);
+--channel_red0: process--(clock_sync, dac_step)
+--variable red_adc: unsigned(7 downto 0);
+--begin
+--	wait until (clock_sync'event and clock_sync='1'); 
+----	if (rising_edge(clock_sync)) then		
+--		red_adc(to_integer(dac_step(2 downto 0))) := adc_rgb(2);
+--		--if (dac_step(3 downto 0) = "1000") then
+--		pixel_adc(8 downto 6) <= f_adc(red_adc(6 downto 0));
+--	--end if;
+--end process;
+--
+--channel_green0: process--(clock_sync, dac_step)
+--variable green_adc: unsigned(7 downto 0);
+--begin
+--	wait until (clock_sync'event and clock_sync='1'); 
+----	if (rising_edge(clock_sync)) then		
+--		green_adc(to_integer(dac_step(2 downto 0))) := adc_rgb(1);
+--		--if (dac_step(3 downto 0) = "1000") then
+--		pixel_adc(5 downto 3) <= f_adc(green_adc(6 downto 0));
+--	--end if;
+--end process;
+--
+--channel_blue0: process--(clock_sync, dac_step)
+--variable blue_adc: unsigned(7 downto 0);
+--begin
+--	wait until (clock_sync'event and clock_sync='1'); 
+----	if (rising_edge(clock_sync)) then		
+--		blue_adc(to_integer(dac_step(2 downto 0))) := adc_rgb(0);
+--		--if (dac_step(3 downto 0) = "1000") then
+--		pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 0)); 
+--	--end if;
+--end process;
+
+channel_red: process(clock_sync)
+variable i: unsigned(2 downto 0);
 begin
-	wait until (clock_sync'event and clock_sync='1'); 
---	if (rising_edge(clock_sync)) then		
-		red_adc(to_integer(dac_step(2 downto 0))) := adc_rgb(2);
-		--if (dac_step(3 downto 0) = "1000") then
-		pixel_adc(8 downto 6) <= f_adc(red_adc(6 downto 0));
-	--end if;
+	if (rising_edge(clock_sync)) then
+
+		if (dac_step(2 downto 0) = "111") then
+			pixel_adc(8 downto 6) <= i;
+			i := (others => '0');
+		elsif adc_rgb(2) = '1' then
+			i := i + 1;	
+		end if;
+		
+	end if;		
 end process;
 
-channel_green0: process--(clock_sync, dac_step)
-variable green_adc: unsigned(7 downto 0);
+channel_green: process(clock_sync)
+variable i: unsigned(2 downto 0);
 begin
-	wait until (clock_sync'event and clock_sync='1'); 
---	if (rising_edge(clock_sync)) then		
-		green_adc(to_integer(dac_step(2 downto 0))) := adc_rgb(1);
-		--if (dac_step(3 downto 0) = "1000") then
-		pixel_adc(5 downto 3) <= f_adc(green_adc(6 downto 0));
-	--end if;
+	if (rising_edge(clock_sync)) then
+		if (dac_step(2 downto 0) = "111") then
+			pixel_adc(5 downto 3) <=  i;
+			i := (others => '0');
+		elsif adc_rgb(1) = '1' then
+			i := i + 1;	
+		end if;
+	
+	end if;		
 end process;
 
-channel_blue0: process--(clock_sync, dac_step)
-variable blue_adc: unsigned(7 downto 0);
+channel_blue: process(clock_sync)
+variable i: unsigned(2 downto 0);
 begin
-	wait until (clock_sync'event and clock_sync='1'); 
---	if (rising_edge(clock_sync)) then		
-		blue_adc(to_integer(dac_step(2 downto 0))) := adc_rgb(0);
-		--if (dac_step(3 downto 0) = "1000") then
-		pixel_adc(2 downto 0) <= f_adc(blue_adc(6 downto 0)); 
-	--end if;
+	if (rising_edge(clock_sync)) then
+		if (dac_step(2 downto 0) = "111") then
+			pixel_adc(2 downto 0) <= i;
+			i := (others => '0');
+		elsif adc_rgb(0) = '1' then
+			i := i + 1;	
+		end if;
+		
+	end if;		
 end process;
 
 	

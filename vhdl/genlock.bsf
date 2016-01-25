@@ -150,7 +150,18 @@ agreement for further details.
 		(text "wren_pixel" (rect 170 75 211 87)(font "Arial" ))
 		(line (pt 232 80)(pt 216 80)(line_width 1))
 	)
+	(parameter
+		"front_porch"
+		"150"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
+	(parameter
+		"top_border"
+		"16"
+		""
+		(type "PARAMETER_SIGNED_DEC")	)
 	(drawing
 		(rectangle (rect 16 16 216 256)(line_width 1))
 	)
+	(annotation_block (parameter)(rect 248 -64 348 16))
 )

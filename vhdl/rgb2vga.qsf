@@ -163,32 +163,12 @@ set_global_assignment -name CDF_FILE output_files/rgb2vga.cdf
 set_global_assignment -name BDF_FILE coco3.bdf
 set_location_assignment PIN_R10 -to VGAB2
 set_location_assignment PIN_B4 -to BRIGHT
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFB
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFBn
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFG
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFGn
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFR
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to DIFFRn
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP0
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP1
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP2
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP3
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP4
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP5
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP6
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to FP7
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to HSYNC
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAB0
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAB1
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAG0
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAG1
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAG2
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAHS
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR0
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR1
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAR2
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAVS
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VSYNC
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFB
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFBn
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFG
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFGn
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFR
+set_instance_assignment -name CURRENT_STRENGTH_NEW 8MA -to DIFFRn
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP0
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP1
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP2
@@ -197,20 +177,76 @@ set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP4
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP5
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP6
 set_instance_assignment -name WEAK_PULL_UP_RESISTOR ON -to FP7
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to VGAB2
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to BRIGHT
 set_global_assignment -name PARTITION_NETLIST_TYPE SOURCE -section_id Top
 set_global_assignment -name PARTITION_FITTER_PRESERVATION_LEVEL PLACEMENT_AND_ROUTING -section_id Top
 set_global_assignment -name PARTITION_COLOR 16764057 -section_id Top
 set_global_assignment -name ECO_OPTIMIZE_TIMING OFF
-set_instance_assignment -name IO_STANDARD "2.5 V" -to D0
-set_instance_assignment -name IO_STANDARD "2.5 V" -to D1
-set_instance_assignment -name IO_STANDARD "2.5 V" -to D2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to D0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to D1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to D2
 set_global_assignment -name VHDL_FILE adc.vhd
 set_global_assignment -name VHDL_FILE counter.vhd
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to CLOCK_50
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D0
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D1
-set_instance_assignment -name CURRENT_STRENGTH_NEW "MINIMUM CURRENT" -to D2
 set_global_assignment -name QIP_FILE pll_svga.qip
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VSYNC
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAVS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAR2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAR1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAR0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAHS
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAG2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAG1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAG0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAB2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAB1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to VGAB0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to HSYNC
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FP7
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FP6
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FP5
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FP4
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FP3
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FP2
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FP1
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to FP0
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_WE_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_RAS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQM[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[13]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[14]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_DQ[15]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CLK
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CKE
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_CAS_N
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_BA[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[0]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[1]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[2]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[3]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[4]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[5]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[6]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[7]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[8]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[9]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[10]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[11]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to DRAM_ADDR[12]
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to CLOCK_50
+set_instance_assignment -name IO_STANDARD "3.3-V LVTTL" -to BRIGHT
 set_instance_assignment -name PARTITION_HIERARCHY root_partition -to | -section_id Top

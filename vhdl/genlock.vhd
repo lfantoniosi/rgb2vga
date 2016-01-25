@@ -5,6 +5,11 @@ use IEEE.NUMERIC_STD.ALL;
 
 entity genlock is
 
+	generic(
+		front_porch	: integer := 150;
+		top_border	: integer := 16
+	);
+
     port(clock_pixel : in std_logic;
 			vblank  		: in std_logic; -- digital vsync
 			hblank 		: in std_logic; -- digital hsync
@@ -30,8 +35,8 @@ end genlock;
 architecture behavioral of genlock is
 
 signal hcount, vcount							: unsigned(13 downto 0);
-signal top_border									: integer := 16;
-signal front_porch								: integer := 142;
+--signal top_border									: integer := 16;
+--signal front_porch								: integer := 142;
 
 signal pixel_a: unsigned(8 downto 0);
 signal pixel_d: unsigned(8 downto 0);
@@ -606,20 +611,20 @@ begin
 end process;
 		
 
-vsync_lock: process(clock_pixel, vblank)
-variable sync: std_logic;
-begin	
-	if (rising_edge(clock_pixel)) then		
-		if (vblank = '0') then		
-			if (vcount > 290) then
-				top_border <= 42;
-			else
-				top_border <= 16;
-			end if;	
-		end if;								
-	end if;	
-
-end process;
+--vsync_lock: process(clock_pixel, vblank)
+--variable sync: std_logic;
+--begin	
+--	if (rising_edge(clock_pixel)) then		
+--		if (vblank = '0') then		
+--			if (vcount > 290) then
+--				top_border <= 42;
+--			else
+--				top_border <= 16;
+--			end if;	
+--		end if;								
+--	end if;	
+--
+--end process;
 
 vraster: process (clock_pixel, vblank)
 begin
@@ -652,6 +657,7 @@ end process;
 
 process_b: process--(clock_pixel, hcount, dac_step, col_number)
 variable a_pixel: unsigned(8 downto 0);
+variable p_pixel: unsigned(8 downto 0);
 variable pixel: unsigned(3 downto 0);
 
 begin
@@ -785,7 +791,11 @@ begin
 			end if;
 		end if;			
 
-		pixel_d <= a_pixel;
+		pixel_d(8 downto 6) <=  f_lerp("100" & a_pixel(8 downto 6) & p_pixel(8 downto 6));
+		pixel_d(5 downto 3) <=  f_lerp("100" & a_pixel(5 downto 3) & p_pixel(5 downto 3));
+		pixel_d(2 downto 0) <=  f_lerp("100" & a_pixel(2 downto 0) & p_pixel(2 downto 0));
+		
+		p_pixel := a_pixel;
 
 end process;
 
@@ -844,12 +854,13 @@ color_scheme: process(clock_pixel, apple2, mode)
 begin
 	if (rising_edge(clock_pixel)) then
 	
-		black 				<= "000000000"; -- black
-		lightgray			<= "100100100"; -- lightgray
-		darkgray				<= "010010010"; -- darkgray
-		white					<= "111111111"; -- white	
-
-		if (mode = '0') then		
+		
+		if (apple2 = '0') then
+			black 				<= "000000000"; -- black
+			lightgray			<= "100100100"; -- lightgray
+			darkgray				<= "010010010"; -- darkgray
+			white					<= "111111111"; -- white	
+	
 			magenta				<= "110000011"; -- magenta
 			darkgreen			<= "000100000"; -- darkgreen
 			darkblue				<= "000000100"; -- darkblue
@@ -862,30 +873,54 @@ begin
 			aqua					<= "001111100"; -- aqua
 			orange				<= "111011000"; -- orange
 			mediumblue			<= "010010110"; -- mediumblue			
+
 		else
-			darkgreen			<= "110000011"; -- magenta
-			magenta				<= "000100000"; -- darkgreen
-			brown					<= "000000100"; -- darkblue
-			darkblue				<= "010010000"; -- brown
-			green					<= "111000111"; -- violet
-			violet				<= "000111000"; -- green
-			yellow				<= "011110110"; -- lightblue		
-			lightblue			<= "111111000"; -- yellow
-			aqua					<= "111011111"; -- pink				
-			pink					<= "001111100"; -- aqua
-			mediumblue			<= "111011000"; -- orange
-			orange				<= "010010110"; -- mediumblue
-		end if;		
+			if (mode = '0') then	
+				black					<= "000000000"; -- black
+				brown					<= "111011000"; -- orange
+				magenta				<= "011011110"; -- lightblue					
+				orange				<= "111011000"; -- orange
+				darkblue				<= "011011110"; -- lightblue					
+				darkgray				<= "111011000"; -- orange
+				violet				<= "011011110"; -- lightblue					
+				pink					<= "111011000"; -- orange
+				darkgreen			<= "011011110"; -- lightblue					
+				green					<= "111011000"; -- orange
+				lightgray			<= "011011110"; -- lightblue					
+				yellow				<= "111011000"; -- orange
+				mediumblue			<= "011011110"; -- lightblue					
+				aqua					<= "111011000"; -- orange
+				lightblue			<= "011011110"; -- lightblue					
+				white      			<= "111111111"; -- white
+			else
+				black					<= "000000000"; -- black
+				brown					<= "011011110"; -- lightblue					
+				magenta				<= "111011000"; -- orange
+				orange				<= "011011110"; -- lightblue					
+				darkblue				<= "111011000"; -- orange
+				darkgray				<= "011011110"; -- lightblue					
+				violet				<= "111011000"; -- orange
+				pink					<= "011011110"; -- lightblue					
+				darkgreen			<= "111011000"; -- orange
+				green					<= "011011110"; -- lightblue					
+				lightgray			<= "111011000"; -- orange
+				yellow				<= "011011110"; -- lightblue					
+				mediumblue			<= "111011000"; -- orange
+				aqua					<= "011011110"; -- lightblue					
+				lightblue			<= "111011000"; -- orange
+				white      			<= "111111111"; -- white
+			end if;
+		end if;
 	end if;
 end process;
 
-mode_change: process(clock_pixel)
-begin
-	if (rising_edge(clock_pixel)) then
-		front_porch  <= 144;
-		--front_porch  <= 64;
-	end if;	
-end process;
+--mode_change: process(clock_pixel)
+--begin
+--	if (rising_edge(clock_pixel)) then
+--		front_porch  <= 144;
+--		--front_porch  <= 64;
+--	end if;	
+--end process;
 
 	pixel_sel(1 downto 0) <= artifact_mode&apple2;	
 	with pixel_sel select pixel_out(8 downto 0) <= 
